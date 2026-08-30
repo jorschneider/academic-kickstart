@@ -32,6 +32,7 @@ A ChinaTalk research corpus mapping who actually builds for the PLA — the prim
 | [`aero-engine-catchup.md`](./aero-engine-catchup.md) | The historic weak point, now maturing (WS-15, DD6, CJ-1000A) |
 | [`nuclear-forces.md`](./nuclear-forces.md) | The fastest nuclear expansion in the world — triad, silos, and the warhead complex |
 | [`ground-systems.md`](./ground-systems.md) | NORINCO and the munitions machine — where wartime production scale is the edge |
+| [`electronics-radar-ew.md`](./electronics-radar-ew.md) | CETC, the AESA/GaN radar leap, counter-stealth, and the gallium lever |
 
 ## The through-line
 
