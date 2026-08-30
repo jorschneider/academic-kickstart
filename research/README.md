@@ -17,8 +17,9 @@ A ChinaTalk research corpus mapping who actually builds for the PLA — the prim
 | [Drone & Robot Atlas](https://claude.ai/code/artifact/e07d880f-fd1b-4449-829f-8d37bed927b7) | The unmanned/embodied stack: platform → component → material | 51 nodes |
 | [Counter-Drone Kill Chain](https://claude.ai/code/artifact/121166cb-aa8b-428d-9c95-437afc0613f2) | Counter-UAS: detect → decide → defeat, plus export | 25 systems |
 | [Semiconductor Chokepoint](https://claude.ai/code/artifact/2dfad809-6b14-4901-8357-47fc160a94a3) | The compute base, coded by self-sufficiency status | 22 nodes |
+| [Robot Ecosystem](https://claude.ai/code/artifact/354d7ea9-11c5-4d05-be0e-2b0b7b02c46b) | Humanoids → components, coded by China's competitive position | 35 nodes |
 
-*In progress (research running): a dedicated Robot Ecosystem map and a Space, Missiles & Hypersonics map.*
+*In progress (multi-agent research running): a dedicated Space, Missiles & Hypersonics map.*
 
 ## Essays
 

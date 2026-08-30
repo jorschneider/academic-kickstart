@@ -177,7 +177,7 @@
 
   <footer class="wrap">
     <p class="fh">Methodology &amp; caveats</p>
-    <p>Compiled entirely from open sources — DoD's <em>Military and Security Developments Involving the PRC</em> (Dec 2025) and the Section 1260H list (June 2026), BIS Entity List actions, CSIS ChinaPower, RUSI, RAND, FDD, Kharon, IISS <em>Military Balance 2026</em>, SemiAnalysis, and trade-press reporting cited in the companion essays. The scorecard tiers are analytical judgments synthesized across those sources, not quantitative measurements; reasonable analysts will place some domains a tier up or down. Corporate structures, shipment figures and sanctions status are a 2026 snapshot of a fast-moving picture. This is a living document — a robot-ecosystem map and essay are in progress and will join the set. Companion essays live in the repository alongside this page.</p>
+    <p>Compiled entirely from open sources — DoD's <em>Military and Security Developments Involving the PRC</em> (Dec 2025) and the Section 1260H list (June 2026), BIS Entity List actions, CSIS ChinaPower, RUSI, RAND, FDD, Kharon, IISS <em>Military Balance 2026</em>, SemiAnalysis, and trade-press reporting cited in the companion essays. The scorecard tiers are analytical judgments synthesized across those sources, not quantitative measurements; reasonable analysts will place some domains a tier up or down. Corporate structures, shipment figures and sanctions status are a 2026 snapshot of a fast-moving picture. This is a living document — a dedicated Space, Missiles &amp; Hypersonics map is still in progress and will join the set. Companion essays live in the repository alongside this page.</p>
   </footer>
 </div>
 
@@ -192,7 +192,7 @@ const MAPS = {
   supplier:  { url: 'https://claude.ai/code/artifact/9ba26611-80ca-456b-b489-06bce1b350ed', label: 'PLA Supplier Atlas' },
   drone:     { url: 'https://claude.ai/code/artifact/e07d880f-fd1b-4449-829f-8d37bed927b7', label: 'Drone & Robot Atlas' },
   counteruas:{ url: 'https://claude.ai/code/artifact/121166cb-aa8b-428d-9c95-437afc0613f2', label: 'Counter-Drone Kill Chain' },
-  robot:     { url: 'https://claude.ai/code/artifact/e07d880f-fd1b-4449-829f-8d37bed927b7', label: 'Drone & Robot Atlas' },
+  robot:     { url: 'https://claude.ai/code/artifact/354d7ea9-11c5-4d05-be0e-2b0b7b02c46b', label: 'Robot Ecosystem' },
   semiconductor: { url: 'https://claude.ai/code/artifact/2dfad809-6b14-4901-8357-47fc160a94a3', label: 'Semiconductor Chokepoint' },
 }
 const SCORE = [
@@ -262,6 +262,7 @@ const MAPCARDS = [
   { map: 'drone', mk: 'Supply-chain stack', title: 'Drone & Robot Atlas', stat: '51 nodes · platform → component → material', p: 'The unmanned and embodied-intelligence stack, from flying platforms down to the motors, thermal cores, reducers and magnets — the vertical where China owns the whole chain.', teal: true },
   { map: 'counteruas', mk: 'Kill chain', title: 'Counter-Drone Kill Chain', stat: '25 systems · detect → decide → defeat', p: 'The defensive half: radar and RF detection, jammers and spoofers, lasers and microwave, guns and interceptors — and the export story of arming both sides.', teal: false },
   { map: 'semiconductor', mk: 'Chokepoint status', title: 'Semiconductor Chokepoint', stat: '22 nodes · dependent → self-sufficient', p: 'The compute base coded by self-sufficiency: where China is blocked (EUV, advanced EDA, HBM), brute-forcing (SMIC, Ascend), localizing the toolchain, or already dominant (legacy nodes).', teal: true },
+  { map: 'robot', mk: 'Competitive position', title: 'Robot Ecosystem', stat: '35 nodes · leads → depends', p: 'Humanoids, quadrupeds, military UGVs and the component chain, coded by China’s position — leading almost everywhere, depending only at the hardest tiers (top reducers, force/tactile sensors, AI compute).', teal: false },
 ]
 MAPCARDS.forEach(c => {
   const a = document.createElement('a')
