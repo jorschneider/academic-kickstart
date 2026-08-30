@@ -34,6 +34,7 @@ A ChinaTalk research corpus mapping who actually builds for the PLA — the prim
 | [`ground-systems.md`](./ground-systems.md) | NORINCO and the munitions machine — where wartime production scale is the edge |
 | [`electronics-radar-ew.md`](./electronics-radar-ew.md) | CETC, the AESA/GaN radar leap, counter-stealth, and the gallium lever |
 | [`robot-ecosystem.md`](./robot-ecosystem.md) | The embodied-intelligence wave — humanoids, quadrupeds, UGVs, and the component chokepoints |
+| [`space-missiles-hypersonics.md`](./space-missiles-hypersonics.md) | Launch, megaconstellations, counterspace, missiles and hypersonics — peer or ahead |
 
 ## The through-line
 
