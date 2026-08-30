@@ -18,7 +18,8 @@ A ChinaTalk research corpus mapping who actually builds for the PLA — the prim
 | [Counter-Drone Kill Chain](https://claude.ai/code/artifact/121166cb-aa8b-428d-9c95-437afc0613f2) | Counter-UAS: detect → decide → defeat, plus export | 25 systems |
 | [Semiconductor Chokepoint](https://claude.ai/code/artifact/2dfad809-6b14-4901-8357-47fc160a94a3) | The compute base, coded by self-sufficiency status | 22 nodes |
 | [Robot Ecosystem](https://claude.ai/code/artifact/354d7ea9-11c5-4d05-be0e-2b0b7b02c46b) | Humanoids → components, coded by China's competitive position | 37 nodes |
-| [Space & Missile Power](https://claude.ai/code/artifact/5101023f-ba3f-44d4-9b35-9f90eac4a98f) | Launch, satellites, counterspace, missiles, hypersonics — vs the US | 30 systems |
+| [Space & Missile Power](https://claude.ai/code/artifact/5101023f-ba3f-44d4-9b35-9f90eac4a98f) | Launch, satellites, counterspace, missiles, hypersonics — vs the US | 33 systems |
+| [**Chokepoint Ledger**](https://claude.ai/code/artifact/9b07ec41-f9ff-4863-a0cf-c0fd43b9b11a) | **The synthesis** — dependencies vs. leverage on a severity × substitution matrix | 18 chokepoints |
 
 ## Essays
 
@@ -35,6 +36,7 @@ A ChinaTalk research corpus mapping who actually builds for the PLA — the prim
 | [`electronics-radar-ew.md`](./electronics-radar-ew.md) | CETC, the AESA/GaN radar leap, counter-stealth, and the gallium lever |
 | [`robot-ecosystem.md`](./robot-ecosystem.md) | The embodied-intelligence wave — humanoids, quadrupeds, UGVs, and the component chokepoints |
 | [`space-missiles-hypersonics.md`](./space-missiles-hypersonics.md) | Launch, megaconstellations, counterspace, missiles and hypersonics — peer or ahead |
+| [`chokepoint-leverage-ledger.md`](./chokepoint-leverage-ledger.md) | **The synthesis** — China's dependencies vs. leverage, with substitution timelines and policy levers |
 
 ## The through-line
 

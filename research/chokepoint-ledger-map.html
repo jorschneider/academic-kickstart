@@ -1,0 +1,337 @@
+<title>Chokepoint Ledger</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    color-scheme: light;
+    --bg: #EBEDEF; --surface: #F7F8FA; --surface2: #E0E3E7; --ink: #191C21; --muted: #5F6773;
+    --line: #CCCFD6; --grid: #D8DBE1; --hair: #E1E3E8;
+    --accent: #3A4048;
+    --in: #B9502F; --in-bg: rgba(185,80,47,.10);
+    --out: #2C6C9C; --out-bg: rgba(44,108,156,.10);
+    --zone: rgba(58,64,72,.05);
+    --shadow: 0 16px 44px rgba(25,28,33,.16);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --bg: #101215; --surface: #191C21; --surface2: #23272E; --ink: #E3E7EC; --muted: #929AA5;
+      --line: #2A2F37; --grid: #262B32; --hair: #22262D;
+      --accent: #AEB6C2;
+      --in: #CE6E4E; --in-bg: rgba(206,110,78,.14);
+      --out: #5B9BD0; --out-bg: rgba(91,155,208,.14);
+      --zone: rgba(174,182,194,.06);
+      --shadow: 0 16px 44px rgba(0,0,0,.55);
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #101215; --surface: #191C21; --surface2: #23272E; --ink: #E3E7EC; --muted: #929AA5;
+    --line: #2A2F37; --grid: #262B32; --hair: #22262D;
+    --accent: #AEB6C2;
+    --in: #CE6E4E; --in-bg: rgba(206,110,78,.14);
+    --out: #5B9BD0; --out-bg: rgba(91,155,208,.14);
+    --zone: rgba(174,182,194,.06);
+    --shadow: 0 16px 44px rgba(0,0,0,.55);
+  }
+  * { box-sizing: border-box; }
+  body { background: var(--bg); color: var(--ink); margin: 0;
+    font-family: "IBM Plex Sans","PingFang SC","Microsoft YaHei",system-ui,sans-serif; font-size: 14.5px; line-height: 1.55; }
+  .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 26px; }
+  header.mast { padding: 44px 0 20px; }
+  .eyebrow { font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); margin: 0 0 14px; display: flex; gap: 12px; align-items: center; }
+  .eyebrow b { color: var(--in); font-weight: 500; } .eyebrow i { color: var(--out); font-style: normal; font-weight: 500; }
+  h1 { font-family: "Archivo", sans-serif; font-weight: 700; font-size: clamp(34px,5.4vw,58px); line-height: 1.0; letter-spacing: -0.02em; margin: 0 0 16px; text-wrap: balance; }
+  .read { max-width: 76ch; color: var(--ink); font-size: 15.5px; line-height: 1.6; margin: 0 0 6px; }
+  .read b { font-weight: 600; }
+  .read .cin { color: var(--in); font-weight: 600; } .read .cout { color: var(--out); font-weight: 600; }
+  section { padding: 30px 0; border-top: 1px solid var(--hair); }
+  .sechead { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin: 0 0 4px; }
+  h2 { font-family: "Archivo", sans-serif; font-weight: 700; font-size: clamp(20px,3vw,27px); letter-spacing: -0.01em; margin: 0; }
+  .sform { color: var(--muted); font-size: 13.5px; max-width: 80ch; margin: 6px 0 18px; }
+  /* matrix */
+  .matrixwrap { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 12px 12px 6px; overflow-x: auto; }
+  svg.matrix { width: 100%; min-width: 620px; height: auto; display: block; }
+  .axlabel { font-family: "IBM Plex Mono", monospace; font-size: 11px; fill: var(--muted); }
+  .axtick { font-family: "IBM Plex Mono", monospace; font-size: 9.5px; fill: var(--muted); }
+  .gridln { stroke: var(--grid); stroke-width: 1; }
+  .zonelabel { font-family: "Archivo", sans-serif; font-size: 11px; font-weight: 600; fill: var(--muted); letter-spacing: .04em; text-transform: uppercase; }
+  .dot { cursor: pointer; }
+  .dot circle { stroke: var(--surface); stroke-width: 1.5; }
+  .dot text.lbl { font-family: "IBM Plex Sans", sans-serif; font-size: 10.5px; font-weight: 500; fill: var(--ink); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
+  .dot.dim { opacity: .16; }
+  .dot:hover circle { stroke: var(--ink); }
+  .dot:hover text.lbl { font-weight: 700; }
+  .legend { display: flex; gap: 20px; flex-wrap: wrap; align-items: center; margin: 10px 2px 0; font-size: 12px; color: var(--muted); }
+  .legend .k { display: inline-flex; align-items: center; gap: 6px; }
+  .legend .sw { width: 11px; height: 11px; border-radius: 50%; }
+  .legend button { background: none; border: 1px solid var(--line); border-radius: 20px; padding: 4px 11px; font: inherit; font-size: 11.5px; color: var(--muted); cursor: pointer; font-family: "IBM Plex Mono", monospace; }
+  .legend button[aria-pressed="true"].fin { background: var(--in); border-color: var(--in); color: #fff; }
+  .legend button[aria-pressed="true"].fout { background: var(--out); border-color: var(--out); color: #fff; }
+  .legend .trendkey { margin-left: auto; }
+  /* ledger balance sheet */
+  .sheet { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+  .col h3 { font-family: "Archivo", sans-serif; font-size: 16px; font-weight: 700; margin: 0 0 3px; display: flex; align-items: center; gap: 8px; }
+  .col.in h3 { color: var(--in); } .col.out h3 { color: var(--out); }
+  .col .csub { color: var(--muted); font-size: 12px; margin: 0 0 12px; }
+  .rows { display: flex; flex-direction: column; gap: 6px; }
+  .row { width: 100%; text-align: left; font: inherit; color: var(--ink); cursor: pointer; background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--dc); border-radius: 5px; padding: 9px 11px; display: grid; grid-template-columns: 1fr auto; gap: 3px 10px; align-items: center; }
+  .row:hover { background: var(--surface2); }
+  .row .rn { font-family: "Archivo", sans-serif; font-weight: 600; font-size: 13.5px; grid-column: 1; }
+  .row .rh { font-size: 11px; color: var(--muted); grid-column: 1; }
+  .row .rmeta { grid-column: 2; grid-row: 1 / span 2; display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+  .pips { display: flex; gap: 2px; }
+  .pip { width: 15px; height: 5px; border-radius: 1px; background: var(--surface2); border: 1px solid var(--line); }
+  .pip.on { background: var(--dc); border-color: var(--dc); }
+  .hz { font-family: "IBM Plex Mono", monospace; font-size: 10px; color: var(--muted); display: flex; align-items: center; gap: 5px; }
+  .tr { font-family: "IBM Plex Mono", monospace; font-weight: 600; font-size: 12px; }
+  .tr.down { color: var(--out); } .tr.up { color: var(--in); } .tr.flat { color: var(--muted); }
+  .row[hidden] { display: none; }
+  /* clocks */
+  .clocks { display: flex; flex-direction: column; gap: 2px; }
+  .clock { display: grid; grid-template-columns: 128px 1fr; gap: 16px; padding: 12px 0; border-top: 1px solid var(--hair); align-items: baseline; }
+  .clock:first-child { border-top: 0; }
+  .clock .when { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--accent); font-weight: 500; }
+  .clock .what b { font-weight: 600; } .clock .what { font-size: 13.5px; color: var(--muted); line-height: 1.5; }
+  .clock .what b.cin { color: var(--in); } .clock .what b.cout { color: var(--out); }
+  /* dossier */
+  #backdrop { position: fixed; inset: 0; background: rgba(10,12,15,.5); z-index: 40; }
+  #panel { position: fixed; top: 0; right: 0; bottom: 0; width: min(450px,100vw); z-index: 50; background: var(--surface); border-left: 1px solid var(--line); box-shadow: var(--shadow); transform: translateX(102%); transition: transform .22s ease; overflow-y: auto; padding: 26px 28px 40px; }
+  #panel.open { transform: translateX(0); }
+  @media (prefers-reduced-motion: reduce) { #panel { transition: none; } }
+  #panel .ptag { font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 9px; font-weight: 500; }
+  #panel h2.pt { font-family: "Archivo", sans-serif; font-size: 24px; font-weight: 700; margin: 0; line-height: 1.1; letter-spacing: -0.01em; }
+  #panel .pholder { color: var(--muted); font-size: 13px; margin: 6px 0 0; }
+  #panel .prow { display: flex; gap: 18px; flex-wrap: wrap; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); margin: 16px 0; padding: 12px 0; }
+  #panel .pcell .k { font-family: "IBM Plex Mono", monospace; font-size: 9.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 3px; }
+  #panel .pcell .v { font-size: 13px; font-weight: 600; }
+  #panel .profile { font-size: 13.5px; line-height: 1.62; margin: 0 0 14px; }
+  #panel .lever { background: var(--dc-bg); border: 1px solid var(--dc); border-radius: 5px; padding: 11px 13px; }
+  #panel .lever .lk { font-family: "IBM Plex Mono", monospace; font-size: 9.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--dc); margin-bottom: 4px; }
+  #panel .lever p { margin: 0; font-size: 12.5px; line-height: 1.5; }
+  #closep { position: absolute; top: 15px; right: 15px; background: none; border: 1px solid var(--line); color: var(--muted); border-radius: 4px; width: 28px; height: 28px; cursor: pointer; font-size: 15px; line-height: 1; }
+  #closep:hover { color: var(--ink); border-color: var(--muted); }
+  footer { padding: 26px 0 54px; color: var(--muted); font-size: 11.5px; line-height: 1.6; border-top: 1px solid var(--hair); }
+  footer p { max-width: 100ch; } footer a { color: var(--out); }
+  @media (max-width: 720px) { .sheet { grid-template-columns: 1fr; } .clock { grid-template-columns: 1fr; gap: 2px; } }
+</style>
+
+<div class="wrap">
+  <header class="mast">
+    <p class="eyebrow">ChinaTalk Research · Strategic Balance Sheet · <b>China depends ▸</b> <i>◂ depends on China</i></p>
+    <h1>Chokepoint Ledger</h1>
+    <p class="read">The atlas's bottom line. Every domain nets out to two columns: what China must still <span class="cin">import</span>, and what the world must <span class="cout">import from China</span>. The asymmetry is the point — the US holds <b>fewer but higher-quality</b> chokepoints (a short list of things China genuinely can't make: EUV lithography above all), while China holds <b>more but softer</b> ones (a long list others could eventually replace, but not soon or cheaply — rare-earth magnets above all) and <b>trades them tactically</b>. Both clocks are running. The chart plots every chokepoint by how binding it is and how long it takes to escape; the decisive ones sit top-right.</p>
+  </header>
+
+  <section>
+    <div class="sechead"><h2>The strategic matrix</h2></div>
+    <p class="sform">Severity (how binding) against substitution horizon (how long to build around it). Color = direction. The arrow on each dot says whether the dependency is <span style="color:var(--out)">easing ↘</span>, holding <span style="color:var(--muted)">→</span>, or <span style="color:var(--in)">deepening ↗</span>. Click any point for its dossier.</p>
+    <div class="matrixwrap"><svg class="matrix" id="matrix" viewBox="0 0 780 470" role="img" aria-label="Chokepoints plotted by severity and substitution horizon"></svg></div>
+    <div class="legend">
+      <span class="k"><span class="sw" style="background:var(--in)"></span> China depends (imports)</span>
+      <span class="k"><span class="sw" style="background:var(--out)"></span> Depends on China (exports leverage)</span>
+      <button class="fin" data-d="in" aria-pressed="true">isolate dependencies</button>
+      <button class="fout" data-d="out" aria-pressed="true">isolate leverage</button>
+      <span class="trendkey mono">↘ easing · → holding · ↗ deepening</span>
+    </div>
+  </section>
+
+  <section>
+    <div class="sechead"><h2>The balance sheet</h2></div>
+    <p class="sform">The same chokepoints as a ledger — dependencies (liabilities) against leverage (assets), each ranked by severity. Bars = severity; then substitution horizon and trend.</p>
+    <div class="sheet">
+      <div class="col in"><h3>China's dependencies</h3><p class="csub">What it must still import — few, deep, mostly narrowing.</p><div class="rows" id="rows-in"></div></div>
+      <div class="col out"><h3>China's leverage</h3><p class="csub">What the world imports from China — broad, and mostly durable to ~2030.</p><div class="rows" id="rows-out"></div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sechead"><h2>The crossover clocks</h2></div>
+    <p class="sform">The ledger is useful mainly for its timing. The moments that would shift the balance:</p>
+    <div class="clocks">
+      <div class="clock"><span class="when">~2026–27</span><span class="what"><b>HBM at scale.</b> If CXMT hits volume HBM3, the US loses one of its three <b class="cin">compute locks</b> and China's AI-accelerator ceiling rises. The nearest crossover.</span></div>
+      <div class="clock"><span class="when">2026–27</span><span class="what"><b>Mature-node price war.</b> If Big Fund III capacity gluts legacy chips, China's <b class="cout">leverage grows</b> by hollowing foreign fabs — leverage moving the wrong way for the West.</span></div>
+      <div class="clock"><span class="when">rolling</span><span class="what"><b>Drone-component reshoring.</b> Ukraine and the US localize motors and controllers under fire; cameras and magnets are the sticky last mile. A race between the war's learning curve and China's <b class="cout">export leverage</b>.</span></div>
+      <div class="clock"><span class="when">~2028–30</span><span class="what"><b>Allied magnet diversification.</b> The G7's sub-60%-single-supplier-by-2030 target; if allied magnet-making passes ~40% of supply, China's <b class="cout">crown jewel</b> starts to erode. Furthest out, highest stakes.</span></div>
+      <div class="clock"><span class="when">this decade?</span><span class="what"><b>EUV.</b> Any credible sign SSMB or LDP nears a <em>commercial</em> scanner would be the most destabilizing event in the ledger — and the <b class="cin">master lock</b> the US holds. Treat every such report with heavy skepticism.</span></div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Compiled Aug 30, 2026 as the cross-cutting synthesis of the China Defense-Industrial Atlas. Severity, substitution horizon and trend are analytical judgments synthesized across the atlas's domain essays and their sources (IEA, S&P Global and the G7 on rare-earth magnets; USITC and Fastmarkets on gallium/germanium; RUSI on drones; CSIS on legacy chips and lithography; SemiAnalysis on HBM; DoD CMPR Dec 2025) — not measurements; reasonable analysts will move individual line items a notch, and substitution horizons are especially uncertain. The analytical frame is Farrell &amp; Newman's <em>Weaponized Interdependence</em>. Companion essay: <span class="mono">chokepoint-leverage-ledger.md</span>.</p>
+  </footer>
+</div>
+
+<div id="backdrop" hidden></div>
+<aside id="panel" aria-label="Chokepoint dossier"><button id="closep" aria-label="Close dossier">×</button><div id="pbody"></div></aside>
+
+<script>
+// dir: 'in' = China depends (imports) · 'out' = world depends on China (exports leverage)
+// sev: 1 Moderate .. 3 Critical (float for plotting) · sub: 1 short .. 5 structural
+// trend: down=easing, flat=holding, up=deepening
+const DATA = [
+  // INBOUND — China's dependencies
+  { id:'euv', dir:'in', n:'EUV lithography', full:'EUV lithography', holder:'ASML (Netherlands)', sev:3.0, sub:4.75, sevT:'Critical', subT:'Very long (5–10 yr+, uncertain)', trend:'flat', la:'l',
+    detail:'The master lock. Barred from ASML\'s extreme-ultraviolet scanners, SMIC must brute-force every advanced node with DUV multipatterning at a cost and yield penalty. Domestic alternatives (SSMB, LDP) are years from a commercial machine.',
+    lever:'The single highest-quality chokepoint the US and its allies hold. Holds SMIC a generation behind at volume — but only as long as the export coalition holds and no domestic EUV emerges.' },
+  { id:'eda', dir:'in', n:'Advanced digital EDA', full:'Advanced digital EDA (≤5 nm)', holder:'Synopsys, Cadence, Siemens (US/DE)', sev:2.75, sub:3.15, sevT:'High', subT:'Medium–long', trend:'down', la:'l',
+    detail:'Logic synthesis and physical implementation at advanced nodes still lean on three Western firms. China\'s Empyrean reaches 7 nm digital; the ≤5 nm frontier is the gap.',
+    lever:'The May 2025 EDA cutoff (reversed within weeks) proved the leverage and its limits. A secondary compute lock — narrowing as Empyrean climbs.' },
+  { id:'hbm', dir:'in', n:'HBM at scale', full:'High-bandwidth memory (HBM3/3E)', holder:'SK Hynix, Samsung, Micron', sev:2.3, sub:2.05, sevT:'High', subT:'Short–medium (~end-2026)', trend:'down', la:'r',
+    detail:'HBM gates an AI accelerator as much as logic does, and was cut off entirely in late 2024. CXMT targets volume domestic HBM3 by end-2026.',
+    lever:'The nearest-term crossover in the whole ledger — the swing variable for how many Ascend accelerators China can build. Narrowing fast.' },
+  { id:'fabtools', dir:'in', n:'Leading-edge fab tools', full:'Metrology, ion implant, advanced deposition', holder:'US, Japan, Netherlands', sev:2.15, sub:3.45, sevT:'High', subT:'Medium', trend:'down', la:'r',
+    detail:'Away from lithography, China has localized etch/deposition/clean fast (NAURA, AMEC, ACM). The residual gaps are top-tier metrology, some ion implantation, and advanced deposition — plus Western sub-components inside domestic tools.',
+    lever:'A secondary compute lock that keeps yields down at the leading edge. Narrowing, but the tool-inside-the-tool dependency is sticky.' },
+  { id:'aero', dir:'in', n:'Aero-engine hot section', full:'Aero-engine hot section + civil certification', holder:'US/UK/FR (CJ-1000A cert)', sev:1.45, sub:2.95, sevT:'Moderate', subT:'Medium (~2027–30)', trend:'down', la:'l',
+    detail:'Military engines are largely solved (WS-15 on the J-20A) and single-crystal superalloys (DD6) are world-class. The residual gap is commercial certification (CJ-1000A) and variable-cycle propulsion.',
+    lever:'A narrowing dependency — the C919 still flies on Western CFM LEAP engines, but the trajectory is one-directional.' },
+  { id:'radhard', dir:'in', n:'Rad-hard space chips', full:'Radiation-hardened / space-grade FPGAs', holder:'US vendors', sev:1.12, sub:3.35, sevT:'Moderate', subT:'Medium–long', trend:'flat', la:'r',
+    detail:'High-density rad-hard FPGAs for satellites and missiles remain largely US-vendor-dependent, and the subject of documented smuggling cases. Institutes 771 (XIMT) and 772 (BMTI) are working to close it.',
+    lever:'A quiet but real space-electronics chokepoint — the space domain\'s reach into the semiconductor gap.' },
+  { id:'reducers', dir:'in', n:'RV reducers + roller screws', full:'Top-tier RV reducers & planetary roller screws', holder:'Nabtesco (JP); Rollvis/GSA/Ewellix (CH/EU)', sev:0.98, sub:3.05, sevT:'Moderate', subT:'Medium', trend:'down', la:'l',
+    detail:'China now leads in harmonic reducers (Leaderdrive), but Japan\'s Nabtesco still leads RV (cycloidal) reducers, and Swiss/European makers dominate the planetary roller screws in humanoid linear actuators.',
+    lever:'The robot component dependency — narrowing on reducers, stickier on roller screws.' },
+  { id:'sensors', dir:'in', n:'Force/tactile sensors', full:'High-end force & tactile sensors', holder:'ATI, Kistler (US/EU)', sev:0.85, sub:2.6, sevT:'Moderate', subT:'Medium', trend:'down', la:'l',
+    detail:'Six-axis force/torque sensing is ~60% import-dependent (ATI leads globally); tactile/e-skin is the single largest bottleneck in dexterous hands. Domestic challengers (Kunwei, Sunrise, PaXini) are climbing.',
+    lever:'The hardest robot-component gap — narrowing as humanoid volumes create a demand inflection.' },
+  { id:'machinetools', dir:'in', n:'5-axis machine tools', full:'High-end 5-axis machine tools', holder:'Japan, Germany, Switzerland', sev:1.3, sub:4.15, sevT:'Moderate', subT:'Long', trend:'flat', la:'r',
+    detail:'Top-end five-axis machining centers still enter through third-country resellers; domestic champion Kede CNC is qualifying into aerospace lines but hasn\'t displaced imports at the top end.',
+    lever:'A slow-moving, broad manufacturing dependency underneath many programs.' },
+  { id:'subquiet', dir:'in', n:'Submarine quieting', full:'Submarine quieting / high-end marine', holder:'(Western know-how gap)', sev:1.6, sub:4.4, sevT:'Moderate', subT:'Long', trend:'flat', la:'l',
+    detail:'The PLAN\'s acknowledged soft spot: acoustic quieting and ASW sensing lag, gating the survivability of the sea-based deterrent until the Type 096.',
+    lever:'A know-how gap, not a purchasable component — which makes it slow to close and hard to sanction.' },
+  // OUTBOUND — China's leverage
+  { id:'magnets', dir:'out', n:'Rare-earth magnets', full:'Rare-earth permanent magnets (NdFeB)', holder:'China ~85–90% output, ~90% processing', sev:3.02, sub:4.2, sevT:'Critical', subT:'Long (~6.7× scale-up, past 2030)', trend:'down', la:'r',
+    detail:'The crown jewel — the input under every motor and actuator on every page of this atlas (EVs, missiles, drones, robots). Alternatives are ~6% of magnet supply; matching demand needs a 6.7× scale-up past 2030 at a 30–50% cost penalty.',
+    lever:'Wielded via the April 2025 licensing regime, metered buyer-by-buyer. The one input others are furthest from replacing — China\'s most durable leverage, eroding only slowly.' },
+  { id:'drones', dir:'out', n:'Drone components', full:'Small-drone components (motors, ESCs, cameras)', holder:'China ~80–90% of FPV motors', sev:2.5, sub:3.05, sevT:'High', subT:'Medium (cameras hardest)', trend:'down', la:'r',
+    detail:'The motors, ESCs, batteries and cameras that the entire world\'s small-drone industry — Western, Ukrainian and PLA alike — is built on. Ukraine has localized to ~27% of motors under combat pressure; cameras are the sticky last mile.',
+    lever:'Leverage that is actively eroding under wartime learning curves — the clearest case of a chokepoint being worked around in real time.' },
+  { id:'gallium', dir:'out', n:'Gallium / germanium', full:'Gallium, germanium, antimony', holder:'China dominant processing', sev:2.2, sub:2.85, sevT:'High', subT:'Medium (partial substitution)', trend:'flat', la:'l',
+    detail:'Critical for high-frequency semiconductors, fiber optics, and infrared/night-vision sensors. The US is ~100% net-import-reliant, but pivoted to Japanese/German/Canadian gallium and built stockpiles.',
+    lever:'Dialed as a negotiating chip: banned to the US in Dec 2024, suspended in the Nov 2025 truce (military-end-user ban kept). Leverage held in reserve, not spent — and partially substitutable.' },
+  { id:'maturechips', dir:'out', n:'Mature-node chips', full:'Mature-node ("legacy") chips', holder:'China ~1/3 of global, rising', sev:2.0, sub:4.05, sevT:'High', subT:'Medium–long', trend:'up', la:'r',
+    detail:'The ≥28 nm silicon in cars, appliances, machine tools, base stations, grid controllers and most weapons. China\'s share has grown from under a fifth to ~a third, heading toward ~33% of the legacy market by 2027.',
+    lever:'The dependency running the wrong way: Big Fund III capacity risks a solar/LCD-style overcapacity price war that hollows foreign legacy fabs. Leverage that is growing, not eroding.' },
+  { id:'batteries', dir:'out', n:'Batteries', full:'Battery cells (CATL, BYD, EVE)', holder:'China dominant cells', sev:1.85, sub:4.2, sevT:'High', subT:'Medium–long', trend:'flat', la:'r',
+    detail:'The high-energy cells behind EVs, grid storage, drones and some military systems. The 2024 NDAA bars DoD procurement from six Chinese makers (incl. CATL, BYD) from Oct 2027 — a deliberate multi-year decoupling runway.',
+    lever:'Broad civilian-and-defense leverage; the NDAA runway is the West buying time to build alternatives.' },
+  { id:'shipbuild', dir:'out', n:'Shipbuilding', full:'Shipbuilding capacity', holder:'China ~230× US capacity', sev:2.15, sub:4.9, sevT:'High', subT:'Structural (10 yr+)', trend:'up', la:'l',
+    detail:'The deepest structural asymmetry in the atlas — commercial and naval capacity ~230× the US (CSIS), cross-subsidized so the warships are affordable. Not a component to be substituted but an industrial base to be rebuilt.',
+    lever:'Mostly latent leverage today, but the hardest of all to reverse — rebuilding shipyards and a skilled workforce is a generational project.' },
+  { id:'lidar', dir:'out', n:'Lidar', full:'Lidar (Hesai, RoboSense)', holder:'China leads robotaxi & robot lidar', sev:1.1, sub:3.0, sevT:'Moderate', subT:'Medium', trend:'flat', la:'r',
+    detail:'Hesai and RoboSense (both 1260H-listed) lead the ranging sensors migrating from autonomous vehicles into drones and ground robots — the depth-perception layer for autonomy.',
+    lever:'Commercial dominance in a sensor tier the autonomy and robotics industries increasingly depend on.' },
+  { id:'minerals', dir:'out', n:'Processed minerals', full:'Processed critical minerals (graphite, tungsten…)', holder:'China dominant processing', sev:1.35, sub:3.5, sevT:'Moderate', subT:'Medium–long', trend:'flat', la:'l',
+    detail:'Beyond rare earths and gallium, China dominates processing of graphite (anodes), tungsten, and other defense-adjacent minerals, progressively added to the 2023–25 control regimes.',
+    lever:'A widening toolkit of mineral-processing chokepoints China can add to its export-control menu.' },
+];
+
+// ---- matrix geometry ----
+const VB = { w:780, h:470 }, M = { l:58, r:30, t:24, b:46 };
+const PW = VB.w - M.l - M.r, PH = VB.h - M.t - M.b;
+const SUBMIN=1, SUBMAX=5, SEVMIN=0.65, SEVMAX=3.15;
+const sx = v => M.l + (v - SUBMIN)/(SUBMAX-SUBMIN) * PW;
+const sy = v => M.t + (SEVMAX - v)/(SEVMAX-SEVMIN) * PH;
+const TREND = { down:'↘', flat:'→', up:'↗' };
+
+function buildMatrix() {
+  const svg = document.getElementById('matrix');
+  let g = '';
+  // decisive zone (top-right): sub >= 3.4, sev >= 2.15
+  const zx = sx(3.4), zy = sy(SEVMAX), zw = sx(SUBMAX) - sx(3.4), zh = sy(2.15) - sy(SEVMAX);
+  g += `<rect x="${zx}" y="${M.t}" width="${sx(SUBMAX)-zx}" height="${sy(2.15)-M.t}" fill="var(--zone)"/>`;
+  g += `<text class="zonelabel" x="${sx(SUBMAX)-6}" y="${M.t+16}" text-anchor="end">Decisive &amp; durable</text>`;
+  // grid + y ticks (severity)
+  [[1,'Moderate'],[2,'High'],[3,'Critical']].forEach(([v,t]) => {
+    g += `<line class="gridln" x1="${M.l}" y1="${sy(v)}" x2="${M.l+PW}" y2="${sy(v)}"/>`;
+    g += `<text class="axtick" x="${M.l-8}" y="${sy(v)+3}" text-anchor="end">${t}</text>`;
+  });
+  // x ticks (substitution horizon)
+  [[1,'Short'],[2,'<2 yr'],[3,'Medium'],[4,'Long'],[5,'Structural']].forEach(([v,t]) => {
+    g += `<text class="axtick" x="${sx(v)}" y="${M.t+PH+16}" text-anchor="middle">${t}</text>`;
+  });
+  // axis titles
+  g += `<text class="axlabel" x="${M.l+PW/2}" y="${VB.h-4}" text-anchor="middle">Substitution horizon — how long to build around it ▸</text>`;
+  g += `<text class="axlabel" transform="translate(14 ${M.t+PH/2}) rotate(-90)" text-anchor="middle">Severity — how binding ▸</text>`;
+  // dots
+  DATA.forEach(e => {
+    const cx = sx(e.sub), cy = sy(e.sev), col = e.dir==='in' ? 'var(--in)' : 'var(--out)';
+    const lx = e.la==='l' ? cx-12 : cx+12, anch = e.la==='l' ? 'end' : 'start';
+    g += `<g class="dot" data-id="${e.id}" data-dir="${e.dir}" tabindex="0" role="button" aria-label="${e.full}">`
+      + `<circle cx="${cx}" cy="${cy}" r="7" fill="${col}"/>`
+      + `<text class="lbl" x="${lx}" y="${cy+3.5}" text-anchor="${anch}">${e.n} <tspan fill="${e.trend==='down'?'var(--out)':e.trend==='up'?'var(--in)':'var(--muted)'}">${TREND[e.trend]}</tspan></text>`
+      + `</g>`;
+  });
+  svg.innerHTML = g;
+  svg.querySelectorAll('.dot').forEach(d => {
+    const e = DATA.find(x => x.id === d.dataset.id);
+    d.addEventListener('click', () => openPanel(e));
+    d.addEventListener('keydown', ev => { if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();openPanel(e);} });
+  });
+}
+
+// ---- ledger rows ----
+function sevN(v){ return Math.max(1, Math.min(3, Math.round(v))); }
+function buildRows() {
+  ['in','out'].forEach(dir => {
+    const host = document.getElementById('rows-'+dir);
+    host.innerHTML = '';
+    DATA.filter(e => e.dir===dir).sort((a,b)=>b.sev-a.sev).forEach(e => {
+      const n = sevN(e.sev);
+      let pips=''; for(let i=1;i<=3;i++) pips += `<span class="pip ${i<=n?'on':''}"></span>`;
+      const b = document.createElement('button');
+      b.className = 'row'; b.dataset.id = e.id;
+      b.style.setProperty('--dc', dir==='in'?'var(--in)':'var(--out)');
+      b.innerHTML = `<span class="rn">${e.n}</span><span class="rh">${e.holder}</span>`
+        + `<span class="rmeta"><span class="pips">${pips}</span><span class="hz">${e.subT}</span>`
+        + `<span class="tr ${e.trend}">${TREND[e.trend]} ${e.trend==='down'?'easing':e.trend==='up'?'deepening':'holding'}</span></span>`;
+      b.addEventListener('click', () => openPanel(e));
+      host.appendChild(b);
+    });
+  });
+}
+
+// ---- filter ----
+const active = new Set(['in','out']);
+function applyFilter() {
+  document.querySelectorAll('.dot').forEach(d => d.classList.toggle('dim', !active.has(d.dataset.dir)));
+  document.querySelectorAll('.row').forEach(r => { const e=DATA.find(x=>x.id===r.dataset.id); r.hidden = !active.has(e.dir); });
+}
+document.querySelectorAll('.legend button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const d = btn.dataset.d;
+    if(active.has(d) && active.size===1){ active.add('in'); active.add('out'); }
+    else if(active.has(d)){ active.delete(d); }
+    else active.add(d);
+    document.querySelector('.legend .fin').setAttribute('aria-pressed', String(active.has('in')));
+    document.querySelector('.legend .fout').setAttribute('aria-pressed', String(active.has('out')));
+    applyFilter();
+  });
+});
+
+// ---- dossier ----
+const panel = document.getElementById('panel'), backdrop = document.getElementById('backdrop');
+function openPanel(e) {
+  const dc = e.dir==='in' ? 'var(--in)' : 'var(--out)', dcbg = e.dir==='in' ? 'var(--in-bg)' : 'var(--out-bg)';
+  panel.style.setProperty('--dc', dc); panel.style.setProperty('--dc-bg', dcbg);
+  document.getElementById('pbody').innerHTML =
+    `<div class="ptag" style="color:${dc}">${e.dir==='in' ? 'China depends — imports this' : 'Depends on China — China\'s leverage'}</div>` +
+    `<h2 class="pt">${e.full}</h2><p class="pholder">Held by: ${e.holder}</p>` +
+    `<div class="prow">` +
+      `<div class="pcell"><span class="k">Severity</span><span class="v" style="color:${dc}">${e.sevT}</span></div>` +
+      `<div class="pcell"><span class="k">Substitution</span><span class="v">${e.subT}</span></div>` +
+      `<div class="pcell"><span class="k">Trend</span><span class="v" style="color:${e.trend==='down'?'var(--out)':e.trend==='up'?'var(--in)':'var(--muted)'}">${TREND[e.trend]} ${e.trend==='down'?'easing':e.trend==='up'?'deepening':'holding'}</span></div>` +
+    `</div>` +
+    `<p class="profile">${e.detail}</p>` +
+    `<div class="lever"><div class="lk">The lever</div><p>${e.lever}</p></div>`;
+  panel.classList.add('open'); backdrop.hidden = false;
+}
+function closePanel(){ panel.classList.remove('open'); backdrop.hidden = true; }
+document.getElementById('closep').addEventListener('click', closePanel);
+backdrop.addEventListener('click', closePanel);
+document.addEventListener('keydown', ev => { if(ev.key==='Escape') closePanel(); });
+
+buildMatrix(); buildRows();
+</script>

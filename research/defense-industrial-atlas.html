@@ -99,10 +99,24 @@
   .pip.on1 { background: var(--t1); border-color: var(--t1); }
   .tierlab { font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: .03em; }
   .tierlab .tw { color: var(--muted); }
+  .mo { font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .04em; color: var(--muted); margin-top: 4px; text-transform: uppercase; }
+  .mo .moa { font-weight: 700; font-size: 12px; }
+  .mo.mo-fast { color: var(--accent); }
   .swhy { font-size: 13px; line-height: 1.5; color: var(--ink); }
   .sdep { font-size: 12.5px; line-height: 1.5; color: var(--muted); }
   .sdep b { color: var(--ink); font-weight: 600; font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; display: block; margin-bottom: 2px; }
   .colhdr { display: grid; grid-template-columns: 1.15fr 1.35fr 1.5fr 1.5fr; gap: 18px; padding: 0 4px 8px; font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+  /* ledger feature */
+  #ledger-feature { padding: 40px 0; border-bottom: 1px solid var(--hair); }
+  .ledger-cta { display: flex; align-items: center; justify-content: space-between; gap: 24px; text-decoration: none; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 24px 26px 24px 30px; transition: transform .12s, box-shadow .12s; position: relative; overflow: hidden; }
+  .ledger-cta::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: linear-gradient(180deg, var(--accent), var(--teal)); }
+  .ledger-cta:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+  .lc-eyebrow { font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0 0 8px; }
+  .lc-h { font-family: "Spectral", Georgia, serif; font-weight: 700; font-size: clamp(22px, 3vw, 30px); margin: 0 0 10px; letter-spacing: -0.01em; }
+  .lc-p { margin: 0; font-size: 13.5px; color: var(--muted); line-height: 1.55; max-width: 84ch; }
+  .lc-p b.lc-in { color: var(--accent); font-weight: 600; } .lc-p b.lc-out { color: var(--teal); font-weight: 600; }
+  .lc-go { font-family: "IBM Plex Mono", monospace; font-size: 13px; color: var(--accent); font-weight: 500; white-space: nowrap; flex: none; }
+  @media (max-width: 720px) { .ledger-cta { flex-direction: column; align-items: flex-start; } }
   /* maps grid */
   .maps { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
   .mapcard { display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--line); border-top: 3px solid var(--accent); border-radius: 6px; padding: 20px 20px 18px; text-decoration: none; color: var(--ink); transition: transform .12s, box-shadow .12s; }
@@ -149,11 +163,22 @@
 
   <section id="scorecard">
     <div class="sechead"><span class="secnum">01</span><h2>The scorecard</h2></div>
-    <p class="sform">China's position across thirteen defense-industrial domains, rated on one ordinal scale — from <em>Dominant</em> (leads the world) to <em>Dependent</em> (reliant on imports). The distribution is the story: China leads where the contest is scale and hardware, and lags where it is the deepest process technology. Tap a tier to filter. Ratings are analytical judgments, not measurements.</p>
+    <p class="sform">China's position across thirteen defense-industrial domains, rated on one ordinal scale — from <em>Dominant</em> (leads the world) to <em>Dependent</em> (reliant on imports) — with each row's <em>trajectory</em>: how fast its position is moving (⇈ rising fast · ↑ rising · → holding). The distribution is the story: China leads where the contest is scale and hardware, lags where it is the deepest process technology, and the fast-movers (robots, space, counter-UAS, nuclear) are where the picture is changing most. Tap a tier to filter. Ratings are analytical judgments, not measurements.</p>
     <div class="dist" id="dist" role="group" aria-label="Filter domains by capability tier"></div>
     <p class="distnote"><span>◄ China leads &nbsp;·&nbsp; depends ►&nbsp;&nbsp;— width = number of domains in each tier</span><button id="resetf" hidden>show all domains</button></p>
     <div class="colhdr"><span>Domain</span><span>China's position</span><span>Why</span><span>Key dependency</span></div>
     <div class="score" id="score"></div>
+  </section>
+
+  <section id="ledger-feature">
+    <a class="ledger-cta" href="https://claude.ai/code/artifact/9b07ec41-f9ff-4863-a0cf-c0fd43b9b11a" target="_blank" rel="noopener">
+      <div class="lc-body">
+        <p class="lc-eyebrow">The synthesis · the "so what"</p>
+        <h2 class="lc-h">The Chokepoint Ledger</h2>
+        <p class="lc-p">The scorecard says where China stands; the ledger says what it means. A strategic balance sheet of China's <b class="lc-in">dependencies</b> (few, deep — EUV lithography above all) against its <b class="lc-out">leverage</b> (broad, durable — rare-earth magnets above all), each plotted by severity and substitution horizon, with the policy lever and crossover timing for each. The decisive chokepoints — severe <em>and</em> hard to escape — are the ones to watch.</p>
+      </div>
+      <span class="lc-go">Open the ledger →</span>
+    </a>
   </section>
 
   <section id="maps">
@@ -187,6 +212,14 @@ const TIERS = {
   3: { name: 'Competitive', tag: 'peer / ahead in parts' },
   2: { name: 'Catching up', tag: 'behind, closing fast' },
   1: { name: 'Dependent',   tag: 'reliant on imports' },
+}
+// momentum: how fast China's position is moving (the trajectory layer)
+const MOMV = { fast: { a: '⇈', t: 'rising fast' }, rising: { a: '↑', t: 'rising' }, steady: { a: '→', t: 'holding' } }
+const MO = {
+  'Shipbuilding & Naval': 'steady', 'Drones (UAVs)': 'steady', 'Drone & Robot Components': 'rising',
+  'Robots (ground & humanoid)': 'fast', 'Missiles & Hypersonics': 'rising', 'Ground Systems': 'steady',
+  'Electronics · Radar · EW': 'rising', 'Counter-UAS · Directed Energy': 'fast', 'Space & Counterspace': 'fast',
+  'Nuclear Forces': 'fast', 'Aero-Engines': 'rising', 'Military AI Compute': 'rising', 'Advanced Semiconductors': 'rising',
 }
 const MAPS = {
   supplier:  { url: 'https://claude.ai/code/artifact/9ba26611-80ca-456b-b489-06bce1b350ed', label: 'PLA Supplier Atlas' },
@@ -241,7 +274,8 @@ SCORE.forEach(s => {
   row.innerHTML =
     '<div class="sdomain"><span class="dm">' + s.domain + '</span><span class="zh">' + s.zh + '</span></div>' +
     '<div class="scap"><div class="meter">' + pips + '</div>' +
-      '<div class="tierlab"><b style="color:var(--t' + s.tier + ')">' + TIERS[s.tier].name + '</b> <span class="tw">— ' + TIERS[s.tier].tag + '</span></div></div>' +
+      '<div class="tierlab"><b style="color:var(--t' + s.tier + ')">' + TIERS[s.tier].name + '</b> <span class="tw">— ' + TIERS[s.tier].tag + '</span></div>' +
+      '<div class="mo mo-' + (MO[s.domain] || 'steady') + '"><span class="moa">' + MOMV[MO[s.domain] || 'steady'].a + '</span> ' + MOMV[MO[s.domain] || 'steady'].t + '</div></div>' +
     '<div class="swhy">' + s.why + '</div>' +
     '<div class="sdep"><b>Dependency</b>' + s.dep + '</div>'
   score.appendChild(row)
@@ -289,6 +323,7 @@ const ESSAYS = [
   { et: 'Electronics, Radar & Electronic Warfare', ed: 'CETC, the radar leap, and the gallium lever', ef: 'electronics-radar-ew.md' },
   { et: 'Robot Ecosystem', ed: 'The embodied-intelligence wave — and what China still can’t make', ef: 'robot-ecosystem.md' },
   { et: 'Space, Missiles & Hypersonics', ed: 'Peer or ahead — and closing the launch gap', ef: 'space-missiles-hypersonics.md' },
+  { et: 'The Chokepoint & Leverage Ledger', ed: 'The cross-cutting synthesis — dependencies vs. leverage', ef: 'chokepoint-leverage-ledger.md' },
 ]
 ESSAYS.forEach(e => {
   const d = document.createElement('div')
