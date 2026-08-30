@@ -16,6 +16,7 @@
     --shadow: 0 12px 32px rgba(31, 36, 29, .14);
     --c-air: #3E7CA6; --c-eng: #A6612F; --c-spc: #71559B; --c-ele: #2F8578;
     --c-nav: #44557F; --c-grd: #8A7434; --c-nuc: #9C4E6E; --c-mat: #5F6E4B;
+    --c-sub: #1C6E7A;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
@@ -26,7 +27,7 @@
       --seal: #E0644E; --seal-bg: rgba(224, 100, 78, .12);
       --shadow: 0 12px 32px rgba(0, 0, 0, .5);
       --c-air: #6FA9CC; --c-eng: #CE8A54; --c-spc: #9C82C4; --c-ele: #58AC9E;
-      --c-nav: #7C8CB8; --c-grd: #B49B55; --c-nuc: #C07898; --c-mat: #8CA070;
+      --c-nav: #7C8CB8; --c-grd: #B49B55; --c-nuc: #C07898; --c-mat: #8CA070; --c-sub: #5FA6B4;
     }
   }
   :root[data-theme="dark"] {
@@ -173,7 +174,7 @@
   <p class="dek">Who actually builds China's military — the state primes, the numbered institutes doing the real work, the military-civil fusion upstarts, and what still comes from abroad. Click any entity for its dossier.</p>
   <div class="statrow">
     <div class="stat"><b>9</b><span>central defense primes after the 2025 ordnance merger</span></div>
-    <div class="stat"><b>~50</b><span>entities mapped across four tiers</span></div>
+    <div class="stat"><b>~70</b><span>entities across 9 domains and four tiers</span></div>
     <div class="stat"><b>188</b><span>entities on DoD's 1260H list as of June 2026</span></div>
     <div class="stat"><b>230×</b><span>China's shipbuilding capacity vs. the US (CSIS)</span></div>
   </div>
@@ -218,7 +219,8 @@ const DOMAINS = {
   eng: { label: "Engines", zh: "动力", c: "var(--c-eng)" },
   spc: { label: "Space & Missiles", zh: "航天·导弹", c: "var(--c-spc)" },
   ele: { label: "Electronics & Compute", zh: "电子·算力", c: "var(--c-ele)" },
-  nav: { label: "Naval", zh: "船舶", c: "var(--c-nav)" },
+  nav: { label: "Naval — Surface", zh: "水面舰艇", c: "var(--c-nav)" },
+  sub: { label: "Undersea", zh: "水下", c: "var(--c-sub)" },
   grd: { label: "Ground", zh: "兵器", c: "var(--c-grd)" },
   nuc: { label: "Nuclear", zh: "核", c: "var(--c-nuc)" },
   mat: { label: "Materials", zh: "材料", c: "var(--c-mat)" }
@@ -424,26 +426,59 @@ const DATA = [
   role:"Amphibs + the world's premier LNG-carrier yard",
   prog:["Type 075","Type 076 Sichuan","Type 054B","LNG carriers"],
   p:"Builds the Type 075 LHDs and the drone-carrying Type 076 Sichuan plus Type 054B frigates — in the same yard as a world-leading LNG-carrier line. The cleanest single illustration of CSIS's dual-use shipyard findings." },
-{ id:"bohai", d:"nav", t:2, n:"Bohai Shipbuilding", zh:"渤船重工", hq:"Huludao", parent:"CSSC", flags:[],
-  role:"Every PLAN nuclear submarine",
-  prog:["Type 094/096 SSBN","Type 093/095 SSN"],
-  p:"The sole builder of China's nuclear submarines, now with expanded halls for next-generation boats. China's entire sea-based deterrent comes out of this one yard in Liaoning — possibly the most strategically important single factory in China." },
-{ id:"wuchang", d:"nav", t:2, n:"Wuchang Shipbuilding", zh:"武昌造船", hq:"Wuhan", parent:"CSSC", flags:[],
-  role:"Conventional subs and the experimental fleet",
-  prog:["Yuan class","Hangor (Pakistan)","Unmanned platforms"],
-  p:"Builds the Yuan-class AIP boats and Pakistan's Hangor exports, plus much of the unmanned and experimental fleet — the AJX-002 extra-large UUV paraded in 2025 came from this ecosystem." },
-{ id:"institutes70x", d:"nav", t:2, n:"701 · 719 Design Institutes", zh:"七〇一所 · 七一九所", hq:"Wuhan", parent:"CSSC", flags:[],
-  role:"Surface-combatant and nuclear-submarine design brains",
-  prog:["Type 055 design","SSBN/SSN design"],
-  p:"The 701 Institute designed the Type 055 and China's surface line; 719 is the nuclear-submarine design bureau and the sub force's brain trust. Ship counts get the headlines; these bureaus set the ceiling." },
+{ id:"inst701", d:"nav", t:2, n:"701 Institute (CSDDC)", zh:"七〇一所", hq:"Wuhan", parent:"CSSC", flags:[],
+  role:"Surface-combatant design brain",
+  prog:["Type 055","Type 052D","Carrier hull forms"],
+  p:"China Ship Development & Design Center: designed the Type 055 cruiser, the 052D line, and the carrier hull forms. If a PLAN surface ship exists, 701 drew it — the bureau sets the ceiling that the yards' hull counts sit under." },
+{ id:"inst708", d:"nav", t:2, n:"708 Institute · MARIC", zh:"七〇八所 · 中船708", hq:"Shanghai", parent:"CSSC", flags:[],
+  role:"Carrier and amphibious-ship design",
+  prog:["Type 076","Amphibs","Auxiliaries"],
+  p:"The Marine Design & Research Institute of China: carriers, big-deck amphibs, and much of the auxiliary and merchant fleet. The Type 076 drone carrier's basic design lineage runs through 708." },
 { id:"inst703", d:"nav", t:2, n:"703 Institute", zh:"七〇三所", hq:"Harbin", parent:"CSSC", flags:[],
   role:"Marine gas turbines — no QC-280, no Type 055 fleet",
   prog:["QC-280"],
-  p:"Solved the marine gas-turbine problem Ukraine's Zorya-Mashproekt once covered; its QC-280s power the Type 055. China's blue-water expansion rode on this institute's back." },
+  p:"Solved the marine gas-turbine problem Ukraine's Zorya-Mashproekt once covered; its QC-280s power the Type 055 and 052D. China's blue-water surface expansion rode on this institute's back — one of the highest-leverage naval nodes in China." },
+{ id:"inst711", d:"nav", t:2, n:"711 Institute", zh:"七一一所", hq:"Shanghai", parent:"CSSC", flags:[],
+  role:"Marine diesels — the CHD620 design authority",
+  prog:["Marine diesels","Turbochargers","CHD620"],
+  p:"Shanghai Marine Diesel Engine Research Institute: the design authority behind the CHD620 that replaced blocked German MTUs on export submarines. The reliability of Chinese and Chinese-supplied conventional boats is a 711 question." },
+{ id:"inst712", d:"nav", t:2, n:"712 Institute + Naval Eng. University", zh:"七一二所 · 海军工程大学", hq:"Wuhan", parent:"CSSC / PLAN", flags:[],
+  role:"Integrated electric propulsion and EMALS",
+  prog:["Medium-voltage-DC IEP","EMALS","Ship motors"],
+  p:"712 and the PLA Naval Engineering University — home of Academician Ma Weiming — drive China's integrated electric propulsion and electromagnetic-catapult work: the EMALS on Fujian and Sichuan and the all-electric powertrain expected on the Type 004. Arguably the most strategically important naval-tech node in China." },
 { id:"yunzhou", d:"nav", t:3, n:"Yunzhou Tech", zh:"云洲智能", hq:"Zhuhai", parent:null, flags:[],
   role:"USV swarms from the commercial side",
   prog:["USV swarms"],
-  p:"The commercial pioneer of Chinese unmanned surface vessels, with headline-grabbing swarm demonstrations feeding a naval-autonomy push that spans state institutes and startups alike." },
+  p:"The commercial pioneer of Chinese unmanned surface vessels, with headline-grabbing swarm demonstrations feeding a naval-autonomy push — and the drone-carrier logic of the Type 076 — that spans state institutes and startups alike." },
+// ————— UNDERSEA —————
+{ id:"inst719", d:"sub", t:2, n:"719 Institute", zh:"七一九所", hq:"Wuhan", parent:"CSSC", flags:[],
+  role:"The nuclear-submarine design bureau",
+  prog:["SSN design","SSBN design"],
+  p:"Wuhan Second Ship Design Institute — the single most sensitive naval institute in China. Every SSN and SSBN traces here; its late director Huang Xuhua was China's 'father of nuclear submarines.' The ceiling on the entire undersea force." },
+{ id:"bohai", d:"sub", t:2, n:"Bohai Shipbuilding", zh:"渤船重工", hq:"Huludao", parent:"CSSC", flags:[],
+  role:"Every PLAN nuclear submarine",
+  prog:["Type 096 SSBN","Type 095 SSN","Type 09V SSN"],
+  p:"The sole builder of China's nuclear submarines. February 2026 satellite imagery showed the first Type 095 SSN (~110m × 12m) fitting out here alongside the ~20,000-ton Type 096 SSBN and a next-generation Type 09V. China's entire sea-based deterrent comes out of this one yard in Liaoning — possibly the most strategically important single factory in the country." },
+{ id:"wuchang", d:"sub", t:2, n:"Wuchang Shipbuilding", zh:"武昌造船", hq:"Wuhan", parent:"CSSC", flags:[],
+  role:"Conventional subs — and now, apparently, nuclear",
+  prog:["Yuan class","Zhou-class SSN","Hangor (Pakistan)"],
+  p:"Builds the Yuan-class AIP boats and Pakistan's Hangor exports. In spring 2024 the first Zhou-class SSN (X-stern) sank at its pier here during fitting-out — an unacknowledged setback whose real significance was the location: nuclear-submarine construction expanding to a second yard, exactly the capacity growth US planners feared." },
+{ id:"inst726", d:"sub", t:2, n:"726 Institute", zh:"七二六所", hq:"Shanghai", parent:"CSSC", flags:[],
+  role:"Sonar and combat systems — the PLAN's soft spot",
+  prog:["Sonar","Surface combat systems"],
+  p:"Shanghai Marine Electronic Equipment Research Institute: Chinese ASW and submarine acoustic sensing live here. Quieting and detection are the PLAN's acknowledged weak spot, which makes 726 a key watch-item — the frontier where China is still visibly catching up." },
+{ id:"uweapons", d:"sub", t:2, n:"705 Institute · underwater weapons", zh:"七〇五所 · 水中兵器", hq:"Xi'an", parent:"CSSC / state", flags:[],
+  role:"Torpedoes and naval mines",
+  prog:["Yu-6","Yu-10 class","Naval mines"],
+  p:"The heavyweight-torpedo and mine complex behind the Yu-6 and Yu-10-class weapons. One of the murkier corners of the enterprise — torpedo and mine sourcing is thinly documented and deserves more open-source work." },
+{ id:"xluuv", d:"sub", t:3, n:"XLUUV program (HSU100 · AJX002)", zh:"超大型无人潜航器", hq:"—", parent:null, flags:[],
+  role:"An operational unmanned-undersea inventory no other navy fields",
+  prog:["HSU100","AJX002 minelayer"],
+  p:"The September 2025 parade rolled out two operational extra-large UUV classes — the ~15m HSU100 (retractable ISR sensors) and the sleeker ~18–20m AJX002 minelayer — drawn from inventory, not prototypes. As H.I. Sutton noted, 'other navies don't have eight XLUUVs at all.' The build base spans state institutes (719, 705) and commercial robotics firms." },
+{ id:"hmn", d:"sub", t:3, n:"HMN Technologies", zh:"华海通信", hq:"Tianjin", parent:null, flags:["EL"],
+  role:"The only non-Western transoceanic subsea-cable builder",
+  prog:["Submarine cables","Seabed sensing"],
+  p:"Formerly Huawei Marine — one of only four firms worldwide that build and lay transoceanic subsea cables. Entity-Listed in 2020 and steadily excluded from Western consortium projects (SEA-ME-WE 6, East Micronesia) over espionage and cable-cutting concerns. The reverse chokepoint: where naval-industrial policy blurs into critical-infrastructure security." },
 // ————— GROUND —————
 { id:"norinco", d:"grd", t:1, n:"NORINCO", zh:"中国兵器工业集团", hq:"Beijing", parent:null, flags:["1260H","OFAC"],
   role:"Sole ordnance prime after absorbing CSGC's defense assets (2025)",
@@ -499,7 +534,7 @@ const FOREIGN = [
 ];
 
 const board = document.getElementById("board");
-const colOrder = ["air", "eng", "spc", "ele", "nav", "grd", "nuc", "mat"];
+const colOrder = ["air", "eng", "spc", "ele", "nav", "sub", "grd", "nuc", "mat"];
 const state = { q: "", tiers: new Set([1, 2, 3]), sanc: false };
 
 function sealHtml(flags) {
