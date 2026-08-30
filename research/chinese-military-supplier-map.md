@@ -99,9 +99,17 @@ This is the layer Western coverage skips, and where an analyst's marginal hour i
 
 - **Inner Mongolia First Machinery (Baotou)** — NORINCO's tank plant: Type 99A, Type 100, VT-4 exports.
 - **North Navigation Control Technology (listed)** — NORINCO's guidance house: laser/satnav guidance kits and gyros that turn dumb rockets into the PHL-191's precision rounds.
+- **203 Institute (Xi'an Modern Control Technology)** — NORINCO's rocket-artillery and guided-projectile design brain: the 300–370mm rounds the PHL-191 fires and the guidance that turns saturation fires into precision fires.
+- **204 Institute (Xi'an Modern Chemistry)** — China's largest energetic-materials center: the explosives and gun/rocket propellants under every shell, missile, and warhead. Energetics capacity is exactly the wartime-endurance variable open source can barely measure, and this is the institute at the bottom of it.
+- **North Electro-Optics (Xi'an)** — NORINCO's electro-optics arm: the stabilized sights, thermal imagers, and laser rangefinders that let armor shoot on the move. High-end optics/fire-control is the ground-systems tier where China is closing but not yet at the frontier.
 
 **Materials & process specialists (the truly unheralded)**
 
+This is the layer the whole map sits on, and it splits two ways — a near-monopoly China now wields as a weapon, and a set of dependencies it has spent two decades retiring. The dedicated [`critical-minerals-materials.md`](./critical-minerals-materials.md) essay treats it in full; the load-bearing names:
+
+- **China Northern Rare Earth (Baotou)** — the upstream: separates and refines the ore from Bayan Obo, the largest rare-earth deposit on Earth, and holds ~50–60% of China's light-rare-earth quota. The top of the leverage stack.
+- **JL MAG Rare-Earth (Ganzhou) & Zhongke Sanhuan (Beijing)** — the finished-magnet layer: the world's #1 and a CAS-lineage co-leader in sintered NdFeB, the magnets inside every guided-weapon actuator, radar, servo motor, and EV. China makes ~90% of them, and the April 2025 licensing regime turned them into a metered lever — the clearest case of the dependency running the *other* way.
+- **AECC BIAM (Beijing Institute of Aeronautical Materials, the old 621)** — single-crystal turbine blades and the DD6 superalloy that its designers claim matches Western second-generation alloys: the metallurgy story behind the WS-15, and the residual hot-section dependency being closed.
 - **Western Superconducting Technologies (Xi'an)** — aerospace titanium alloys and superconducting wire; qualified into engines, airframes, and submarine programs. A STAR-market "little giant" that shows up in nearly every advanced platform's bill of materials.
 - **Gaona Aero Material (Beijing)** — turbine-disk and blade superalloys under the CISRI steel-research empire; the WS-15's production ramp is partly a Gaona story.
 - **Guangwei Composites (Weihai)** — for years the only military-qualified carbon-fiber maker; the J-20 and CH drones fly on its tows. Now joined by Zhongfu Shenying and others as China ended Toray dependence.
@@ -133,7 +141,7 @@ The dependency map has inverted since 2015: Russia went from supplier to custome
 - **Legacy Western components.** C4ADS- and RUSI-style teardowns keep finding US/European MCUs, FPGAs, and RF parts in Chinese and Chinese-supplied munitions, moved through Hong Kong and Shenzhen distributor networks — the same channels that supply Russia.
 - **Residual Russian items.** Mostly gone. AL-31 and D-30 engines are being designed out; what's left is niche (some helicopter engines, legacy fleet support).
 
-The flip side: China now runs the export-control playbook in reverse — gallium, germanium, antimony, and the April/October 2025 rare-earth-magnet regime — using its position in *our* supply chains as negotiating leverage over the controls above.
+The flip side: China now runs the export-control playbook in reverse — gallium (~80% of refined supply), germanium (~60%), antimony, and the April 2025 rare-earth-and-magnet licensing regime (escalated in December 2025 to reach foreign-made goods containing Chinese inputs) — using its position in *our* supply chains as negotiating leverage over the controls above. The [`critical-minerals-materials.md`](./critical-minerals-materials.md) essay traces the full ladder and its reversibility.
 
 ---
 
@@ -152,7 +160,7 @@ If the primes are priced in, these are the names worth an analyst's attention �
 9. **North Navigation (NORINCO)** — the guidance kits behind massed precision fires.
 10. **Chang Guang Satellite (Changchun)** — commercial imagery as an exportable kill chain, already battle-tested via Wagner, the Houthis, and Iran.
 
-Honorable mentions: T-Motor (FPV components), Bright Laser (aero additive manufacturing), Fudan Microelectronics (secure FPGAs), Expace/Kuaizhou (CASIC's launch arm), Yunzhou (USVs).
+Honorable mentions: JL MAG & Zhongke Sanhuan (the NdFeB magnets ~90% of the world's motors depend on — arguably too important to be "honorable mention," and the atlas's single biggest lever), China Northern Rare Earth (the Bayan Obo separation giant upstream of them), 204 Institute (the energetics under magazine depth), AECC BIAM (single-crystal turbine blades), T-Motor (FPV components), Bright Laser (aero additive manufacturing), Fudan Microelectronics (secure FPGAs), Expace/Kuaizhou (CASIC's launch arm), Yunzhou (USVs).
 
 ---
 
