@@ -16,7 +16,7 @@ The atlas rates the two halves **Competitive** — and in several of the highest
 
 ## Space launch — the reusability breakthrough
 
-- **Cadence.** China is targeting **100+ orbital launches in 2026** for the first time, driven overwhelmingly by megaconstellation deployment — the two big constellations alone consumed ~45 launches in 2025 and are projected to need 70+ in 2026, launching batches every two to three weeks.
+- **Cadence.** After **93 orbital launches in 2025** (CASC alone flew a record ~73), China is targeting on the order of **140 launches in 2026**, driven overwhelmingly by megaconstellation deployment — the two big constellations alone consumed ~45 launches in 2025 and are projected to need far more in 2026, launching batches every two to three weeks.
 - **Reusability — the milestone.** On **August 19, 2026, LandSpace's methane-fueled Zhuque-3 became the first Chinese commercial rocket to land an orbital-class booster** (Gansu), with a reflight targeted within six months; CASC's reusable **Long March 12A** flew successfully in March 2026. Both are explicitly designed to compete with Falcon 9 on cost-per-kilogram, with **Space Pioneer (Tianlong-3), Deep Blue (Nebula-2), CAS Space, Cosmoleap, and Orienspace** close behind. This is the capability that turns high cadence into cheap cadence — and the clearest sign the launch gap to SpaceX is narrowing.
 
 ## Megaconstellations — the 2026 story
@@ -53,7 +53,7 @@ Missile and rocket output rides on the same scale advantage as the rest of the a
 ## Where it's competitive, not dominant
 
 - **Reusable heavy lift at scale.** Zhuque-3 and LM-12A are milestones, but SpaceX's launch cadence, reuse maturity, and Starship-class heavy lift remain ahead. This is the real remaining launch gap.
-- **Space-grade electronics.** Radiation-hardened chips and some high-end space components still lean on foreign supply (see the [semiconductor essay](./semiconductor-chokepoint.md)).
+- **Space-grade electronics.** Radiation-hardened chips and high-density space-grade FPGAs still lean on foreign (largely US-vendor) supply — a genuine chokepoint that has driven documented smuggling cases and sits downstream of the [semiconductor domain](./semiconductor-chokepoint.md). Institutes like Xi'an's 771 (XIMT) and Beijing's 772 (BMTI) are working to close it.
 - **Some seekers and guidance** at the very high end.
 
 ## Assessment
