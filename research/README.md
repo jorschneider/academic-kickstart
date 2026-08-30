@@ -13,7 +13,7 @@ A ChinaTalk research corpus mapping who actually builds for the PLA — the prim
 | Map | What it covers | Scope |
 |---|---|---|
 | [Defense-Industrial Atlas (hub)](https://claude.ai/code/artifact/ecc69e75-bcc3-46cf-a303-3b95f8ac9b4c) | The capstone: 13-domain scorecard + navigation | 13 domains |
-| [PLA Supplier Atlas](https://claude.ai/code/artifact/9ba26611-80ca-456b-b489-06bce1b350ed) | The whole base: primes → institutes → MCF → foreign inputs | ~70 entities, 9 domains |
+| [PLA Supplier Atlas](https://claude.ai/code/artifact/9ba26611-80ca-456b-b489-06bce1b350ed) | The whole base: primes → institutes → MCF → foreign inputs | 77 entities, 9 domains |
 | [Drone & Robot Atlas](https://claude.ai/code/artifact/e07d880f-fd1b-4449-829f-8d37bed927b7) | The unmanned/embodied stack: platform → component → material | 51 nodes |
 | [Counter-Drone Kill Chain](https://claude.ai/code/artifact/121166cb-aa8b-428d-9c95-437afc0613f2) | Counter-UAS: detect → decide → defeat, plus export | 25 systems |
 | [Semiconductor Chokepoint](https://claude.ai/code/artifact/2dfad809-6b14-4901-8357-47fc160a94a3) | The compute base, coded by self-sufficiency status | 22 nodes |

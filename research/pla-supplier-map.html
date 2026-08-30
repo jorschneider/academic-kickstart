@@ -174,7 +174,7 @@
   <p class="dek">Who actually builds China's military — the state primes, the numbered institutes doing the real work, the military-civil fusion upstarts, and what still comes from abroad. Click any entity for its dossier.</p>
   <div class="statrow">
     <div class="stat"><b>9</b><span>central defense primes after the 2025 ordnance merger</span></div>
-    <div class="stat"><b>~70</b><span>entities across 9 domains and four tiers</span></div>
+    <div class="stat"><b>77</b><span>entities across 9 domains and four tiers</span></div>
     <div class="stat"><b>188</b><span>entities on DoD's 1260H list as of June 2026</span></div>
     <div class="stat"><b>230×</b><span>China's shipbuilding capacity vs. the US (CSIS)</span></div>
   </div>
@@ -299,6 +299,10 @@ const DATA = [
   role:"The listed serial-production vehicle",
   prog:["Batch production"],
   p:"AECC's Shanghai-listed production-and-finance arm. Its exchange disclosures are one of the few public windows into Chinese engine output rates and backlogs — an underused analyst source." },
+{ id:"biam", d:"eng", t:2, n:"AECC BIAM (621 Institute)", zh:"北京航空材料研究院", hq:"Beijing", parent:"AECC", flags:[],
+  role:"Single-crystal turbine blades — the hot-section dependency, in-house",
+  prog:["DD6 single-crystal superalloy","Turbine blades","Coatings"],
+  p:"The Beijing Institute of Aeronautical Materials (est. 1956, AVIC's old 621, now under AECC): China's authority on the single-crystal nickel superalloys and directionally-solidified turbine blades that decide how hot an engine can run. Its DD6 second-generation single-crystal alloy is the material story behind the WS-15 — engine independence is a metallurgy problem before it is a design problem, and this is where China is solving it." },
 // ————— SPACE & MISSILES —————
 { id:"casc", d:"spc", t:1, n:"CASC", zh:"中国航天科技集团", hq:"Beijing", parent:null, flags:["1260H","OFAC"],
   role:"Space prime + half the strategic-missile enterprise",
@@ -492,6 +496,18 @@ const DATA = [
   role:"Guidance kits behind massed precision fires",
   prog:["Guidance kits","Gyros"],
   p:"NORINCO's listed guidance-and-control specialist: the laser and satnav kits and gyros that turn the PHL-191's rockets into precision rounds. Massed precision fires are a components story, and this is the component maker." },
+{ id:"norinco203", d:"grd", t:2, n:"203 Institute", zh:"二〇三所 · 西安现代控制技术研究所", hq:"Xi'an", parent:"NORINCO", flags:[],
+  role:"The rocket-artillery and guided-projectile design brain",
+  prog:["PHL-191 rockets","Guided artillery","Fire-control"],
+  p:"Xi'an Modern Control Technology Research Institute (founded 1956): NORINCO's design house for long-range rocket artillery and guided projectiles — the family of 300–370mm rounds the PHL-191 fires and the guidance work that turns saturation fires into precision fires. The 'wartime footing' the atlas keeps citing is, at the design level, an institute like this one." },
+{ id:"norinco204", d:"grd", t:2, n:"204 Institute", zh:"二〇四所 · 西安近代化学研究所", hq:"Xi'an", parent:"NORINCO", flags:[],
+  role:"China's largest energetics center — the propellant under magazine depth",
+  prog:["Explosives","Gun & rocket propellants","Energetics"],
+  p:"Xi'an Modern Chemistry Research Institute: China's principal research base for energetic materials — the explosives and the gun and rocket propellants that every shell, missile and warhead runs on. Energetics capacity is exactly the wartime-endurance variable the Taiwan lens flags as decisive and open source can barely measure; this is the institute at the bottom of it." },
+{ id:"neo", d:"grd", t:2, n:"North Electro-Optics (NEO)", zh:"北方光电", hq:"Xi'an", parent:"NORINCO", flags:[],
+  role:"Tank fire-control, sights, and laser rangefinders",
+  prog:["Fire-control sights","Thermal imagers","Laser rangefinders"],
+  p:"NORINCO's electro-optics arm, consolidating the Xi'an applied-optics complex: the stabilized sights, thermal imagers and laser rangefinders that let armor shoot on the move and gunners see at night. High-end optics and fire-control are the scorecard's named ground-systems dependency — the tier where China is closing the gap but not yet at the frontier." },
 // ————— NUCLEAR —————
 { id:"cnnc", d:"nuc", t:1, n:"CNNC", zh:"中核集团", hq:"Beijing", parent:null, flags:["1260H","OFAC"],
   role:"The fuel cycle: enrichment, plutonium, naval reactors",
@@ -521,7 +537,19 @@ const DATA = [
 { id:"blt", d:"mat", t:3, n:"Bright Laser Technologies", zh:"铂力特", hq:"Xi'an", parent:null, flags:[],
   role:"Metal 3D printing for airframes and engines",
   prog:["Additive manufacturing"],
-  p:"Metal additive manufacturing for aerospace structures and engine parts, serving AVIC, AECC, and COMAC. Printing is quietly becoming a signature Chinese shortcut around traditional forging bottlenecks." }
+  p:"Metal additive manufacturing for aerospace structures and engine parts, serving AVIC, AECC, and COMAC. Printing is quietly becoming a signature Chinese shortcut around traditional forging bottlenecks." },
+{ id:"jlmag", d:"mat", t:3, n:"JL MAG Rare-Earth", zh:"金力永磁", hq:"Ganzhou", parent:null, flags:[],
+  role:"The world's #1 high-performance NdFeB magnet maker",
+  prog:["Sintered NdFeB magnets"],
+  p:"Ganzhou-based, with ~40,000-ton 2025 capacity and the #1 worldwide share of high-performance sintered neodymium-iron-boron magnets (~14.5%, per Frost & Sullivan). NdFeB magnets are the clearest case of the atlas's inversion — the West depends on China here — and they sit inside every guided-weapon fin actuator, radar, servo motor and EV drivetrain. The June 2025 export-licensing regime turned this product into a metered lever." },
+{ id:"sanhuan", d:"mat", t:3, n:"Zhongke Sanhuan", zh:"中科三环", hq:"Beijing", parent:null, flags:[],
+  role:"The other NdFeB giant — CAS-lineage, dysprosium-lean",
+  prog:["Sintered NdFeB magnets","Low-Dy formulations"],
+  p:"Spun from the Chinese Academy of Sciences, Sanhuan is the second pillar of Chinese magnet dominance and a leader in dysprosium-lean formulations that stretch scarce heavy rare earths. With JL MAG it anchors the magnet chokepoint the whole atlas keeps returning to — the rare product tier where China, not the West, holds the upstream." },
+{ id:"nrec", d:"mat", t:3, n:"China Northern Rare Earth", zh:"北方稀土", hq:"Baotou", parent:null, flags:[],
+  role:"The raw-material top of the stack — ~half of China's light-RE quota",
+  prog:["RE separation & refining","NdPr oxide"],
+  p:"The Baotou giant that separates and refines the ore from Bayan Obo — the largest rare-earth deposit on Earth — into the neodymium and praseodymium oxides the magnet makers need, holding roughly 50–60% of China's domestic light-rare-earth quota. Control the separation licenses and you control the magnets: this is the top of the leverage stack, and where the state's quota lever actually bites." }
 ];
 
 const FOREIGN = [
