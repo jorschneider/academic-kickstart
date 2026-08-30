@@ -193,6 +193,7 @@ const MAPS = {
   drone:     { url: 'https://claude.ai/code/artifact/e07d880f-fd1b-4449-829f-8d37bed927b7', label: 'Drone & Robot Atlas' },
   counteruas:{ url: 'https://claude.ai/code/artifact/121166cb-aa8b-428d-9c95-437afc0613f2', label: 'Counter-Drone Kill Chain' },
   robot:     { url: 'https://claude.ai/code/artifact/e07d880f-fd1b-4449-829f-8d37bed927b7', label: 'Drone & Robot Atlas' },
+  semiconductor: { url: 'https://claude.ai/code/artifact/2dfad809-6b14-4901-8357-47fc160a94a3', label: 'Semiconductor Chokepoint' },
 }
 const SCORE = [
   { domain: 'Shipbuilding & Naval', zh: '船舶 / 海军', tier: 4, why: '~230× US shipbuilding capacity and the largest navy by hull count, on a wartime footing.', dep: 'Top-tier marine propulsion; submarine quieting & sonar — the undersea tier is still catching up.' },
@@ -260,6 +261,7 @@ const MAPCARDS = [
   { map: 'supplier', mk: 'The full base · 9 domains', title: 'PLA Supplier Atlas', stat: '~70 entities · primes → institutes → MCF', p: 'The whole defense-industrial base: the central conglomerates, the load-bearing numbered research institutes, the military-civil-fusion firms, and the foreign chokepoints.', teal: false },
   { map: 'drone', mk: 'Supply-chain stack', title: 'Drone & Robot Atlas', stat: '51 nodes · platform → component → material', p: 'The unmanned and embodied-intelligence stack, from flying platforms down to the motors, thermal cores, reducers and magnets — the vertical where China owns the whole chain.', teal: true },
   { map: 'counteruas', mk: 'Kill chain', title: 'Counter-Drone Kill Chain', stat: '25 systems · detect → decide → defeat', p: 'The defensive half: radar and RF detection, jammers and spoofers, lasers and microwave, guns and interceptors — and the export story of arming both sides.', teal: false },
+  { map: 'semiconductor', mk: 'Chokepoint status', title: 'Semiconductor Chokepoint', stat: '22 nodes · dependent → self-sufficient', p: 'The compute base coded by self-sufficiency: where China is blocked (EUV, advanced EDA, HBM), brute-forcing (SMIC, Ascend), localizing the toolchain, or already dominant (legacy nodes).', teal: true },
 ]
 MAPCARDS.forEach(c => {
   const a = document.createElement('a')
@@ -277,6 +279,7 @@ const ESSAYS = [
   { et: 'Naval & Undersea Suppliers', ed: 'Yards, institutes, the submarine enterprise', ef: 'naval-undersea-suppliers.md' },
   { et: 'Drone & Robot Ecosystem', ed: 'Six layers, platform to magnet', ef: 'drone-robot-ecosystem.md' },
   { et: 'Counter-Drone Ecosystem', ed: 'The kill chain and the cost-exchange problem', ef: 'counter-uas-ecosystem.md' },
+  { et: 'Semiconductor & Compute Chokepoint', ed: 'Where China depends, brute-forces, and dominates', ef: 'semiconductor-chokepoint.md' },
 ]
 ESSAYS.forEach(e => {
   const d = document.createElement('div')
