@@ -30,6 +30,7 @@ A ChinaTalk research corpus mapping who actually builds for the PLA — the prim
 | [`counter-uas-ecosystem.md`](./counter-uas-ecosystem.md) | The counter-drone kill chain and the cost-exchange problem |
 | [`semiconductor-chokepoint.md`](./semiconductor-chokepoint.md) | Where China depends, brute-forces, and dominates in compute |
 | [`aero-engine-catchup.md`](./aero-engine-catchup.md) | The historic weak point, now maturing (WS-15, DD6, CJ-1000A) |
+| [`nuclear-forces.md`](./nuclear-forces.md) | The fastest nuclear expansion in the world — triad, silos, and the warhead complex |
 
 ## The through-line
 
