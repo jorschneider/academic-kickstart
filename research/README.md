@@ -17,8 +17,8 @@ A ChinaTalk research corpus mapping who actually builds for the PLA — the prim
 | [Drone & Robot Atlas](https://claude.ai/code/artifact/e07d880f-fd1b-4449-829f-8d37bed927b7) | The unmanned/embodied stack: platform → component → material | 51 nodes |
 | [Counter-Drone Kill Chain](https://claude.ai/code/artifact/121166cb-aa8b-428d-9c95-437afc0613f2) | Counter-UAS: detect → decide → defeat, plus export | 25 systems |
 | [Semiconductor Chokepoint](https://claude.ai/code/artifact/2dfad809-6b14-4901-8357-47fc160a94a3) | The compute base, coded by self-sufficiency status | 22 nodes |
-| [Robot Ecosystem](https://claude.ai/code/artifact/354d7ea9-11c5-4d05-be0e-2b0b7b02c46b) | Humanoids → components, coded by China's competitive position | 37 nodes |
-| [Space & Missile Power](https://claude.ai/code/artifact/5101023f-ba3f-44d4-9b35-9f90eac4a98f) | Launch, satellites, counterspace, missiles, hypersonics — vs the US | 33 systems |
+| [Robot Ecosystem](https://claude.ai/code/artifact/354d7ea9-11c5-4d05-be0e-2b0b7b02c46b) | Humanoids → components, coded by China's competitive position | 44 nodes |
+| [Space & Missile Power](https://claude.ai/code/artifact/5101023f-ba3f-44d4-9b35-9f90eac4a98f) | Launch, satellites, counterspace, missiles, hypersonics — vs the US | 41 systems |
 | [**Chokepoint Ledger**](https://claude.ai/code/artifact/9b07ec41-f9ff-4863-a0cf-c0fd43b9b11a) | **The economic synthesis** — dependencies vs. leverage on a severity × substitution matrix | 18 chokepoints |
 | [**Taiwan Contingency**](https://claude.ai/code/artifact/14f256bd-9d68-4687-866e-054f89579299) | **The operational synthesis** — what's decisive across four conflict phases | 19 capabilities |
 
