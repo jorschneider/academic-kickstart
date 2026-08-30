@@ -37,6 +37,7 @@ A ChinaTalk research corpus mapping who actually builds for the PLA — the prim
 | [`electronics-radar-ew.md`](./electronics-radar-ew.md) | CETC, the AESA/GaN radar leap, counter-stealth, and the gallium lever |
 | [`robot-ecosystem.md`](./robot-ecosystem.md) | The embodied-intelligence wave — humanoids, quadrupeds, UGVs, and the component chokepoints |
 | [`space-missiles-hypersonics.md`](./space-missiles-hypersonics.md) | Launch, megaconstellations, counterspace, missiles and hypersonics — peer or ahead |
+| [`critical-minerals-materials.md`](./critical-minerals-materials.md) | The substrate: rare-earth magnets and minerals as a weapon, superalloys and carbon fiber as a dependency being retired |
 | [`chokepoint-leverage-ledger.md`](./chokepoint-leverage-ledger.md) | **The economic synthesis** — China's dependencies vs. leverage, with substitution timelines and policy levers |
 | [`taiwan-contingency-lens.md`](./taiwan-contingency-lens.md) | **The operational synthesis** — what's decisive when the shooting starts, and which chokepoints bite when |
 | [`methodology-and-confidence.md`](./methodology-and-confidence.md) | **How to read the atlas** — the sourcing taxonomy, the confidence grade behind every rating, and what open source structurally can't see |
