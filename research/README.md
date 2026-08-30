@@ -39,6 +39,7 @@ A ChinaTalk research corpus mapping who actually builds for the PLA — the prim
 | [`space-missiles-hypersonics.md`](./space-missiles-hypersonics.md) | Launch, megaconstellations, counterspace, missiles and hypersonics — peer or ahead |
 | [`chokepoint-leverage-ledger.md`](./chokepoint-leverage-ledger.md) | **The economic synthesis** — China's dependencies vs. leverage, with substitution timelines and policy levers |
 | [`taiwan-contingency-lens.md`](./taiwan-contingency-lens.md) | **The operational synthesis** — what's decisive when the shooting starts, and which chokepoints bite when |
+| [`methodology-and-confidence.md`](./methodology-and-confidence.md) | **How to read the atlas** — the sourcing taxonomy, the confidence grade behind every rating, and what open source structurally can't see |
 
 ## The through-line
 
@@ -46,4 +47,4 @@ China leads where the contest is **scale and hardware** — shipbuilding (~230×
 
 ---
 
-*Sources are cited inline in each essay: DoD's China Military Power Report and the Section 1260H list, BIS Entity List actions, CSIS, RUSI, RAND, FDD, Kharon, IISS, SemiAnalysis, and trade-press reporting. Ratings and syntheses are analytical judgments, not measurements; corporate structures and figures are a 2026 snapshot.*
+*Sources are cited inline in each essay: DoD's China Military Power Report and the Section 1260H list, BIS Entity List actions, CSIS, RUSI, RAND, FDD, Kharon, IISS, SemiAnalysis, and trade-press reporting. Ratings and syntheses are analytical judgments, not measurements; corporate structures and figures are a 2026 snapshot. Every scorecard rating carries a confidence grade — **A** well-documented, **B** mixed evidence, **C** largely inferential — and [`methodology-and-confidence.md`](./methodology-and-confidence.md) documents the grading and the blind spots open source cannot see.*

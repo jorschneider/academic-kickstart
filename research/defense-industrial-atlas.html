@@ -14,6 +14,7 @@
     --accent-soft: rgba(166, 51, 30, .10);
     --teal: #285863;            /* ink-teal secondary */
     --teal-soft: rgba(40, 88, 99, .10);
+    --warn: #7E560B;            /* ochre — low-confidence flag */
     --shadow: 0 16px 44px rgba(26, 29, 33, .14);
     /* sequential capability ramp (Dominant→Dependent, dark→light) */
     --t4: #8A2E1A; --t3: #B0563A; --t2: #CE8A6E; --t1: #E4BAA8;
@@ -26,6 +27,7 @@
       --ink: #E6E4DC; --muted: #969CA2; --line: #333842; --hair: #2A2F37;
       --accent: #D4664A; --accent-soft: rgba(212, 102, 74, .14);
       --teal: #5F9AA7; --teal-soft: rgba(95, 154, 167, .14);
+      --warn: #D6A44A;
       --shadow: 0 16px 44px rgba(0, 0, 0, .55);
       --t4: #EE9270; --t3: #CE7756; --t2: #A85C44; --t1: #7E4331;
       --t4-ink: #241009; --t3-ink: #1e0c06; --t2-ink: #fbeae2; --t1-ink: #f6e0d6;
@@ -37,6 +39,7 @@
     --ink: #E6E4DC; --muted: #969CA2; --line: #333842; --hair: #2A2F37;
     --accent: #D4664A; --accent-soft: rgba(212, 102, 74, .14);
     --teal: #5F9AA7; --teal-soft: rgba(95, 154, 167, .14);
+    --warn: #D6A44A;
     --shadow: 0 16px 44px rgba(0, 0, 0, .55);
     --t4: #EE9270; --t3: #CE7756; --t2: #A85C44; --t1: #7E4331;
     --t4-ink: #241009; --t3-ink: #1e0c06; --t2-ink: #fbeae2; --t1-ink: #f6e0d6;
@@ -102,6 +105,21 @@
   .mo { font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .04em; color: var(--muted); margin-top: 4px; text-transform: uppercase; }
   .mo .moa { font-weight: 700; font-size: 12px; }
   .mo.mo-fast { color: var(--accent); }
+  /* confidence marker */
+  .conf { display: flex; align-items: baseline; gap: 6px; margin-top: 5px; font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); }
+  .conf .dots { letter-spacing: 1.5px; font-size: 8.5px; position: relative; top: -0.5px; }
+  .conf .cg { font-weight: 700; font-size: 11px; letter-spacing: .06em; }
+  .conf .cl { color: var(--muted); }
+  .conf.c-a { color: var(--teal); }
+  .conf.c-c { color: var(--warn); }
+  /* confidence legend under distribution */
+  .conflegend { display: flex; gap: 18px; flex-wrap: wrap; font-family: "IBM Plex Mono", monospace; font-size: 10.5px; color: var(--muted); margin: 0 0 22px; align-items: baseline; }
+  .conflegend .clh { text-transform: uppercase; letter-spacing: .12em; color: var(--ink); }
+  .conflegend .ci { display: inline-flex; gap: 5px; align-items: baseline; }
+  .conflegend .ci b { font-weight: 700; }
+  .conflegend .ci.c-a b, .conflegend .ci.c-a .dots { color: var(--teal); }
+  .conflegend .ci.c-c b, .conflegend .ci.c-c .dots { color: var(--warn); }
+  .conflegend a { color: var(--accent); text-decoration: underline; }
   .swhy { font-size: 13px; line-height: 1.5; color: var(--ink); }
   .sdep { font-size: 12.5px; line-height: 1.5; color: var(--muted); }
   .sdep b { color: var(--ink); font-weight: 600; font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; display: block; margin-bottom: 2px; }
@@ -165,9 +183,15 @@
 
   <section id="scorecard">
     <div class="sechead"><span class="secnum">01</span><h2>The scorecard</h2></div>
-    <p class="sform">China's position across thirteen defense-industrial domains, rated on one ordinal scale — from <em>Dominant</em> (leads the world) to <em>Dependent</em> (reliant on imports) — with each row's <em>trajectory</em>: how fast its position is moving (⇈ rising fast · ↑ rising · → holding). The distribution is the story: China leads where the contest is scale and hardware, lags where it is the deepest process technology, and the fast-movers (robots, space, counter-UAS, nuclear) are where the picture is changing most. Tap a tier to filter. Ratings are analytical judgments, not measurements.</p>
+    <p class="sform">China's position across thirteen defense-industrial domains, rated on one ordinal scale — from <em>Dominant</em> (leads the world) to <em>Dependent</em> (reliant on imports). Each row carries two further layers: its <em>trajectory</em> (⇈ rising fast · ↑ rising · → holding) and a <em>confidence grade</em> — how much the rating rests on hard evidence versus inference. The distribution is the story: China leads where the contest is scale and hardware, lags where it is the deepest process technology, and the fast-movers (robots, space, counter-UAS, nuclear) are where the picture is changing most. Tap a tier to filter. Ratings are analytical judgments, not measurements — the <span class="mono" style="font-size:12px">methodology-and-confidence.md</span> essay grades and defends every one.</p>
     <div class="dist" id="dist" role="group" aria-label="Filter domains by capability tier"></div>
     <p class="distnote"><span>◄ China leads &nbsp;·&nbsp; depends ►&nbsp;&nbsp;— width = number of domains in each tier</span><button id="resetf" hidden>show all domains</button></p>
+    <div class="conflegend">
+      <span class="clh">Confidence in each rating</span>
+      <span class="ci c-a"><span class="dots">●●●</span> <b>A</b> well-documented</span>
+      <span class="ci"><span class="dots">●●○</span> <b>B</b> mixed evidence</span>
+      <span class="ci c-c"><span class="dots">●○○</span> <b>C</b> largely inferential</span>
+    </div>
     <div class="colhdr"><span>Domain</span><span>China's position</span><span>Why</span><span>Key dependency</span></div>
     <div class="score" id="score"></div>
   </section>
@@ -211,7 +235,7 @@
 
   <footer class="wrap">
     <p class="fh">Methodology &amp; caveats</p>
-    <p>Compiled entirely from open sources — DoD's <em>Military and Security Developments Involving the PRC</em> (Dec 2025) and the Section 1260H list (June 2026), BIS Entity List actions, CSIS ChinaPower, RUSI, RAND, FDD, Kharon, IISS <em>Military Balance 2026</em>, SemiAnalysis, and trade-press reporting cited in the companion essays. The scorecard tiers are analytical judgments synthesized across those sources, not quantitative measurements; reasonable analysts will place some domains a tier up or down. Corporate structures, shipment figures and sanctions status are a 2026 snapshot of a fast-moving picture. This is a living document, updated as the picture moves. Companion essays live in the repository alongside this page.</p>
+    <p>Compiled entirely from open sources — DoD's <em>Military and Security Developments Involving the PRC</em> (Dec 2025) and the Section 1260H list (June 2026), BIS Entity List actions, CSIS ChinaPower, RUSI, RAND, FDD, Kharon, IISS <em>Military Balance 2026</em>, SemiAnalysis, and trade-press reporting cited in the companion essays. The scorecard tiers are analytical judgments synthesized across those sources, not quantitative measurements; reasonable analysts will place some domains a tier up or down. The <span class="mono">confidence grade</span> on each row says how much to trust the placement — <b>A</b> well-documented, <b>B</b> mixed evidence, <b>C</b> largely inferential — and the companion <span class="mono">methodology-and-confidence.md</span> essay lays out the full sourcing taxonomy, the grading scheme, and the structural blind spots (performance under fire, magazine depth, intent) that open-source analysis cannot see. Corporate structures, shipment figures and sanctions status are a 2026 snapshot of a fast-moving picture. This is a living document, updated as the picture moves. Companion essays live in the repository alongside this page.</p>
   </footer>
 </div>
 
@@ -230,6 +254,12 @@ const MO = {
   'Electronics · Radar · EW': 'rising', 'Counter-UAS · Directed Energy': 'fast', 'Space & Counterspace': 'fast',
   'Nuclear Forces': 'fast', 'Aero-Engines': 'rising', 'Military AI Compute': 'rising', 'Advanced Semiconductors': 'rising',
 }
+// confidence: how much to trust the rating (see methodology essay). A well-documented · B mixed · C largely inferential
+const CONF = {
+  A: { dots: '●●●', label: 'well-documented' },
+  B: { dots: '●●○', label: 'mixed evidence' },
+  C: { dots: '●○○', label: 'largely inferential' },
+}
 const MAPS = {
   supplier:  { url: 'https://claude.ai/code/artifact/9ba26611-80ca-456b-b489-06bce1b350ed', label: 'PLA Supplier Atlas' },
   drone:     { url: 'https://claude.ai/code/artifact/e07d880f-fd1b-4449-829f-8d37bed927b7', label: 'Drone & Robot Atlas' },
@@ -239,19 +269,19 @@ const MAPS = {
   spacemissile: { url: 'https://claude.ai/code/artifact/5101023f-ba3f-44d4-9b35-9f90eac4a98f', label: 'Space & Missile Power' },
 }
 const SCORE = [
-  { domain: 'Shipbuilding & Naval', zh: '船舶 / 海军', tier: 4, why: '~230× US shipbuilding capacity and the largest navy by hull count, on a wartime footing.', dep: 'Top-tier marine propulsion; submarine quieting & sonar — the undersea tier is still catching up.' },
-  { domain: 'Drones (UAVs)', zh: '无人机', tier: 4, why: '~70% of the commercial market; owns the platforms and the component stack end-to-end.', dep: 'High-end AI compute for on-board autonomy.' },
-  { domain: 'Drone & Robot Components', zh: '核心零部件', tier: 4, why: '80–90% of the world’s FPV motors and ~90% of rare-earth magnet processing — everyone else depends on China here.', dep: 'None material — this domain is the leverage, not the dependency.' },
-  { domain: 'Robots (ground & humanoid)', zh: '机器人', tier: 4, why: '~97% of global humanoid shipments; AgiBot & Unitree lead by volume; military UGVs already fielded.', dep: 'Top-tier reducers (Japan), high-end force/tactile sensors (~60% imported), AI compute.' },
-  { domain: 'Missiles & Hypersonics', zh: '导弹 / 高超声速', tier: 3, why: 'A vast CASIC/CASC portfolio; arguably ahead of the US on hypersonic glide vehicles.', dep: 'Some seeker and precision-guidance components.' },
-  { domain: 'Ground Systems', zh: '陆战装备', tier: 3, why: 'NORINCO as sole ordnance prime; mass production of armor, artillery and munitions.', dep: 'High-end optics and fire-control at the top tier.' },
-  { domain: 'Electronics · Radar · EW', zh: '电子 / 雷达 / 电子战', tier: 3, why: 'CETC is world-class in AESA radar and the GaN transmit/receive modules inside them.', dep: 'High-end EDA software; some RF and mixed-signal chips.' },
-  { domain: 'Counter-UAS · Directed Energy', zh: '反无人机 / 定向能', tier: 3, why: 'Openly fielding lasers and high-power microwave (LY-1, Hurricane 3000); racing the cost-exchange curve.', dep: 'Operational reliability — field reports are mixed.' },
-  { domain: 'Space & Counterspace', zh: '航天 / 反卫星', tier: 3, why: 'Rising launch cadence, broadband megaconstellations, and mature ASAT and recon.', dep: 'Reusable heavy-lift maturity; radiation-hardened space electronics.' },
-  { domain: 'Nuclear Forces', zh: '核力量', tier: 2, why: 'Expanding fast — toward ~1,000 warheads by 2030 — but the stockpile is still far below the US and Russia.', dep: 'Warhead numbers and fissile-material scale-up.' },
-  { domain: 'Aero-Engines', zh: '航空发动机', tier: 2, why: 'The WS-15 is finally in low-rate production — the historic weak point, now closing.', dep: 'Hot-section superalloys and single-crystal turbine blades.' },
-  { domain: 'Military AI Compute', zh: '军用算力', tier: 2, why: 'Huawei Ascend is ramping hard, but remains behind Nvidia and supply-constrained.', dep: 'EUV lithography, high-bandwidth memory, EDA.' },
-  { domain: 'Advanced Semiconductors', zh: '先进半导体', tier: 1, why: 'SMIC is at 7nm on pre-sanction DUV tools with no domestic EUV — the deepest single dependency.', dep: 'EUV lithography (ASML), leading-edge fab tools, EDA.' },
+  { domain: 'Shipbuilding & Naval', zh: '船舶 / 海军', tier: 4, conf: 'A', why: '~230× US shipbuilding capacity and the largest navy by hull count, on a wartime footing.', dep: 'Top-tier marine propulsion; submarine quieting & sonar — the undersea tier is still catching up.' },
+  { domain: 'Drones (UAVs)', zh: '无人机', tier: 4, conf: 'A', why: '~70% of the commercial market; owns the platforms and the component stack end-to-end.', dep: 'High-end AI compute for on-board autonomy.' },
+  { domain: 'Drone & Robot Components', zh: '核心零部件', tier: 4, conf: 'A', why: '80–90% of the world’s FPV motors and ~90% of rare-earth magnet processing — everyone else depends on China here.', dep: 'None material — this domain is the leverage, not the dependency.' },
+  { domain: 'Robots (ground & humanoid)', zh: '机器人', tier: 4, conf: 'B', why: '~97% of global humanoid shipments; AgiBot & Unitree lead by volume; military UGVs already fielded.', dep: 'Top-tier reducers (Japan), high-end force/tactile sensors (~60% imported), AI compute.' },
+  { domain: 'Missiles & Hypersonics', zh: '导弹 / 高超声速', tier: 3, conf: 'B', why: 'A vast CASIC/CASC portfolio; arguably ahead of the US on hypersonic glide vehicles.', dep: 'Some seeker and precision-guidance components.' },
+  { domain: 'Ground Systems', zh: '陆战装备', tier: 3, conf: 'B', why: 'NORINCO as sole ordnance prime; mass production of armor, artillery and munitions.', dep: 'High-end optics and fire-control at the top tier.' },
+  { domain: 'Electronics · Radar · EW', zh: '电子 / 雷达 / 电子战', tier: 3, conf: 'B', why: 'CETC is world-class in AESA radar and the GaN transmit/receive modules inside them.', dep: 'High-end EDA software; some RF and mixed-signal chips.' },
+  { domain: 'Counter-UAS · Directed Energy', zh: '反无人机 / 定向能', tier: 3, conf: 'C', why: 'Openly fielding lasers and high-power microwave (LY-1, Hurricane 3000); racing the cost-exchange curve.', dep: 'Operational reliability — field reports are mixed.' },
+  { domain: 'Space & Counterspace', zh: '航天 / 反卫星', tier: 3, conf: 'B', why: 'Rising launch cadence, broadband megaconstellations, and mature ASAT and recon.', dep: 'Reusable heavy-lift maturity; radiation-hardened space electronics.' },
+  { domain: 'Nuclear Forces', zh: '核力量', tier: 2, conf: 'B', why: 'Expanding fast — toward ~1,000 warheads by 2030 — but the stockpile is still far below the US and Russia.', dep: 'Warhead numbers and fissile-material scale-up.' },
+  { domain: 'Aero-Engines', zh: '航空发动机', tier: 2, conf: 'B', why: 'The WS-15 is finally in low-rate production — the historic weak point, now closing.', dep: 'Hot-section superalloys and single-crystal turbine blades.' },
+  { domain: 'Military AI Compute', zh: '军用算力', tier: 2, conf: 'B', why: 'Huawei Ascend is ramping hard, but remains behind Nvidia and supply-constrained.', dep: 'EUV lithography, high-bandwidth memory, EDA.' },
+  { domain: 'Advanced Semiconductors', zh: '先进半导体', tier: 1, conf: 'A', why: 'SMIC is at 7nm on pre-sanction DUV tools with no domestic EUV — the deepest single dependency.', dep: 'EUV lithography (ASML), leading-edge fab tools, EDA.' },
 ]
 
 const state = { tier: 0 }
@@ -284,7 +314,9 @@ SCORE.forEach(s => {
     '<div class="sdomain"><span class="dm">' + s.domain + '</span><span class="zh">' + s.zh + '</span></div>' +
     '<div class="scap"><div class="meter">' + pips + '</div>' +
       '<div class="tierlab"><b style="color:var(--t' + s.tier + ')">' + TIERS[s.tier].name + '</b> <span class="tw">— ' + TIERS[s.tier].tag + '</span></div>' +
-      '<div class="mo mo-' + (MO[s.domain] || 'steady') + '"><span class="moa">' + MOMV[MO[s.domain] || 'steady'].a + '</span> ' + MOMV[MO[s.domain] || 'steady'].t + '</div></div>' +
+      '<div class="mo mo-' + (MO[s.domain] || 'steady') + '"><span class="moa">' + MOMV[MO[s.domain] || 'steady'].a + '</span> ' + MOMV[MO[s.domain] || 'steady'].t + '</div>' +
+      '<div class="conf c-' + (s.conf || 'B').toLowerCase() + '" title="Confidence in this rating: ' + CONF[s.conf || 'B'].label + '"><span class="dots">' + CONF[s.conf || 'B'].dots + '</span><span class="cg">' + (s.conf || 'B') + '</span><span class="cl">' + CONF[s.conf || 'B'].label + '</span></div>' +
+    '</div>' +
     '<div class="swhy">' + s.why + '</div>' +
     '<div class="sdep"><b>Dependency</b>' + s.dep + '</div>'
   score.appendChild(row)
@@ -334,6 +366,7 @@ const ESSAYS = [
   { et: 'Space, Missiles & Hypersonics', ed: 'Peer or ahead — and closing the launch gap', ef: 'space-missiles-hypersonics.md' },
   { et: 'The Chokepoint & Leverage Ledger', ed: 'The economic synthesis — dependencies vs. leverage', ef: 'chokepoint-leverage-ledger.md' },
   { et: 'The Taiwan-Contingency Lens', ed: 'The operational synthesis — what\'s decisive when the shooting starts', ef: 'taiwan-contingency-lens.md' },
+  { et: 'Methodology & Confidence', ed: 'How the ratings were made, graded, and where they\'re soft', ef: 'methodology-and-confidence.md' },
 ]
 ESSAYS.forEach(e => {
   const d = document.createElement('div')
