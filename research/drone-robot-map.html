@@ -18,6 +18,7 @@
     --shadow: 0 14px 40px rgba(20, 27, 35, .16);
     --c-aer: #35659C; --c-com: #1B837B; --c-pwr: #A96C24; --c-ctl: #5556A2;
     --c-sen: #8A4784; --c-rob: #4A833A; --c-cuas: #AB4436; --c-mat: #82722F;
+    --c-aut: #1587A6;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
@@ -28,7 +29,7 @@
       --tech: #3BB2CC; --seal: #E0644E; --seal-bg: rgba(224, 100, 78, .13);
       --shadow: 0 14px 40px rgba(0, 0, 0, .55);
       --c-aer: #6C9CCB; --c-com: #46B4AA; --c-pwr: #D0954A; --c-ctl: #8B8CD2;
-      --c-sen: #BC7BB4; --c-rob: #79B565; --c-cuas: #D9786C; --c-mat: #B6A459;
+      --c-sen: #BC7BB4; --c-rob: #79B565; --c-cuas: #D9786C; --c-mat: #B6A459; --c-aut: #45BCD6;
     }
   }
   :root[data-theme="dark"] {
@@ -39,7 +40,7 @@
     --tech: #3BB2CC; --seal: #E0644E; --seal-bg: rgba(224, 100, 78, .13);
     --shadow: 0 14px 40px rgba(0, 0, 0, .55);
     --c-aer: #6C9CCB; --c-com: #46B4AA; --c-pwr: #D0954A; --c-ctl: #8B8CD2;
-    --c-sen: #BC7BB4; --c-rob: #79B565; --c-cuas: #D9786C; --c-mat: #B6A459;
+    --c-sen: #BC7BB4; --c-rob: #79B565; --c-cuas: #D9786C; --c-mat: #B6A459; --c-aut: #45BCD6;
   }
   * { box-sizing: border-box; }
   body {
@@ -233,13 +234,15 @@ const G = {
   sen:'<circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3.5"/>',
   rob:'<rect x="4.5" y="8" width="15" height="12" rx="2"/><path d="M12 3v4"/><circle cx="12" cy="3" r="1.4"/><circle cx="9" cy="13" r="1.3"/><circle cx="15" cy="13" r="1.3"/>',
   cuas:'<path d="M12 2l8 3v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5z"/>',
-  mat:'<path d="M6 3v9a6 6 0 0 0 12 0V3h-4v9a2 2 0 0 1-4 0V3z"/>'
+  mat:'<path d="M6 3v9a6 6 0 0 0 12 0V3h-4v9a2 2 0 0 1-4 0V3z"/>',
+  aut:'<circle cx="12" cy="12" r="2.3"/><circle cx="4" cy="6" r="1.6"/><circle cx="20" cy="6" r="1.6"/><circle cx="5" cy="19" r="1.6"/><circle cx="19" cy="18" r="1.6"/><path d="M12 12 4.8 6.6M12 12 19.2 6.6M12 12 5.6 18.2M12 12 18.4 17.4"/>'
 };
 const DOMAINS = {
   aer:{label:"Aerial Platforms", zh:"无人机", c:"var(--c-aer)"},
   com:{label:"Commercial · Dual-Use", zh:"消费级 / 军民两用", c:"var(--c-com)"},
   pwr:{label:"Propulsion & Power", zh:"动力 / 电池", c:"var(--c-pwr)"},
   ctl:{label:"Avionics · Control · Compute", zh:"飞控 / 数链 / 算力", c:"var(--c-ctl)"},
+  aut:{label:"Autonomy & Software", zh:"自主 / 蜂群算法", c:"var(--c-aut)"},
   sen:{label:"Sensors & Payloads", zh:"传感器 / 载荷", c:"var(--c-sen)"},
   rob:{label:"Robots — Ground & Humanoid", zh:"地面 / 人形机器人", c:"var(--c-rob)"},
   cuas:{label:"Counter-UAS", zh:"反无人机", c:"var(--c-cuas)"},
@@ -252,7 +255,7 @@ const FLAGNOTES = {
   "FCC":"FCC Covered List — new models barred from US market (Dec 2025)",
   "OFAC":"Treasury sanctions or CMIC investment ban"
 };
-const colOrder = ["aer","com","pwr","ctl","sen","rob","cuas","mat"];
+const colOrder = ["aer","com","pwr","ctl","aut","sen","rob","cuas","mat"];
 
 const DATA = [
 // ——— AERIAL PLATFORMS ———
@@ -276,10 +279,18 @@ const DATA = [
   role:"Jet swarm mothership — a flying carrier",
   prog:["SS-UAV"],
   p:"AVIC's 25-meter-span, 16-tonne jet 'mothership,' first flight December 11, 2025 at Pucheng. Carries 100+ small drones or a 6-tonne payload for saturation-swarm, EW and strike missions — unveiled at Zhuhai 2024 and airborne barely a year later." },
-{ id:"loiter", d:"aer", t:1, n:"Loitering munitions", zh:"巡飞弹 · CH-901 / WS-43", parent:"CASC / multiple", flags:["1260H"], stat:"48-tube truck launcher demonstrated",
+{ id:"loiter", d:"aer", t:1, n:"Loitering munitions", zh:"巡飞弹 · CH-901 / WS-43", parent:"CASC / multiple", flags:["1260H"], stat:"~1M-unit order reported by 2026",
   role:"One-way attack — tube-launched to cruise-class",
-  prog:["CH-901 / FH-901","WS-43","FPV kamikaze tier"],
-  p:"The Switchblade-class CH-901 (9kg, 15km, 120-min loiter) and larger WS-43 (~500lb, 60km), plus a Dongfeng Mengshi truck with 48 CH-901 tubes demonstrated in 2020 — massed precision one-way attack, years before Ukraine made it famous. Below sit the numberless FPV kamikaze drones drawn from the commercial supply chain." },
+  prog:["CH-901 / FH-901","WS-43","FL-300D","XS101"],
+  p:"The Switchblade-class CH-901 (9kg, 15km, 120-min loiter), the larger WS-43 (~500lb, 60km), the infantry XS101, and the truck-launched FL-300D — a ~$10,000, ~1,000km, 40–50kg one-way attack drone built for mass saturation. China demonstrated a Dongfeng Mengshi truck with 48 CH-901 tubes in 2020, years before Ukraine made the category famous, and reporting points to an order approaching 1 million units by 2026. Below sit the numberless FPV kamikaze drones from the commercial supply chain." },
+{ id:"asn", d:"aer", t:1, n:"ASN Technology", zh:"西安爱生 · 西工大", parent:"NWPU-linked (Xi'an)", flags:["EL"], stat:"China's highest-volume military UAV maker",
+  role:"Volume UAV prime + ASN-301 anti-radiation loiterer",
+  prog:["ASN-209","ASN-301 ARM","Recon UAVs"],
+  p:"Historically China's highest-volume military UAV maker, tied to Entity-Listed Northwestern Polytechnical University in Xi'an. Its ASN-301 is a Harpy-class anti-radiation loitering munition for defense suppression. One of the most under-covered PLA drone primes — high volume, low profile, and the quiet backbone of tactical PLA UAV numbers." },
+{ id:"ziyan", d:"aer", t:1, n:"Ziyan UAV", zh:"紫燕无人机 · 珠海", parent:"private (Zhuhai)", flags:[], stat:"Blowfish A2 armed helicopter, swarm-marketed",
+  role:"Armed unmanned helicopters marketed as swarm-capable",
+  prog:["Blowfish A2","Ranger P2-X"],
+  p:"Zhuhai maker of the Blowfish A2 armed unmanned helicopter (38kg MTOW, 12kg payload) and Ranger P2-X recon drone, marketed as swarm-capable and PLA-integrated — a nominally private firm operating on the armed-rotary-drone edge of the ecosystem." },
 { id:"wz7", d:"aer", t:1, n:"WZ-7 / WZ-8", zh:"无侦-7 / 无侦-8", parent:"AVIC (Guizhou)", flags:["1260H"], stat:"HALE ISR + rocket recon",
   role:"High-altitude strategic reconnaissance",
   prog:["WZ-7 Soaring Dragon","WZ-8 rocket recon"],
@@ -351,6 +362,19 @@ const DATA = [
   role:"Automotive-AI silicon migrating to robotics",
   prog:["Journey / edge inference"],
   p:"Baidu-alumni-founded AI-chip house whose automotive edge-inference silicon is migrating toward robotics and autonomy — the bridge from the drone/robot layer to the broader Huawei/SMIC/Cambricon compute stack." },
+// ——— AUTONOMY & SOFTWARE ———
+{ id:"atlas", d:"aut", t:1, n:'CETC "Atlas" swarm system', zh:"电科 · 蜂群作战系统", parent:"CETC", flags:["1260H","OFAC"], stat:"96 drones · 1 operator · full kill-chain (Mar 2026)",
+  role:"The C2 layer that turns cheap airframes into a weapon",
+  prog:["Atlas swarm ops","ID→launch→strike chain"],
+  p:"CETC's swarm-operations system, shown in a full-chain demonstration in March 2026: one operator, up to 96 drones, linking target identification, launcher activation, deployment and precision strike into a single automated sequence. The command layer that converts a box of cheap drones into a coherent weapon system — and the part hardest for outsiders to buy or replicate." },
+{ id:"resilientswarm", d:"aut", t:2, n:"Resilient-swarm autonomy", zh:"抗毁蜂群算法", parent:"NUDT / state labs", flags:[], stat:"~200 drones · keeps cooperating after link loss",
+  role:"Graceful degradation under jamming — the hard problem",
+  prog:["Comms-loss cooperation","Distributed tasking"],
+  p:"China has shown a ~200-drone swarm controllable by a single soldier whose 'intelligent algorithm' keeps units cooperating after they lose the operator link. Graceful degradation under jamming is the capability that separates a parade demo from a usable doctrine, and much of the R&D traces to NUDT and allied labs." },
+{ id:"vla", d:"aut", t:3, n:"VLA / embodied-AI models", zh:"视觉-语言-动作模型", parent:"DeepSeek-class / labs", flags:[], stat:"the common brain for drones + robots",
+  role:"The model layer on the Ascend compute stack",
+  prog:["Vision-language-action models","Edge autonomy"],
+  p:"Vision-language-action models are becoming the common brain for humanoids and drone swarms alike, running on the domestic AI-compute stack — Huawei Ascend, Cambricon, DeepSeek-class models — plus the edge silicon (Rockchip, Horizon). The airframes are commodities; this software layer is where the next advantage is contested, and it is the layer least visible to a component-by-component sanctions regime." },
 // ——— SENSORS & PAYLOADS ———
 { id:"raytron", d:"sen", t:3, n:"Raytron", zh:"睿创微纳", parent:"listed (Yantai)", flags:[], stat:"world-first 6μm VGA uncooled (2024)",
   role:"Uncooled thermal cores — major PLA supplier",
@@ -397,6 +421,22 @@ const DATA = [
   role:"The crowded rest of the humanoid field",
   prog:["Fourier GR-3","EngineAI","Galbot"],
   p:"The deep bench of a fast-consolidating field: Fourier's care-oriented GR-3, EngineAI's athletic bipeds, Galbot's manipulation-focused platform, and a dozen more — the sign of a sector Beijing designated 2026's 'mass-production year one.'" },
+{ id:"sharpclaw", d:"rob", t:1, n:"NORINCO Sharp Claw · ZRY222", zh:"北方 · 山猫 / 战车", parent:"NORINCO", flags:["1260H","OFAC"], stat:"Sharp Claw fielded in Tibet; ZRY222 on state TV (2026)",
+  role:"Armed & recon tracked combat UGVs — already fielded",
+  prog:["Sharp Claw UGV","ZRY222 rocket UGV","Swarm-2"],
+  p:"NORINCO's tracked ground-combat robots: the Sharp Claw recon/light-strike UGV reportedly fielded in Tibet at battalion scale, and the rocket-armed ZRY222 shown integrated into infantry training on state TV in January 2026. The September 2025 parade fielded a mixed wheeled/tracked/quadruped land-robot formation configurable with sensors, machine guns, rockets or small drones — the deployed reality behind the humanoid headlines." },
+{ id:"mule200", d:"rob", t:1, n:"Mule-200 logistics UGV", zh:"骡-200 · 遥控运输", parent:"Zhongtian Zhikong (reported)", flags:[], stat:"~200 kg · 50 km · dozens in Tibet",
+  role:"'Last tactical mile' robotic resupply",
+  prog:["Tracked cargo UGV"],
+  p:"A tracked logistics mule hauling ~200 kg over 50 km of rough terrain, deployed in Tibet by the dozen — the unglamorous but decisive resupply role that keeps high-altitude units fighting. The kind of system that wins wars quietly, and the workhorse category the US Army is only now chasing." },
+{ id:"warwolves", d:"rob", t:1, n:'Armed quadrupeds ("war wolves")', zh:"机器狼 / 战狼", parent:"Unitree / DEEP (dual-use)", flags:[], stat:"commercial dog → PLA squad, same factory",
+  role:"Rifle- and sensor-carrying robot dogs in PLA squads",
+  prog:["Armed quadrupeds","Recon quadrupeds"],
+  p:"The clearest MCF pipeline on the whole board: commercial robot dogs from Unitree and DEEP Robotics migrate straight into PLA squads carrying rifles and sensors — the platform ships from the same factory whether the buyer is a warehouse or an infantry company. FDD's 'War Wolves' work tracks the handoff, and it is why sanctioning the category is so fraught." },
+{ id:"exoskeleton", d:"rob", t:2, n:"Exoskeletons", zh:"外骨骼", parent:"NORINCO / CASIC", flags:["1260H","OFAC"], stat:"in use at 4,500–5,500 m (Tibet, Xinjiang)",
+  role:"Powered & passive load-bearing exosuits",
+  prog:["NORINCO passive frame","CASIC powered suit"],
+  p:"NORINCO's passive load-bearing frame and CASIC's powered 'Portable Ammunition Support Assist' suit are in selective use in Tibet and Xinjiang, where 4,500–5,500 m altitude wrecks troop endurance. 'Embodied intelligence' also means augmenting the human — the least-discussed corner of the robot story, and one already past the demonstration stage." },
 { id:"leaderdrive", d:"rob", t:3, n:"Leaderdrive / Green Harmonic", zh:"绿的谐波", parent:"listed (Suzhou)", flags:[], stat:"broke Japan's reducer monopoly (~-40% cost)",
   role:"Harmonic reducers — the actuator's core part",
   prog:["Strain-wave reducers"],
@@ -423,10 +463,10 @@ const DATA = [
   prog:["RF jammers","Interceptor drones"],
   p:"The soft-kill and kinetic tier: RF jammers and AI-assisted autonomous interceptor drones that complete a layered anti-swarm doctrine — itself a supplier ecosystem worth its own map." },
 // ——— MATERIALS & MAGNETS ———
-{ id:"ndfeb", d:"mat", t:3, n:"NdFeB magnet supply", zh:"钕铁硼 · 金力 / 三环", parent:"JL MAG / Zhongke Sanhuan", flags:[], stat:"China ~90% heavy-RE processing",
-  role:"The master chokepoint under every motor",
+{ id:"ndfeb", d:"mat", t:3, n:"NdFeB magnet supply", zh:"钕铁硼 · 磁材六强", parent:"the 'MAGnificent 6'", flags:[], stat:"China ~90% heavy-RE processing; licensed buyer-by-buyer",
+  role:"The master chokepoint under every motor & actuator",
   prog:["Sintered NdFeB magnets","Rare-earth processing"],
-  p:"Every motor and actuator on this page turns on a permanent magnet, and China processes ~90% of the world's heavy rare earths and dominates sintered-NdFeB production (JL MAG, Zhongke Sanhuan). The April 2025 magnet-licensing regime turned this into an active lever — Beijing now meters the single most irreplaceable input to everyone else's drones and robots." },
+  p:"Every motor and actuator on this page turns on a permanent magnet, and China processes ~90% of the world's heavy rare earths and dominates sintered-NdFeB production through the 'MAGnificent 6': JL MAG (~40 kt/yr), Zhongke Sanhuan (~30–35 kt/yr, the world's largest, with CAS parentage and privileged quota), Ningbo Yunsheng, Zhenghai Magnet, Yingluohua and Earth Panda. The April 2025 licensing regime turned this into an active lever — by December 2025 Beijing was issuing customer-specific export licenses, metering the single most irreplaceable input to everyone else's drones and robots buyer by buyer." },
 { id:"carbonfiber", d:"mat", t:3, n:"Carbon-fiber airframes", zh:"碳纤维 · 光威 / 中复神鹰", parent:"Guangwei / Zhongfu Shenying", flags:[], stat:"Toray dependence closed out",
   role:"The airframe material, now domestic",
   prog:["Military carbon fiber","Composite airframes"],
