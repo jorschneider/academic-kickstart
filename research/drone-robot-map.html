@@ -1,0 +1,552 @@
+<title>Drone &amp; Robot Atlas</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Semi+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    color-scheme: light;
+    --bg: #E9EDF1;
+    --surface: #F7F9FB;
+    --surface2: #DEE5EC;
+    --ink: #141B23;
+    --muted: #586775;
+    --line: #C7D2DC;
+    --grid: rgba(20, 27, 35, .045);
+    --accent: #C05614;
+    --accent-soft: rgba(192, 86, 20, .12);
+    --tech: #0E7488;
+    --seal: #AF3626;
+    --seal-bg: rgba(175, 54, 38, .07);
+    --shadow: 0 14px 40px rgba(20, 27, 35, .16);
+    --c-aer: #35659C; --c-com: #1B837B; --c-pwr: #A96C24; --c-ctl: #5556A2;
+    --c-sen: #8A4784; --c-rob: #4A833A; --c-cuas: #AB4436; --c-mat: #82722F;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --bg: #0D131A; --surface: #141D27; --surface2: #1D2934;
+      --ink: #DAE4EC; --muted: #8396A5; --line: #283644; --grid: rgba(220, 230, 238, .05);
+      --accent: #ED883A; --accent-soft: rgba(237, 136, 58, .15);
+      --tech: #3BB2CC; --seal: #E0644E; --seal-bg: rgba(224, 100, 78, .13);
+      --shadow: 0 14px 40px rgba(0, 0, 0, .55);
+      --c-aer: #6C9CCB; --c-com: #46B4AA; --c-pwr: #D0954A; --c-ctl: #8B8CD2;
+      --c-sen: #BC7BB4; --c-rob: #79B565; --c-cuas: #D9786C; --c-mat: #B6A459;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #0D131A; --surface: #141D27; --surface2: #1D2934;
+    --ink: #DAE4EC; --muted: #8396A5; --line: #283644; --grid: rgba(220, 230, 238, .05);
+    --accent: #ED883A; --accent-soft: rgba(237, 136, 58, .15);
+    --tech: #3BB2CC; --seal: #E0644E; --seal-bg: rgba(224, 100, 78, .13);
+    --shadow: 0 14px 40px rgba(0, 0, 0, .55);
+    --c-aer: #6C9CCB; --c-com: #46B4AA; --c-pwr: #D0954A; --c-ctl: #8B8CD2;
+    --c-sen: #BC7BB4; --c-rob: #79B565; --c-cuas: #D9786C; --c-mat: #B6A459;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink); margin: 0;
+    font-family: "IBM Plex Sans", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+    font-size: 14px; line-height: 1.5;
+    background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 26px 26px;
+  }
+  .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
+  .wrap { max-width: 1600px; margin: 0 auto; }
+  header.mast { padding: 38px 28px 18px; }
+  .eyebrow {
+    font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: .2em;
+    text-transform: uppercase; color: var(--tech); margin: 0 0 12px; display: flex; align-items: center; gap: 10px;
+  }
+  .eyebrow::before { content: ""; width: 26px; height: 2px; background: var(--accent); display: inline-block; }
+  h1 {
+    font-family: "Saira Semi Condensed", sans-serif; font-weight: 700;
+    font-size: clamp(32px, 5vw, 52px); line-height: .98; margin: 0 0 12px;
+    letter-spacing: .005em; text-transform: uppercase; text-wrap: balance;
+  }
+  .thesis { max-width: 74ch; color: var(--muted); font-size: 15.5px; margin: 0 0 22px; }
+  .thesis b { color: var(--ink); font-weight: 600; }
+  /* stack strip */
+  .stack { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; border: 1px solid var(--line); border-radius: 5px; overflow: hidden; background: var(--line); }
+  .stratum {
+    background: var(--surface); border: 0; text-align: left; cursor: pointer; color: var(--ink);
+    padding: 13px 16px; font: inherit; position: relative; transition: background .12s;
+  }
+  .stratum:hover { background: var(--surface2); }
+  .stratum[aria-pressed="false"] { opacity: .42; }
+  .stratum .sidx { font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--accent); letter-spacing: .1em; }
+  .stratum .snm { font-family: "Saira Semi Condensed", sans-serif; font-weight: 600; font-size: 17px; text-transform: uppercase; letter-spacing: .03em; display: block; margin: 3px 0 2px; }
+  .stratum .sds { color: var(--muted); font-size: 12px; line-height: 1.4; }
+  .stratum .scount { position: absolute; top: 13px; right: 15px; font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+  /* controls */
+  .controls { position: sticky; top: 0; z-index: 30; background: var(--bg); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 10px 28px; margin-top: 20px; }
+  .controls-inner { max-width: 1600px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 9px; align-items: center; }
+  #q {
+    background: var(--surface); color: var(--ink); border: 1px solid var(--line); border-radius: 4px;
+    padding: 7px 12px; font: inherit; font-size: 13px; width: min(320px, 100%);
+  }
+  #q:focus-visible, .chip:focus-visible, .card:focus-visible, .stratum:focus-visible, button:focus-visible {
+    outline: 2px solid var(--accent); outline-offset: 2px;
+  }
+  .chip {
+    background: var(--surface); border: 1px solid var(--line); color: var(--muted); cursor: pointer;
+    font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: .05em;
+    padding: 6px 11px; border-radius: 4px; text-transform: uppercase;
+  }
+  .chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .legend { display: flex; gap: 13px; flex-wrap: wrap; margin-left: auto; align-items: center; color: var(--muted); font-size: 11.5px; }
+  .legend .sd { font-family: "IBM Plex Mono", monospace; font-size: 9px; letter-spacing: .07em; border: 1.5px solid var(--seal); color: var(--seal); background: var(--seal-bg); padding: 1px 5px; border-radius: 2px; }
+  main { padding: 22px 28px 8px; }
+  .board { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(256px, 1fr); gap: 15px; overflow-x: auto; padding-bottom: 20px; }
+  .col { min-width: 0; }
+  .colhead { border-bottom: 3px solid var(--dc, var(--line)); padding-bottom: 7px; margin-bottom: 12px; display: flex; align-items: center; gap: 9px; }
+  .colhead svg { width: 22px; height: 22px; flex: none; color: var(--dc); }
+  .colhead h2 { font-family: "Saira Semi Condensed", sans-serif; font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: .03em; margin: 0; color: var(--dc, var(--ink)); line-height: 1.05; }
+  .colhead .zh { color: var(--muted); font-size: 11px; font-family: "IBM Plex Mono", monospace; }
+  .tierlabel { font-family: "IBM Plex Mono", monospace; font-size: 9px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); margin: 15px 0 6px; display: flex; align-items: center; gap: 8px; }
+  .tierlabel::before { content: attr(data-n); color: var(--accent); }
+  .tierlabel::after { content: ""; flex: 1; border-top: 1px dashed var(--line); }
+  .cardstack { display: flex; flex-direction: column; gap: 7px; }
+  .card {
+    text-align: left; width: 100%; cursor: pointer; font: inherit; color: var(--ink);
+    background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--dc, var(--line));
+    border-radius: 4px; padding: 9px 11px 10px; position: relative;
+  }
+  .card:hover { background: var(--surface2); border-left-width: 5px; }
+  .card.t1 { background: var(--surface2); }
+  .card.t1 .n { font-size: 15px; }
+  .card .n { font-family: "Saira Semi Condensed", sans-serif; font-weight: 600; font-size: 13.5px; line-height: 1.15; display: block; padding-right: 30px; }
+  .card .zh { color: var(--muted); font-size: 10.5px; font-family: "IBM Plex Mono", monospace; display: block; margin-top: 1px; }
+  .card .role { color: var(--muted); font-size: 11.8px; line-height: 1.4; display: block; margin-top: 5px; }
+  .card .stat { font-family: "IBM Plex Mono", monospace; font-size: 10.5px; color: var(--tech); margin-top: 6px; display: inline-block; font-variant-numeric: tabular-nums; }
+  .seals { position: absolute; top: 8px; right: 9px; display: flex; gap: 3px; }
+  .sd { font-family: "IBM Plex Mono", monospace; font-size: 8px; letter-spacing: .04em; font-weight: 500; border: 1.5px solid var(--seal); color: var(--seal); background: var(--seal-bg); padding: 0 3px; border-radius: 2px; }
+  .card[hidden], .col[hidden], .tierlabel[hidden], .cardstack[hidden] { display: none !important; }
+  /* chokepoint band */
+  .choke { padding: 4px 28px 30px; }
+  .choke h2 { font-family: "Saira Semi Condensed", sans-serif; font-size: 17px; font-weight: 700; text-transform: uppercase; letter-spacing: .03em; border-bottom: 3px double var(--line); padding-bottom: 6px; margin: 12px 0 14px; }
+  .cgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+  .ccard { background: var(--surface); border: 1px solid var(--line); border-top: 3px solid var(--accent); border-radius: 4px; padding: 15px 16px; }
+  .ccard .big { font-family: "Saira Semi Condensed", sans-serif; font-size: 34px; font-weight: 700; color: var(--accent); line-height: 1; font-variant-numeric: tabular-nums; }
+  .ccard .cl { font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin: 8px 0 6px; }
+  .ccard p { margin: 0; font-size: 12.5px; color: var(--muted); line-height: 1.5; }
+  /* dossier */
+  #backdrop { position: fixed; inset: 0; background: rgba(10, 15, 22, .5); z-index: 40; }
+  #panel {
+    position: fixed; top: 0; right: 0; bottom: 0; width: min(440px, 100vw); z-index: 50;
+    background: var(--surface); border-left: 1px solid var(--line); box-shadow: var(--shadow);
+    transform: translateX(102%); transition: transform .22s ease; overflow-y: auto; padding: 26px 28px 40px;
+  }
+  #panel.open { transform: translateX(0); }
+  @media (prefers-reduced-motion: reduce) { #panel { transition: none; } }
+  #panel .domtag { font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .13em; text-transform: uppercase; color: var(--dc, var(--accent)); margin-bottom: 9px; display: flex; align-items: center; gap: 7px; }
+  #panel .domtag svg { width: 15px; height: 15px; color: var(--dc); }
+  #panel h2 { font-family: "Saira Semi Condensed", sans-serif; font-size: 27px; font-weight: 700; margin: 0; line-height: 1.05; text-transform: uppercase; }
+  #panel .zh { color: var(--muted); font-size: 13px; font-family: "IBM Plex Mono", monospace; margin: 4px 0 0; }
+  #panel .statbig { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--tech); margin-top: 10px; }
+  #panel .meta { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); margin: 15px 0; padding: 10px 0; display: grid; gap: 5px; font-size: 12.5px; }
+  #panel .meta .k { color: var(--muted); display: inline-block; min-width: 70px; font-family: "IBM Plex Mono", monospace; font-size: 10px; text-transform: uppercase; letter-spacing: .07em; }
+  #panel .profile { font-size: 13.5px; line-height: 1.62; margin: 0 0 16px; }
+  #panel .progs { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 16px; }
+  #panel .prog { font-family: "IBM Plex Mono", monospace; font-size: 10.5px; background: var(--accent-soft); color: var(--ink); padding: 2px 7px; border-radius: 3px; }
+  #panel .sealrow { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+  #panel .sd { font-size: 10px; padding: 2px 7px; }
+  #panel .sealnote { color: var(--muted); font-size: 11px; line-height: 1.5; }
+  #closep { position: absolute; top: 15px; right: 15px; background: none; border: 1px solid var(--line); color: var(--muted); border-radius: 4px; width: 28px; height: 28px; cursor: pointer; font-size: 15px; line-height: 1; }
+  #closep:hover { color: var(--ink); border-color: var(--muted); }
+  footer { padding: 10px 28px 46px; color: var(--muted); font-size: 11.5px; border-top: 1px solid var(--line); }
+  footer p { max-width: 104ch; }
+  footer a { color: var(--tech); }
+  @media (max-width: 800px) {
+    header.mast, .controls, main, .choke, footer { padding-left: 15px; padding-right: 15px; }
+    .stack { grid-template-columns: 1fr; }
+    .board { grid-auto-flow: row; grid-auto-columns: unset; grid-template-columns: 1fr; }
+    .legend { display: none; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="mast">
+    <p class="eyebrow">ChinaTalk Research · Supply-Chain Atlas · Aug 2026</p>
+    <h1>Drone &amp; Robot Atlas</h1>
+    <p class="thesis">The one defense-adjacent vertical where <b>China owns the whole stack</b> — from the flying platform down to the neodymium in the motor. Chinese firms supply an estimated 80–90% of the world's FPV drone motors and comparable shares of the ESCs, flight controllers, cameras, batteries and radios beneath them. Click any node for its dossier. The three strata below are the supply-chain depth — tap one to filter.</p>
+    <div class="stack" id="stack" role="group" aria-label="Filter by supply-chain layer">
+      <button class="stratum" data-t="1" aria-pressed="true">
+        <span class="sidx">01</span><span class="snm">Platform</span>
+        <span class="sds">Drones, robots &amp; weapons — the integrated system</span>
+        <span class="scount" data-c="1"></span>
+      </button>
+      <button class="stratum" data-t="2" aria-pressed="true">
+        <span class="sidx">02</span><span class="snm">Subsystem</span>
+        <span class="sds">Motors, controllers, datalinks, gimbals, actuators</span>
+        <span class="scount" data-c="2"></span>
+      </button>
+      <button class="stratum" data-t="3" aria-pressed="true">
+        <span class="sidx">03</span><span class="snm">Component &amp; Material</span>
+        <span class="sds">Chips, cells, thermal cores, reducers, magnets</span>
+        <span class="scount" data-c="3"></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="controls">
+    <div class="controls-inner">
+      <input id="q" type="search" placeholder="Search — motor, thermal, humanoid, T-Motor, 磁…" aria-label="Search nodes">
+      <button class="chip" id="sancfilter" aria-pressed="false">US-listed only</button>
+      <span class="chip" style="cursor:default;border-style:dashed">tap a layer above to filter depth</span>
+      <div class="legend">
+        <span><span class="sd">EL</span> Entity List</span>
+        <span><span class="sd">1260H</span> DoD CMC list</span>
+        <span><span class="sd">FCC</span> Covered List</span>
+        <span><span class="sd">OFAC</span> Treasury</span>
+      </div>
+    </div>
+  </div>
+
+  <main><div class="board" id="board"></div></main>
+
+  <section class="choke">
+    <h2>The reverse lever — why this vertical runs backwards</h2>
+    <div class="cgrid">
+      <div class="ccard"><div class="big">80–90%</div><div class="cl">Global FPV drone motors</div><p>Share supplied by Chinese firms (T-Motor and peers), per RUSI's Nov 2025 supply-chain study. Cameras are the single hardest part for others to replace.</p></div>
+      <div class="ccard"><div class="big">~90%</div><div class="cl">Heavy rare-earth processing</div><p>China's grip on the NdFeB magnets under every motor and actuator — turned into an active lever by the April 2025 magnet-licensing regime.</p></div>
+      <div class="ccard"><div class="big">~70%</div><div class="cl">DJI global drone share</div><p>No functional substitute exists at DJI's price-performance point — the whole strategic problem in one number. Blocked from new US models since Dec 2025.</p></div>
+      <div class="ccard"><div class="big">~44%</div><div class="cl">AgiBot humanoid share (H1 2026)</div><p>China called 2026 embodied-intelligence's "mass-production year one": ~¥46B raised in H1 alone. The robot supply chain is being born Chinese.</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Compiled Aug 30, 2026 from open sources: RUSI (<em>Decoupling Drone Supply Chains from China</em>, Nov 2025), DoD CMPR &amp; the Section 1260H list, the FCC Covered List, Flight Global, The War Zone, Kharon, 36Kr, Morgan Stanley's "Humanoid 100," and trade-press reporting. Market-share figures are orders of magnitude from industry trackers, not precise counts; company-to-PLA links range from documented to inferential and are flagged in each dossier. The robotics field consolidates monthly — shares are a mid-2026 snapshot. Companion essay: <span class="mono">drone-robot-ecosystem.md</span>.</p>
+  </footer>
+</div>
+
+<div id="backdrop" hidden></div>
+<aside id="panel" aria-label="Node dossier">
+  <button id="closep" aria-label="Close dossier">×</button>
+  <div id="pbody"></div>
+</aside>
+
+<script>
+const G = {
+  aer:'<path d="M2 8h20l-8 5v5l-2-2-2 2v-5z"/>',
+  com:'<circle cx="5" cy="5" r="2.4"/><circle cx="19" cy="5" r="2.4"/><circle cx="5" cy="19" r="2.4"/><circle cx="19" cy="19" r="2.4"/><path d="M6.7 6.7l10.6 10.6M17.3 6.7L6.7 17.3"/>',
+  pwr:'<path d="M13 2 4 14h7l-2 8 9-12h-7z"/>',
+  ctl:'<rect x="7" y="7" width="10" height="10" rx="1.2"/><path d="M10 2v3M14 2v3M10 19v3M14 19v3M2 10h3M2 14h3M19 10h3M19 14h3"/>',
+  sen:'<circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3.5"/>',
+  rob:'<rect x="4.5" y="8" width="15" height="12" rx="2"/><path d="M12 3v4"/><circle cx="12" cy="3" r="1.4"/><circle cx="9" cy="13" r="1.3"/><circle cx="15" cy="13" r="1.3"/>',
+  cuas:'<path d="M12 2l8 3v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5z"/>',
+  mat:'<path d="M6 3v9a6 6 0 0 0 12 0V3h-4v9a2 2 0 0 1-4 0V3z"/>'
+};
+const DOMAINS = {
+  aer:{label:"Aerial Platforms", zh:"无人机", c:"var(--c-aer)"},
+  com:{label:"Commercial · Dual-Use", zh:"消费级 / 军民两用", c:"var(--c-com)"},
+  pwr:{label:"Propulsion & Power", zh:"动力 / 电池", c:"var(--c-pwr)"},
+  ctl:{label:"Avionics · Control · Compute", zh:"飞控 / 数链 / 算力", c:"var(--c-ctl)"},
+  sen:{label:"Sensors & Payloads", zh:"传感器 / 载荷", c:"var(--c-sen)"},
+  rob:{label:"Robots — Ground & Humanoid", zh:"地面 / 人形机器人", c:"var(--c-rob)"},
+  cuas:{label:"Counter-UAS", zh:"反无人机", c:"var(--c-cuas)"},
+  mat:{label:"Materials & Magnets", zh:"材料 / 磁材", c:"var(--c-mat)"}
+};
+const TIERS = {1:"Platform / Integrator", 2:"Subsystem", 3:"Component / Material"};
+const FLAGNOTES = {
+  "EL":"Commerce Entity List (export-license requirement)",
+  "1260H":"DoD “Chinese Military Companies” list, June 2026 edition",
+  "FCC":"FCC Covered List — new models barred from US market (Dec 2025)",
+  "OFAC":"Treasury sanctions or CMIC investment ban"
+};
+const colOrder = ["aer","com","pwr","ctl","sen","rob","cuas","mat"];
+
+const DATA = [
+// ——— AERIAL PLATFORMS ———
+{ id:"wingloong", d:"aer", t:1, n:"Wing Loong family", zh:"翼龙 · AVIC", parent:"AVIC (CADI)", flags:["1260H","OFAC"], stat:"GJ-1 / GJ-2 in PLA service",
+  role:"MALE armed-recon workhorse + Wing Loong-3 UCAS",
+  prog:["Wing Loong-1/2","Wing Loong-3","Maritime ASW variant"],
+  p:"AVIC's medium-altitude strike-recon line — the GJ-1/GJ-2 in PLA service and the intercontinental-range Wing Loong-3 introduced in 2025, including an ASW variant with sonobuoys and lightweight torpedoes. One of the two state lineages that conquered the export market the US ceded." },
+{ id:"chrainbow", d:"aer", t:1, n:"CH / Rainbow family", zh:"彩虹 · CASC", parent:"CASC (CAAA, 11th Academy)", flags:["1260H","OFAC"], stat:"10+ fixed-wing models; export volume leader",
+  role:"MQ-9-class MALE drones — the export volume leader",
+  prog:["CH-4","CH-5","CH-7 stealth HALE"],
+  p:"CASC's aerodynamics academy moonlighting as a drone prime: the CH-4/CH-5 that armed half the Middle East, plus the ~8-tonne flying-wing CH-7 stealth HALE UCAV that flew its maiden flight in late November 2025 at Pucheng — closing the penetrating-ISR category the US fills with the RQ-180." },
+{ id:"gj11", d:"aer", t:1, n:"GJ-11 Sharp Sword", zh:"攻击-11 · 利剑", parent:"Hongdu / AVIC", flags:["1260H"], stat:"operational; navalized for Type 076",
+  role:"Operational flying-wing stealth UCAV / loyal wingman",
+  prog:["GJ-11","Navalized variant"],
+  p:"An operational tailless stealth UCAV, shown flying in formation with the J-20 and paraded in navalized form for the Type 076 drone carrier. The centerpiece of the PLA's loyal-wingman push." },
+{ id:"fh97", d:"aer", t:1, n:"FH-97A", zh:"飞鸿-97A", parent:"Feihong / CASC", flags:[], stat:"~8 air-to-air munitions carried",
+  role:"MQ-28-analogue loyal wingman / missile magazine",
+  prog:["FH-97A"],
+  p:"A Ghost Bat-class collaborative combat aircraft shown at Zhuhai 2022/2024, pitched as a missile magazine carrying ~8 air-to-air weapons so a crewed fighter can order barrages without exposing its own radar profile." },
+{ id:"jiutian", d:"aer", t:1, n:"Jiutian SS-UAV", zh:"九天 · 无人机航母", parent:"AVIC", flags:[], stat:"100+ drones · 16t MTOW · 7,000km ferry",
+  role:"Jet swarm mothership — a flying carrier",
+  prog:["SS-UAV"],
+  p:"AVIC's 25-meter-span, 16-tonne jet 'mothership,' first flight December 11, 2025 at Pucheng. Carries 100+ small drones or a 6-tonne payload for saturation-swarm, EW and strike missions — unveiled at Zhuhai 2024 and airborne barely a year later." },
+{ id:"loiter", d:"aer", t:1, n:"Loitering munitions", zh:"巡飞弹 · CH-901 / WS-43", parent:"CASC / multiple", flags:["1260H"], stat:"48-tube truck launcher demonstrated",
+  role:"One-way attack — tube-launched to cruise-class",
+  prog:["CH-901 / FH-901","WS-43","FPV kamikaze tier"],
+  p:"The Switchblade-class CH-901 (9kg, 15km, 120-min loiter) and larger WS-43 (~500lb, 60km), plus a Dongfeng Mengshi truck with 48 CH-901 tubes demonstrated in 2020 — massed precision one-way attack, years before Ukraine made it famous. Below sit the numberless FPV kamikaze drones drawn from the commercial supply chain." },
+{ id:"wz7", d:"aer", t:1, n:"WZ-7 / WZ-8", zh:"无侦-7 / 无侦-8", parent:"AVIC (Guizhou)", flags:["1260H"], stat:"HALE ISR + rocket recon",
+  role:"High-altitude strategic reconnaissance",
+  prog:["WZ-7 Soaring Dragon","WZ-8 rocket recon"],
+  p:"The joined-wing WZ-7 Soaring Dragon HALE ISR drone and the rocket-boosted WZ-8 high-speed recon vehicle air-launched from H-6 bombers — the PLA's strategic unmanned reconnaissance tier." },
+{ id:"tengden", d:"aer", t:1, n:"Sichuan Tengden", zh:"腾盾科创", parent:"private (AVIC-linked)", flags:[], stat:"TB-001 flies Taiwan-strait circuits",
+  role:"'Private' strike drone flying real PLA missions",
+  prog:["TB-001 Scorpion"],
+  p:"Nominally private with 611-Institute lineage; its twin-boom TB-001 flies regular circuits around Taiwan and Japan — the clearest case of a 'private' firm flying real PLA missions, and a template for the drone-startup ecosystem AVIC seeds." },
+// ——— COMMERCIAL & DUAL-USE ———
+{ id:"dji", d:"com", t:1, n:"DJI", zh:"大疆", parent:null, flags:["EL","1260H","FCC","OFAC"], stat:"≈70% global · ≈80% US units",
+  role:"The center of gravity of the entire drone world",
+  prog:["Mavic","Matrice","Agras","Zenmuse"],
+  p:"~70% of the global drone market and ~80% of the US market by units. Entity-Listed, investment-banned, on 1260H, and blocked from new US models by the FCC's December 2025 Covered-List update. Ubiquitous on both sides in Ukraine regardless. No functional substitute at its price-performance point — the whole strategic problem in one company." },
+{ id:"autel", d:"com", t:1, n:"Autel Robotics", zh:"道通智能", parent:null, flags:["1260H","FCC"], stat:"the number-two",
+  role:"DJI's chief rival, same regulatory fate",
+  prog:["EVO Max"],
+  p:"The number-two Chinese small-drone maker, on 1260H and sharing DJI's Covered-List block on new US models. Its enterprise drones appear in the same conflict zones." },
+{ id:"xag", d:"com", t:1, n:"XAG", zh:"极飞科技", parent:null, flags:[], stat:"~9% global ag-drone share",
+  role:"Agricultural drones → ground rovers",
+  prog:["P-series sprayers","R-series rovers"],
+  p:"China's second agricultural-drone house (after DJI Agras), expanding from aerial spraying into autonomous ground rovers. Heavy-lift spray drones are trivially convertible to logistics and dispersal roles — the clean 'civilian platform, military utility' case." },
+{ id:"ehang", d:"com", t:1, n:"EHang", zh:"亿航", parent:null, flags:[], stat:"1,000+ drone light-show records",
+  role:"eVTOL + coordinated-swarm software",
+  prog:["EH216 eVTOL","Swarm light shows"],
+  p:"Autonomous eVTOL passenger drones, and holder of the record-setting 1,000+ drone light shows that double as demonstrations of the coordinated-flight software underneath any swarm." },
+// ——— PROPULSION & POWER ———
+{ id:"tmotor", d:"pwr", t:2, n:"T-Motor", zh:"江西新拓", parent:"private (Nanchang)", flags:[], stat:"category king — motors/ESC/props",
+  role:"The world's FPV/UAV motor chokepoint",
+  prog:["Brushless motors","ESCs","Propellers"],
+  p:"The category king in brushless drone motors, ESCs and propellers — in Western, Ukrainian and PLA drones alike. The single clearest illustration that China's leverage runs through the component layer, not just finished airframes." },
+{ id:"hobbywing", d:"pwr", t:2, n:"Hobbywing", zh:"好盈", parent:"private (Shenzhen)", flags:[], stat:"dominant ESC maker",
+  role:"The dominant ESC / drivetrain supplier",
+  prog:["XRotor ESCs","Robotics drivetrain"],
+  p:"The dominant electronic-speed-controller maker for drones, now crossing into robotics drivetrains. ESCs are the unglamorous power-electronics chokepoint between battery and motor." },
+{ id:"motoroligo", d:"pwr", t:3, n:"MAD · SunnySky · BrotherHobby · EMAX", zh:"电机梯队", parent:"private", flags:[], stat:"80–90% of the market, collectively",
+  role:"The rest of the motor oligopoly",
+  prog:["FPV/UAV motors"],
+  p:"The cluster of Shenzhen/Zhejiang motor houses that, with T-Motor, hold an estimated 80–90% of the global FPV motor market. Individually unheralded; collectively a near-monopoly." },
+{ id:"grepow", d:"pwr", t:3, n:"Grepow · Tattu · Gens Ace", zh:"格瑞普", parent:"private (Shenzhen)", flags:[], stat:"up to ~380 Wh/kg semi-solid",
+  role:"The drone-grade LiPo pouch cell of choice",
+  prog:["LiPo pouch cells","Semi-solid packs"],
+  p:"Shenzhen maker of the drone-grade lithium-polymer pouch cells the world flies on, under the Tattu and Gens Ace brands, with semi-solid packs reaching ~380 Wh/kg. Cells are 'America's Achilles heel' for drones." },
+{ id:"gnb", d:"pwr", t:3, n:"GNB / Gaoneng", zh:"高能", parent:"private", flags:[], stat:"—",
+  role:"The other big drone-battery house",
+  prog:["LiPo cells"],
+  p:"Alongside Grepow, one of the two dominant drone-LiPo makers — the batteries inside a large fraction of the world's FPV and industrial drones." },
+{ id:"cellgiants", d:"pwr", t:3, n:"CATL · EVE · BYD", zh:"宁德 · 亿纬 · 比亚迪", parent:null, flags:["1260H"], stat:"DoD procurement barred from Oct 2027",
+  role:"The cell giants behind the whole stack",
+  prog:["High-energy Li cells"],
+  p:"The battery-cell titans (CATL and BYD added to 1260H in Jan 2025) whose high-energy chemistry feeds drones, ground robots and EVs alike. The 2024 NDAA bars DoD procurement from six such firms beginning October 2027 — one of few cases where the battery chokepoint drew explicit legislation." },
+// ——— AVIONICS, CONTROL & COMPUTE ———
+{ id:"cuav", d:"ctl", t:2, n:"CUAV · JIYI · Holybro", zh:"飞控梯队", parent:"private", flags:[], stat:"PX4/ArduPilot hardware base",
+  role:"The flight-controller 'cerebellum'",
+  prog:["Autopilots","Agricultural flight controllers"],
+  p:"The industrial autopilot and flight-controller hardware base behind the open PX4/ArduPilot stacks; JIYI in particular is a default agricultural-drone brain. The layer that keeps the airframe stable and on course." },
+{ id:"siyi", d:"ctl", t:2, n:"SIYI", zh:"思翼科技", parent:"private (Shenzhen)", flags:[], stat:"adaptive frequency-hopping link",
+  role:"Integrated control + datalink + HD video",
+  prog:["MK15 / MK32 links","Gimbal cameras"],
+  p:"All-in-one remote-control + datalink + HD-video units with adaptive frequency-hopping — a standard control link for a huge share of the world's industrial and FPV drones, and increasingly its own gimbal-payload maker." },
+{ id:"skydroid", d:"ctl", t:2, n:"Skydroid", zh:"天罡智能", parent:"private", flags:[], stat:"integrated RC/data/video",
+  role:"The other RF control-and-datalink spine",
+  prog:["T-series controllers","G-series datalinks"],
+  p:"SIYI's chief rival in integrated control-and-video links with independent HD image-transmission tech. Together they are the RF spine of the global industrial/FPV fleet." },
+{ id:"rockchip", d:"ctl", t:3, n:"Rockchip · Allwinner", zh:"瑞芯微 · 全志", parent:null, flags:[], stat:"RK3566 / RK3576 edge SoCs",
+  role:"The onboard edge-AI 'brain'",
+  prog:["Edge-AI SoCs","Companion computers"],
+  p:"The embedded AI processors (RK3566/RK3576 and Allwinner parts) that host onboard vision and autonomy on drone and robot companion computers — the compute layer where the platform becomes intelligent." },
+{ id:"horizon", d:"ctl", t:3, n:"Horizon Robotics", zh:"地平线", parent:null, flags:[], stat:"Baidu-alumni edge-AI house",
+  role:"Automotive-AI silicon migrating to robotics",
+  prog:["Journey / edge inference"],
+  p:"Baidu-alumni-founded AI-chip house whose automotive edge-inference silicon is migrating toward robotics and autonomy — the bridge from the drone/robot layer to the broader Huawei/SMIC/Cambricon compute stack." },
+// ——— SENSORS & PAYLOADS ———
+{ id:"raytron", d:"sen", t:3, n:"Raytron", zh:"睿创微纳", parent:"listed (Yantai)", flags:[], stat:"world-first 6μm VGA uncooled (2024)",
+  role:"Uncooled thermal cores — major PLA supplier",
+  prog:["Uncooled IR detectors","MEMS sensing"],
+  p:"One of the largest thermal-sensor suppliers to the PLA, and maker of the world's first 6μm VGA uncooled infrared detector (2024). Microbolometer cores are what put night vision on a cheap drone — and China now makes them at scale. Customers span Hikvision, BYD and PRC defense." },
+{ id:"guide", d:"sen", t:3, n:"Guide Infrared", zh:"高德红外", parent:"listed (Wuhan)", flags:[], stat:"IR modules + missile seekers",
+  role:"Uncooled IR modules for UAVs and seekers",
+  prog:["UAV IR modules","IR seekers"],
+  p:"Wuhan-based maker of uncooled infrared modules for UAVs and, notably, imaging infrared missile seekers — a thermal-imaging house that sits squarely on the drone/weapon boundary." },
+{ id:"infiray", d:"sen", t:3, n:"InfiRay / IRay", zh:"艾睿光电", parent:"Raytron-linked", flags:[], stat:"commercial thermal-optics leader",
+  role:"Commercial thermal optics at scale",
+  prog:["Thermal scopes","OEM cores"],
+  p:"Raytron-affiliated thermal-optics maker (Yantai) dominating the commercial market — weapon sights, handhelds, and OEM cores. The civilian face of the same detector base that supplies the PLA." },
+{ id:"zenmuse", d:"sen", t:2, n:"Gimbal payloads", zh:"云台载荷", parent:"DJI / Viewpro / Topxgun", flags:["EL"], stat:"stabilized EO/IR standard",
+  role:"Stabilized EO/IR gimbal payloads",
+  prog:["DJI Zenmuse","Viewpro","Topxgun / GDU"],
+  p:"The stabilized electro-optical/infrared gimbals that turn a drone into an ISR platform — led by DJI's Zenmuse line and specialist houses like Viewpro and Topxgun. The 'eye' that most military drone missions are actually about." },
+{ id:"fpvcam", d:"sen", t:3, n:"FPV cameras & VTX", zh:"图传 · Foxeer / RunCam", parent:"private", flags:[], stat:"cameras = hardest part to de-China",
+  role:"The FPV camera + video-transmission tier",
+  prog:["Foxeer","RunCam","Caddx","Walksnail"],
+  p:"The FPV camera and video-transmitter makers. Per Ukrainian producers, cameras are the single hardest component to de-China — the last dependency to fall even after motors and controllers are localized." },
+{ id:"lidar", d:"sen", t:3, n:"Hesai · RoboSense", zh:"禾赛 · 速腾", parent:null, flags:["1260H","EL"], stat:"robotaxi lidar → drones & robots",
+  role:"Lidar migrating from robotaxis into UxS",
+  prog:["Mechanical / solid-state lidar"],
+  p:"The lidar leaders (both on 1260H; Hesai Entity-Listed) whose ranging sensors are migrating from autonomous vehicles into drones and ground robots — the depth-perception layer for autonomy." },
+// ——— ROBOTS ———
+{ id:"unitree", d:"rob", t:1, n:"Unitree", zh:"宇树科技", parent:"private (Hangzhou)", flags:[], stat:"~$9B val · 18k quadrupeds/yr",
+  role:"Global quadruped leader; PLA demos mounting",
+  prog:["Go2","B1/B2","G1/H1 humanoid"],
+  p:"The global robot-dog leader (~$9B valuation, STAR IPO pending), ~18,000 quadrupeds and ~5,500 humanoids sold last year. Chinese state TV has shown its B1/B2 armed with a mounted rifle beside PLA troops — even as Unitree insists its products are civilian and cites a 2022 no-weaponization pledge. Pointed irony: the underlying locomotion research was seeded by US DEVCOM Army Research Lab funding." },
+{ id:"deeprobotics", d:"rob", t:1, n:"DEEP Robotics", zh:"云深处", parent:"private (Hangzhou)", flags:[], stat:"#2 quadruped house",
+  role:"Industrial & security-patrol quadrupeds",
+  prog:["Lite / X-series","Lynx"],
+  p:"The number-two quadruped house, strong in industrial inspection and increasingly in defense and security-patrol roles — the other half of the Hangzhou robot-dog duopoly." },
+{ id:"agibot", d:"rob", t:1, n:"AgiBot / Zhiyuan", zh:"智元机器人", parent:"private (Shanghai)", flags:[], stat:"~44% global humanoid share (H1'26)",
+  role:"The humanoid volume leader most can't name",
+  prog:["A2 / A3 Ultra","GO-1 model"],
+  p:"Alibaba- and Tencent-backed Shanghai humanoid house that led H1 2026 shipments with a ~44% global share and its 15,000th unit off the line. Unveiled four new robots at WAIC 2026 — the volume leader almost no Western reader can name." },
+{ id:"ubtech", d:"rob", t:1, n:"UBTech", zh:"优必选", parent:"listed (Shenzhen)", flags:[], stat:"first to ship 1,000+ industrial units",
+  role:"The industrial-humanoid front-runner",
+  prog:["Walker S","industrial humanoids"],
+  p:"The industrial-humanoid front-runner and first to deliver 1,000+ industrial units, targeting ~5,000 in 2026 and 10,000 by 2027. Its Walker line is a fixture of China's factory-floor humanoid pilots." },
+{ id:"humanoidfield", d:"rob", t:1, n:"Fourier · EngineAI · Galbot", zh:"人形梯队", parent:"private", flags:[], stat:"20+ serious players consolidating",
+  role:"The crowded rest of the humanoid field",
+  prog:["Fourier GR-3","EngineAI","Galbot"],
+  p:"The deep bench of a fast-consolidating field: Fourier's care-oriented GR-3, EngineAI's athletic bipeds, Galbot's manipulation-focused platform, and a dozen more — the sign of a sector Beijing designated 2026's 'mass-production year one.'" },
+{ id:"leaderdrive", d:"rob", t:3, n:"Leaderdrive / Green Harmonic", zh:"绿的谐波", parent:"listed (Suzhou)", flags:[], stat:"broke Japan's reducer monopoly (~-40% cost)",
+  role:"Harmonic reducers — the actuator's core part",
+  prog:["Strain-wave reducers"],
+  p:"Broke Japan's harmonic-reducer monopoly at ~40% lower cost (~$4.7B cap), a primary strain-wave-reducer supplier even to Tesla. Reducers are the precision heart of every humanoid joint, and actuators are 30–60% of a humanoid's bill of materials." },
+{ id:"actuators", d:"rob", t:3, n:"Actuator & servo layer", zh:"执行器 / 伺服", parent:"Laifu / multiple", flags:[], stat:"~63% of humanoid component mfg is Chinese",
+  role:"Integrated actuators, servos, torque motors",
+  prog:["Laifu reducers","Frameless torque motors"],
+  p:"The integrated-actuator, servo and frameless-torque-motor tier (Laifu and peers) turning on the same NdFeB magnets as the drone layer. ~70% of Tesla Optimus's gen-3 component value is Chinese-sourced; the embodied-AI supply chain is being born Chinese." },
+// ——— COUNTER-UAS ———
+{ id:"ly1", d:"cuas", t:1, n:"LY-1 laser", zh:"LY-1 激光", parent:"state (parade 2025)", flags:[], stat:"parade debut Sept 3, 2025",
+  role:"Large ship/land high-energy laser",
+  prog:["Ship-mounted HEL"],
+  p:"A large directed-energy laser unveiled at the September 3, 2025 parade — primarily shipboard self-defense against drones, shown in a form pointing to land use too. The hard-kill answer to cheap saturation swarms." },
+{ id:"silenthunter", d:"cuas", t:1, n:"Silent Hunter", zh:"沉默猎手 · 保利", parent:"China Poly Technologies", flags:["OFAC"], stat:"30 kW · ~4 km · combat-proven",
+  role:"Export-proven anti-drone fiber laser",
+  prog:["30 kW fiber laser"],
+  p:"China Poly Technologies' 30 kW fiber laser effective to ~4 km against low-flying drones — combat-proven, having been used by Saudi Arabia against Houthi drones. The export face of Chinese counter-UAS." },
+{ id:"hurricane", d:"cuas", t:1, n:"Hurricane 3000", zh:"飓风-3000", parent:"state", flags:[], stat:"revealed 2026 · anti-swarm HPM",
+  role:"Mobile high-power microwave vs swarms",
+  prog:["Mobile HPM"],
+  p:"A mobile high-power-microwave system revealed in 2026, purpose-built for saturated swarm attacks — area effects that disable many cheap drones at once, the doctrinal counter to the arsenal China itself supplies." },
+{ id:"jammers", d:"cuas", t:2, n:"Interceptors & jammers", zh:"拦截 / 干扰", parent:"multiple", flags:[], stat:"AI-assisted layered defense",
+  role:"RF jammers + autonomous interceptors",
+  prog:["RF jammers","Interceptor drones"],
+  p:"The soft-kill and kinetic tier: RF jammers and AI-assisted autonomous interceptor drones that complete a layered anti-swarm doctrine — itself a supplier ecosystem worth its own map." },
+// ——— MATERIALS & MAGNETS ———
+{ id:"ndfeb", d:"mat", t:3, n:"NdFeB magnet supply", zh:"钕铁硼 · 金力 / 三环", parent:"JL MAG / Zhongke Sanhuan", flags:[], stat:"China ~90% heavy-RE processing",
+  role:"The master chokepoint under every motor",
+  prog:["Sintered NdFeB magnets","Rare-earth processing"],
+  p:"Every motor and actuator on this page turns on a permanent magnet, and China processes ~90% of the world's heavy rare earths and dominates sintered-NdFeB production (JL MAG, Zhongke Sanhuan). The April 2025 magnet-licensing regime turned this into an active lever — Beijing now meters the single most irreplaceable input to everyone else's drones and robots." },
+{ id:"carbonfiber", d:"mat", t:3, n:"Carbon-fiber airframes", zh:"碳纤维 · 光威 / 中复神鹰", parent:"Guangwei / Zhongfu Shenying", flags:[], stat:"Toray dependence closed out",
+  role:"The airframe material, now domestic",
+  prog:["Military carbon fiber","Composite airframes"],
+  p:"The composite tows and airframe structures that used to depend on Japan's Toray — now supplied domestically by Guangwei and Zhongfu Shenying (see the DIB atlas's materials tier). With magnets and carbon fiber both domestic, the airframe-to-magnet stack is Chinese end to end." }
+];
+
+const board = document.getElementById("board");
+const state = { q:"", tiers:new Set([1,2,3]), sanc:false };
+
+function svg(g){ return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+g+'</svg>'; }
+function sealHtml(flags){ return flags && flags.length ? '<span class="seals">'+flags.map(f=>'<span class="sd">'+f+'</span>').join('')+'</span>' : ''; }
+
+function render(){
+  board.innerHTML = "";
+  colOrder.forEach(d => {
+    const dom = DOMAINS[d];
+    const col = document.createElement("div");
+    col.className = "col"; col.style.setProperty("--dc", dom.c);
+    col.innerHTML = '<div class="colhead">'+svg(G[d])+'<div><h2>'+dom.label+'</h2><span class="zh">'+dom.zh+'</span></div></div>';
+    [1,2,3].forEach(t => {
+      const items = DATA.filter(e => e.d===d && e.t===t);
+      if(!items.length) return;
+      const lbl = document.createElement("div");
+      lbl.className = "tierlabel"; lbl.dataset.n = "0"+t; lbl.dataset.tier = t;
+      lbl.append(document.createTextNode(" "+TIERS[t]));
+      col.appendChild(lbl);
+      const stack = document.createElement("div");
+      stack.className = "cardstack";
+      items.forEach(e => {
+        const b = document.createElement("button");
+        b.className = "card t"+e.t; b.dataset.id = e.id;
+        b.innerHTML = sealHtml(e.flags) + '<span class="n">'+e.n+'</span><span class="zh">'+e.zh+'</span>'
+          + '<span class="role">'+e.role+'</span>'
+          + (e.stat ? '<span class="stat">▸ '+e.stat+'</span>' : '');
+        b.addEventListener("click", () => openPanel(e));
+        stack.appendChild(b);
+      });
+      col.appendChild(stack);
+    });
+    board.appendChild(col);
+  });
+  updateCounts();
+  applyFilters();
+}
+
+function updateCounts(){
+  [1,2,3].forEach(t => {
+    const el = document.querySelector('.scount[data-c="'+t+'"]');
+    if(el) el.textContent = DATA.filter(e=>e.t===t).length + " nodes";
+  });
+}
+
+function matches(e){
+  if(!state.tiers.has(e.t)) return false;
+  if(state.sanc && (!e.flags || !e.flags.length)) return false;
+  if(state.q){
+    const hay = (e.n+" "+e.zh+" "+e.role+" "+(e.parent||"")+" "+(e.stat||"")+" "+e.prog.join(" ")+" "+e.p).toLowerCase();
+    if(!hay.includes(state.q)) return false;
+  }
+  return true;
+}
+function applyFilters(){
+  const byId = Object.fromEntries(DATA.map(e=>[e.id,e]));
+  document.querySelectorAll(".card").forEach(c => { c.hidden = !matches(byId[c.dataset.id]); });
+  document.querySelectorAll(".col").forEach(col => {
+    let any = false;
+    col.querySelectorAll(".tierlabel").forEach(lbl => {
+      const stack = lbl.nextElementSibling;
+      const vis = stack ? stack.querySelectorAll(".card:not([hidden])").length : 0;
+      lbl.hidden = !vis; if(stack) stack.hidden = !vis;
+      if(vis) any = true;
+    });
+    col.hidden = !any;
+  });
+}
+
+const panel = document.getElementById("panel");
+const backdrop = document.getElementById("backdrop");
+function openPanel(e){
+  const dom = DOMAINS[e.d];
+  panel.style.setProperty("--dc", dom.c);
+  document.getElementById("pbody").innerHTML =
+    '<span class="domtag">'+svg(G[e.d])+dom.label+' · '+TIERS[e.t]+'</span>' +
+    '<h2>'+e.n+'</h2><p class="zh">'+e.zh+'</p>' +
+    (e.stat ? '<p class="statbig">▸ '+e.stat+'</p>' : '') +
+    '<div class="meta">' +
+      (e.parent ? '<div><span class="k">Parent</span>'+e.parent+'</div>' : '<div><span class="k">Type</span>independent / private</div>') +
+      '<div><span class="k">Layer</span>'+TIERS[e.t]+'</div>' +
+      '<div><span class="k">Supplies</span>'+e.role+'</div>' +
+    '</div>' +
+    '<p class="profile">'+e.p+'</p>' +
+    '<div class="progs">'+e.prog.map(p=>'<span class="prog">'+p+'</span>').join('')+'</div>' +
+    (e.flags && e.flags.length
+      ? '<div class="sealrow">'+e.flags.map(f=>'<span class="sd">'+f+'</span>').join('')+'</div>'
+        + '<p class="sealnote">'+e.flags.map(f=>"<b>"+f+"</b> — "+FLAGNOTES[f]).join("<br>")+'</p>'
+      : '<p class="sealnote">Not currently on the major US restriction lists — which, for a load-bearing component maker, is precisely the point.</p>');
+  panel.classList.add("open"); backdrop.hidden = false;
+}
+function closePanel(){ panel.classList.remove("open"); backdrop.hidden = true; }
+document.getElementById("closep").addEventListener("click", closePanel);
+backdrop.addEventListener("click", closePanel);
+document.addEventListener("keydown", ev => { if(ev.key==="Escape") closePanel(); });
+
+document.getElementById("q").addEventListener("input", ev => { state.q = ev.target.value.trim().toLowerCase(); applyFilters(); });
+document.querySelectorAll(".stratum").forEach(s => {
+  s.addEventListener("click", () => {
+    const t = Number(s.dataset.t);
+    const on = s.getAttribute("aria-pressed") === "true";
+    if(on && state.tiers.size === 1) return;
+    s.setAttribute("aria-pressed", String(!on));
+    if(on) state.tiers.delete(t); else state.tiers.add(t);
+    applyFilters();
+  });
+});
+const sanc = document.getElementById("sancfilter");
+sanc.addEventListener("click", () => {
+  state.sanc = !state.sanc;
+  sanc.setAttribute("aria-pressed", String(state.sanc));
+  applyFilters();
+});
+
+render();
+</script>
