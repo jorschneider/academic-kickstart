@@ -114,7 +114,9 @@ Ages at each relevant milestone. **Bold** = inside the normal CMC-entry window (
 | **Zhu Chuansheng** | 1970-04 | **57** | **61** | **62** | **66** | **67** | 71 |
 | **Liu Zhe** | 1970 | **57** | **61** | **62** | **66** | **67** | 71 |
 | **Dai Mingmeng** | 1971 | **56** | **60** | **61** | **65** | **66** | 70 |
-| **Chen Zhiguo** | 1976 | **51** | **55** | **56** | **60** | **61** | **65** |
+| **Chen Zhiguo** | ~1976* | **51** | **55** | **56** | **60** | **61** | **65** |
+
+\* Chen Zhiguo's birth year is not in the primary record; ~1976 is a secondary-source figure, treated as unverified.
 
 \* Zhang Shengmin is already past the normal ceiling; he holds his seat as the trusted exception, exactly as Zhang Youxia did.
 
@@ -122,7 +124,7 @@ Ages at each relevant milestone. **Bold** = inside the normal CMC-entry window (
 
 - **The 21st Congress (2027) CMC must be built from the 1962–1970 cohort.** Almost everyone currently holding a theater or service command qualifies — but only just, and most of them can serve only one term.
 - **The 22nd Congress (2032) CMC must be built from the 1967–1975 cohort.** Look at who that is: Zhang Like, Wang Hongli, Huang Xucong, Zhang Zheng, Zhu Chuansheng, Liu Zhe, Dai Mingmeng — *precisely the caretaker-and-riser set now running services and departments in acting capacities*. The men filling today's vacancies are not stopgaps; on the age math they are the 2032 leadership.
-- **The 23rd Congress (2037) CMC must be built from the 1972–1980 cohort** — a generation almost entirely invisible in open sources today. Of every officer this study could name, **only Chen Zhiguo (b. 1976) sits comfortably inside that window.** That is not a finding about Chen Zhiguo's brilliance; it is a measure of how dark the pipeline is.
+- **The 23rd Congress (2037) CMC must be built from the 1972–1980 cohort** — a generation almost entirely invisible in open sources today. Of every officer this study could name, **only Chen Zhiguo (b. ~1976, unverified) sits comfortably inside that window.** That is not a finding about Chen Zhiguo's brilliance; it is a measure of how dark the pipeline is.
 - **Three officers can plausibly span all three horizons:** Zhang Zheng (68 in 2037), Zhu Chuansheng (67), Dai Mingmeng (66) — each could take a CMC seat in 2032 and a vice-chairmanship in 2037 without breaking any norm. This is the structural reason the report ranks them where it does.
 
 ### 2.4 The counter-consideration
@@ -168,7 +170,7 @@ Committing to these makes the report checkable. Each has a resolution date and a
 |---|---|---|---|
 | 18 | At least one of {Zhang Zheng, Zhu Chuansheng, Dai Mingmeng, Liu Zhe} sits on the 22nd Congress CMC (2032) | 0.55 | None does |
 | 19 | The 22nd CMC has a majority of members from Navy / Air Force / strategic-information forces (i.e., a non-ground-force majority) | 0.55 | Ground force retains the majority |
-| 20 | **Chen Zhiguo** (b. 1976) reaches flag rank by end-2029 | 0.60 | He does not |
+| 20 | **Chen Zhiguo** reaches flag rank (rear admiral) by end-2029 | 0.60 | He does not |
 | 21 | At least one 2037-era CMC member is an officer not identifiable in open sources as of 2026 | 0.85 | Every member was publicly identifiable today |
 | 22 | The PLA holds a full-general promotion ceremony elevating an officer born 1970 or later before end-2030 | 0.50 | No such promotion |
 
