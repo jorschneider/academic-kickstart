@@ -18,7 +18,21 @@ This is an open-source analytical assessment of the kind think tanks (Jamestown,
 2. **Projections are probabilistic guesses, clearly labeled.** Nobody — including, on the evidence of the last three years, the officers themselves — can know who will run the PLA in 2036. What analysis *can* do is identify the eligible cohort (age × grade × network), the seats that must be filled, and the selection logic Xi Jinping has revealed through ~four years of purges and promotions, then rank candidates. Confidence bands are given throughout.
 3. **The corruption section is speculative risk assessment, not accusation.** Section 6 estimates *exposure* — which serving officers sit on portfolios and patronage lines that the documented purge record shows to be dangerous. Unless an officer appears in the purge tracker with an official announcement, **nothing in this document should be read as a claim that any named individual has committed any offense.** In today's PLA, being purged is not proof of corruption, and survival is not proof of innocence — a point developed at length in §6.
 
-A machine-readable roster of every officer discussed is in [`officer-database.csv`](officer-database.csv); the complete documented purge record 2023–2026 is in [`purge-tracker.md`](purge-tracker.md).
+### The files in this assessment
+
+| File | What it contains |
+|---|---|
+| **`README.md`** (this file) | The main report: current state, framework, service-by-service bench, the 2031/2036/2041 projections, and the corruption-exposure assessment |
+| [`methodology.md`](methodology.md) | How PLA succession analysis actually works — the grade system, the real age ceilings, the measured career path, the predictors professionals use, and the published track record of the method (including its failures) |
+| [`base-rates.md`](base-rates.md) | Empirical purge frequencies 1992–2026, the historical analogue cohort, and the timing intervals |
+| [`forecasting-model.md`](forecasting-model.md) | The disappearance-to-announcement timing model, the age-eligibility arithmetic, and 25 dated falsifiable predictions |
+| [`purge-tracker.md`](purge-tracker.md) | The chronological record of removals, investigations and sentences, 2023–2026, with pattern analysis |
+| [`corruption-analysis.md`](corruption-analysis.md) | What the purge record can and cannot tell you: the inference problem, the rent map, and a charge-language decoder |
+| [`succession-pipeline.md`](succession-pipeline.md) | The officers below the top — the birth-year sweep, the 1973 cliff, and a measurement of the collection gap |
+| [`strategic-implications.md`](strategic-implications.md) | The "so what": readiness, the 2027 milestone, Taiwan risk, the wartime chain of command, and succession mechanics |
+| [`officer-database.csv`](officer-database.csv) | Machine-readable roster of the officers assessed |
+
+
 
 ---
 
@@ -575,6 +589,10 @@ Because the projection rests on a still-unfolding purge, it is unusually falsifi
 - **Permanent fills of the acting jobs.** A gazetted Rocket Force commander (Lei Kai or an outsider), a named Army commander, a full PWD director, a promoted-to-admiral Zhang Zheng — each resolves a specific projection in §5.
 - **Wang Hongli's status.** The Navy Equipment Department director is this framework's cleanest out-of-sample corruption test: if the shipbuilding boom gets the Rocket Force treatment, he is exposed; his survival would suggest the naval equipment chain is being treated differently.
 - **Whether any born-1970s officer is promoted to full general.** As of August 2026 the youngest full generals are born 1963–65. The first born-1970 三星 (Zhang Zheng, Zhu Chuansheng, Dai Mingmeng are the candidates) marks the formal start of the generational transition.
+- **Whether a civilian is seated on the CMC at the 21st Congress.** The single best succession indicator available: under the Deng-era template an heir becomes CMC vice-chairman one Congress before taking over, and no civilian has sat on the commission since 2012. A civilian appointment in autumn 2027 signals a 2032 handover; its absence pushes the realistic date to 2037 (§5.3).
+- **Protocol order in PLA listings.** When a deputy moves to the top of the protocol order among his peers, he is being groomed and those below him will most likely retire. It is the cheapest high-value indicator in open sources, and it is what identified Zhang Zheng ([`methodology.md`](methodology.md) §4).
+- **Whether the nine expelled in October 2025 receive published verdicts.** If detailed financial judgments appear, those cases were genuinely about money; continued silence past mid-2027 is evidence they were not ([`corruption-analysis.md`](corruption-analysis.md) §3).
+- **Gu Zhong's next posting.** The only officer born after 1971 in a corps-leader command billet. Elevation to deputy-theater grade would confirm the 1972 cohort has begun to move.
 - **Signs of a succession signal at the 21st Congress (2027).** An heir-apparent's identity would reweight the entire 2036/2041 analysis toward §5.3 Scenario B.
 - **A Taiwan or other crisis in the window.** Wartime performance is the one historical mechanism that produces genuinely authoritative PLA leaders and would override every résumé-based projection here (Scenario C).
 
