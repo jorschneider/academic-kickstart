@@ -189,7 +189,20 @@ Committing to these makes the report checkable. Each has a resolution date and a
 | 24 | **Gu Zhong** (b. 1972, 72nd Group Army) reaches deputy-theater grade by end-2030 | 0.45 | He does not |
 | 25 | The nine expelled on 17 Oct 2025 (He Weidong, Miao Hua et al.) receive published court verdicts by end-2028 | 0.55 | No verdicts published — which would itself be evidence the cases were never primarily financial (see `corruption-analysis.md` §3, Tier B) |
 
-**Scoring note.** If these resolve at roughly their stated probabilities, the model is calibrated. The predictions most diagnostic of the report's core thesis are **#1, #2 (the timing model), #3 and #18 (the Zhang Zheng call), and #21 (the pipeline-opacity claim)**. If #1 and #2 both fail, §1's timing model is broken and the Tier-1 "vanished = purged" inference in the main report should be discounted heavily.
+### Structural / institutional (resolve 2027–2029)
+
+These are a different class from the personnel predictions above: they test the *recurrence* argument in [`why-purges-recur.md`](why-purges-recur.md) rather than any individual's career. They matter because if the structural reading is right, the base rates in [`base-rates.md`](base-rates.md) carry forward; if it is wrong, they should decay.
+
+| # | Prediction | P | Resolves | Falsified if |
+|---|---|---|---|---|
+| 26 | SIPRI's next two annual reports record Chinese military expenditure growing **≥5% in real terms**, with no finding that the anti-corruption campaign constrained spending | 0.80 | Apr 2028 | Growth falls below 5%, or SIPRI attributes a slowdown to the purge — which would make the campaign fiscal rather than distributional and invalidate §6.5's fourth finding |
+| 27 | **No** PLA military-court verdict published in 2026–2028 discloses a specific monetary amount for any officer | 0.80 | Dec 2028 | Any uniformed verdict publishes a figure — the first since Wang Shouye's RMB 160m in 2006, and a real change in deterrence strategy |
+| 28 | The **CMC Audit Office remains at major-general grade** and publishes no aggregate audit results | 0.85 | Dec 2028 | It is elevated, or issues any public results bulletin — the clearest available signal that the leadership has diagnosed recurrence as an oversight problem rather than a loyalty problem |
+| 29 | **No** corruption case is publicly adjudicated on a military-civil fusion (军民融合) theory | 0.80 | Dec 2028 | One is — which would open an entirely unmapped rent system (`corruption-casebook.md` §6) |
+| 30 | At least one officer appointed to a **principal billet since December 2025** — i.e. from the current caretaker cohort — is himself purged or disappears | 0.55 | Dec 2029 | None is. This is the Wang Houbin recursion tested prospectively: he was installed to clean the Rocket Force in Jul 2023 and expelled 27 months later |
+| 31 | Any defence white paper issued in the window **does not** update the budget-composition table beyond its 2017 endpoint | 0.65 | Dec 2029 | A new breakdown is published, restoring the only official series on where defence money actually goes |
+
+**Scoring note.** If these resolve at roughly their stated probabilities, the model is calibrated. The predictions most diagnostic of the report's core thesis are **#1, #2 (the timing model), #3 and #18 (the Zhang Zheng call), #21 (the pipeline-opacity claim), and #30 (the recursion claim)**. Note that #26–#29 are deliberately set at high probabilities: they predict *continuity*, and a report that claims the system is structurally stuck should be scored on whether it is right about the things it says will not change, not only about the things it says will. If #1 and #2 both fail, §1's timing model is broken and the Tier-1 "vanished = purged" inference in the main report should be discounted heavily.
 
 ---
 

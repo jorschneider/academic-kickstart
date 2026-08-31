@@ -2,6 +2,8 @@
 
 Companion to [`README.md`](README.md) §6 and [`purge-tracker.md`](purge-tracker.md). The main report gives the corruption *findings*; this file gives the *inferential machinery* behind them — why the obvious reading of the purge record is wrong, and what can be extracted instead.
 
+Two further companions carry the material this file rests on. [`corruption-casebook.md`](corruption-casebook.md) is the **evidentiary floor**: every case where charge language, method, amount or sentence is actually public, plus an explicit list of the mechanisms that have *never* been prosecuted. [`why-purges-recur.md`](why-purges-recur.md) is the **structural account**: why fourteen years of enforcement has not worked, what the military audit organ can and cannot do, and what the spending numbers do and do not support. Where a claim below is traceable to a specific adjudicated case, the casebook is where to check it.
+
 ---
 
 ## 1. The inference problem
@@ -26,7 +28,7 @@ Model an officer's probability of being purged as a function of three variables:
 
 1. **Survival is not exculpatory.** An officer still standing in 2026 is best explained by being unaffiliated, useful, or not yet reached — not by being clean. This is why the report's §6.3 register rates *exposure* (a fact about their career) separately from *political risk* (a judgment about network and utility). Conflating them is the standard error in this genre.
 2. **Purging is not proof.** Some fraction of the fallen are guilty of nothing more than the wrong patron. The report names no serving officer as corrupt for exactly this reason.
-3. **The campaign structurally cannot end.** An always-available, always-valid charge is an instrument of control, not merely a remedy for a problem. Ending the campaign would forfeit the instrument. This predicts — and the record confirms — that enforcement recurs in the same systems rather than resolving them: the Rocket Force was purged in 2023 and again in 2025–26; the Equipment Development Department lost two consecutive directors; the political-work department was decapitated twice. **"Why didn't the first purge fix it?" is the wrong question.** The purge is not a repair mechanism.
+3. **The campaign structurally cannot end.** An always-available, always-valid charge is an instrument of control, not merely a remedy for a problem. Ending the campaign would forfeit the instrument. This predicts — and the record confirms — that enforcement recurs in the same systems rather than resolving them: the Rocket Force was purged in 2023 and again in 2025–26; the Equipment Development Department has lost every director it has ever had; the political-work department was decapitated twice. **"Why didn't the first purge fix it?" is the wrong question.** The purge is not a repair mechanism.
 
 ### 1.3 What *is* recoverable from the record
 
@@ -180,4 +182,5 @@ Four transmission channels from graft to leadership outcomes:
 - **No independent verification.** Everything rests on what the Chinese state chose to announce, plus press reporting about it. There is no audit trail, no discovery, no defence case in the public record. Even the published verdicts (Wei Fenghe, Li Shangfu, Tan Ruisong) are summaries released by the court, not documents.
 - **Selection on the dependent variable.** The rent map in §2 is built from officers who were *caught*, which measures enforcement priorities as much as underlying corruption. A system with high graft and no enforcement would appear clean here — a real possibility for parts of the naval shipbuilding programme, which is precisely why the report flags it as the likeliest next target rather than as currently clean.
 - **The decoder is a heuristic, not a law.** Charge language reflects drafting conventions and audience management as well as substance, and the conventions can change.
+- **The scale is unmeasured and, on present disclosure practice, unmeasurable.** No PLA verdict since Wang Shouye's in 2006 has published an amount; the CMC Audit Office publishes no reports, no results bulletin and no recovery figures; and the only official breakdown of what the defence budget is spent on stops at 2017. Any aggregate estimate of PLA graft an analyst encounters — including the widely-quoted “half the military budget” figure, which traces to a 2014 panel discussion and has no documentary basis — is an extrapolation from roughly nine published data points. What *is* measurable is direction ([`why-purges-recur.md`](why-purges-recur.md) §4.5).
 - **Nothing here identifies any serving officer as corrupt.** The exposure ratings in README §6.3 are statements about career position and network, published as forecasting inputs, and should not be read as allegations.
