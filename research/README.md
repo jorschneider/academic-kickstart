@@ -22,6 +22,7 @@ A ChinaTalk research corpus mapping who actually builds for the PLA — the prim
 | [**Chokepoint Ledger**](https://claude.ai/code/artifact/9b07ec41-f9ff-4863-a0cf-c0fd43b9b11a) | **The economic synthesis** — dependencies vs. leverage on a severity × substitution matrix | 18 chokepoints |
 | [**Taiwan Contingency**](https://claude.ai/code/artifact/14f256bd-9d68-4687-866e-054f89579299) | **The operational synthesis** — what's decisive across four conflict phases | 19 capabilities |
 | [**Tripwires**](https://claude.ai/code/artifact/eeac96ad-0e4a-4582-9a02-a4e182e7ff37) | **The forecasting synthesis** — the observable events that would force a rating to change | 25 tripwires |
+| [The Reading Room](https://claude.ai/code/artifact/1cc051fa-7a46-438c-be94-fd6cccadfae9) | Sourcing & tradecraft — where the evidence comes from, and how to reach it | 26 channels |
 
 ## Essays
 
@@ -42,11 +43,12 @@ A ChinaTalk research corpus mapping who actually builds for the PLA — the prim
 | [`chokepoint-leverage-ledger.md`](./chokepoint-leverage-ledger.md) | **The economic synthesis** — China's dependencies vs. leverage, with substitution timelines and policy levers |
 | [`taiwan-contingency-lens.md`](./taiwan-contingency-lens.md) | **The operational synthesis** — what's decisive when the shooting starts, and which chokepoints bite when |
 | [`indicators-and-warnings.md`](./indicators-and-warnings.md) | **The forecasting synthesis** — 25 falsifiable tripwires, and why three in five point one way |
+| [`sourcing-and-tradecraft.md`](./sourcing-and-tradecraft.md) | **Where to actually look** — 26 primary channels, most Chinese-language, plus three findings only primary sources give you |
 | [`methodology-and-confidence.md`](./methodology-and-confidence.md) | **How to read the atlas** — the sourcing taxonomy, the confidence grade behind every rating, and what open source structurally can't see |
 
 ## The through-line
 
-China leads where the contest is **scale and hardware** — shipbuilding (~230× US capacity), drones (~70% of the market), robots (~97% of humanoid shipments), and the component/magnet layer the world depends on — and lags where it is the **deepest process technology**: EUV lithography, advanced digital EDA, jet-engine variable-cycle propulsion, HBM at scale. In one domain — drones, robots, and rare-earth magnets — the dependency runs the *other* way, and Beijing has begun to wield the export-control weapon it once only received.
+China leads where the contest is **scale and hardware** — shipbuilding (~230× US capacity), drones (~70% of the market), robots (~97% of humanoid shipments), and the component/magnet layer the world depends on — and lags where it is the **deepest process technology**: EUV lithography, advanced digital EDA, jet-engine variable-cycle propulsion, HBM at scale. In one domain — drones, robots, and rare-earth magnets — the dependency runs the *other* way, and Beijing has begun to wield the export-control weapon it once only received. And military-civil fusion turns out to need no transfer mechanism at all: one MIIT vice minister concurrently directs SASTIND, the defense science-and-industry administration — the civil and defense industrial bases share their administrators at the top.
 
 ---
 

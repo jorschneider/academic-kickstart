@@ -236,14 +236,14 @@
       <div class="tl"><h3 class="tn" data-n="I">Two footings</h3><p>China's defense-industrial base operates on a <b>wartime footing</b> — acquiring key systems five to six times faster than the US and holding shipbuilding capacity roughly <b>230× larger</b> (CSIS) — while the American base stays on a peacetime one. Scale, not sophistication, is the sharpest asymmetry.</p></div>
       <div class="tl"><h3 class="tn" data-n="II">Where it still bends the knee</h3><p>The deepest <b>process technologies</b> — EUV lithography, electronic-design-automation software, jet-engine hot-section materials, top-tier harmonic reducers, high-bandwidth memory — are where China remains dependent. The gaps are narrowing, but they are the real chokepoints, and they are few.</p></div>
       <div class="tl"><h3 class="tn" data-n="III">The inversion</h3><p>In drones, robots and rare-earth magnets the dependency runs the <b>other way</b> — the West depends on China. Beijing has begun to wield the export-control weapon it once only received, metering magnet licenses buyer-by-buyer. For once, China is upstream.</p></div>
-      <div class="tl"><h3 class="tn" data-n="IV">The sanctions treadmill</h3><p><b>Military-civil fusion</b> makes "military supplier" an unbounded category. The Pentagon's 1260H list keeps widening — Alibaba, BYD, Unitree — because when the commercial product and the military one ship from the same factory, the dual-use surface is the entire tech sector.</p></div>
+      <div class="tl"><h3 class="tn" data-n="IV">The sanctions treadmill</h3><p><b>Military-civil fusion</b> needs no transfer mechanism, because the officials are the same people: one MIIT vice minister concurrently directs SASTIND, the defense science-and-industry administration. The 1260H list keeps widening — Alibaba, BYD, Unitree — not merely because dual-use products ship from one factory, but because the architecture funding them does not separate civil from defense at the top.</p></div>
     </div>
     <p class="pull">China wins where the game is <b>mass</b>, and lags where the game is the <b>machine that makes the machine</b>.</p>
   </section>
 
   <footer class="wrap">
     <p class="fh">Methodology &amp; caveats</p>
-    <p>Compiled entirely from open sources — DoD's <em>Military and Security Developments Involving the PRC</em> (Dec 2025) and the Section 1260H list (June 2026), BIS Entity List actions, CSIS ChinaPower, RUSI, RAND, FDD, Kharon, IISS <em>Military Balance 2026</em>, SemiAnalysis, and trade-press reporting cited in the companion essays. The scorecard tiers are analytical judgments synthesized across those sources, not quantitative measurements; reasonable analysts will place some domains a tier up or down. The <span class="mono">confidence grade</span> on each row says how much to trust the placement — <b>A</b> well-documented, <b>B</b> mixed evidence, <b>C</b> largely inferential — and the companion <span class="mono">methodology-and-confidence.md</span> essay lays out the full sourcing taxonomy, the grading scheme, and the structural blind spots (performance under fire, magazine depth, intent) that open-source analysis cannot see. Corporate structures, shipment figures and sanctions status are a 2026 snapshot of a fast-moving picture. This is a living document, updated as the picture moves. Companion essays live in the repository alongside this page.</p>
+    <p>Compiled entirely from open sources — DoD's <em>Military and Security Developments Involving the PRC</em> (Dec 2025) and the Section 1260H list (June 2026), BIS Entity List actions, CSIS ChinaPower, RUSI, RAND, FDD, Kharon, IISS <em>Military Balance 2026</em>, SemiAnalysis, and trade-press reporting cited in the companion essays. The scorecard tiers are analytical judgments synthesized across those sources, not quantitative measurements; reasonable analysts will place some domains a tier up or down. The <span class="mono">confidence grade</span> on each row says how much to trust the placement — <b>A</b> well-documented, <b>B</b> mixed evidence, <b>C</b> largely inferential — and the companion <span class="mono">methodology-and-confidence.md</span> essay lays out the full sourcing taxonomy, the grading scheme, and the structural blind spots (performance under fire, magazine depth, intent) that open-source analysis cannot see. Its companion <span class="mono">sourcing-and-tradecraft.md</span> documents the 26 primary channels the evidence comes from — most of them Chinese-language and free. Corporate structures, shipment figures and sanctions status are a 2026 snapshot of a fast-moving picture. This is a living document, updated as the picture moves. Companion essays live in the repository alongside this page.</p>
   </footer>
 </div>
 
@@ -275,6 +275,7 @@ const MAPS = {
   robot:     { url: 'https://claude.ai/code/artifact/354d7ea9-11c5-4d05-be0e-2b0b7b02c46b', label: 'Robot Ecosystem' },
   semiconductor: { url: 'https://claude.ai/code/artifact/2dfad809-6b14-4901-8357-47fc160a94a3', label: 'Semiconductor Chokepoint' },
   spacemissile: { url: 'https://claude.ai/code/artifact/5101023f-ba3f-44d4-9b35-9f90eac4a98f', label: 'Space & Missile Power' },
+  sourcing:  { url: 'https://claude.ai/code/artifact/1cc051fa-7a46-438c-be94-fd6cccadfae9', label: 'The Reading Room' },
 }
 const SCORE = [
   { domain: 'Shipbuilding & Naval', zh: '船舶 / 海军', tier: 4, conf: 'A', why: '~230× US shipbuilding capacity and the largest navy by hull count, on a wartime footing.', dep: 'Top-tier marine propulsion; submarine quieting & sonar — the undersea tier is still catching up.' },
@@ -348,6 +349,7 @@ const MAPCARDS = [
   { map: 'semiconductor', mk: 'Chokepoint status', title: 'Semiconductor Chokepoint', stat: '22 nodes · dependent → self-sufficient', p: 'The compute base coded by self-sufficiency: where China is blocked (EUV, advanced EDA, HBM), brute-forcing (SMIC, Ascend), localizing the toolchain, or already dominant (legacy nodes).', teal: true },
   { map: 'robot', mk: 'Competitive position', title: 'Robot Ecosystem', stat: '44 nodes · leads → depends', p: 'Humanoids, quadrupeds, military UGVs and the component chain, coded by China’s position — leading almost everywhere, depending only at the hardest tiers (top reducers, roller screws, force/tactile sensors, AI compute).', teal: false },
   { map: 'spacemissile', mk: 'Position vs the US', title: 'Space & Missile Power', stat: '41 systems · ahead → behind', p: 'Launch, megaconstellations, counterspace, missiles and hypersonics, benchmarked against the US — China ahead in hypersonics and theater anti-ship missiles, behind in reusable launch and rad-hard space chips.', teal: true },
+  { map: 'sourcing', mk: 'Sourcing \u00b7 tradecraft', title: 'The Reading Room', stat: '26 channels \u00b7 most Chinese-language', p: 'Where the evidence actually comes from: the PLA procurement portal and its January/July cadence, MIIT\u2019s Little Giants roster, A-share subsidiary filings, CNKI, CASI and CMSI translations \u2014 each with access path, worked example, and what it cannot tell you.', teal: true },
 ]
 MAPCARDS.forEach(c => {
   const a = document.createElement('a')
@@ -376,6 +378,7 @@ const ESSAYS = [
   { et: 'The Chokepoint & Leverage Ledger', ed: 'The economic synthesis — dependencies vs. leverage', ef: 'chokepoint-leverage-ledger.md' },
   { et: 'The Taiwan-Contingency Lens', ed: 'The operational synthesis — what\'s decisive when the shooting starts', ef: 'taiwan-contingency-lens.md' },
   { et: 'Indicators & Warnings', ed: 'The forecasting synthesis — what would prove the atlas wrong', ef: 'indicators-and-warnings.md' },
+  { et: 'Sourcing & Tradecraft', ed: 'Where to actually look \u2014 26 primary channels, most Chinese-language', ef: 'sourcing-and-tradecraft.md' },
   { et: 'Methodology & Confidence', ed: 'How the ratings were made, graded, and where they\'re soft', ef: 'methodology-and-confidence.md' },
 ]
 ESSAYS.forEach(e => {

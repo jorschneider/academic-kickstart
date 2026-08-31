@@ -1,0 +1,514 @@
+<title>The Reading Room</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&family=Karla:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    color-scheme: light;
+    --bg: #E4E8ED;
+    --surface: #F2F5F8;
+    --surface2: #D5DBE3;
+    --ink: #16202B;
+    --muted: #566472;
+    --line: #C3CBD6;
+    --hair: #D3DAE2;
+    --accent: #8A5E14;
+    --accent-soft: rgba(138, 94, 20, .10);
+    --s1: #1B3A5C; --s2: #3E668C; --s3: #7396B7; --s4: #A8C0D6;
+    --shadow: 0 14px 40px rgba(22, 32, 43, .15);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --bg: #0F1418; --surface: #171E25; --surface2: #212B34;
+      --ink: #DEE6EC; --muted: #8E9CAA; --line: #2C3945; --hair: #202A33;
+      --accent: #D2A34E; --accent-soft: rgba(210, 163, 78, .14);
+      --s1: #A9CBE8; --s2: #7FA6C6; --s3: #5B7E9E; --s4: #3F5A73;
+      --shadow: 0 14px 40px rgba(0, 0, 0, .6);
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #0F1418; --surface: #171E25; --surface2: #212B34;
+    --ink: #DEE6EC; --muted: #8E9CAA; --line: #2C3945; --hair: #202A33;
+    --accent: #D2A34E; --accent-soft: rgba(210, 163, 78, .14);
+    --s1: #A9CBE8; --s2: #7FA6C6; --s3: #5B7E9E; --s4: #3F5A73;
+    --shadow: 0 14px 40px rgba(0, 0, 0, .6);
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink); margin: 0;
+    font-family: "Karla", system-ui, -apple-system, sans-serif;
+    font-size: 14.5px; line-height: 1.56;
+  }
+  .mono { font-family: "JetBrains Mono", ui-monospace, monospace; }
+  .wrap { max-width: 1220px; margin: 0 auto; padding: 0 26px; }
+  a { color: var(--accent); }
+  /* masthead */
+  header.mast { padding: 50px 0 28px; border-bottom: 3px double var(--ink); }
+  .kicker { font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: .19em; text-transform: uppercase; color: var(--muted); margin: 0 0 16px; }
+  h1 {
+    font-family: "Newsreader", Georgia, serif; font-weight: 600;
+    font-size: clamp(40px, 6.6vw, 78px); line-height: .96; letter-spacing: -0.02em;
+    margin: 0 0 20px; text-wrap: balance; max-width: 15ch;
+  }
+  .lede { font-family: "Newsreader", Georgia, serif; font-size: clamp(17px, 2.1vw, 21px); line-height: 1.52; max-width: 66ch; margin: 0; }
+  .lede b { font-weight: 600; }
+  .lede i { color: var(--muted); }
+  .dateline { font-family: "JetBrains Mono", monospace; font-size: 11px; color: var(--muted); margin-top: 24px; }
+  section { padding: 44px 0; border-bottom: 1px solid var(--hair); }
+  .sechead { display: flex; align-items: baseline; gap: 13px; margin: 0 0 8px; flex-wrap: wrap; }
+  .secnum { font-family: "JetBrains Mono", monospace; font-size: 11.5px; color: var(--accent); letter-spacing: .1em; }
+  h2 { font-family: "Newsreader", Georgia, serif; font-weight: 600; font-size: clamp(24px, 3.3vw, 33px); letter-spacing: -0.012em; margin: 0; }
+  .sform { color: var(--muted); font-size: 13.5px; max-width: 78ch; margin: 6px 0 26px; }
+  /* the three findings */
+  .finds { display: flex; flex-direction: column; gap: 14px; }
+  .find { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: 5px; padding: 22px 26px; }
+  .find .fk { font-family: "JetBrains Mono", monospace; font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: 9px; }
+  .find h3 { font-family: "Newsreader", serif; font-weight: 600; font-size: clamp(20px, 2.7vw, 26px); margin: 0 0 10px; line-height: 1.16; letter-spacing: -0.01em; }
+  .find p { margin: 0 0 10px; font-size: 14px; line-height: 1.6; color: var(--ink); max-width: 88ch; }
+  .find p:last-child { margin-bottom: 0; }
+  .find .zh { font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--muted); }
+  .find b { font-weight: 700; }
+  .find .ev { font-family: "JetBrains Mono", monospace; font-size: 11.5px; color: var(--muted); border-top: 1px solid var(--hair); padding-top: 9px; margin-top: 13px; }
+  /* cadence strip */
+  .cad { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 5px; overflow: hidden; }
+  .cad div { background: var(--surface); padding: 12px 13px; }
+  .cad .cw { font-family: "JetBrains Mono", monospace; font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
+  .cad .cs { font-size: 12.5px; line-height: 1.42; color: var(--ink); }
+  /* controls */
+  .controls { position: sticky; top: 0; z-index: 20; background: var(--bg); padding: 12px 0 11px; border-bottom: 1px solid var(--line); }
+  .cinner { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .chip {
+    background: var(--surface); border: 1px solid var(--line); color: var(--muted); cursor: pointer;
+    font-family: "JetBrains Mono", monospace; font-size: 10.5px; letter-spacing: .05em; text-transform: uppercase;
+    padding: 6px 10px; border-radius: 3px; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .chip[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+  .chip .sw { width: 9px; height: 9px; border-radius: 2px; border: 1px solid var(--line); display: inline-block; }
+  .chip:focus-visible, .card:focus-visible, button:focus-visible, select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .cspacer { flex: 1; }
+  .creset { background: none; border: 0; color: var(--accent); cursor: pointer; font-family: "JetBrains Mono", monospace; font-size: 10.5px; text-decoration: underline; padding: 0; }
+  /* families */
+  .fam { padding: 24px 0 2px; }
+  .famhead { display: flex; align-items: baseline; gap: 13px; border-bottom: 2px solid var(--ink); padding-bottom: 6px; }
+  .famhead h3 { font-family: "Newsreader", serif; font-weight: 600; font-size: 19.5px; margin: 0; letter-spacing: -0.008em; }
+  .famhead .fd { font-family: "JetBrains Mono", monospace; font-size: 10.5px; color: var(--muted); }
+  .famhead .fn { font-family: "JetBrains Mono", monospace; font-size: 10.5px; color: var(--muted); margin-left: auto; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(272px, 1fr)); gap: 10px; padding: 13px 0 0; }
+  .card {
+    text-align: left; font: inherit; color: var(--ink); cursor: pointer;
+    background: var(--surface); border: 1px solid var(--line);
+    border-left: 4px solid var(--tc); border-radius: 4px; padding: 12px 13px 13px;
+    display: flex; flex-direction: column; gap: 6px; transition: transform .11s, box-shadow .11s;
+  }
+  .card:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+  .card.t1 { --tc: var(--s1); } .card.t2 { --tc: var(--s2); }
+  .card.t3 { --tc: var(--s3); } .card.t4 { --tc: var(--s4); }
+  .card[hidden] { display: none !important; }
+  .crow { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .tier { font-family: "JetBrains Mono", monospace; font-size: 9.5px; letter-spacing: .09em; text-transform: uppercase; color: var(--muted); display: inline-flex; align-items: center; gap: 5px; }
+  .tier .sw { width: 9px; height: 9px; border-radius: 2px; background: var(--tc); border: 1px solid var(--line); display: inline-block; }
+  .lang { font-family: "JetBrains Mono", monospace; font-size: 9.5px; letter-spacing: .06em; border: 1px solid var(--line); border-radius: 2px; padding: 0 5px; color: var(--muted); }
+  .lang.zh { color: var(--accent); border-color: var(--accent); }
+  .cn { font-family: "Newsreader", serif; font-weight: 600; font-size: 16px; line-height: 1.18; }
+  .cn .zh { font-family: "JetBrains Mono", monospace; font-weight: 400; font-size: 11px; color: var(--muted); display: block; margin-top: 1px; }
+  .cwhat { font-size: 12.5px; color: var(--muted); line-height: 1.46; }
+  /* dossier */
+  #backdrop { position: fixed; inset: 0; background: rgba(12, 18, 24, .5); z-index: 40; }
+  #panel {
+    position: fixed; top: 0; right: 0; bottom: 0; width: min(456px, 100vw); z-index: 50;
+    background: var(--surface); border-left: 1px solid var(--line); box-shadow: var(--shadow);
+    transform: translateX(102%); transition: transform .2s ease; overflow-y: auto; padding: 26px 28px 40px;
+  }
+  #panel.open { transform: translateX(0); }
+  @media (prefers-reduced-motion: reduce) { #panel { transition: none; } .card:hover { transform: none; } }
+  #panel h2 { font-family: "Newsreader", serif; font-size: 25px; font-weight: 600; margin: 10px 0 2px; line-height: 1.12; }
+  #panel .pzh { font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--muted); }
+  #panel .pmeta { font-family: "JetBrains Mono", monospace; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-top: 12px; }
+  .pf { border-top: 1px solid var(--hair); padding-top: 12px; margin-top: 13px; }
+  .pf .k { font-family: "JetBrains Mono", monospace; font-size: 9.5px; letter-spacing: .13em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 5px; }
+  .pf .v { font-size: 13.5px; line-height: 1.56; }
+  .pf.ex { background: var(--accent-soft); border: 1px solid var(--accent); border-radius: 4px; padding: 11px 13px; margin-top: 14px; }
+  .pf.ex .k { color: var(--accent); }
+  #closep { position: absolute; top: 15px; right: 15px; background: none; border: 1px solid var(--line); color: var(--muted); border-radius: 3px; width: 28px; height: 28px; cursor: pointer; font-size: 15px; line-height: 1; }
+  #closep:hover { color: var(--ink); border-color: var(--muted); }
+  /* rules */
+  .rules { display: grid; grid-template-columns: repeat(auto-fit, minmax(255px, 1fr)); gap: 22px 30px; }
+  .rule .rn { font-family: "Newsreader", serif; font-weight: 600; font-size: 18px; margin: 0 0 7px; line-height: 1.2; }
+  .rule .rn::before { content: attr(data-n); font-family: "JetBrains Mono", monospace; font-size: 11px; color: var(--accent); display: block; margin-bottom: 4px; letter-spacing: .1em; }
+  .rule p { margin: 0; font-size: 13px; color: var(--muted); line-height: 1.55; }
+  .rule p b { color: var(--ink); font-weight: 600; }
+  .pull { font-family: "Newsreader", serif; font-style: italic; font-size: clamp(18px, 2.4vw, 25px); line-height: 1.42; max-width: 46ch; margin: 28px 0 0; }
+  .pull b { font-style: normal; font-weight: 700; }
+  footer { padding: 32px 0 58px; color: var(--muted); font-size: 12px; line-height: 1.6; }
+  footer p { max-width: 96ch; }
+  footer .fh { font-family: "JetBrains Mono", monospace; font-size: 10px; letter-spacing: .13em; text-transform: uppercase; color: var(--ink); margin-bottom: 8px; }
+  @media (max-width: 700px) { .cards { grid-template-columns: 1fr; } }
+</style>
+
+<div class="wrap">
+  <header class="mast">
+    <p class="kicker">ChinaTalk Research · Sourcing &amp; tradecraft</p>
+    <h1>The Reading Room</h1>
+    <p class="lede">Most English writing on China's defense industry runs on the same dozen sources — the Pentagon report, a few think-tank studies, the trade press, and each other. Estimates harden into facts through repetition rather than verification. This is the other half of the atlas's methodology: <b>where the evidence actually comes from, and how to go get it yourself.</b> <i>Twenty-six channels, most Chinese-language, most free, nearly all underused — plus three findings no amount of secondary reading will give you.</i></p>
+    <p class="dateline">A ChinaTalk research atlas · 26 source channels · Access conditions current to 31 Aug 2026</p>
+  </header>
+
+  <section id="findings">
+    <div class="sechead"><span class="secnum">01</span><h2>Three things only the primary sources tell you</h2></div>
+    <p class="sform">Each of these took under an hour to establish from open, free, mostly Chinese-language material — and each changes something in the atlas.</p>
+    <div class="finds">
+      <div class="find">
+        <p class="fk">Finding 01 · The vulnerability map is published</p>
+        <h3>Beijing publishes its own chokepoint list</h3>
+        <p>The <b>"Little Giants" programme</b> <span class="zh">专精特新"小巨人"企业</span> is a MIIT designation for SMEs that — in the ministry's own framing — have mastered technologies in key industrial links <b>to fill supply-chain gaps</b>. The 2018 criteria were concrete: ¥100–400m revenue, ≥10% profit growth, R&amp;D staff above 15% of headcount, at least five innovation patents.</p>
+        <p>It was built explicitly around 卡脖子 ("stuck neck") chokepoint anxieties after the 2018 rupture. By December 2024, six batches covered roughly <b>14,600 firms</b>, overshooting the 14th Five-Year Plan target of 10,000. Read structurally, that roster is <b>the party-state's own assessment of where its supply chains are weakest</b> — and it inverts the usual problem. Western analysts normally have to infer which obscure component makers matter; here the government ranked them and published the names.</p>
+        <p class="ev">Where it lands: the highest-yield starting point for extending the supplier map. Several firms already in the atlas — Western Superconducting among them — carry exactly this pedigree.</p>
+      </div>
+      <div class="find">
+        <p class="fk">Finding 02 · Military-civil fusion, in appointment records</p>
+        <h3>There is no transfer mechanism because the officials are the same people</h3>
+        <p>"Military-civil fusion" is usually described as a <em>process</em> — technology crossing from a civilian sector to a military one through some channel. The institutional reality is blunter and sits in personnel records.</p>
+        <p><b>Shan Zhongde</b> became a Vice Minister of MIIT — the ministry running the Little Giants programme and civilian industrial policy — in February 2024. In January 2025 he additionally became <b>Administrator of the China National Space Administration, Director of the China Atomic Energy Authority, and Director of SASTIND</b>, the State Administration for Science, Technology and Industry for National Defense. One official: civilian industrial policy, civil space, atomic energy, and defense science and industry. The pattern repeats locally — the Beijing bureau administering civilian robotics subsidies is headed by an official who concurrently directs the city's Defense Science and Technology Industry Office.</p>
+        <p class="ev">Where it lands: the atlas's "sanctions treadmill" throughline. The 1260H list keeps widening — 188 entities by June 2026 — and the usual reading is American overreach. The personnel evidence suggests something less comfortable: the category is unbounded because the architecture genuinely does not separate the two at the top.</p>
+      </div>
+      <div class="find">
+        <p class="fk">Finding 03 · A date you can put in a calendar</p>
+        <h3>The PLA publishes its shopping list twice a year</h3>
+        <p>Since January 2015 the PLA has run an official weapons-and-equipment procurement portal, <b>weain.mil.cn</b>, established under the then General Armament Department and now sitting with the CMC Equipment Development Department. It carries procurement notices, requirement announcements and supplier registration.</p>
+        <p>The operationally useful part is the cadence: procurement information publishes on the <b>first working day of every January and July</b>. Access is tiered — visitor, registered, certified — so the open tier shows less than a Chinese contractor sees, but it is not empty. SCMP derived reporting on a prospective <b>airborne laser weapon</b> programme directly from notices on the site.</p>
+        <p class="ev">Why it is open at all: the portal exists to widen the supplier pool and cut procurement barriers. That is the shape of the best Chinese sources — open because opacity would defeat their domestic purpose.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="cadence">
+    <div class="sechead"><span class="secnum">02</span><h2>The check calendar</h2></div>
+    <p class="sform">An atlas that names its check dates can be maintained rather than merely written. These recur.</p>
+    <div class="cad" id="cad"></div>
+  </section>
+
+  <section id="directory">
+    <div class="sechead"><span class="secnum">03</span><h2>The channel map</h2></div>
+    <p class="sform">Twenty-six channels in seven families. Tier marks evidentiary weight on the same scale the methodology page uses — <b>Tier 1</b> official and primary, <b>Tier 2</b> specialist institutions, <b>Tier 3</b> trade press and trackers, <b>Tier 4</b> corporate and state media. Open any channel for its access path, cadence, a worked example, and — the part most source lists omit — what it cannot tell you.</p>
+    <div class="controls">
+      <div class="cinner" id="cinner">
+        <button class="chip" data-tier="1" aria-pressed="true"><span class="sw" style="background:var(--s1)"></span>Tier 1</button>
+        <button class="chip" data-tier="2" aria-pressed="true"><span class="sw" style="background:var(--s2)"></span>Tier 2</button>
+        <button class="chip" data-tier="3" aria-pressed="true"><span class="sw" style="background:var(--s3)"></span>Tier 3</button>
+        <button class="chip" data-tier="4" aria-pressed="true"><span class="sw" style="background:var(--s4)"></span>Tier 4</button>
+        <span class="cspacer"></span>
+        <button class="chip" id="zhonly" aria-pressed="false">Chinese-language only</button>
+        <button class="creset" id="reset" hidden>reset</button>
+      </div>
+    </div>
+    <div id="fams"></div>
+  </section>
+
+  <section id="rules">
+    <div class="sechead"><span class="secnum">04</span><h2>Five tradecraft rules</h2></div>
+    <p class="sform">How to use these without getting fooled.</p>
+    <div class="rules">
+      <div class="rule"><h3 class="rn" data-n="I">Prefer the physical to the declared</h3><p>A teardown, a satellite image, a customs record and a <b>shipped tonne</b> are harder to spin than a capacity announcement. Every threshold in the atlas's tripwires is stated as a physical quantity for exactly this reason.</p></div>
+      <div class="rule"><h3 class="rn" data-n="II">Personnel appointments are data</h3><p>Who holds which post — and <b>how many at once</b> — often reveals institutional intent more reliably than any policy document. Finding 02 took ten minutes to verify and reframes a throughline.</p></div>
+      <div class="rule"><h3 class="rn" data-n="III">Read what the state says to itself</h3><p>Five-Year Plan implementation documents, procurement notices and military standards are written for <b>domestic execution</b>. White papers and spokespeople are written for you.</p></div>
+      <div class="rule"><h3 class="rn" data-n="IV">A paper is interest, not capability</h3><p>The commonest failure in technical-literature work is treating a CNKI hit as evidence of a fielded system. It is evidence that <b>someone was funded to think about it</b>.</p></div>
+      <div class="rule"><h3 class="rn" data-n="V">An absent source can be the finding</h3><p>No public figure exists for Chinese munitions output. That <b>void</b> is why the ground-systems comparison is epistemically lopsided — and saying so beats importing a number from a secondary source that invented one.</p></div>
+    </div>
+    <p class="pull">The best Chinese sources are open because <b>opacity would defeat their domestic purpose</b>.</p>
+  </section>
+
+  <footer>
+    <p class="fh">On this page</p>
+    <p>A companion to <span class="mono">methodology-and-confidence.md</span>, which grades how much to trust the atlas's ratings; this one documents where the evidence comes from and how to reach it. Access conditions, paywalls and publication cadences are as of August 2026 and change without notice — the Little Giants batch count is as of December 2024. Nothing here is behind a classification barrier; the great majority is free, and the main barrier is language rather than access. Where a channel's value rests on a contested example, the dossier says so. Listing a source is not endorsing what it claims: the tier marks evidentiary weight, not agreement.</p>
+  </footer>
+</div>
+
+<div id="backdrop" hidden></div>
+<aside id="panel" aria-label="Source dossier">
+  <button id="closep" aria-label="Close dossier">&times;</button>
+  <div id="pbody"></div>
+</aside>
+
+<script>
+const FAMS = {
+  state: { h: 'Chinese state & primary documents', d: 'written for domestic execution' },
+  corp:  { h: 'Corporate disclosure', d: 'the primes are unlisted; their subsidiaries are not' },
+  lit:   { h: 'Chinese technical literature', d: 'research interest, years ahead of publicity' },
+  doc:   { h: 'Translation & doctrine', d: 'what the PLA teaches its own officers' },
+  geo:   { h: 'Geospatial & physical observation', d: 'presence, not performance' },
+  trade: { h: 'Trade, customs & financial flows', d: 'what an opaque base buys and sells' },
+  west:  { h: 'Western specialist analysis', d: 'a pointer to primary material, not a substitute' },
+};
+const CADENCE = [
+  { w: 'Every January & July', s: 'weain.mil.cn publishes PLA procurement notices on the first working day.' },
+  { w: 'Each March', s: 'NPC budget release — the defense line, and its growth against nominal GDP.' },
+  { w: 'Each December', s: "DoD China Military Power Report — the warhead estimate and force projections." },
+  { w: 'Quarterly', s: 'MP Materials and Lynas results — tonnes of Dy/Tb actually shipped, not announced.' },
+  { w: 'Irregular, high-value', s: 'TechInsights teardowns — physical proof of what SMIC can fabricate.' },
+  { w: 'Periodic batches', s: 'MIIT Little Giants lists — new names in the chokepoint-filling SME roster.' },
+];
+const DATA = [
+// ————— STATE & PRIMARY —————
+{ id:'weain', fam:'state', tier:1, lang:'zh', n:'weain.mil.cn', zh:'全军武器装备采购信息网',
+  what:'The PLA’s official weapons and equipment procurement portal — notices, requirements, supplier registration.',
+  access:'Public web, tiered accounts (visitor / registered / certified). The open tier is materially thinner than what a registered Chinese contractor sees, but it is not empty.',
+  cadence:'Procurement information publishes on the first working day of every January and July. Launched January 2015 under the then General Armament Department; now under the CMC Equipment Development Department.',
+  example:'SCMP derived reporting on a prospective PLA airborne laser weapon programme directly from procurement notices posted to the site.',
+  limits:'Requirement notices show intent to buy, not fielded capability or quantity. The most sensitive programmes never appear.' },
+{ id:'littlegiants', fam:'state', tier:1, lang:'zh', n:'MIIT Little Giants lists', zh:'专精特新"小巨人"企业名单',
+  what:'Named rosters of SMEs designated for having mastered technologies that fill supply-chain gaps — a state-published map of where Beijing thinks it is weakest.',
+  access:'MIIT and provincial industry-department websites publish batch lists by name and province; widely mirrored in Chinese business media.',
+  cadence:'Released in batches — six by December 2024, covering roughly 14,600 firms against a 14th Five-Year Plan target of 10,000 by 2025.',
+  example:'Unitree Robotics holds the designation and received roughly ¥76m (~$11m) in tax incentives in the first nine months of 2025 alone, plus ~¥32m in direct grants between 2022 and September 2025.',
+  limits:'Designation signals policy priority, not military end use. Many recipients are genuinely civilian; the point is the roster reveals perceived vulnerability, not that every firm is a defense supplier.' },
+{ id:'sastind', fam:'state', tier:1, lang:'zh', n:'SASTIND / CNSA / CAEA', zh:'国家国防科工局',
+  what:'The defense science-and-industry administration and its co-located space and atomic-energy nameplates. Personnel appointments here are themselves analytic data.',
+  access:'Official websites, Xinhua appointment announcements, and standard biographical databases.',
+  cadence:'Appointment announcements are irregular but immediately visible; leadership pages update on change.',
+  example:'Shan Zhongde: MIIT Vice Minister from February 2024, then Administrator of CNSA, Director of CAEA and Director of SASTIND from January 2025 — civilian industrial policy and defense science-and-industry under one official.',
+  limits:'"One institution, several nameplates" is a normal PRC administrative pattern; read concentration of posts as evidence about institutional design, not conspiracy.' },
+{ id:'npc', fam:'state', tier:1, lang:'zh', n:'NPC budget release', zh:'全国人大预算报告',
+  what:'The official annual defense budget figure and growth rate.',
+  access:'Published at the National People’s Congress session; reported immediately in Chinese and English.',
+  cadence:'Each March.',
+  example:'Defense-budget growth falling below nominal GDP growth for consecutive years is a standing tripwire in the atlas — the wartime-footing premise rests on procurement tempo.',
+  limits:'The headline figure excludes substantial off-budget and dual-use spending; use the growth rate and its relation to GDP rather than the absolute number.' },
+{ id:'fyp', fam:'state', tier:1, lang:'zh', n:'Five-Year Plans & MIIT implementation texts', zh:'五年规划',
+  what:'Priority-setting documents that name specific technologies and programmes the state intends to accelerate.',
+  access:'Published in full; MIIT and NDRC issue sectoral implementation documents beneath them.',
+  cadence:'Plan every five years; implementation and sector documents continuously.',
+  example:'The 14th Five-Year Plan named acceleration of CJ-1000 engine certification explicitly — a programme-level commitment visible years before certification.',
+  limits:'Aspirational by construction. A named priority is a statement of intent and funding, not of achievement.' },
+{ id:'gjb', fam:'state', tier:2, lang:'zh', n:'GJB military standards', zh:'国军标',
+  what:'The national military standard series — specifications and required performance envelopes for materiel.',
+  access:'Standard numbers and titles are broadly discoverable; full texts are inconsistently available and some are restricted.',
+  cadence:'Issued and revised continuously.',
+  example:'Standards reveal the performance envelope a system must meet, which bounds what a supplier is actually building toward.',
+  limits:'A standard defines a requirement, not compliance. Restricted standards for the most sensitive systems are simply absent.' },
+// ————— CORPORATE —————
+{ id:'ashare', fam:'corp', tier:1, lang:'zh', n:'A-share & STAR subsidiary filings', zh:'上市子公司年报',
+  what:'The single most underused channel in the field. China’s defense primes are unlisted, but many subsidiaries trade publicly and file audited financials.',
+  access:'Shanghai, Shenzhen and STAR-market disclosure portals; HKEX for dual-listed. Annual and interim reports, in Chinese.',
+  cadence:'Annual reports and interims on exchange schedule; capacity-expansion and related-party announcements ad hoc.',
+  example:'AVIC Shenyang Aircraft (600760.SS), AVIC Xi’an Aircraft (000768.SZ), AECC Aviation Power, Inner Mongolia First Machinery, North Navigation, JL MAG, Western Superconducting, Zhongke Sanhuan. AECC Aviation Power’s disclosures are among the few public windows into Chinese engine output rates and backlogs.',
+  limits:'Military revenue is often aggregated or redacted; related-party disclosure is inconsistent; a listed subsidiary shows only its slice of the conglomerate.' },
+{ id:'relparty', fam:'corp', tier:2, lang:'zh', n:'Related-party transactions', zh:'关联交易',
+  what:'Disclosed transactions between a listed subsidiary and its unlisted parent — a trace of intra-conglomerate work allocation.',
+  access:'Within annual reports and dedicated announcements on exchange portals.',
+  cadence:'Annual, plus event-driven announcements above disclosure thresholds.',
+  example:'Rising related-party sales into a parent often precede a delivery surge; inventory and prepayment swings can lead visible output.',
+  limits:'Counterparties are frequently described generically. Thresholds mean smaller flows go unreported.' },
+{ id:'procure', fam:'corp', tier:3, lang:'zh', n:'Provincial bidding & tender databases', zh:'政府采购/招投标',
+  what:'Government and SOE procurement notices below the military portal — construction, equipment, services at defense-linked sites.',
+  access:'Provincial public-resource trading platforms; commercial aggregators.',
+  cadence:'Continuous.',
+  example:'Facility construction tenders at institute or plant addresses can reveal capacity expansion before it is visible in imagery.',
+  limits:'Noisy, frequently redacted, and defense-adjacent tenders are often routed away from public platforms.' },
+// ————— TECHNICAL LITERATURE —————
+{ id:'cnki', fam:'lit', tier:2, lang:'zh', n:'CNKI / CJFD', zh:'中国知网',
+  what:'The China National Knowledge Infrastructure — effectively all mainland academic journals, 8,000+ titles from 1915 to present.',
+  access:'Institutional subscription; East View resells Western access. CQVIP and Wanfang are alternatives with different coverage.',
+  cadence:'Continuous.',
+  example:'Engineering journals routinely describe subsystem work — propulsion, materials, signal processing — years before any programme is acknowledged publicly.',
+  limits:'Publication lag; genuinely sensitive work is classified out of the literature entirely. The strongest temptation to over-read in the whole field.' },
+{ id:'cnipa', fam:'lit', tier:2, lang:'zh', n:'CNIPA patent filings', zh:'国家知识产权局',
+  what:'Patent applications and grants, searchable by assignee — where institutes and firms are actually putting R&D.',
+  access:'CNIPA search, plus commercial patent platforms with better English tooling.',
+  cadence:'Continuous; publication follows filing by roughly 18 months.',
+  example:'Assignee-based searching on a numbered institute maps its live research areas; filing clusters often precede product announcements.',
+  limits:'Filing proves investment of effort, not success or fielding. Defensive and strategic filings inflate counts.' },
+{ id:'theses', fam:'lit', tier:3, lang:'zh', n:'Dissertations & conference proceedings', zh:'学位论文',
+  what:'Graduate work at the "Seven Sons of National Defense" universities, frequently the most detailed public description of a subsystem.',
+  access:'CNKI and university repositories; some restricted.',
+  cadence:'Academic calendar.',
+  example:'A masters thesis on a specific control problem can carry the design detail that no published paper or press account includes.',
+  limits:'Student work varies wildly in quality and may describe an academic exercise rather than a real programme.' },
+// ————— TRANSLATION & DOCTRINE —————
+{ id:'casi', fam:'doc', tier:2, lang:'en', n:'CASI — In Their Own Words', zh:'China Aerospace Studies Institute',
+  what:'Air University’s translation series: full English texts of PLA doctrinal works, plus organizational studies of the services and the defense industry.',
+  access:'Free PDFs from airuniversity.af.edu.',
+  cadence:'Rolling releases.',
+  example:'The 2013 and 2020 Science of Military Strategy, Science of Campaigns, Lectures on the Science of Space Operations, PLA terminology guides, and an organizational study of AVIC.',
+  limits:'Doctrine describes intent and concept, not fielded capability; translations lag original publication, sometimes by years.' },
+{ id:'cmsi', fam:'doc', tier:2, lang:'en', n:'CMSI (US Naval War College)', zh:'China Maritime Studies Institute',
+  what:'Established 2006. China Maritime Reports, CMSI Notes, "Red Book" monographs — and CMSI Translations of Chinese military maritime writing.',
+  access:'Free via USNWC Digital Commons; Andrew Erickson maintains access guides.',
+  cadence:'Reports and notes rolling; a quarterly review.',
+  example:'The translation line puts Chinese naval and shipbuilding writing into English without an intervening analytic frame — closest thing to reading the source directly.',
+  limits:'Maritime focus; selection reflects the institute’s research priorities.' },
+// ————— GEOSPATIAL —————
+{ id:'imagery', fam:'geo', tier:1, lang:'en', n:'Commercial satellite imagery', zh:'Planet · Maxar · Sentinel',
+  what:'The backbone of physical verification — yards, silo fields, plant construction, hull launches.',
+  access:'Planet and Maxar commercially; Sentinel free multispectral. FAS, CSIS and independent analysts publish derived analysis.',
+  cadence:'Revisit-rate dependent; effectively continuous for major sites.',
+  example:'Nuclear silo fields and Bohai/Huludao submarine construction are known publicly because of commercial imagery and the analysts who read it.',
+  limits:'Shows presence, not performance. Cloud cover and revisit gaps matter; identification is only as good as the analyst.' },
+{ id:'osintind', fam:'geo', tier:2, lang:'en', n:'Individual OSINT analysts', zh:'H.I. Sutton · @RupprechtDeino',
+  what:'Independent specialists who reliably beat institutions to hull and airframe identifications.',
+  access:'Public posts, personal sites, occasional institutional publication.',
+  cadence:'Event-driven, often same-day.',
+  example:'H.I. Sutton’s undersea work and Rupprecht’s aviation identifications regularly establish facts weeks before formal analysis catches up.',
+  limits:'Individual judgement without institutional review; corrections happen in public and should be tracked.' },
+{ id:'aisadsb', fam:'geo', tier:2, lang:'en', n:'AIS & ADS-B tracking', zh:'船舶/航空器动态',
+  what:'Ship and aircraft movement data — yard activity, sea trials, transport flows.',
+  access:'Commercial and community platforms.',
+  cadence:'Continuous.',
+  example:'Sea-trial patterns and transport movements around yards can time construction milestones.',
+  limits:'Military vessels routinely go dark; transponder data is voluntary and easily spoofed.' },
+// ————— TRADE —————
+{ id:'customs', fam:'trade', tier:1, lang:'zh', n:'China customs & UN Comtrade', zh:'海关总署',
+  what:'Trade flows at commodity-code level — what an otherwise opaque industrial base buys and sells.',
+  access:'China customs publishes monthly aggregates; UN Comtrade mirrors and normalizes; commercial resellers add granularity.',
+  cadence:'Monthly, with a lag.',
+  example:'Energetics and precursor exports leave a customs trail — the route by which suspected ammonium-perchlorate shipments to Iran surfaced.',
+  limits:'Mis-declaration, transshipment through Hong Kong and third countries, and deliberate obfuscation. Codes are coarse.' },
+{ id:'usgs', fam:'trade', tier:1, lang:'en', n:'USGS & IEA commodity data', zh:'矿产/能源统计',
+  what:'Production and processing shares for critical minerals — the quantitative backbone of the leverage analysis.',
+  access:'Free annual and periodic publications.',
+  cadence:'Annual, with interim commentary.',
+  example:'The ~90% rare-earth magnet processing share and ~80% refined gallium figures that anchor the atlas’s chokepoint ledger.',
+  limits:'Estimates for opaque producers; processing-share definitions vary between sources and years.' },
+{ id:'listings', fam:'trade', tier:1, lang:'en', n:'Entity List, 1260H & OFAC filings', zh:'制裁名单',
+  what:'Each listing carries a finding — the US government’s stated reason for designation is itself evidence.',
+  access:'Federal Register, BIS, DoD and Treasury publications.',
+  cadence:'Rolling; 1260H updated periodically (188 entities as of June 2026).',
+  example:'Phytium’s 2021 listing tied its processors to PLA supercomputing centres modelling hypersonic vehicles — a specific attribution not otherwise public.',
+  limits:'Findings are assertions by an interested party, rarely with published evidence; listings lag conduct and are sometimes political.' },
+{ id:'c4ads', fam:'trade', tier:2, lang:'en', n:'C4ADS & network mapping', zh:'企业网络分析',
+  what:'Corporate-network, ownership and evasion mapping — how entities reconstitute under new names.',
+  access:'Published reports, some datasets.',
+  cadence:'Report-driven.',
+  example:'Teardown-and-trace work repeatedly finds Western components in Chinese-supplied munitions moved through Hong Kong and Shenzhen distributor networks.',
+  limits:'Network inference can overreach; shared addresses and directors are suggestive, not dispositive.' },
+// ————— STATE & DEFENSE MEDIA —————
+{ id:'plamedia', fam:'state', tier:4, lang:'zh', n:'PLA Daily & defense media', zh:'解放军报 · 央视军事',
+  what:'PLA Daily, the CCTV-7 military channel and allied outlets — first to show new hardware, and the venue where the PLA talks to itself about doctrine and morale.',
+  access:'Free online; Chinese only for the substantive material.',
+  cadence:'Daily, with heavy activity around parades, anniversaries and plenums.',
+  example:'Parade coverage is often the first confirmation that a system exists in inventory rather than development — the September 2025 parade showed two operational XLUUV classes drawn from inventory, not prototypes.',
+  limits:'Propaganda by construction. Reveals are curated for effect and timing; absence of coverage means nothing, and presence may signal a message rather than a milestone.' },
+{ id:'wechat', fam:'corp', tier:4, lang:'zh', n:'Corporate & institute accounts', zh:'企业/院所公众号',
+  what:'Official accounts run by primes, institutes and universities — milestone announcements, facility photographs, award citations and recruitment notices.',
+  access:'WeChat public accounts; much is mirrored to the open web and indexed by Chinese search.',
+  cadence:'Continuous; recruitment postings cluster with academic hiring cycles.',
+  example:'Recruitment notices are quietly among the most revealing items published — a posting names the technical area, the platform, and sometimes the programme an institute is staffing for.',
+  limits:'Promotional framing, and posts are deleted without notice once a topic becomes sensitive. Archive on sight.' },
+// ————— WESTERN SPECIALIST —————
+{ id:'cset', fam:'west', tier:2, lang:'en', n:'CSET (Georgetown)', zh:'安全与新兴技术中心',
+  what:'Data-driven work on Chinese science and technology, notably Hannas and Chang on the PRC’s own science-and-technology intelligence apparatus.',
+  access:'Free reports and datasets.',
+  cadence:'Rolling.',
+  example:'"China’s STI Operations" documents how the PRC systematically harvests foreign technical literature — a mirror of the tradecraft on this page.',
+  limits:'US-policy framing; the uniformity problem this page opens with applies here too.' },
+{ id:'merics', fam:'west', tier:2, lang:'en', n:'MERICS', zh:'墨卡托中国研究中心',
+  what:'European institutional analysis of Chinese industrial policy and the state’s firm-level instruments.',
+  access:'Free and subscriber reports.',
+  cadence:'Rolling.',
+  example:'The "Accelerator State" report is the best single treatment of how the Little Giants system actually works.',
+  limits:'Policy-analysis altitude; less granular on specific hardware.' },
+{ id:'teardown', fam:'west', tier:1, lang:'en', n:'TechInsights & SemiAnalysis', zh:'芯片拆解分析',
+  what:'Physical teardowns and supply-chain analysis of Chinese semiconductors — the hardest evidence available in the compute domain.',
+  access:'Commercial, with substantial public reporting.',
+  cadence:'Product-driven; teardowns follow major launches.',
+  example:'The teardown establishing SMIC’s 7nm-class process in a shipping Huawei product settled a question no amount of corporate claim could.',
+  limits:'Expensive and selective; a teardown proves a device exists, not the yield or volume behind it.' },
+];
+
+const state = { tiers: new Set([1,2,3,4]), zhOnly: false };
+
+// cadence strip
+const cad = document.getElementById('cad');
+CADENCE.forEach(c => {
+  const d = document.createElement('div');
+  d.innerHTML = '<div class="cw">' + c.w + '</div><div class="cs">' + c.s + '</div>';
+  cad.appendChild(d);
+});
+
+// families
+const fams = document.getElementById('fams');
+Object.keys(FAMS).forEach(key => {
+  const items = DATA.filter(d => d.fam === key);
+  if (!items.length) return;
+  const sec = document.createElement('div');
+  sec.className = 'fam';
+  sec.dataset.fam = key;
+  sec.innerHTML = '<div class="famhead"><h3>' + FAMS[key].h + '</h3><span class="fd">' + FAMS[key].d +
+    '</span><span class="fn" data-count>' + items.length + '</span></div><div class="cards"></div>';
+  const cards = sec.querySelector('.cards');
+  items.forEach(d => {
+    const b = document.createElement('button');
+    b.className = 'card t' + d.tier;
+    b.dataset.id = d.id;
+    b.innerHTML =
+      '<div class="crow"><span class="tier"><span class="sw"></span>Tier ' + d.tier + '</span>' +
+      '<span class="lang' + (d.lang === 'zh' ? ' zh' : '') + '">' + (d.lang === 'zh' ? '中文' : 'EN') + '</span></div>' +
+      '<div class="cn">' + d.n + '<span class="zh">' + d.zh + '</span></div>' +
+      '<div class="cwhat">' + d.what + '</div>';
+    b.addEventListener('click', () => openPanel(d));
+    cards.appendChild(b);
+  });
+  fams.appendChild(sec);
+});
+
+function applyFilters() {
+  const byId = Object.fromEntries(DATA.map(d => [d.id, d]));
+  document.querySelectorAll('.card').forEach(c => {
+    const d = byId[c.dataset.id];
+    c.hidden = !state.tiers.has(d.tier) || (state.zhOnly && d.lang !== 'zh');
+  });
+  document.querySelectorAll('.fam').forEach(f => {
+    const vis = f.querySelectorAll('.card:not([hidden])').length;
+    f.hidden = vis === 0;
+    f.querySelector('[data-count]').textContent = vis;
+  });
+  document.getElementById('reset').hidden = state.tiers.size === 4 && !state.zhOnly;
+}
+
+document.querySelectorAll('.chip[data-tier]').forEach(ch => {
+  ch.addEventListener('click', () => {
+    const t = Number(ch.dataset.tier);
+    const on = ch.getAttribute('aria-pressed') === 'true';
+    if (on && state.tiers.size === 1) return;
+    ch.setAttribute('aria-pressed', String(!on));
+    if (on) state.tiers.delete(t); else state.tiers.add(t);
+    applyFilters();
+  });
+});
+const zhBtn = document.getElementById('zhonly');
+zhBtn.addEventListener('click', () => {
+  state.zhOnly = !state.zhOnly;
+  zhBtn.setAttribute('aria-pressed', String(state.zhOnly));
+  applyFilters();
+});
+document.getElementById('reset').addEventListener('click', () => {
+  state.tiers = new Set([1,2,3,4]);
+  state.zhOnly = false;
+  zhBtn.setAttribute('aria-pressed', 'false');
+  document.querySelectorAll('.chip[data-tier]').forEach(c => c.setAttribute('aria-pressed', 'true'));
+  applyFilters();
+});
+
+// dossier
+const panel = document.getElementById('panel');
+const backdrop = document.getElementById('backdrop');
+function openPanel(d) {
+  document.getElementById('pbody').innerHTML =
+    '<div class="crow"><span class="tier" style="--tc:var(--s' + d.tier + ')"><span class="sw"></span>Tier ' + d.tier + '</span>' +
+    '<span class="lang' + (d.lang === 'zh' ? ' zh' : '') + '">' + (d.lang === 'zh' ? '中文' : 'EN') + '</span></div>' +
+    '<h2>' + d.n + '</h2><p class="pzh">' + d.zh + '</p>' +
+    '<p class="pmeta">' + FAMS[d.fam].h + '</p>' +
+    '<div class="pf"><span class="k">What it is</span><span class="v">' + d.what + '</span></div>' +
+    '<div class="pf"><span class="k">How to reach it</span><span class="v">' + d.access + '</span></div>' +
+    '<div class="pf"><span class="k">Cadence</span><span class="v">' + d.cadence + '</span></div>' +
+    '<div class="pf ex"><span class="k">Worked example</span><span class="v">' + d.example + '</span></div>' +
+    '<div class="pf"><span class="k">What it cannot tell you</span><span class="v">' + d.limits + '</span></div>';
+  panel.classList.add('open');
+  backdrop.hidden = false;
+}
+function closePanel() { panel.classList.remove('open'); backdrop.hidden = true; }
+document.getElementById('closep').addEventListener('click', closePanel);
+backdrop.addEventListener('click', closePanel);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closePanel(); });
+
+applyFilters();
+</script>
