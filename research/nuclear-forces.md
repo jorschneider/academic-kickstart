@@ -2,7 +2,7 @@
 
 *The fastest nuclear expansion in the world — from a minimal retaliatory deterrent to a modernizing triad heading toward peer status. What's driving it, who builds it, and why the atlas still rates it "catching up."*
 
-*Working draft — August 30, 2026. Part of the [China Defense-Industrial Atlas](./defense-industrial-atlas.md); the delivery systems and warhead complex also appear in the [PLA Supplier Atlas](./chinese-military-supplier-map.md) (CASC/CASIC and the CNNC/CAEP nuclear tier).*
+*Working draft — August 30, 2026. Part of the [China Defense-Industrial Atlas](https://claude.ai/code/artifact/ecc69e75-bcc3-46cf-a303-3b95f8ac9b4c); the delivery systems and warhead complex also appear in the [PLA Supplier Atlas](./chinese-military-supplier-map.md) (CASC/CASIC and the CNNC/CAEP nuclear tier).*
 
 ---
 

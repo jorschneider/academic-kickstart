@@ -2,7 +2,7 @@
 
 *The aerospace-strategic domain — where China is a peer or ahead in some of the most consequential categories (hypersonics, counterspace, theater missiles) and racing to close the one gap that remains (reusable, commercial-scale spaceflight). The primes, the programs, and the 2026 megaconstellation surge.*
 
-*Working draft — August 30, 2026. Part of the [China Defense-Industrial Atlas](./defense-industrial-atlas.md); covers the atlas's "Missiles & Hypersonics" and "Space & Counterspace" scorecard rows. Nuclear delivery is treated in the [Nuclear Forces essay](./nuclear-forces.md).*
+*Working draft — August 30, 2026. Part of the [China Defense-Industrial Atlas](https://claude.ai/code/artifact/ecc69e75-bcc3-46cf-a303-3b95f8ac9b4c); covers the atlas's "Missiles & Hypersonics" and "Space & Counterspace" scorecard rows. Nuclear delivery is treated in the [Nuclear Forces essay](./nuclear-forces.md).*
 
 ---
 

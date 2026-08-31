@@ -2,7 +2,7 @@
 
 *The domain that decides whether every other system can see and shoot — and the one where a single conglomerate, CETC, sits closest to the world's frontier. The radar leap, the gallium-nitride foundation beneath it, and the reality gap in the marketing.*
 
-*Working draft — August 30, 2026. Part of the [China Defense-Industrial Atlas](./defense-industrial-atlas.md); CETC's numbered institutes are mapped in the [PLA Supplier Atlas](./chinese-military-supplier-map.md).*
+*Working draft — August 30, 2026. Part of the [China Defense-Industrial Atlas](https://claude.ai/code/artifact/ecc69e75-bcc3-46cf-a303-3b95f8ac9b4c); CETC's numbered institutes are mapped in the [PLA Supplier Atlas](./chinese-military-supplier-map.md).*
 
 ---
 

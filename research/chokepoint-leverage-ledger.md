@@ -2,7 +2,7 @@
 
 *The atlas's bottom line, as a strategic balance sheet. Every domain nets out to two columns — what China must still import, and what the world must import from China — and the analytically useful facts are the same six for each: who holds it, how binding it is, how long substitution takes, which way the trend runs, and what the lever is. This is the "so what."*
 
-*Working draft — August 30, 2026. The cross-cutting synthesis of the [China Defense-Industrial Atlas](./defense-industrial-atlas.md); companion interactive: the Chokepoint Ledger map.*
+*Working draft — August 30, 2026. The cross-cutting synthesis of the [China Defense-Industrial Atlas](https://claude.ai/code/artifact/ecc69e75-bcc3-46cf-a303-3b95f8ac9b4c); companion interactive: the Chokepoint Ledger map.*
 
 ---
 

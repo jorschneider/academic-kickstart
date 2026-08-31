@@ -2,7 +2,7 @@
 
 *The atlas re-cut by the only question that ultimately matters for it: what is decisive when the shooting starts? The economic chokepoints of the [ledger](./chokepoint-leverage-ledger.md) run on a timescale of years; a cross-strait fight runs on hours, weeks, and reload rates — and that reframes which parts of the industrial base actually count.*
 
-*Working draft — August 30, 2026. An operational lens over the [China Defense-Industrial Atlas](./defense-industrial-atlas.md). This is an analytical exercise grounded in published wargames, not a prediction.*
+*Working draft — August 30, 2026. An operational lens over the [China Defense-Industrial Atlas](https://claude.ai/code/artifact/ecc69e75-bcc3-46cf-a303-3b95f8ac9b4c). This is an analytical exercise grounded in published wargames, not a prediction.*
 
 ---
 

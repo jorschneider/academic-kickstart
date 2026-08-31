@@ -2,7 +2,7 @@
 
 *The flagship deep-dive on the embodied-intelligence wave — humanoids, quadrupeds, military ground robots, and the component chain beneath them. China ships ~97% of the world's humanoids; the interesting question is what it still can't make itself.*
 
-*Working draft — August 30, 2026. Part of the [China Defense-Industrial Atlas](./defense-industrial-atlas.md); a companion to the robot layer of the [Drone & Robot Ecosystem](./drone-robot-ecosystem.md), taken much deeper here.*
+*Working draft — August 30, 2026. Part of the [China Defense-Industrial Atlas](https://claude.ai/code/artifact/ecc69e75-bcc3-46cf-a303-3b95f8ac9b4c); a companion to the robot layer of the [Drone & Robot Ecosystem](./drone-robot-ecosystem.md), taken much deeper here.*
 
 ---
 

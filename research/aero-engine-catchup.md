@@ -2,7 +2,7 @@
 
 *The historic pacing item of Chinese airpower — and the clearest "catching up" story in the atlas. Where the gap has closed to a few years, where it's genuinely closed, and where it still bites.*
 
-*Working draft — August 30, 2026. Part of the [China Defense-Industrial Atlas](./defense-industrial-atlas.md); the engine primes also appear in the [PLA Supplier Atlas](./chinese-military-supplier-map.md) (AECC tier).*
+*Working draft — August 30, 2026. Part of the [China Defense-Industrial Atlas](https://claude.ai/code/artifact/ecc69e75-bcc3-46cf-a303-3b95f8ac9b4c); the engine primes also appear in the [PLA Supplier Atlas](./chinese-military-supplier-map.md) (AECC tier).*
 
 ---
 

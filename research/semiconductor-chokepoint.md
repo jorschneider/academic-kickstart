@@ -2,7 +2,7 @@
 
 *The one domain where China still bends the knee — and is spending its way out. A map of where the PLA's compute base is dependent, where it's brute-forcing around the controls, and where it has quietly stopped depending at all.*
 
-*Working draft — August 30, 2026. Part of the [China Defense-Industrial Atlas](./defense-industrial-atlas.md); the compute layer also underlies the [drone/robot](./drone-robot-ecosystem.md) and [robot](./defense-industrial-atlas.md) ecosystems.*
+*Working draft — August 30, 2026. Part of the [China Defense-Industrial Atlas](https://claude.ai/code/artifact/ecc69e75-bcc3-46cf-a303-3b95f8ac9b4c); the compute layer also underlies the [drone/robot](./drone-robot-ecosystem.md) and [robot](./robot-ecosystem.md) ecosystems.*
 
 ---
 
