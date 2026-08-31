@@ -95,6 +95,7 @@ Used properly, as a pointer to primary material rather than a substitute for it.
 - **CSET (Georgetown)** — particularly Hannas and Chang on China's science-and-technology intelligence apparatus.
 - **MERICS** — the *Accelerator State* report on the Little Giants system.
 - **Jamestown China Brief** — consistently good on institutional and personnel questions, as above.
+- **ASPI's China Defence Universities Tracker** — the authoritative open catalog of Chinese universities and institutes by defense-involvement level; see the [talent layer essay](./defense-universities-talent.md).
 - **SemiAnalysis** and **TechInsights** on compute and physical teardowns.
 - *Limits:* the uniformity problem this page opens with.
 

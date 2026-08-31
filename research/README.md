@@ -22,7 +22,7 @@ A ChinaTalk research corpus mapping who actually builds for the PLA — the prim
 | [**Chokepoint Ledger**](https://claude.ai/code/artifact/9b07ec41-f9ff-4863-a0cf-c0fd43b9b11a) | **The economic synthesis** — dependencies vs. leverage on a severity × substitution matrix | 18 chokepoints |
 | [**Taiwan Contingency**](https://claude.ai/code/artifact/14f256bd-9d68-4687-866e-054f89579299) | **The operational synthesis** — what's decisive across four conflict phases | 19 capabilities |
 | [**Tripwires**](https://claude.ai/code/artifact/eeac96ad-0e4a-4582-9a02-a4e182e7ff37) | **The forecasting synthesis** — the observable events that would force a rating to change | 25 tripwires |
-| [The Reading Room](https://claude.ai/code/artifact/1cc051fa-7a46-438c-be94-fd6cccadfae9) | Sourcing & tradecraft — where the evidence comes from, and how to reach it | 26 channels |
+| [The Reading Room](https://claude.ai/code/artifact/1cc051fa-7a46-438c-be94-fd6cccadfae9) | Sourcing & tradecraft — where the evidence comes from, and how to reach it | 27 channels |
 
 ## Essays
 
@@ -44,7 +44,7 @@ A ChinaTalk research corpus mapping who actually builds for the PLA — the prim
 | [`taiwan-contingency-lens.md`](./taiwan-contingency-lens.md) | **The operational synthesis** — what's decisive when the shooting starts, and which chokepoints bite when |
 | [`indicators-and-warnings.md`](./indicators-and-warnings.md) | **The forecasting synthesis** — 25 falsifiable tripwires, and why three in five point one way |
 | [`defense-universities-talent.md`](./defense-universities-talent.md) | **The talent layer** — the Seven Sons of National Defence, the ministry that administers them, and the input no export control can reach |
-| [`sourcing-and-tradecraft.md`](./sourcing-and-tradecraft.md) | **Where to actually look** — 26 primary channels, most Chinese-language, plus three findings only primary sources give you |
+| [`sourcing-and-tradecraft.md`](./sourcing-and-tradecraft.md) | **Where to actually look** — 27 primary channels, most Chinese-language, plus three findings only primary sources give you |
 | [`methodology-and-confidence.md`](./methodology-and-confidence.md) | **How to read the atlas** — the sourcing taxonomy, the confidence grade behind every rating, and what open source structurally can't see |
 
 ## The through-line
