@@ -45,7 +45,7 @@ Ranking the PLA's rent-bearing systems by revealed enforcement intensity, 2023�
 | Rank | System | Senior figures actioned | Why the rents exist |
 |---|---|---|---|
 | 1 | **Political-work / cadre selection** | ~13 | Controls promotion. In a system where rank was demonstrably purchasable, the PWD *is* the marketplace — and its custodians are the market makers |
-| 2 | **Armaments & procurement (EDD + service equipment depts + SOE primes)** | ~10 | Monopsony buyer, classified budgets, no external audit, prices negotiated with a handful of state primes |
+| 2 | **Armaments & procurement (EDD + service equipment depts + SOE primes)** | ~10 | Monopsony buyer, classified budgets, no external audit, prices negotiated with a handful of state primes. **Every director the Equipment Development Department has ever had — Zhang Youxia, Li Shangfu, Xu Xueqiang — has been purged**, and its political-commissar billet has stood empty since April 2019: the buyer of every Chinese weapon system has gone seven years without its designated internal watchdog |
 | 3 | **Rocket Force** | ~8 (+3 reported) | Absorbed the largest concentrated capital programme in PLA history (silo fields, solid-motor production); construction plus secrecy is the maximal-graft combination |
 | 4 | **Theater/operational command** | ~9 | Not intrinsically rent-rich; enforcement here tracks *network*, not money — see §3 |
 | 5 | **Logistics & infrastructure (LSD, JLSF)** | ~6 | Land, housing, food, fuel, medical: high-volume, low-visibility |
