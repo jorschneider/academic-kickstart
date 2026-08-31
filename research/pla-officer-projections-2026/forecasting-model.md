@@ -37,13 +37,18 @@ Lag measured from the last credible public appearance (or the removal-from-duty 
 | Zhong Shaojun | ~Oct 2025 (removed as NDU political commissar) | 28 Aug 2026 (NPC seat) | ~10 |
 | Li Qiaoming | Dec 2024 (dismissed as Army commander) | 26 Feb 2026 (NPC seat) | ~14 |
 
-**Central tendency: median ≈ 6–7 months; interquartile range ≈ 2–10 months.**
+**Measured against the fuller dataset in [`base-rates.md`](base-rates.md) §4, which extends this back to 2017: median 168 days (~5.5 months), mean 202.5, range 15 to 942 days, interquartile span ≈ 56–215 days.** Restricted to the six cases where both endpoints are documented rather than reconstructed, the median tightens to **98.5 days (~3.2 months)**. The two medians bracket the honest answer: **roughly three to six months from a general vanishing to the first official word, with a long right tail measured in years.**
 
-A second, tighter lag governs what follows: **first official action → formal expulsion or removal ≈ 5–8 months** (Miao Hua: suspension Nov 2024 → expulsion Oct 2025, 11 months; Zhang Youxia/Liu Zhenli: investigation Jan 2026 → CMC removal Aug 2026, 7 months; Li Shangfu: removal Oct 2023 → expulsion Jun 2024, 8 months). And expulsion → sentencing runs longer: Li Shangfu and Wei Fenghe were expelled in June 2024 and sentenced in May 2026 — **~23 months**.
+Two downstream intervals follow: **first official action → expulsion, median ~264 days (~8.7 months)**; **expulsion → sentencing, median ~394 days (~13 months)**. The full disappearance-to-verdict cycle ran ~18 months for Fang Fenghui (2017–19) and ~32 months for Li Shangfu (2023–26) — the process has roughly doubled in length between the last purge wave and this one.
+
+Two cases anchor the extremes and are worth stating precisely:
+
+- **Zhang Youxia: 33 days.** His last confirmed appearance was 22 December 2025, announcing Xi's promotion orders at the general-promotion ceremony; his investigation was announced 24 January 2026. (English-language sources claiming he vanished in November 2025 are wrong, and the Xinhua release of 22 December refutes them.) This is the second-shortest lag on record and confirms the rank-compression effect described below — he was taken with almost no warning.
+- **Ju Qiansheng: 942 days.** Last confirmed public activity 29 January 2024; NPC seat stripped 28 August 2026. Silence lasting years does not mean an officer is safe, which is the single most important caveat attached to §1.4 and §1.5.
 
 ### 1.3 Two important qualifications
 
-1. **Rank compresses the lag at the top.** Zhang Youxia and Liu Zhenli went from last public appearance to *announced investigation* in about one month — far faster than the median. Removing a sitting CMC vice chairman apparently could not be done quietly, so the regime front-ran the rumor mill. Conversely, mid-ranking officers (Li Qiaoming, 14 months) can be left in limbo indefinitely.
+1. **Rank compresses the lag at the top.** Zhang Youxia and Liu Zhenli went from last public appearance to *announced investigation* in 33 days — against a dataset median of 168. Removing a sitting CMC vice chairman apparently could not be done quietly, so the regime front-ran the rumour mill. Conversely, mid-ranking and retired officers can be left in limbo for years (Li Qiaoming ~14 months; Ju Qiansheng 942 days).
 2. **The NPC Standing Committee calendar is the pacing mechanism.** Most terminations are announced at NPCSC sessions, which meet roughly **bimonthly in even months**. The 2026 sessions that carried military names: **late Feb (26th), late Apr, late Jun (26th), late Aug (28th)**. This quantizes the timing: an officer whose case matures in September waits for the **late-October** session.
 
 ### 1.4 Predicted confirmation windows for the officers currently missing
