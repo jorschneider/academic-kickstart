@@ -87,11 +87,16 @@ This is the single most informative unresolved case in the dataset: it discrimin
 
 ### 2.1 The constraint
 
-PLA senior appointments are age-gated. Working norms (bent under Xi but never abolished): theater-leader-grade billets are normally vacated by ~65; CMC members have entered as late as 67; only exceptionally trusted figures serve past 70 as vice chairmen (Zhang Youxia was retained at 72 in 2022 — a decision that ended in his purge). A useful rule: **to be seated at a Party Congress, an officer normally needs to be ~65 or under; to serve a full five-year term, ~62 or under.**
+PLA senior appointments are age-gated, and the gates are two-tier (see [`methodology.md`](methodology.md) §3 for the statutory detail and the important caveat that these provisions have been formally *suspended* since 2017, leaving observed practice rather than binding law):
+
+- **Theater Command Deputy Leader grade: 63.** **Theater Command Leader grade: 65.** No extension provision exists at either level, which is why they behave as cliffs.
+- **CMC membership is an age waiver.** Members have served to **68, and possibly 70** — Qiao Qingchen and Ma Xiaotian both to 68, Miao Hua retained at 67, Zhang Shengmin at 66 on appointment. The informal "seven up, eight down" convention (67 stay, 68 go) governs the top body.
+
+So the working rules are: **to hold a theater or service command, ~65 or under; to take a CMC seat, ~67 or under, with 68 achievable; to serve a full five-year term from a Party Congress, ~62 or under.** Zhang Youxia's retention at 72 in 2022 was exceptional even against the CMC standard — and ended in his purge.
 
 ### 2.2 The table
 
-Ages at each relevant milestone. **Bold** = inside the normal CMC-entry window (≤67) at that congress.
+Ages at each relevant milestone. **Bold** = inside the normal CMC-entry window (≤67, per §2.1) at that congress. Note that an officer can be past the theater-command ceiling of 65 and still be CMC-eligible.
 
 | Officer | Born | 21st Cong. 2027 | 2031 | 22nd Cong. 2032 | 2036 | 23rd Cong. 2037 | 2041 |
 |---|---|---|---|---|---|---|---|
@@ -178,6 +183,9 @@ Committing to these makes the report checkable. Each has a resolution date and a
 | 20 | **Chen Zhiguo** reaches flag rank (rear admiral) by end-2029 | 0.60 | He does not |
 | 21 | At least one 2037-era CMC member is an officer not identifiable in open sources as of 2026 | 0.85 | Every member was publicly identifiable today |
 | 22 | The PLA holds a full-general promotion ceremony elevating an officer born 1970 or later before end-2030 | 0.50 | No such promotion |
+| 23 | **No civilian is named to the CMC at the 21st Party Congress** (autumn 2027) — the succession indicator, per README §5.3 | 0.75 | A civilian is seated, signalling a 2032 handover is being prepared |
+| 24 | **Gu Zhong** (b. 1972, 72nd Group Army) reaches deputy-theater grade by end-2030 | 0.45 | He does not |
+| 25 | The nine expelled on 17 Oct 2025 (He Weidong, Miao Hua et al.) receive published court verdicts by end-2028 | 0.55 | No verdicts published — which would itself be evidence the cases were never primarily financial (see `corruption-analysis.md` §3, Tier B) |
 
 **Scoring note.** If these resolve at roughly their stated probabilities, the model is calibrated. The predictions most diagnostic of the report's core thesis are **#1, #2 (the timing model), #3 and #18 (the Zhang Zheng call), and #21 (the pipeline-opacity claim)**. If #1 and #2 both fail, §1's timing model is broken and the Tier-1 "vanished = purged" inference in the main report should be discounted heavily.
 
