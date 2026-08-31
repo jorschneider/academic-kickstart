@@ -1,0 +1,387 @@
+<title>China Defense-Industrial Atlas</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,500;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    color-scheme: light;
+    --bg: #E5E7E1;
+    --surface: #F1F3EC;
+    --surface2: #DADDD3;
+    --ink: #1A1D21;
+    --muted: #656C70;
+    --line: #C9CCC1;
+    --hair: #D6D9CE;
+    --accent: #A6331E;          /* cinnabar */
+    --accent-soft: rgba(166, 51, 30, .10);
+    --teal: #285863;            /* ink-teal secondary */
+    --teal-soft: rgba(40, 88, 99, .10);
+    --warn: #7E560B;            /* ochre — low-confidence flag */
+    --shadow: 0 16px 44px rgba(26, 29, 33, .14);
+    /* sequential capability ramp (Dominant→Dependent, dark→light) */
+    --t4: #8A2E1A; --t3: #B0563A; --t2: #CE8A6E; --t1: #E4BAA8;
+    --t4-ink: #fff; --t3-ink: #fff; --t2-ink: #3a2216; --t1-ink: #4a2c1e;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --bg: #14161A; --surface: #1C1F25; --surface2: #262A31;
+      --ink: #E6E4DC; --muted: #969CA2; --line: #333842; --hair: #2A2F37;
+      --accent: #D4664A; --accent-soft: rgba(212, 102, 74, .14);
+      --teal: #5F9AA7; --teal-soft: rgba(95, 154, 167, .14);
+      --warn: #D6A44A;
+      --shadow: 0 16px 44px rgba(0, 0, 0, .55);
+      --t4: #EE9270; --t3: #CE7756; --t2: #A85C44; --t1: #7E4331;
+      --t4-ink: #241009; --t3-ink: #1e0c06; --t2-ink: #fbeae2; --t1-ink: #f6e0d6;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #14161A; --surface: #1C1F25; --surface2: #262A31;
+    --ink: #E6E4DC; --muted: #969CA2; --line: #333842; --hair: #2A2F37;
+    --accent: #D4664A; --accent-soft: rgba(212, 102, 74, .14);
+    --teal: #5F9AA7; --teal-soft: rgba(95, 154, 167, .14);
+    --warn: #D6A44A;
+    --shadow: 0 16px 44px rgba(0, 0, 0, .55);
+    --t4: #EE9270; --t3: #CE7756; --t2: #A85C44; --t1: #7E4331;
+    --t4-ink: #241009; --t3-ink: #1e0c06; --t2-ink: #fbeae2; --t1-ink: #f6e0d6;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink); margin: 0;
+    font-family: "IBM Plex Sans", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+    font-size: 14.5px; line-height: 1.58;
+  }
+  .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 26px; }
+  a { color: var(--accent); }
+  /* masthead */
+  header.mast { padding: 52px 0 30px; border-bottom: 2px solid var(--ink); }
+  .kicker { font-family: "IBM Plex Mono", monospace; font-size: 11.5px; letter-spacing: .22em; text-transform: uppercase; color: var(--accent); margin: 0 0 18px; display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .kicker::before { content: ""; width: 30px; height: 2px; background: var(--accent); display: inline-block; }
+  h1 {
+    font-family: "Spectral", Georgia, serif; font-weight: 700;
+    font-size: clamp(38px, 6.4vw, 74px); line-height: .98; letter-spacing: -0.015em;
+    margin: 0 0 22px; text-wrap: balance; max-width: 15ch;
+  }
+  .lede { font-family: "Spectral", Georgia, serif; font-size: clamp(17px, 2.1vw, 21px); line-height: 1.5; max-width: 62ch; color: var(--ink); margin: 0; }
+  .lede b { color: var(--accent); font-weight: 600; }
+  .dateline { font-family: "IBM Plex Mono", monospace; font-size: 11.5px; color: var(--muted); margin-top: 26px; letter-spacing: .04em; }
+  /* section frame */
+  section { padding: 46px 0; border-bottom: 1px solid var(--hair); }
+  .sechead { display: flex; align-items: baseline; gap: 14px; margin: 0 0 8px; }
+  .secnum { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--accent); letter-spacing: .1em; }
+  h2 { font-family: "Spectral", Georgia, serif; font-weight: 700; font-size: clamp(24px, 3.4vw, 34px); letter-spacing: -0.01em; margin: 0; }
+  .sform { color: var(--muted); font-size: 14px; max-width: 74ch; margin: 6px 0 26px; }
+  /* scorecard distribution */
+  .dist { display: flex; height: 46px; border-radius: 5px; overflow: hidden; border: 1px solid var(--line); margin-bottom: 8px; }
+  .dist button { border: 0; cursor: pointer; color: inherit; font: inherit; display: flex; flex-direction: column; justify-content: center; padding: 0 12px; gap: 1px; transition: filter .12s, opacity .12s; border-right: 2px solid var(--surface); }
+  .dist button:last-child { border-right: 0; }
+  .dist button:hover { filter: brightness(1.06); }
+  .dist button .dc { font-family: "IBM Plex Mono", monospace; font-weight: 500; font-size: 15px; line-height: 1; }
+  .dist button .dn { font-size: 10px; letter-spacing: .03em; opacity: .9; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .dist button.t4 { background: var(--t4); color: var(--t4-ink); }
+  .dist button.t3 { background: var(--t3); color: var(--t3-ink); }
+  .dist button.t2 { background: var(--t2); color: var(--t2-ink); }
+  .dist button.t1 { background: var(--t1); color: var(--t1-ink); }
+  .dist button[aria-pressed="false"] { opacity: .34; filter: grayscale(.4); }
+  .distnote { font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--muted); margin: 0 0 22px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .distnote button { background: none; border: 0; color: var(--accent); cursor: pointer; font: inherit; text-decoration: underline; padding: 0; }
+  /* scorecard table */
+  .score { display: flex; flex-direction: column; gap: 0; }
+  .srow { display: grid; grid-template-columns: 1.15fr 1.35fr 1.5fr 1.5fr; gap: 18px; padding: 15px 4px; border-top: 1px solid var(--hair); align-items: start; }
+  .srow:first-child { border-top: 0; }
+  .srow[hidden] { display: none; }
+  .sdomain { display: flex; flex-direction: column; gap: 3px; }
+  .sdomain .dm { font-family: "Spectral", Georgia, serif; font-weight: 600; font-size: 17px; line-height: 1.15; }
+  .sdomain .zh { font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--muted); }
+  .scap { display: flex; flex-direction: column; gap: 6px; }
+  .meter { display: flex; gap: 3px; }
+  .pip { height: 9px; flex: 1; border-radius: 2px; background: var(--surface2); border: 1px solid var(--line); }
+  .pip.on4 { background: var(--t4); border-color: var(--t4); }
+  .pip.on3 { background: var(--t3); border-color: var(--t3); }
+  .pip.on2 { background: var(--t2); border-color: var(--t2); }
+  .pip.on1 { background: var(--t1); border-color: var(--t1); }
+  .tierlab { font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: .03em; }
+  .tierlab .tw { color: var(--muted); }
+  .mo { font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .04em; color: var(--muted); margin-top: 4px; text-transform: uppercase; }
+  .mo .moa { font-weight: 700; font-size: 12px; }
+  .mo.mo-fast { color: var(--accent); }
+  /* confidence marker */
+  .conf { display: flex; align-items: baseline; gap: 6px; margin-top: 5px; font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); }
+  .conf .dots { letter-spacing: 1.5px; font-size: 8.5px; position: relative; top: -0.5px; }
+  .conf .cg { font-weight: 700; font-size: 11px; letter-spacing: .06em; }
+  .conf .cl { color: var(--muted); }
+  .conf.c-a { color: var(--teal); }
+  .conf.c-c { color: var(--warn); }
+  /* confidence legend under distribution */
+  .conflegend { display: flex; gap: 18px; flex-wrap: wrap; font-family: "IBM Plex Mono", monospace; font-size: 10.5px; color: var(--muted); margin: 0 0 22px; align-items: baseline; }
+  .conflegend .clh { text-transform: uppercase; letter-spacing: .12em; color: var(--ink); }
+  .conflegend .ci { display: inline-flex; gap: 5px; align-items: baseline; }
+  .conflegend .ci b { font-weight: 700; }
+  .conflegend .ci.c-a b, .conflegend .ci.c-a .dots { color: var(--teal); }
+  .conflegend .ci.c-c b, .conflegend .ci.c-c .dots { color: var(--warn); }
+  .conflegend a { color: var(--accent); text-decoration: underline; }
+  .swhy { font-size: 13px; line-height: 1.5; color: var(--ink); }
+  .sdep { font-size: 12.5px; line-height: 1.5; color: var(--muted); }
+  .sdep b { color: var(--ink); font-weight: 600; font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; display: block; margin-bottom: 2px; }
+  .colhdr { display: grid; grid-template-columns: 1.15fr 1.35fr 1.5fr 1.5fr; gap: 18px; padding: 0 4px 8px; font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+  /* two syntheses feature */
+  #ledger-feature { padding: 40px 0; border-bottom: 1px solid var(--hair); display: flex; flex-direction: column; gap: 14px; }
+  .ledger-cta { display: flex; align-items: center; justify-content: space-between; gap: 24px; text-decoration: none; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 22px 26px 22px 30px; transition: transform .12s, box-shadow .12s; position: relative; overflow: hidden; }
+  .ledger-cta::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: linear-gradient(180deg, var(--accent), var(--teal)); }
+  .ledger-cta.taiwan::before { background: linear-gradient(180deg, var(--accent), var(--accent)); }
+  .ledger-cta.tripwire::before { background: linear-gradient(180deg, var(--teal), var(--teal)); }
+  .lc-h { margin-top: 0; }
+  .ledger-cta:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+  .lc-eyebrow { font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0 0 8px; }
+  .lc-h { font-family: "Spectral", Georgia, serif; font-weight: 700; font-size: clamp(22px, 3vw, 30px); margin: 0 0 10px; letter-spacing: -0.01em; }
+  .lc-p { margin: 0; font-size: 13.5px; color: var(--muted); line-height: 1.55; max-width: 84ch; }
+  .lc-p b.lc-in { color: var(--accent); font-weight: 600; } .lc-p b.lc-out { color: var(--teal); font-weight: 600; }
+  .lc-go { font-family: "IBM Plex Mono", monospace; font-size: 13px; color: var(--accent); font-weight: 500; white-space: nowrap; flex: none; }
+  @media (max-width: 720px) { .ledger-cta { flex-direction: column; align-items: flex-start; } }
+  /* maps grid */
+  .maps { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+  .mapcard { display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--line); border-top: 3px solid var(--accent); border-radius: 6px; padding: 20px 20px 18px; text-decoration: none; color: var(--ink); transition: transform .12s, box-shadow .12s; }
+  .mapcard:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+  .mapcard.teal { border-top-color: var(--teal); }
+  .mapcard .mk { font-family: "IBM Plex Mono", monospace; font-size: 10.5px; letter-spacing: .13em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+  .mapcard h3 { font-family: "Spectral", Georgia, serif; font-weight: 700; font-size: 22px; margin: 0 0 8px; line-height: 1.08; }
+  .mapcard p { margin: 0 0 16px; font-size: 13px; color: var(--muted); line-height: 1.5; flex: 1; }
+  .mapcard .stat { font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--teal); margin-bottom: 14px; }
+  .mapcard .go { font-family: "IBM Plex Mono", monospace; font-size: 12px; letter-spacing: .04em; color: var(--accent); font-weight: 500; }
+  .mapcard.teal .go { color: var(--teal); }
+  .essays { margin-top: 22px; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 3px 26px; }
+  .essay { padding: 11px 0; border-top: 1px solid var(--hair); }
+  .essay .et { font-family: "Spectral", Georgia, serif; font-weight: 600; font-size: 15px; }
+  .essay .ed { color: var(--muted); font-size: 12px; }
+  .essay .ef { font-family: "IBM Plex Mono", monospace; font-size: 10.5px; color: var(--accent); }
+  /* throughlines */
+  .through { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px 30px; }
+  .tl { }
+  .tl .tn { font-family: "Spectral", Georgia, serif; font-weight: 700; font-size: 20px; margin: 0 0 8px; line-height: 1.12; }
+  .tl .tn::before { content: attr(data-n); font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--accent); display: block; margin-bottom: 4px; letter-spacing: .1em; }
+  .tl p { margin: 0; font-size: 13.5px; color: var(--muted); line-height: 1.56; }
+  .tl p b { color: var(--ink); font-weight: 600; }
+  .pull { font-family: "Spectral", Georgia, serif; font-style: italic; font-size: clamp(19px, 2.6vw, 26px); line-height: 1.4; color: var(--ink); max-width: 30ch; margin: 6px 0 0; }
+  .pull b { font-style: normal; font-weight: 700; color: var(--accent); }
+  footer { padding: 34px 0 60px; color: var(--muted); font-size: 12px; line-height: 1.6; }
+  footer p { max-width: 96ch; }
+  footer .fh { font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink); margin-bottom: 8px; }
+  @media (max-width: 720px) {
+    .srow, .colhdr { grid-template-columns: 1fr; gap: 8px; }
+    .colhdr { display: none; }
+    .srow { padding: 16px 4px; }
+    .dist button .dn { display: none; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="mast">
+    <p class="kicker">ChinaTalk Research · Flagship Atlas</p>
+    <h1>China Defense-Industrial Atlas</h1>
+    <p class="lede">The world's largest defense-industrial base — and the most uneven. China builds ships, drones and robots at a scale no rival can match and runs its arsenal on a <b>wartime footing</b> while America's stays on a peacetime one. It has turned its grip on drones, robots and rare-earth magnets into leverage the West now feels. Yet in the deepest process technologies — lithography, jet engines, EDA — it still bends the knee. This atlas maps who actually builds for the PLA, domain by domain.</p>
+    <p class="dateline">A ChinaTalk research atlas · Compiled from open sources · Updated 30 Aug 2026 · Living document</p>
+  </header>
+
+  <section id="scorecard">
+    <div class="sechead"><span class="secnum">01</span><h2>The scorecard</h2></div>
+    <p class="sform">China's position across thirteen defense-industrial domains, rated on one ordinal scale — from <em>Dominant</em> (leads the world) to <em>Dependent</em> (reliant on imports). Each row carries two further layers: its <em>trajectory</em> (⇈ rising fast · ↑ rising · → holding) and a <em>confidence grade</em> — how much the rating rests on hard evidence versus inference. The distribution is the story: China leads where the contest is scale and hardware, lags where it is the deepest process technology, and the fast-movers (robots, space, counter-UAS, nuclear) are where the picture is changing most. Tap a tier to filter. Ratings are analytical judgments, not measurements — the <span class="mono" style="font-size:12px">methodology-and-confidence.md</span> essay grades and defends every one.</p>
+    <div class="dist" id="dist" role="group" aria-label="Filter domains by capability tier"></div>
+    <p class="distnote"><span>◄ China leads &nbsp;·&nbsp; depends ►&nbsp;&nbsp;— width = number of domains in each tier</span><button id="resetf" hidden>show all domains</button></p>
+    <div class="conflegend">
+      <span class="clh">Confidence in each rating</span>
+      <span class="ci c-a"><span class="dots">●●●</span> <b>A</b> well-documented</span>
+      <span class="ci"><span class="dots">●●○</span> <b>B</b> mixed evidence</span>
+      <span class="ci c-c"><span class="dots">●○○</span> <b>C</b> largely inferential</span>
+    </div>
+    <div class="colhdr"><span>Domain</span><span>China's position</span><span>Why</span><span>Key dependency</span></div>
+    <div class="score" id="score"></div>
+  </section>
+
+  <section id="ledger-feature">
+    <p class="lc-eyebrow" style="margin-bottom:14px">The three syntheses · the "so what"</p>
+    <a class="ledger-cta" href="https://claude.ai/code/artifact/9b07ec41-f9ff-4863-a0cf-c0fd43b9b11a" target="_blank" rel="noopener">
+      <div class="lc-body">
+        <h2 class="lc-h">The Chokepoint Ledger</h2>
+        <p class="lc-p"><b>The economic read.</b> The scorecard says where China stands; the ledger says what it means. A strategic balance sheet of China's <b class="lc-in">dependencies</b> (few, deep — EUV lithography above all) against its <b class="lc-out">leverage</b> (broad, durable — rare-earth magnets above all), each plotted by severity and substitution horizon, with the policy lever and crossover timing for each.</p>
+      </div>
+      <span class="lc-go">Open the ledger →</span>
+    </a>
+    <a class="ledger-cta taiwan" href="https://claude.ai/code/artifact/14f256bd-9d68-4687-866e-054f89579299" target="_blank" rel="noopener">
+      <div class="lc-body">
+        <h2 class="lc-h">The Taiwan-Contingency Lens</h2>
+        <p class="lc-p"><b>The operational read.</b> The same atlas re-cut by what's decisive when the shooting starts — across four conflict phases. The sharp insight: peacetime chokepoints (EUV, EDA) barely bite in a short war, while wartime ones (magazine depth, munitions tempo, shipbuilding, energetics) decide it — and those favor <b class="lc-in">China</b>. The <b class="lc-out">US/allied</b> edges (undersea, alliances, the blockade's double edge) grow with time.</p>
+      </div>
+      <span class="lc-go">Open the lens →</span>
+    </a>
+    <a class="ledger-cta tripwire" href="https://claude.ai/code/artifact/eeac96ad-0e4a-4582-9a02-a4e182e7ff37" target="_blank" rel="noopener">
+      <div class="lc-body">
+        <h2 class="lc-h">The Tripwires</h2>
+        <p class="lc-p"><b>The forecasting read.</b> An atlas that cannot be wrong is not analysis. This one commits itself in advance: 25 observable events that would force a rating to change, each naming the claim it tests, the threshold to watch, and the consequence. The finding is in the composition — three in five point toward China being <b class="lc-in">stronger</b> than rated, because in an opaque system capability surfaces late and the corrections <b class="lc-out">run one way</b>.</p>
+      </div>
+      <span class="lc-go">Open the tripwires →</span>
+    </a>
+  </section>
+
+  <section id="maps">
+    <div class="sechead"><span class="secnum">02</span><h2>The maps</h2></div>
+    <p class="sform">Each interactive map drills from the primes down to the unheralded suppliers, with per-entity dossiers and US-listing status. Open any in a new tab.</p>
+    <div class="maps" id="mapgrid"></div>
+    <div class="essays" id="essaygrid"></div>
+  </section>
+
+  <section id="throughlines">
+    <div class="sechead"><span class="secnum">03</span><h2>Four throughlines</h2></div>
+    <p class="sform">What the whole atlas adds up to.</p>
+    <div class="through">
+      <div class="tl"><h3 class="tn" data-n="I">Two footings</h3><p>China's defense-industrial base operates on a <b>wartime footing</b> — acquiring key systems five to six times faster than the US and holding shipbuilding capacity roughly <b>230× larger</b> (CSIS) — while the American base stays on a peacetime one. Scale, not sophistication, is the sharpest asymmetry.</p></div>
+      <div class="tl"><h3 class="tn" data-n="II">Where it still bends the knee</h3><p>The deepest <b>process technologies</b> — EUV lithography, electronic-design-automation software, jet-engine hot-section materials, top-tier harmonic reducers, high-bandwidth memory — are where China remains dependent. The gaps are narrowing, but they are the real chokepoints, and they are few.</p></div>
+      <div class="tl"><h3 class="tn" data-n="III">The inversion</h3><p>In drones, robots and rare-earth magnets the dependency runs the <b>other way</b> — the West depends on China. Beijing has begun to wield the export-control weapon it once only received, metering magnet licenses buyer-by-buyer. For once, China is upstream.</p></div>
+      <div class="tl"><h3 class="tn" data-n="IV">The sanctions treadmill</h3><p><b>Military-civil fusion</b> makes "military supplier" an unbounded category. The Pentagon's 1260H list keeps widening — Alibaba, BYD, Unitree — because when the commercial product and the military one ship from the same factory, the dual-use surface is the entire tech sector.</p></div>
+    </div>
+    <p class="pull">China wins where the game is <b>mass</b>, and lags where the game is the <b>machine that makes the machine</b>.</p>
+  </section>
+
+  <footer class="wrap">
+    <p class="fh">Methodology &amp; caveats</p>
+    <p>Compiled entirely from open sources — DoD's <em>Military and Security Developments Involving the PRC</em> (Dec 2025) and the Section 1260H list (June 2026), BIS Entity List actions, CSIS ChinaPower, RUSI, RAND, FDD, Kharon, IISS <em>Military Balance 2026</em>, SemiAnalysis, and trade-press reporting cited in the companion essays. The scorecard tiers are analytical judgments synthesized across those sources, not quantitative measurements; reasonable analysts will place some domains a tier up or down. The <span class="mono">confidence grade</span> on each row says how much to trust the placement — <b>A</b> well-documented, <b>B</b> mixed evidence, <b>C</b> largely inferential — and the companion <span class="mono">methodology-and-confidence.md</span> essay lays out the full sourcing taxonomy, the grading scheme, and the structural blind spots (performance under fire, magazine depth, intent) that open-source analysis cannot see. Corporate structures, shipment figures and sanctions status are a 2026 snapshot of a fast-moving picture. This is a living document, updated as the picture moves. Companion essays live in the repository alongside this page.</p>
+  </footer>
+</div>
+
+<script>
+const TIERS = {
+  4: { name: 'Dominant',    tag: 'leads the world' },
+  3: { name: 'Competitive', tag: 'peer / ahead in parts' },
+  2: { name: 'Catching up', tag: 'behind, closing fast' },
+  1: { name: 'Dependent',   tag: 'reliant on imports' },
+}
+// momentum: how fast China's position is moving (the trajectory layer)
+const MOMV = { fast: { a: '⇈', t: 'rising fast' }, rising: { a: '↑', t: 'rising' }, steady: { a: '→', t: 'holding' } }
+const MO = {
+  'Shipbuilding & Naval': 'steady', 'Drones (UAVs)': 'steady', 'Drone & Robot Components': 'rising',
+  'Robots (ground & humanoid)': 'fast', 'Missiles & Hypersonics': 'rising', 'Ground Systems': 'steady',
+  'Electronics · Radar · EW': 'rising', 'Counter-UAS · Directed Energy': 'fast', 'Space & Counterspace': 'fast',
+  'Nuclear Forces': 'fast', 'Aero-Engines': 'rising', 'Military AI Compute': 'rising', 'Advanced Semiconductors': 'rising',
+}
+// confidence: how much to trust the rating (see methodology essay). A well-documented · B mixed · C largely inferential
+const CONF = {
+  A: { dots: '●●●', label: 'well-documented' },
+  B: { dots: '●●○', label: 'mixed evidence' },
+  C: { dots: '●○○', label: 'largely inferential' },
+}
+const MAPS = {
+  supplier:  { url: 'https://claude.ai/code/artifact/9ba26611-80ca-456b-b489-06bce1b350ed', label: 'PLA Supplier Atlas' },
+  drone:     { url: 'https://claude.ai/code/artifact/e07d880f-fd1b-4449-829f-8d37bed927b7', label: 'Drone & Robot Atlas' },
+  counteruas:{ url: 'https://claude.ai/code/artifact/121166cb-aa8b-428d-9c95-437afc0613f2', label: 'Counter-Drone Kill Chain' },
+  robot:     { url: 'https://claude.ai/code/artifact/354d7ea9-11c5-4d05-be0e-2b0b7b02c46b', label: 'Robot Ecosystem' },
+  semiconductor: { url: 'https://claude.ai/code/artifact/2dfad809-6b14-4901-8357-47fc160a94a3', label: 'Semiconductor Chokepoint' },
+  spacemissile: { url: 'https://claude.ai/code/artifact/5101023f-ba3f-44d4-9b35-9f90eac4a98f', label: 'Space & Missile Power' },
+}
+const SCORE = [
+  { domain: 'Shipbuilding & Naval', zh: '船舶 / 海军', tier: 4, conf: 'A', why: '~230× US shipbuilding capacity and the largest navy by hull count, on a wartime footing.', dep: 'Top-tier marine propulsion; submarine quieting & sonar — the undersea tier is still catching up.' },
+  { domain: 'Drones (UAVs)', zh: '无人机', tier: 4, conf: 'A', why: '~70% of the commercial market; owns the platforms and the component stack end-to-end.', dep: 'High-end AI compute for on-board autonomy.' },
+  { domain: 'Drone & Robot Components', zh: '核心零部件', tier: 4, conf: 'A', why: '80–90% of the world’s FPV motors and ~90% of rare-earth magnet processing — everyone else depends on China here.', dep: 'None material — this domain is the leverage, not the dependency.' },
+  { domain: 'Robots (ground & humanoid)', zh: '机器人', tier: 4, conf: 'B', why: '~97% of global humanoid shipments; AgiBot & Unitree lead by volume; military UGVs already fielded.', dep: 'Top-tier reducers (Japan), high-end force/tactile sensors (~60% imported), AI compute.' },
+  { domain: 'Missiles & Hypersonics', zh: '导弹 / 高超声速', tier: 3, conf: 'B', why: 'A vast CASIC/CASC portfolio; arguably ahead of the US on hypersonic glide vehicles.', dep: 'Some seeker and precision-guidance components.' },
+  { domain: 'Ground Systems', zh: '陆战装备', tier: 3, conf: 'B', why: 'NORINCO as sole ordnance prime; mass production of armor, artillery and munitions.', dep: 'High-end optics and fire-control at the top tier.' },
+  { domain: 'Electronics · Radar · EW', zh: '电子 / 雷达 / 电子战', tier: 3, conf: 'B', why: 'CETC is world-class in AESA radar and the GaN transmit/receive modules inside them.', dep: 'High-end EDA software; some RF and mixed-signal chips.' },
+  { domain: 'Counter-UAS · Directed Energy', zh: '反无人机 / 定向能', tier: 3, conf: 'C', why: 'Openly fielding lasers and high-power microwave (LY-1, Hurricane 3000); racing the cost-exchange curve.', dep: 'Operational reliability — field reports are mixed.' },
+  { domain: 'Space & Counterspace', zh: '航天 / 反卫星', tier: 3, conf: 'B', why: 'Rising launch cadence, broadband megaconstellations, and mature ASAT and recon.', dep: 'Reusable heavy-lift maturity; radiation-hardened space electronics.' },
+  { domain: 'Nuclear Forces', zh: '核力量', tier: 2, conf: 'B', why: 'Expanding fast — toward ~1,000 warheads by 2030 — but the stockpile is still far below the US and Russia.', dep: 'Warhead numbers and fissile-material scale-up.' },
+  { domain: 'Aero-Engines', zh: '航空发动机', tier: 2, conf: 'B', why: 'The WS-15 is finally in low-rate production — the historic weak point, now closing.', dep: 'Hot-section superalloys and single-crystal turbine blades.' },
+  { domain: 'Military AI Compute', zh: '军用算力', tier: 2, conf: 'B', why: 'Huawei Ascend is ramping hard, but remains behind Nvidia and supply-constrained.', dep: 'EUV lithography, high-bandwidth memory, EDA.' },
+  { domain: 'Advanced Semiconductors', zh: '先进半导体', tier: 1, conf: 'A', why: 'SMIC is at 7nm on pre-sanction DUV tools with no domestic EUV — the deepest single dependency.', dep: 'EUV lithography (ASML), leading-edge fab tools, EDA.' },
+]
+
+const state = { tier: 0 }
+const counts = { 4: 0, 3: 0, 2: 0, 1: 0 }
+SCORE.forEach(s => counts[s.tier]++)
+const total = SCORE.length
+
+// distribution bar
+const dist = document.getElementById('dist')
+;[4, 3, 2, 1].forEach(t => {
+  const b = document.createElement('button')
+  b.className = 't' + t
+  b.style.flex = counts[t]
+  b.setAttribute('aria-pressed', 'true')
+  b.dataset.t = t
+  b.innerHTML = '<span class="dc">' + counts[t] + '</span><span class="dn">' + TIERS[t].name + '</span>'
+  b.addEventListener('click', () => setFilter(state.tier === t ? 0 : t))
+  dist.appendChild(b)
+})
+
+// scorecard rows
+const score = document.getElementById('score')
+SCORE.forEach(s => {
+  const row = document.createElement('div')
+  row.className = 'srow'
+  row.dataset.t = s.tier
+  let pips = ''
+  for (let i = 4; i >= 1; i--) pips += '<span class="pip ' + (i <= s.tier ? 'on' + s.tier : '') + '"></span>'
+  row.innerHTML =
+    '<div class="sdomain"><span class="dm">' + s.domain + '</span><span class="zh">' + s.zh + '</span></div>' +
+    '<div class="scap"><div class="meter">' + pips + '</div>' +
+      '<div class="tierlab"><b style="color:var(--t' + s.tier + ')">' + TIERS[s.tier].name + '</b> <span class="tw">— ' + TIERS[s.tier].tag + '</span></div>' +
+      '<div class="mo mo-' + (MO[s.domain] || 'steady') + '"><span class="moa">' + MOMV[MO[s.domain] || 'steady'].a + '</span> ' + MOMV[MO[s.domain] || 'steady'].t + '</div>' +
+      '<div class="conf c-' + (s.conf || 'B').toLowerCase() + '" title="Confidence in this rating: ' + CONF[s.conf || 'B'].label + '"><span class="dots">' + CONF[s.conf || 'B'].dots + '</span><span class="cg">' + (s.conf || 'B') + '</span><span class="cl">' + CONF[s.conf || 'B'].label + '</span></div>' +
+    '</div>' +
+    '<div class="swhy">' + s.why + '</div>' +
+    '<div class="sdep"><b>Dependency</b>' + s.dep + '</div>'
+  score.appendChild(row)
+})
+
+const resetBtn = document.getElementById('resetf')
+function setFilter(t) {
+  state.tier = t
+  document.querySelectorAll('.srow').forEach(r => { r.hidden = t !== 0 && Number(r.dataset.t) !== t })
+  document.querySelectorAll('.dist button').forEach(b => b.setAttribute('aria-pressed', String(t === 0 || Number(b.dataset.t) === t)))
+  resetBtn.hidden = t === 0
+}
+resetBtn.addEventListener('click', () => setFilter(0))
+
+// maps
+const mapgrid = document.getElementById('mapgrid')
+const MAPCARDS = [
+  { map: 'supplier', mk: 'The full base · 9 domains', title: 'PLA Supplier Atlas', stat: '77 entities · primes → institutes → MCF', p: 'The whole defense-industrial base: the central conglomerates, the load-bearing numbered research institutes, the military-civil-fusion firms, and the foreign chokepoints — down to the rare-earth magnet makers and NORINCO\'s energetics institutes.', teal: false },
+  { map: 'drone', mk: 'Supply-chain stack', title: 'Drone & Robot Atlas', stat: '51 nodes · platform → component → material', p: 'The unmanned and embodied-intelligence stack, from flying platforms down to the motors, thermal cores, reducers and magnets — the vertical where China owns the whole chain.', teal: true },
+  { map: 'counteruas', mk: 'Kill chain', title: 'Counter-Drone Kill Chain', stat: '25 systems · detect → decide → defeat', p: 'The defensive half: radar and RF detection, jammers and spoofers, lasers and microwave, guns and interceptors — and the export story of arming both sides.', teal: false },
+  { map: 'semiconductor', mk: 'Chokepoint status', title: 'Semiconductor Chokepoint', stat: '22 nodes · dependent → self-sufficient', p: 'The compute base coded by self-sufficiency: where China is blocked (EUV, advanced EDA, HBM), brute-forcing (SMIC, Ascend), localizing the toolchain, or already dominant (legacy nodes).', teal: true },
+  { map: 'robot', mk: 'Competitive position', title: 'Robot Ecosystem', stat: '44 nodes · leads → depends', p: 'Humanoids, quadrupeds, military UGVs and the component chain, coded by China’s position — leading almost everywhere, depending only at the hardest tiers (top reducers, roller screws, force/tactile sensors, AI compute).', teal: false },
+  { map: 'spacemissile', mk: 'Position vs the US', title: 'Space & Missile Power', stat: '41 systems · ahead → behind', p: 'Launch, megaconstellations, counterspace, missiles and hypersonics, benchmarked against the US — China ahead in hypersonics and theater anti-ship missiles, behind in reusable launch and rad-hard space chips.', teal: true },
+]
+MAPCARDS.forEach(c => {
+  const a = document.createElement('a')
+  a.className = 'mapcard' + (c.teal ? ' teal' : '')
+  a.href = MAPS[c.map].url; a.target = '_blank'; a.rel = 'noopener'
+  a.innerHTML = '<span class="mk">' + c.mk + '</span><h3>' + c.title + '</h3><p>' + c.p + '</p>' +
+    '<span class="stat">' + c.stat + '</span><span class="go">Open map →</span>'
+  mapgrid.appendChild(a)
+})
+
+// essays
+const essaygrid = document.getElementById('essaygrid')
+const ESSAYS = [
+  { et: 'Mapping China’s Military Suppliers', ed: 'The field guide to the whole base', ef: 'chinese-military-supplier-map.md' },
+  { et: 'Naval & Undersea Suppliers', ed: 'Yards, institutes, the submarine enterprise', ef: 'naval-undersea-suppliers.md' },
+  { et: 'Drone & Robot Ecosystem', ed: 'Six layers, platform to magnet', ef: 'drone-robot-ecosystem.md' },
+  { et: 'Counter-Drone Ecosystem', ed: 'The kill chain and the cost-exchange problem', ef: 'counter-uas-ecosystem.md' },
+  { et: 'Semiconductor & Compute Chokepoint', ed: 'Where China depends, brute-forces, and dominates', ef: 'semiconductor-chokepoint.md' },
+  { et: 'Aero-Engine Catch-Up', ed: 'The historic weak point, now maturing', ef: 'aero-engine-catchup.md' },
+  { et: 'Nuclear Forces & the Warhead Complex', ed: 'The fastest nuclear expansion in the world', ef: 'nuclear-forces.md' },
+  { et: 'Ground Systems & the Munitions Machine', ed: 'Where production scale beats platform sophistication', ef: 'ground-systems.md' },
+  { et: 'Electronics, Radar & Electronic Warfare', ed: 'CETC, the radar leap, and the gallium lever', ef: 'electronics-radar-ew.md' },
+  { et: 'Robot Ecosystem', ed: 'The embodied-intelligence wave — and what China still can’t make', ef: 'robot-ecosystem.md' },
+  { et: 'Space, Missiles & Hypersonics', ed: 'Peer or ahead — and closing the launch gap', ef: 'space-missiles-hypersonics.md' },
+  { et: 'Critical Minerals & Advanced Materials', ed: 'The substrate: magnets and minerals as a weapon, superalloys as a dependency retired', ef: 'critical-minerals-materials.md' },
+  { et: 'The Chokepoint & Leverage Ledger', ed: 'The economic synthesis — dependencies vs. leverage', ef: 'chokepoint-leverage-ledger.md' },
+  { et: 'The Taiwan-Contingency Lens', ed: 'The operational synthesis — what\'s decisive when the shooting starts', ef: 'taiwan-contingency-lens.md' },
+  { et: 'Indicators & Warnings', ed: 'The forecasting synthesis — what would prove the atlas wrong', ef: 'indicators-and-warnings.md' },
+  { et: 'Methodology & Confidence', ed: 'How the ratings were made, graded, and where they\'re soft', ef: 'methodology-and-confidence.md' },
+]
+ESSAYS.forEach(e => {
+  const d = document.createElement('div')
+  d.className = 'essay'
+  d.innerHTML = '<div class="et">' + e.et + '</div><div class="ed">' + e.ed + '</div><div class="ef">' + e.ef + '</div>'
+  essaygrid.appendChild(d)
+})
+</script>

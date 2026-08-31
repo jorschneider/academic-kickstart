@@ -1,0 +1,261 @@
+<title>Robot Ecosystem</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    color-scheme: light;
+    --bg: #EBEAF0; --surface: #F6F5FA; --surface2: #E0DEEA; --ink: #1B1A24; --muted: #66627A;
+    --line: #D0CDDA; --grid: rgba(27,26,36,.045);
+    --accent: #5A4B9C; --accent-soft: rgba(90,75,156,.12);
+    --shadow: 0 14px 40px rgba(27,26,36,.16);
+    --leads: #3E8E5A; --competitive: #B67D10; --depends: #C0392B;
+    --leads-bg: rgba(62,142,90,.10); --competitive-bg: rgba(182,125,16,.12); --depends-bg: rgba(192,57,43,.10);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --bg: #131219; --surface: #1D1B26; --surface2: #272433; --ink: #E6E3EE; --muted: #9A96AC;
+      --line: #322E40; --grid: rgba(230,227,238,.05);
+      --accent: #9A8BD8; --accent-soft: rgba(154,139,216,.15);
+      --shadow: 0 14px 40px rgba(0,0,0,.55);
+      --leads: #4C9E6C; --competitive: #E0A63E; --depends: #D8574A;
+      --leads-bg: rgba(76,158,108,.14); --competitive-bg: rgba(224,166,62,.14); --depends-bg: rgba(216,87,74,.14);
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #131219; --surface: #1D1B26; --surface2: #272433; --ink: #E6E3EE; --muted: #9A96AC;
+    --line: #322E40; --grid: rgba(230,227,238,.05);
+    --accent: #9A8BD8; --accent-soft: rgba(154,139,216,.15);
+    --shadow: 0 14px 40px rgba(0,0,0,.55);
+    --leads: #4C9E6C; --competitive: #E0A63E; --depends: #D8574A;
+    --leads-bg: rgba(76,158,108,.14); --competitive-bg: rgba(224,166,62,.14); --depends-bg: rgba(216,87,74,.14);
+  }
+  * { box-sizing: border-box; }
+  body { background: var(--bg); color: var(--ink); margin: 0; font-family: "IBM Plex Sans","PingFang SC","Microsoft YaHei",system-ui,sans-serif; font-size: 14.5px; line-height: 1.55;
+    background-image: radial-gradient(var(--grid) 1px, transparent 1px); background-size: 22px 22px; }
+  .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
+  .wrap { max-width: 1560px; margin: 0 auto; }
+  header.mast { padding: 40px 28px 18px; }
+  .eyebrow { font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin: 0 0 12px; display: flex; align-items: center; gap: 10px; }
+  .eyebrow::before { content: ""; width: 24px; height: 2px; background: var(--accent); display: inline-block; }
+  h1 { font-family: "Sora", sans-serif; font-weight: 700; font-size: clamp(32px,5vw,52px); line-height: 1; margin: 0 0 12px; letter-spacing: -0.02em; text-wrap: balance; }
+  .thesis { max-width: 76ch; color: var(--muted); font-size: 15.5px; margin: 0 0 22px; }
+  .thesis b { color: var(--ink); font-weight: 600; }
+  .gauge { display: flex; height: 48px; border-radius: 5px; overflow: hidden; border: 1px solid var(--line); }
+  .gauge button { border: 0; cursor: pointer; color: #fff; font: inherit; display: flex; flex-direction: column; justify-content: center; padding: 0 13px; gap: 1px; border-right: 2px solid var(--bg); transition: filter .12s, opacity .12s; }
+  .gauge button:last-child { border-right: 0; }
+  .gauge button:hover { filter: brightness(1.07); }
+  .gauge button.leads { background: var(--leads); }
+  .gauge button.competitive { background: var(--competitive); color: #2a1e02; }
+  .gauge button.depends { background: var(--depends); }
+  .gauge button[aria-pressed="false"] { opacity: .32; filter: grayscale(.4); }
+  .gauge .gc { font-family: "IBM Plex Mono", monospace; font-weight: 500; font-size: 15px; line-height: 1; }
+  .gauge .gn { font-size: 10px; letter-spacing: .02em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .gaugecap { font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--muted); margin: 7px 2px 0; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .gaugecap button { background: none; border: 0; color: var(--accent); cursor: pointer; font: inherit; text-decoration: underline; padding: 0; }
+  main { max-width: 1560px; margin: 0 auto; padding: 22px 28px 8px; }
+  .board { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(250px,1fr); gap: 15px; overflow-x: auto; padding-bottom: 20px; }
+  .col { min-width: 0; }
+  .colhead { border-bottom: 3px solid var(--accent); padding-bottom: 7px; margin-bottom: 12px; }
+  .colhead h2 { font-family: "Sora", sans-serif; font-size: 15px; font-weight: 700; letter-spacing: -0.01em; margin: 0; line-height: 1.08; }
+  .colhead .zh { color: var(--muted); font-size: 10.5px; font-family: "IBM Plex Mono", monospace; }
+  .cardstack { display: flex; flex-direction: column; gap: 7px; }
+  .card { text-align: left; width: 100%; cursor: pointer; font: inherit; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--sc, var(--line)); border-radius: 4px; padding: 9px 11px 10px; position: relative; }
+  .card:hover { background: var(--surface2); border-left-width: 5px; }
+  .card .n { font-family: "Sora", sans-serif; font-weight: 600; font-size: 13.5px; line-height: 1.14; display: block; padding-right: 30px; }
+  .card .zh { color: var(--muted); font-size: 10.5px; font-family: "IBM Plex Mono", monospace; display: block; margin-top: 1px; }
+  .card .role { color: var(--muted); font-size: 11.8px; line-height: 1.42; display: block; margin-top: 5px; }
+  .card .stat { font-family: "IBM Plex Mono", monospace; font-size: 10px; color: var(--sc); margin-top: 6px; display: block; }
+  .sdot { position: absolute; top: 10px; right: 10px; width: 9px; height: 9px; border-radius: 50%; background: var(--sc); }
+  .mil { position: absolute; top: 9px; right: 24px; font-family: "IBM Plex Mono", monospace; font-size: 8px; letter-spacing: .04em; color: var(--depends); border: 1px solid var(--depends); border-radius: 2px; padding: 0 3px; }
+  .card[hidden], .col[hidden] { display: none !important; }
+  #backdrop { position: fixed; inset: 0; background: rgba(12,10,18,.55); z-index: 40; }
+  #panel { position: fixed; top: 0; right: 0; bottom: 0; width: min(440px,100vw); z-index: 50; background: var(--surface); border-left: 1px solid var(--line); box-shadow: var(--shadow); transform: translateX(102%); transition: transform .22s ease; overflow-y: auto; padding: 26px 28px 40px; }
+  #panel.open { transform: translateX(0); }
+  @media (prefers-reduced-motion: reduce) { #panel { transition: none; } }
+  #panel .lyr { font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 9px; }
+  #panel h2 { font-family: "Sora", sans-serif; font-size: 25px; font-weight: 700; margin: 0; line-height: 1.06; letter-spacing: -0.01em; }
+  #panel .zh { color: var(--muted); font-size: 13px; font-family: "IBM Plex Mono", monospace; margin: 4px 0 0; }
+  #panel .status { display: inline-flex; align-items: center; gap: 7px; font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: .04em; text-transform: uppercase; padding: 4px 10px; border-radius: 12px; margin: 14px 8px 4px 0; background: var(--sc-bg); color: var(--sc); border: 1px solid var(--sc); }
+  #panel .status .d { width: 8px; height: 8px; border-radius: 50%; background: var(--sc); }
+  #panel .statusdesc { color: var(--muted); font-size: 12px; margin: 6px 0 14px; }
+  #panel .meta { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); margin: 4px 0 15px; padding: 10px 0; display: grid; gap: 5px; font-size: 12.5px; }
+  #panel .meta .k { color: var(--muted); display: inline-block; min-width: 70px; font-family: "IBM Plex Mono", monospace; font-size: 10px; text-transform: uppercase; letter-spacing: .07em; }
+  #panel .profile { font-size: 13.5px; line-height: 1.62; margin: 0 0 14px; }
+  #panel .tag { font-family: "IBM Plex Mono", monospace; font-size: 10.5px; border-radius: 3px; padding: 4px 8px; display: inline-block; margin: 0 6px 6px 0; }
+  #panel .tag.mil { color: var(--depends); border: 1px solid var(--depends); background: var(--depends-bg); }
+  #panel .tag.sanc { color: var(--accent); border: 1px solid var(--accent); background: var(--accent-soft); }
+  #closep { position: absolute; top: 15px; right: 15px; background: none; border: 1px solid var(--line); color: var(--muted); border-radius: 4px; width: 28px; height: 28px; cursor: pointer; font-size: 15px; line-height: 1; }
+  #closep:hover { color: var(--ink); border-color: var(--muted); }
+  footer { max-width: 1560px; margin: 0 auto; padding: 10px 28px 46px; color: var(--muted); font-size: 11.5px; border-top: 1px solid var(--line); }
+  footer p { max-width: 104ch; } footer a { color: var(--accent); }
+  @media (max-width: 800px) { header.mast, main, footer { padding-left: 15px; padding-right: 15px; } .board { grid-auto-flow: row; grid-auto-columns: unset; grid-template-columns: 1fr; } .gauge .gn { display: none; } }
+</style>
+
+<div class="wrap">
+  <header class="mast">
+    <p class="eyebrow">ChinaTalk Research · Embodied Intelligence · Aug 2026</p>
+    <h1>Robot Ecosystem</h1>
+    <p class="thesis">China ships <b>~97% of the world's humanoid robots</b> and owns most of the supply chain, the industrial base, and increasingly the software. Each node below is coded by <b>China's competitive position</b> — and the pattern is the story: China <b>leads</b> almost everywhere, and <b>depends</b> only at the hardest component tiers (top reducers, force/tactile sensors, AI compute). Tap a status to filter; click any node for its dossier. <span class="mono" style="color:var(--depends)">◆PLA</span> marks a documented military link.</p>
+    <div class="gauge" id="gauge" role="group" aria-label="Filter by competitive position"></div>
+    <p class="gaugecap"><span>◄ China leads &nbsp;·&nbsp; depends on imports ►&nbsp;&nbsp;— width = number of nodes at each position</span><button id="resetf" hidden>show all nodes</button></p>
+  </header>
+  <main><div class="board" id="board"></div></main>
+  <footer>
+    <p>Compiled Aug 30, 2026 from open sources: TrendForce, J.P. Morgan, Morgan Stanley's "Humanoid 100," 36Kr, Kharon, FDD, SCMP, Xinhua, and trade press cited in the companion essay. "Position" ratings are analytical judgments, not measurements; shipment/valuation/share figures are directional and vary by methodology. The field consolidates monthly — a mid/late-2026 snapshot. Company-to-PLA links range from documented (Unitree 1260H, state-TV armed demos) to inferential. Companion essay: <span class="mono">robot-ecosystem.md</span>. Deeper supply-chain view: the Drone &amp; Robot Atlas.</p>
+  </footer>
+</div>
+
+<div id="backdrop" hidden></div>
+<aside id="panel" aria-label="Node dossier"><button id="closep" aria-label="Close dossier">×</button><div id="pbody"></div></aside>
+
+<script>
+const STATUS = {
+  leads: { name: 'China leads', desc: 'Dominant globally or domestically self-sufficient.' },
+  competitive: { name: 'Competitive', desc: 'Peer or contested; closing fast.' },
+  depends: { name: 'Depends', desc: 'Reliant on imports at the top tier — the real gap.' },
+};
+const LAYERS = {
+  hum: { label: 'Humanoids', zh: '人形机器人' },
+  grd: { label: 'Quadrupeds & Ground Robots', zh: '四足 / 地面机器人' },
+  act: { label: 'Reducers & Actuators', zh: '减速器 / 执行器' },
+  sen: { label: 'Sensors & Hands', zh: '传感器 / 灵巧手' },
+  cmp: { label: 'Compute & Vision', zh: '算力 / 视觉' },
+  brn: { label: 'The Brain — VLA & Data', zh: '大脑 / 模型与数据' },
+  ind: { label: 'Industrial Base (dual-use)', zh: '工业机器人基础' },
+};
+const colOrder = ['hum', 'grd', 'act', 'sen', 'cmp', 'brn', 'ind'];
+
+const DATA = [
+  // Humanoids
+  { id:'agibot', d:'hum', s:'leads', n:'AgiBot / Zhiyuan', zh:'智元机器人', stat:'~44% H1\'26 · 10,000th unit', mil:'inferential', sanc:'', role:'The world\'s #1 humanoid by volume', p:'Alibaba- and Tencent-backed Shanghai leader: shipped its 10,000th humanoid by March 2026 (fastest ramp in the industry), ~44% of H1 2026 global shipments, pursuing a ~$5-6B Hong Kong IPO. Its GO-1 foundation model and AgiBot World dataset make it an embodied-AI company as much as a hardware one.' },
+  { id:'unitree', d:'hum', s:'leads', n:'Unitree', zh:'宇树科技', stat:'IPO ~$53B · #2 humanoid', mil:'documented', sanc:'1260H', role:'The household name; first pure-play humanoid IPO', p:'First pure-play humanoid company to go public anywhere: its Aug 19 2026 STAR-market debut surged ~629% intraday to ~$53B (priced ~$9B). Humanoids (G1/H1/H2) overtook its robot dogs as the biggest business in 2025 (rev ¥1.69B). Also the quadruped leader (Go2, B2). A rifle-armed Unitree dog featured in the 2024 "Golden Dragon" China–Cambodia exercise; 1260H-listed June 2026, added to the FCC Covered List (July 2026) over hardware-backdoor concerns, with a House Select Committee pushing for Entity-List designation. It denies PLA sales.' },
+  { id:'ubtech', d:'hum', s:'leads', n:'UBTech', zh:'优必选', stat:'first to ship 1,000+ industrial', mil:'none', sanc:'', role:'The industrial-humanoid front-runner', p:'Shenzhen-listed leader in industrial humanoids (Walker S); first to deliver 1,000+ industrial units, targeting ~5,000 in 2026 and 10,000 by 2027. A fixture of China\'s factory-floor humanoid pilots.' },
+  { id:'fourier', d:'hum', s:'competitive', n:'Fourier', zh:'傅利叶', stat:'GR-3 care robot', mil:'none', sanc:'', role:'Care- and service-oriented humanoids', p:'Shanghai maker of the GR-3 care-oriented humanoid, with roots in rehabilitation robotics — a distinct, service-focused corner of the crowded field.' },
+  { id:'engineai', d:'hum', s:'competitive', n:'EngineAI', zh:'众擎机器人', stat:'athletic bipeds', mil:'none', sanc:'', role:'Dynamic-locomotion humanoids', p:'Shenzhen startup known for athletic, dynamic-walking bipeds — part of the deep bench signaling how crowded and fast-moving the humanoid field has become.' },
+  { id:'galbot', d:'hum', s:'competitive', n:'Galbot', zh:'银河通用', stat:'~900 units H1\'26', mil:'none', sanc:'', role:'Manipulation-focused humanoid', p:'Beijing manipulation-focused humanoid maker, ~900 units in H1 2026 (top-5), betting on grasping and useful work over locomotion spectacle.' },
+  { id:'leju', d:'hum', s:'competitive', n:'Leju', zh:'乐聚机器人', stat:'Kuavo · ~600 H1\'26', mil:'none', sanc:'', role:'The Kuavo humanoid line', p:'Shenzhen/Harbin maker of the Kuavo humanoid, ~600 units in H1 2026 — a consistent top-5 shipper in a consolidating field.' },
+  { id:'xpeng', d:'hum', s:'competitive', n:'Xpeng (Iron)', zh:'小鹏 · Iron', stat:'automaker-backed', mil:'none', sanc:'', role:'EV-maker crossover humanoid', p:'The EV maker\'s Iron humanoid — one of several automakers (with the auto supply chain and capital behind them) entering humanoids, a structural advantage in actuators and manufacturing.' },
+  // Quadrupeds & ground
+  { id:'deeprobotics', d:'grd', s:'leads', n:'DEEP Robotics', zh:'云深处', stat:'#2 quadruped', mil:'inferential', sanc:'', role:'Industrial & security-patrol quadrupeds', p:'The number-two quadruped house (Lynx, X30), strong in industrial inspection and security-patrol roles — the other half of the Hangzhou robot-dog duopoly with Unitree.' },
+  { id:'weilan', d:'grd', s:'competitive', n:'Weilan (AlphaDog)', zh:'蔚蓝科技', stat:'consumer/security quadruped', mil:'none', sanc:'', role:'Consumer and security quadrupeds', p:'Maker of the AlphaDog consumer/security quadruped line — part of a deep Chinese robot-dog field beneath the Unitree/DEEP leaders.' },
+  { id:'xiaomi', d:'grd', s:'competitive', n:'Xiaomi CyberDog', zh:'小米 · 铁蛋', stat:'consumer quadruped', mil:'none', sanc:'', role:'Consumer-electronics quadruped', p:'Xiaomi\'s CyberDog brings consumer-electronics scale and supply chain to quadrupeds — emblematic of how China\'s hardware ecosystem feeds the robot wave.' },
+  { id:'sharpclaw', d:'grd', s:'leads', n:'NORINCO Sharp Claw · ZRY222', zh:'北方 · 山猫 / 战车', stat:'armed UGV · fielded in Tibet', mil:'documented', sanc:'1260H', role:'Fielded armed & recon combat UGVs', p:'NORINCO\'s tracked ground-combat robots — the Sharp Claw recon/strike UGV reportedly fielded in Tibet at battalion scale, and the rocket-armed ZRY222 shown on state TV in January 2026. The deployed military reality behind the humanoid headlines.' },
+  { id:'mule200', d:'grd', s:'leads', n:'Mule-200 logistics UGV', zh:'骡-200', stat:'~200 kg · 50 km · Tibet', mil:'documented', sanc:'', role:"'Last tactical mile' robotic resupply", p:'A tracked logistics mule hauling ~200 kg over 50 km of rough terrain, deployed in Tibet by the dozen — the unglamorous but decisive high-altitude resupply role.' },
+  { id:'warwolves', d:'grd', s:'leads', n:'Armed "war wolves"', zh:'机器狼 / 战狼', stat:'commercial dog → PLA squad', mil:'documented', sanc:'', role:'Rifle-carrying robot dogs in PLA squads', p:'The clearest MCF pipeline on the board: commercial robot dogs (Unitree, DEEP) migrate into PLA squads carrying rifles and sensors — the platform ships from the same factory either way. FDD\'s "War Wolves" work tracks the handoff.' },
+  { id:'exoskeleton', d:'grd', s:'competitive', n:'Exoskeletons', zh:'外骨骼', stat:'in use at 4,500-5,500 m', mil:'documented', sanc:'1260H', role:'Powered & passive load-bearing exosuits', p:'NORINCO passive frames and CASIC\'s powered "Portable Ammunition Support Assist" suit, in selective use in Tibet and Xinjiang where altitude wrecks troop endurance — the least-discussed corner, already past the demo stage.' },
+  // Reducers & actuators
+  { id:'leaderdrive', d:'act', s:'competitive', n:'Leaderdrive / Green Harmonic', zh:'绿的谐波', stat:'~30-40% China harmonic', mil:'none', sanc:'', role:'Broke Japan\'s reducer monopoly (mid-tier)', p:'Broke Japan\'s harmonic-reducer monopoly at 20-40% lower cost, taking ~30-40% of China\'s harmonic-reducer market (J.P. Morgan) and supplying even Tesla. Dominant in the mid-tier — but Japan still owns the very top precision tier.' },
+  { id:'laifu', d:'act', s:'competitive', n:'Laifu · CTKM · Hengfengtai', zh:'来福 · 中技克美', stat:'domestic reducer field', mil:'none', sanc:'', role:'The rest of the domestic reducer tier', p:'The domestic harmonic/planetary reducer field below Leaderdrive — mid-market challengers undercutting Japanese incumbents on price, closing the gap everywhere except the highest precision tier.' },
+  { id:'reducergap', d:'act', s:'depends', n:'Top-tier RV reducers (Japan)', zh:'高端RV减速器', stat:'Nabtesco leads heavy-load cycloidal', mil:'none', sanc:'', role:'The reducer dependency (heavy-load joints)', p:'China now leads in harmonic (strain-wave) reducers via Leaderdrive — but in RV (cycloidal) reducers for heavy-load joints, Japan\'s Nabtesco still leads, and Harmonic Drive owns the very top precision tier. A narrowing but real reducer dependency.' },
+  { id:'screws', d:'act', s:'depends', n:'Planetary roller screws', zh:'行星滚柱丝杠', stat:'Rollvis / GSA / Ewellix (West) lead', mil:'none', sanc:'', role:'Linear-actuator chokepoint the reducer story hides', p:'The precision planetary/satellite roller screws that drive the linear actuators in humanoid legs are still dominated by Swiss and European makers (Rollvis, GSA, Ewellix), with Chinese suppliers only beginning to qualify. The missed chokepoint — a second genuine Western-held dependency alongside top reducers and force/tactile sensors.' },
+  { id:'inovance', d:'act', s:'leads', n:'Inovance', zh:'汇川技术', stat:'5M+ servo joints (2025)', mil:'none', sanc:'', role:'Servo systems & integrated actuators', p:'China\'s servo and motion-control champion, which shipped 5M+ robotic joint servo motors in 2025 and co-developed force-control robots with BYD. The domestic actuator backbone, spanning industrial and humanoid.' },
+  // Sensors & hands
+  { id:'inspire', d:'sen', s:'competitive', n:'Inspire Robots', zh:'因时机器人', stat:'first mass-produced hand · 0.2mm', mil:'none', sanc:'', role:"China's first mass-produced dexterous hand", p:'Maker of China\'s first commercially mass-produced dexterous hand (linear-drive micro-actuators, 0.2mm precision, force feedback) — the domestic leader in a component tier where demand is about to explode.' },
+  { id:'forcegap', d:'sen', s:'depends', n:'Six-axis force/torque sensors', zh:'六维力传感器', stat:'~60% imported', mil:'none', sanc:'', role:'A hard, import-dependent sensing tier', p:'The six-axis force/torque sensors in every humanoid wrist and ankle: China\'s market is small and ~60% import-dependent, with ATI (US, ~40% global) and Kistler leading the high end. One of the two hardest component gaps.' },
+  { id:'tactile', d:'sen', s:'depends', n:'Tactile / e-skin sensing', zh:'触觉 / 电子皮肤', stat:'the single biggest bottleneck', mil:'none', sanc:'', role:'The frontier bottleneck for dexterity', p:'Tactile sensing — measuring normal force, shear, texture and temperature at a fingertip while staying thin, durable and cheap — is widely called the single largest technical bottleneck in a dexterous hand. Where the whole field, China included, is furthest from solved.' },
+  { id:'kunwei', d:'sen', s:'competitive', n:'Kunwei · Yuli · Keli', zh:'坤维 · 宇立 · 柯力', stat:'domestic force-sensor challengers', mil:'none', sanc:'', role:'The domestic force-sensor climbers', p:'The domestic six-axis force-sensor challengers (Kunwei, Yuli, Xinjingcheng, Keli) climbing against ATI/Kistler as humanoid volumes create a demand inflection — closing, but not yet at the import-replacement point.' },
+  // Compute & vision
+  { id:'ascend', d:'cmp', s:'competitive', n:'Huawei Ascend (robot compute)', zh:'昇腾', stat:'domestic AI compute', mil:'inferential', sanc:'1260H', role:'The domestic AI-compute option', p:'Huawei\'s Ascend accelerators are the domestic AI-compute path for robot brains — capable but fab- and HBM-constrained (see the semiconductor map). Competitive because it exists and scales, dependent because it is not yet Nvidia-parity.' },
+  { id:'horizon', d:'cmp', s:'competitive', n:'Horizon Robotics', zh:'地平线', stat:'automotive edge-AI → robotics', mil:'none', sanc:'', role:'Edge-AI silicon migrating to robots', p:'Baidu-alumni-founded automotive-AI chip house whose edge-inference silicon is migrating into robotics — a domestic edge-compute option for onboard autonomy.' },
+  { id:'orbbec', d:'cmp', s:'leads', n:'Orbbec', zh:'奥比中光', stat:'3D vision sensors', mil:'none', sanc:'', role:'3D vision / depth sensing', p:'A leading domestic 3D-vision and depth-camera maker supplying the eyes for humanoids and service robots — a component tier China supplies at scale.' },
+  { id:'rockchip', d:'cmp', s:'leads', n:'Rockchip · Allwinner', zh:'瑞芯微 · 全志', stat:'embedded AI SoCs', mil:'none', sanc:'', role:'Embedded companion-compute SoCs', p:'The embedded AI SoCs hosting onboard perception and control on robot companion computers — a domestic, self-sufficient layer of the compute stack.' },
+  // The brain
+  { id:'go1', d:'brn', s:'leads', n:'AgiBot GO-1 + AgiBot World', zh:'启元 GO-1 · 数据集', stat:'foundation model + dataset', mil:'inferential', sanc:'', role:'The commercial VLA frontier', p:'AgiBot\'s GO-1 vision-language-action foundation model and its AgiBot World dataset — the commercial frontier of the embodied-AI "brain" that turns a humanoid from teleoperated to autonomous.' },
+  { id:'xhumanoid', d:'brn', s:'leads', n:'X-Humanoid (Beijing center)', zh:'北京人形机器人创新中心', stat:'national data base · Tien Kung', mil:'inferential', sanc:'', role:'The state\'s data-and-standards play', p:'The national-local Beijing Humanoid Robot Innovation Center: a data-and-training base drilling 120+ robot models across 30+ scenarios, the Tien Kung (天工) open platform, and ¥700M raised Feb 2026 (Baidu in). One of six national innovation centers — a coordinated state effort with no US equivalent.' },
+  { id:'bigtechvla', d:'brn', s:'competitive', n:'Big-tech VLA labs', zh:'大厂具身模型', stat:'ByteDance · Qwen · DeepSeek · BAAI', mil:'inferential', sanc:'', role:'The AI giants piling into the robot brain', p:'Beyond the platform makers, China\'s AI giants feed the robot brain: ByteDance\'s Seed lab (GR-series VLA), Alibaba\'s Qwen-VLA/RynnVLA, DeepSeek\'s reasoning models as high-level planners, and the state BAAI lab\'s open RoboBrain. A depth of foundation-model talent behind embodied AI few countries can match.' },
+  { id:'vlagap', d:'brn', s:'competitive', n:'VLA generalization frontier', zh:'VLA 泛化前沿', stat:'closing on Western embodied-AI', mil:'none', sanc:'', role:'The open research frontier', p:'General, robust vision-language-action generalization — the open research problem where China is competitive and closing but not clearly ahead, and where the next real advantage in the domain will be decided.' },
+  // Industrial base
+  { id:'estun', d:'ind', s:'leads', n:'Estun', zh:'埃斯顿', stat:'overtook Fanuc/ABB in China', mil:'none', sanc:'', role:'China\'s #1 industrial-robot maker', p:'Has overtaken Fanuc and ABB as China\'s market-leading industrial-robot maker — the clearest sign domestic brands have crossed 50% of China\'s own market. The manufacturing muscle that makes the humanoid ramp physically possible.' },
+  { id:'siasun', d:'ind', s:'competitive', n:'Siasun', zh:'新松机器人', stat:'state industrial-robot pioneer', mil:'none', sanc:'', role:'The CAS-lineage industrial pioneer', p:'China\'s pioneering industrial-robot maker (Chinese Academy of Sciences lineage) — a national champion in arms, AGVs and automation, though now pressured by nimbler private rivals.' },
+  { id:'efort', d:'ind', s:'competitive', n:'EFORT', zh:'埃夫特', stat:'industrial arms', mil:'none', sanc:'', role:'Industrial articulated arms', p:'A domestic industrial-robot-arm maker scaling into the automotive and general-manufacturing base — part of the broad Chinese industrial-robot field underpinning defense-relevant production.' },
+  { id:'jaka', d:'ind', s:'leads', n:'JAKA · Dobot · AUBO', zh:'节卡 · 越疆 · 遨博', stat:'collaborative-robot field', mil:'none', sanc:'', role:'The cobot leaders', p:'China\'s collaborative-robot (cobot) leaders — a segment where Chinese firms are globally competitive and export widely, and a talent/technology feeder into the humanoid wave.' },
+  { id:'kuka', d:'ind', s:'leads', n:'KUKA (Midea-owned)', zh:'库卡 (美的)', stat:'a global "big four" arm maker', mil:'none', sanc:'', role:'A global robot leader, Chinese-owned', p:'One of the global "big four" industrial-robot makers — German, but Chinese-owned via Midea since 2016. A reminder that China\'s robot ascent is partly by acquisition, folding a Western leader\'s technology into its base.' },
+  // Humanoids — deepened
+  { id:'astribot', d:'hum', s:'competitive', n:'Astribot (Stardust)', zh:'星尘智能', stat:'high-speed dual-arm manipulation', mil:'none', sanc:'', role:'Manipulation-speed specialist', p:'Shenzhen maker (Astribot S1) known for exceptionally fast, dexterous dual-arm manipulation — betting, like Galbot, on useful work over locomotion spectacle. A signal of how differentiated the crowded humanoid field has become.' },
+  { id:'limx', d:'hum', s:'competitive', n:'LimX Dynamics', zh:'逐际动力', stat:'biped + open motion platform', mil:'none', sanc:'', role:'Locomotion & open-platform humanoids', p:'Shenzhen developer of dynamic bipeds and a point-foot/quadruped research platform, supplying open motion-control platforms to the research ecosystem — part of the deep locomotion-focused bench.' },
+  { id:'cloudminds', d:'hum', s:'competitive', n:'CloudMinds', zh:'达闼机器人', stat:'cloud-brain robots · Entity-Listed', mil:'inferential', sanc:'Entity List', role:'The cloud-robot pioneer, sanctioned', p:'A pioneer of the "cloud brain" architecture (compute off-board, robot as terminal), Entity-Listed in 2020 — an early marker that the US saw the humanoid/service-robot sector as a strategic concern well before the 2026 wave.' },
+  // Reducers/actuators — deepened
+  { id:'shuanghuan', d:'act', s:'competitive', n:'Shuanghuan Driveline', zh:'双环传动', stat:'RV + harmonic (via Huandong)', mil:'none', sanc:'', role:'The domestic RV-reducer challenger', p:'China\'s leading domestic RV (cycloidal) reducer challenger — through its Huandong subsidiary it is the main homegrown alternative to Japan\'s Nabtesco in the heavy-load-joint reducers where China still lags.' },
+  { id:'leadshine', d:'act', s:'leads', n:'Leadshine Technology', zh:'雷赛智能', stat:'motion control + frameless motors', mil:'none', sanc:'', role:'Motion control & frameless torque motors', p:'A domestic motion-control and frameless-torque-motor maker feeding the actuator stack — part of the broad, self-sufficient Chinese servo and motion-control base beneath the humanoid boom.' },
+  // Sensors/hands — deepened
+  { id:'paxini', d:'sen', s:'competitive', n:'PaXini · Daimon', zh:'帕西尼 · 戴盟', stat:'tactile e-skin + dexterous hands', mil:'none', sanc:'', role:'Tactile-sensing dexterous hands', p:'Startups combining tactile/e-skin sensing with dexterous hands (PaXini\'s multimodal fingertip skin; Daimon\'s vision-based tactile hand) — attacking the single hardest robot-component bottleneck directly, where China is racing to close a real gap.' },
+  { id:'zhaowei', d:'act', s:'leads', n:'Zhaowei Machinery', zh:'兆威机电', stat:'micro-drive systems for hands', mil:'none', sanc:'', role:'Micro-drive & dexterous-hand actuators', p:'A micro-drive and precision-gear-motor maker supplying the tiny actuators inside dexterous hands — a domestic component tier scaling fast on humanoid demand.' },
+];
+
+const board = document.getElementById('board');
+const state = { status: new Set(['leads','competitive','depends']) };
+const counts = { leads: 0, competitive: 0, depends: 0 };
+DATA.forEach(e => counts[e.s]++);
+
+const gauge = document.getElementById('gauge');
+['leads','competitive','depends'].forEach(s => {
+  const b = document.createElement('button');
+  b.className = s; b.style.flex = counts[s]; b.dataset.s = s; b.setAttribute('aria-pressed','true');
+  b.innerHTML = '<span class="gc">' + counts[s] + '</span><span class="gn">' + STATUS[s].name + '</span>';
+  b.addEventListener('click', () => toggle(s));
+  gauge.appendChild(b);
+});
+
+function render() {
+  board.innerHTML = '';
+  colOrder.forEach(d => {
+    const L = LAYERS[d];
+    const col = document.createElement('div');
+    col.className = 'col'; col.dataset.d = d;
+    col.innerHTML = '<div class="colhead"><h2>' + L.label + '</h2><span class="zh">' + L.zh + '</span></div>';
+    const stack = document.createElement('div'); stack.className = 'cardstack';
+    DATA.filter(e => e.d === d).forEach(e => {
+      const b = document.createElement('button');
+      b.className = 'card'; b.dataset.id = e.id; b.style.setProperty('--sc', 'var(--' + e.s + ')');
+      b.innerHTML = '<span class="sdot"></span>' + (e.mil === 'documented' ? '<span class="mil">◆PLA</span>' : '') +
+        '<span class="n">' + e.n + '</span><span class="zh">' + e.zh + '</span>' +
+        '<span class="role">' + e.role + '</span>' + (e.stat ? '<span class="stat">▸ ' + e.stat + '</span>' : '');
+      b.addEventListener('click', () => openPanel(e));
+      stack.appendChild(b);
+    });
+    col.appendChild(stack); board.appendChild(col);
+  });
+  applyFilters();
+}
+function applyFilters() {
+  const byId = Object.fromEntries(DATA.map(e => [e.id, e]));
+  document.querySelectorAll('.card').forEach(c => { c.hidden = !state.status.has(byId[c.dataset.id].s); });
+  document.querySelectorAll('.col').forEach(col => { col.hidden = col.querySelectorAll('.card:not([hidden])').length === 0; });
+}
+const resetBtn = document.getElementById('resetf');
+function toggle(s) {
+  if (state.status.has(s) && state.status.size === 1) return;
+  if (state.status.has(s)) state.status.delete(s); else state.status.add(s);
+  document.querySelector('.gauge button.' + s).setAttribute('aria-pressed', String(state.status.has(s)));
+  resetBtn.hidden = state.status.size === 3;
+  applyFilters();
+}
+resetBtn.addEventListener('click', () => {
+  state.status = new Set(['leads','competitive','depends']);
+  document.querySelectorAll('.gauge button').forEach(b => b.setAttribute('aria-pressed','true'));
+  resetBtn.hidden = true; applyFilters();
+});
+
+const panel = document.getElementById('panel'); const backdrop = document.getElementById('backdrop');
+function openPanel(e) {
+  panel.style.setProperty('--sc', 'var(--' + e.s + ')');
+  panel.style.setProperty('--sc-bg', 'var(--' + e.s + '-bg)');
+  const milTag = e.mil === 'documented' ? '<span class="tag mil">Documented PLA link</span>' : (e.mil === 'inferential' ? '<span class="tag mil" style="opacity:.7">Inferential military relevance</span>' : '');
+  const sancTag = e.sanc ? '<span class="tag sanc">US: ' + e.sanc + '</span>' : '';
+  document.getElementById('pbody').innerHTML =
+    '<div class="lyr">' + LAYERS[e.d].label + '</div>' +
+    '<h2>' + e.n + '</h2><p class="zh">' + e.zh + '</p>' +
+    '<div class="status"><span class="d"></span>' + STATUS[e.s].name + '</div>' +
+    '<p class="statusdesc">' + STATUS[e.s].desc + '</p>' +
+    '<div class="meta"><div><span class="k">Layer</span>' + LAYERS[e.d].label + '</div>' +
+      (e.stat ? '<div><span class="k">Signal</span>' + e.stat + '</div>' : '') + '</div>' +
+    '<p class="profile">' + e.p + '</p>' + milTag + sancTag;
+  panel.classList.add('open'); backdrop.hidden = false;
+}
+function closePanel() { panel.classList.remove('open'); backdrop.hidden = true; }
+document.getElementById('closep').addEventListener('click', closePanel);
+backdrop.addEventListener('click', closePanel);
+document.addEventListener('keydown', ev => { if (ev.key === 'Escape') closePanel(); });
+render();
+</script>

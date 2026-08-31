@@ -1,0 +1,258 @@
+<title>Taiwan Contingency</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chivo:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    color-scheme: light;
+    --bg: #EBEAE7; --surface: #F6F5F2; --surface2: #DFDDD8; --ink: #1B1A17; --muted: #66625B;
+    --line: #CCC9C2; --grid: rgba(27,26,23,.05);
+    --accent: #3E3A34;
+    --cn: #B23A2A; --cn-bg: rgba(178,58,42,.10);
+    --ct: #A9742A; --ct-bg: rgba(169,116,42,.12);
+    --us: #2C6C9C; --us-bg: rgba(44,108,156,.10);
+    --shadow: 0 14px 40px rgba(27,26,23,.16);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --bg: #141310; --surface: #1D1B17; --surface2: #272420; --ink: #E6E3DC; --muted: #979286;
+      --line: #302C26; --grid: rgba(230,227,220,.05); --accent: #B7B1A5;
+      --cn: #DA6A5A; --cn-bg: rgba(218,106,90,.14);
+      --ct: #E0A63E; --ct-bg: rgba(224,166,62,.14);
+      --us: #5B9BD0; --us-bg: rgba(91,155,208,.14);
+      --shadow: 0 14px 40px rgba(0,0,0,.55);
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #141310; --surface: #1D1B17; --surface2: #272420; --ink: #E6E3DC; --muted: #979286;
+    --line: #302C26; --grid: rgba(230,227,220,.05); --accent: #B7B1A5;
+    --cn: #DA6A5A; --cn-bg: rgba(218,106,90,.14);
+    --ct: #E0A63E; --ct-bg: rgba(224,166,62,.14);
+    --us: #5B9BD0; --us-bg: rgba(91,155,208,.14);
+    --shadow: 0 14px 40px rgba(0,0,0,.55);
+  }
+  * { box-sizing: border-box; }
+  body { background: var(--bg); color: var(--ink); margin: 0; font-family: "IBM Plex Sans","PingFang SC","Microsoft YaHei",system-ui,sans-serif; font-size: 14.5px; line-height: 1.55; }
+  .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
+  .wrap { max-width: 1560px; margin: 0 auto; }
+  header.mast { padding: 40px 28px 16px; }
+  .eyebrow { font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); margin: 0 0 12px; }
+  h1 { font-family: "Chivo", sans-serif; font-weight: 800; font-size: clamp(32px,5vw,54px); line-height: 1; margin: 0 0 14px; letter-spacing: -0.02em; text-wrap: balance; }
+  .thesis { max-width: 82ch; color: var(--ink); font-size: 15.5px; margin: 0 0 6px; line-height: 1.6; }
+  .thesis .cn { color: var(--cn); font-weight: 600; } .thesis .us { color: var(--us); font-weight: 600; } .thesis b { font-weight: 600; }
+  /* phase flow hero */
+  .flow { display: flex; align-items: stretch; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; background: var(--surface); margin: 20px 0 0; }
+  .fph { flex: 1 1 0; min-width: 130px; border: 0; border-right: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; text-align: left; padding: 12px 15px; position: relative; transition: background .12s; }
+  .fph:last-child { border-right: 0; }
+  .fph:hover { background: var(--surface2); }
+  .fph[aria-pressed="false"] { opacity: .4; }
+  .fph .fnum { font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .1em; color: var(--accent); }
+  .fph .fnm { font-family: "Chivo", sans-serif; font-weight: 700; font-size: 15px; display: block; margin: 3px 0 1px; letter-spacing: -0.01em; }
+  .fph .ft { color: var(--muted); font-size: 11px; font-family: "IBM Plex Mono", monospace; }
+  .fph .fbar { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: linear-gradient(90deg, var(--cn), var(--ct) 60%, var(--us)); opacity: .5; }
+  .controls { max-width: 1560px; margin: 0 auto; padding: 14px 28px 4px; display: flex; flex-wrap: wrap; gap: 9px; align-items: center; }
+  .clabel { font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+  .chip { background: var(--surface); border: 1px solid var(--line); cursor: pointer; font: inherit; font-size: 11.5px; padding: 6px 11px; border-radius: 20px; display: inline-flex; align-items: center; gap: 6px; color: var(--muted); font-family: "IBM Plex Mono", monospace; }
+  .chip .dot { width: 9px; height: 9px; border-radius: 50%; }
+  .chip.cn .dot { background: var(--cn); } .chip.ct .dot { background: var(--ct); } .chip.us .dot { background: var(--us); }
+  .chip[aria-pressed="true"].cn { background: var(--cn); border-color: var(--cn); color: #fff; }
+  .chip[aria-pressed="true"].ct { background: var(--ct); border-color: var(--ct); color: #2a1e02; }
+  .chip[aria-pressed="true"].us { background: var(--us); border-color: var(--us); color: #fff; }
+  main { max-width: 1560px; margin: 0 auto; padding: 16px 28px 8px; }
+  .board { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
+  .col { min-width: 0; }
+  .colhead { border-bottom: 3px solid var(--accent); padding-bottom: 7px; margin-bottom: 12px; }
+  .colhead h2 { font-family: "Chivo", sans-serif; font-size: 15px; font-weight: 700; margin: 0; line-height: 1.1; letter-spacing: -0.01em; }
+  .colhead .ct { color: var(--muted); font-size: 10.5px; font-family: "IBM Plex Mono", monospace; }
+  .cardstack { display: flex; flex-direction: column; gap: 7px; }
+  .card { text-align: left; width: 100%; cursor: pointer; font: inherit; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--ac); border-radius: 4px; padding: 9px 11px 10px; position: relative; }
+  .card:hover { background: var(--surface2); border-left-width: 5px; }
+  .card .n { font-family: "Chivo", sans-serif; font-weight: 600; font-size: 13.5px; line-height: 1.15; display: block; padding-right: 16px; }
+  .card .why { color: var(--muted); font-size: 11.8px; line-height: 1.42; display: block; margin-top: 4px; }
+  .card .data { font-family: "IBM Plex Mono", monospace; font-size: 10px; color: var(--ac); margin-top: 6px; display: block; }
+  .sdot { position: absolute; top: 10px; right: 10px; width: 9px; height: 9px; border-radius: 50%; background: var(--ac); }
+  .card[hidden], .col[hidden] { display: none !important; }
+  /* read band */
+  .readband { max-width: 1560px; margin: 8px auto 0; padding: 20px 28px 4px; }
+  .readband .rb { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 18px 20px; font-size: 14px; line-height: 1.6; color: var(--ink); max-width: 96ch; }
+  .readband .rb b { font-weight: 600; } .readband .rb .cn { color: var(--cn); font-weight: 600; } .readband .rb .us { color: var(--us); font-weight: 600; }
+  /* dossier */
+  #backdrop { position: fixed; inset: 0; background: rgba(12,11,9,.5); z-index: 40; }
+  #panel { position: fixed; top: 0; right: 0; bottom: 0; width: min(440px,100vw); z-index: 50; background: var(--surface); border-left: 1px solid var(--line); box-shadow: var(--shadow); transform: translateX(102%); transition: transform .22s ease; overflow-y: auto; padding: 26px 28px 40px; }
+  #panel.open { transform: translateX(0); }
+  @media (prefers-reduced-motion: reduce) { #panel { transition: none; } }
+  #panel .ptag { font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 9px; font-weight: 500; }
+  #panel h2.pt { font-family: "Chivo", sans-serif; font-size: 23px; font-weight: 700; margin: 0; line-height: 1.1; letter-spacing: -0.01em; }
+  #panel .padv { display: inline-flex; align-items: center; gap: 7px; font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: .04em; text-transform: uppercase; padding: 4px 10px; border-radius: 12px; margin: 12px 0 4px; background: var(--ac-bg); color: var(--ac); border: 1px solid var(--ac); }
+  #panel .padv .d { width: 8px; height: 8px; border-radius: 50%; background: var(--ac); }
+  #panel .meta { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); margin: 14px 0; padding: 11px 0; display: grid; gap: 5px; font-size: 12.5px; }
+  #panel .meta .k { color: var(--muted); font-family: "IBM Plex Mono", monospace; font-size: 10px; text-transform: uppercase; letter-spacing: .07em; display: inline-block; min-width: 84px; }
+  #panel .profile { font-size: 13.5px; line-height: 1.62; margin: 0 0 14px; }
+  #panel .data2 { background: var(--ac-bg); border: 1px solid var(--ac); border-radius: 5px; padding: 10px 12px; font-family: "IBM Plex Mono", monospace; font-size: 11.5px; color: var(--ink); line-height: 1.5; }
+  #closep { position: absolute; top: 15px; right: 15px; background: none; border: 1px solid var(--line); color: var(--muted); border-radius: 4px; width: 28px; height: 28px; cursor: pointer; font-size: 15px; line-height: 1; }
+  #closep:hover { color: var(--ink); border-color: var(--muted); }
+  footer { max-width: 1560px; margin: 0 auto; padding: 20px 28px 46px; color: var(--muted); font-size: 11.5px; line-height: 1.6; border-top: 1px solid var(--line); }
+  footer p { max-width: 104ch; } footer a { color: var(--us); }
+  @media (max-width: 900px) { .board { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 620px) { header.mast, main, footer, .controls, .readband { padding-left: 15px; padding-right: 15px; } .board { grid-template-columns: 1fr; } .flow { flex-direction: column; } .fph { border-right: 0; border-bottom: 1px solid var(--line); } }
+</style>
+
+<div class="wrap">
+  <header class="mast">
+    <p class="eyebrow">ChinaTalk Research · Operational Lens · Aug 2026</p>
+    <h1>Taiwan Contingency</h1>
+    <p class="thesis">The atlas re-cut by the question that decides it: <b>what matters when the shooting starts?</b> The economic chokepoints run on a clock of years; a cross-strait fight runs on hours, weeks, and reload rates — which inverts the picture. The fast-biting, war-decisive capabilities mostly favor <span class="cn">China</span>, whose base is built for a short, high-intensity fight; the slow-biting economic chokepoints the <span class="us">US</span> holds barely bite in time. The exceptions that keep it two-sided — undersea warfare, alliances, and the blockade's double edge on China's own imports — grow with time. An analytical exercise, not a forecast. Tap a phase or a side to filter.</p>
+    <div class="flow" id="flow" role="group" aria-label="Filter by conflict phase"></div>
+  </header>
+
+  <div class="controls">
+    <span class="clabel">who's advantaged:</span>
+    <button class="chip cn" data-a="cn" aria-pressed="true"><span class="dot"></span>China</button>
+    <button class="chip ct" data-a="ct" aria-pressed="true"><span class="dot"></span>Contested</button>
+    <button class="chip us" data-a="us" aria-pressed="true"><span class="dot"></span>US / allied</button>
+  </div>
+
+  <main><div class="board" id="board"></div></main>
+
+  <section class="readband">
+    <div class="rb"><b>The read:</b> read the board left to right and the color shifts from <span class="cn">red</span> to <span class="us">blue</span>. China's advantages are front-loaded — magazine depth, saturation, reload tempo, drone mass — the things that decide the <b>opening fight</b>. US and allied advantages — undersea, alliances, C2 quality, and the blockade turning China's <span class="us">own import dependencies</span> against it — accumulate over <b>months</b>. The uncomfortable synthesis for a US planner: <b>the longer the war, the more American advantages matter — and the whole point of China's industrial design is to make sure the war is short.</b></div>
+  </section>
+
+  <footer>
+    <p>Compiled Aug 30, 2026 as an operational lens over the China Defense-Industrial Atlas. Grounded in published wargames (CSIS "Empty Bins" and the Cancian Taiwan invasion/blockade series; Heritage TIDALWAVE) and the atlas's domain essays. Conflict-phase timescales and "who's advantaged" calls are analytical judgments; real conflicts defy neat phasing. This lens holds two ideas at once — China's opening-fight industrial edge is real, and so are the US/allied advantages that grow with time. A framework for thinking, not a prediction. Companion essay: <span class="mono">taiwan-contingency-lens.md</span>.</p>
+  </footer>
+</div>
+
+<div id="backdrop" hidden></div>
+<aside id="panel" aria-label="Capability dossier"><button id="closep" aria-label="Close dossier">×</button><div id="pbody"></div></aside>
+
+<script>
+const ADV = { cn: { name: 'China advantaged', v:'--cn' }, ct: { name: 'Contested', v:'--ct' }, us: { name: 'US / allied advantaged', v:'--us' } };
+const PHASES = {
+  stand:   { label: 'Standing posture', t: 'pre-conflict', num: 'PHASE 0' },
+  open:    { label: 'Opening salvo', t: 'hours – days', num: 'PHASE 1' },
+  reload:  { label: 'The reload fight', t: 'weeks', num: 'PHASE 2' },
+  protract:{ label: 'Protracted & blockade', t: 'months', num: 'PHASE 3' },
+};
+const phOrder = ['stand','open','reload','protract'];
+
+const DATA = [
+  // Standing posture
+  { id:'magazine', ph:'stand', a:'cn', n:'Missile magazine', why:'The largest conventional ballistic & cruise arsenal on earth, built to hold US carriers and bases at risk.', data:'DF-26 / DF-21D / DF-17 · Rocket Force', domain:'Space, Missiles & Hypersonics',
+    detail:'The PLA Rocket Force enters with the deepest conventional missile inventory in the world (CASC/CASIC-built), designed precisely for the anti-access fight. China is openly modeling how many missiles it needs to win — magazine depth as a deliberate war-planning input.' },
+  { id:'dronearsenal', ph:'stand', a:'cn', n:'Drone arsenal & FPV mass', why:'Strike drones plus effectively unlimited cheap FPV mass from the world\'s dominant component base.', data:'~80–90% of global FPV motors', domain:'Drone & Robot Ecosystem',
+    detail:'From Wing Loong/CH strike drones to loitering munitions to FPV swarms, China starts deep — and, uniquely, sits on the component supply chain (motors, batteries, magnets) everyone else needs to build drones too.' },
+  { id:'shiplead', ph:'stand', a:'cn', n:'Shipbuilding lead', why:'~230× US capacity means China starts with the hulls and the yards to replace losses.', data:'~230× US shipbuilding capacity (CSIS)', domain:'Naval & Undersea',
+    detail:'The largest navy by hull count, sitting atop the largest shipbuilding base in history — the standing-force and the loss-replacement advantage in one.' },
+  { id:'surgecap', ph:'stand', a:'cn', n:'Stockpile + surge capacity', why:'A base on a wartime footing: deep stockpiles and the tempo to keep filling them.', data:'150–250% surge · 5–6× US acquisition tempo', domain:'Ground Systems',
+    detail:'DoD assesses Chinese enterprises acquire materiel 5–6× faster than the US, with automated smart factories able to surge 150–250% — the industrial correlate of the "wartime footing".' },
+  { id:'usposture', ph:'stand', a:'us', n:'Forward posture & alliances', why:'Basing, access, and a coalition — force multipliers a supplier map understates.', data:'Japan, Australia, Philippines, AUKUS', domain:'(not in a supplier map)',
+    detail:'The US enters with forward bases, access agreements, and allies whose combined weight is not captured by counting factories — the single biggest thing an industrial-base analysis leaves out.' },
+  { id:'usundersea', ph:'stand', a:'us', n:'Undersea advantage (SSNs)', why:'The one domain China clearly lags — quieting and ASW — and the sharpest counter to amphibious ops.', data:'US/allied SSNs vs PLAN quieting gap', domain:'Naval & Undersea',
+    detail:'Submarine quieting and ASW are the PLAN\'s acknowledged soft spot; US and allied nuclear attack submarines are the highest-leverage counter to a cross-strait amphibious operation.' },
+  // Opening salvo
+  { id:'saturation', ph:'open', a:'cn', n:'Saturation strike', why:'Enough precision munitions arriving together to overwhelm defenses in the first exchange.', data:'Volume > sophistication in the first salvo', domain:'Space, Missiles & Hypersonics',
+    detail:'The opening problem China poses is volume — a saturating first salvo. The whole counter-UAS/counter-swarm arms race (FK-3000, HQ, directed energy) exists because both sides expect exactly this.' },
+  { id:'blinding', ph:'open', a:'cn', n:'Counterspace + EW blinding', why:'ASAT and jamming target the space-based kill chain both sides depend on.', data:'Co-orbital + direct-ascent ASAT · GNSS/SATCOM jamming', domain:'Space & Counterspace',
+    detail:'The PLA Aerospace Force fields a broad counterspace portfolio (Shijian-21 co-orbital, direct-ascent ASAT, dazzle, jamming) and CETC EW contests the spectrum — aimed at blinding the sensor-to-shooter chain. Contested, because the US counters hard.' },
+  { id:'usmunitions', ph:'open', a:'us', n:'US long-range munitions', why:'Exquisite but shallow — the US fires its entire LRASM inventory in the first days "in all scenarios."', data:'LRASM out in days (CSIS wargame)', domain:'(US side)',
+    detail:'US long-range anti-ship and strike missiles (LRASM, JASSM-ER, SM-6, Mk 48) are high-quality but constrained in days-of-supply. CSIS wargaming has the US expending its LRASM inventory within the opening days — a decisive weakness, not a strength.' },
+  { id:'cyber', ph:'open', a:'ct', n:'Cyber & first-strike C2', why:'The opening-move contest over networks, logistics, and command — genuinely two-sided.', data:'Contested domain', domain:'Electronics · Radar · EW',
+    detail:'Cyber operations against C2, logistics, and critical infrastructure are an opening-salvo lever both sides invest in heavily, with no clear advantage — a genuinely contested domain.' },
+  // Reload fight
+  { id:'tempo', ph:'reload', a:'cn', n:'Munitions-production tempo', why:'The reload machine: 5–6× the US rate, automated factories, MCF conversion of commercial output.', data:'5–6× US rate · smart-factory surge', domain:'Ground Systems',
+    detail:'Once opening magazines empty, production tempo decides. China\'s automated munitions base, surge capacity, and ability to convert commercial manufacturing (MCF) refill the magazine far faster than the US can.' },
+  { id:'emptybins', ph:'reload', a:'us', n:'US "empty bins"', why:'A ~2-year production lag, rocket-motor bottlenecks, and imported energetics — supply failure risk in 25–120 days.', data:'Heritage TIDALWAVE "Triple Bind"', domain:'(US side)',
+    detail:'With opening magazines spent, the US faces the "empty bins" problem: a two-year production lag for key munitions, rocket-motor bottlenecks, and reliance on imported (Polish) TNT — a supply failure that Heritage models within 25–120 days of a major fight.' },
+  { id:'droneattr', ph:'reload', a:'cn', n:'Drone attrition & reload', why:'FPVs consumed by the million — and the components to rebuild them come ~80–90% from China.', data:'The West would reload from a China-controlled chain', domain:'Chokepoint Ledger',
+    detail:'Attritional drone warfare burns FPVs by the million. The bitter irony: the US and partners would be mass-producing replacement drones from a motor/battery/magnet supply chain China dominates — while China reloads from its own base.' },
+  { id:'isrc2', ph:'reload', a:'us', n:'ISR / C2 / targeting quality', why:'Sensor-to-shooter quality and networked C2 — a persistent US edge against China\'s growing kill web.', data:'Quality vs China\'s maturing kill chain', domain:'Electronics · Radar · EW',
+    detail:'The US retains an edge in the quality and integration of its sensor-to-shooter chain and battle management — though China\'s "systems-destruction warfare" build-out (CETC, space ISR) is closing it. Contested-leaning-US.' },
+  // Protracted & blockade
+  { id:'shiprepair', ph:'protract', a:'cn', n:'Battle-damage repair & replacement', why:'~230× shipbuilding capacity means repairing damage and replacing losses at a rate the US cannot match.', data:'Loss-replacement at scale', domain:'Naval & Undersea',
+    detail:'In a war of attrition, the ability to repair battle damage and build replacement hulls becomes decisive — and China\'s shipbuilding base is structurally built for it. The US cannot replace major combatants on a wartime timescale.' },
+  { id:'energetics', ph:'protract', a:'cn', n:'Energetics & magnets (reload)', why:'The chemical and magnetic inputs that sustain munitions and motors over months of fighting.', data:'AP/HTPB energetics · ~90% RE magnets', domain:'Chokepoint Ledger',
+    detail:'Sustained munitions production runs on energetics (ammonium perchlorate, HTPB) and every guided weapon and motor runs on rare-earth magnets — layers where China is dominant and self-sufficient, and the West is not.' },
+  { id:'blockade', ph:'protract', a:'us', n:'China\'s import vulnerabilities', why:'A blockade cuts both ways — China imports most of its oil, LNG, food, and advanced chips.', data:'Oil / LNG / food / chip imports exposed', domain:'Semiconductor Chokepoint',
+    detail:'The double edge: a war likely means a blockade in both directions, and China depends on seaborne imports of energy, food, and advanced chips/tools. The economic chokepoints the US holds finally bite here — on a months timescale, not days.' },
+  { id:'asw', ph:'protract', a:'us', n:'Undersea / ASW in a blockade', why:'US and allied SSNs are the decisive counter to both amphibious ops and China\'s own sea lines.', data:'The domain China most clearly lags', domain:'Naval & Undersea',
+    detail:'Undersea warfare is where the US/allied edge is sharpest and most durable — decisive against an amphibious assault and for interdicting China\'s seaborne imports in a protracted blockade.' },
+  { id:'econbite', ph:'protract', a:'us', n:'Economic chokepoints finally bite', why:'EUV, EDA, and frontier compute matter over months and years — not in the opening fight.', data:'Peacetime locks, wartime-irrelevant early', domain:'Chokepoint Ledger',
+    detail:'The crown-jewel export-control chokepoints (EUV, advanced EDA, frontier AI compute) constrain China\'s *future* capability, biting over months and years. They shape the long competition, not the opening battle — the core insight of the whole lens.' },
+];
+
+const board = document.getElementById('board');
+const active = new Set(['cn','ct','us']);
+const activePh = new Set(phOrder);
+
+// phase flow hero
+const flow = document.getElementById('flow');
+phOrder.forEach(p => {
+  const P = PHASES[p];
+  const b = document.createElement('button');
+  b.className = 'fph'; b.dataset.p = p; b.setAttribute('aria-pressed','true');
+  b.innerHTML = `<span class="fnum">${P.num}</span><span class="fnm">${P.label}</span><span class="ft">${P.t}</span><span class="fbar"></span>`;
+  b.addEventListener('click', () => togglePhase(p));
+  flow.appendChild(b);
+});
+
+function render() {
+  board.innerHTML = '';
+  phOrder.forEach(p => {
+    const P = PHASES[p];
+    const col = document.createElement('div');
+    col.className = 'col'; col.dataset.p = p;
+    col.innerHTML = `<div class="colhead"><h2>${P.label}</h2><span class="ct">${P.num} · ${P.t}</span></div>`;
+    const stack = document.createElement('div'); stack.className = 'cardstack';
+    DATA.filter(e => e.ph === p).forEach(e => {
+      const b = document.createElement('button');
+      b.className = 'card'; b.dataset.id = e.id; b.style.setProperty('--ac', 'var('+ADV[e.a].v+')');
+      b.innerHTML = `<span class="sdot"></span><span class="n">${e.n}</span><span class="why">${e.why}</span>` + (e.data?`<span class="data">▸ ${e.data}</span>`:'');
+      b.addEventListener('click', () => openPanel(e));
+      stack.appendChild(b);
+    });
+    col.appendChild(stack); board.appendChild(col);
+  });
+  applyFilters();
+}
+function applyFilters() {
+  const byId = Object.fromEntries(DATA.map(e => [e.id, e]));
+  document.querySelectorAll('.card').forEach(c => { const e = byId[c.dataset.id]; c.hidden = !(active.has(e.a) && activePh.has(e.ph)); });
+  document.querySelectorAll('.col').forEach(col => { col.hidden = !activePh.has(col.dataset.p) || col.querySelectorAll('.card:not([hidden])').length === 0; });
+}
+function togglePhase(p) {
+  if (activePh.has(p) && activePh.size === 1) { phOrder.forEach(x=>activePh.add(x)); }
+  else if (activePh.has(p)) activePh.delete(p); else activePh.add(p);
+  document.querySelectorAll('.fph').forEach(b => b.setAttribute('aria-pressed', String(activePh.has(b.dataset.p))));
+  applyFilters();
+}
+document.querySelectorAll('.controls .chip').forEach(ch => {
+  ch.addEventListener('click', () => {
+    const a = ch.dataset.a;
+    if (active.has(a) && active.size === 1) { active.add('cn');active.add('ct');active.add('us'); }
+    else if (active.has(a)) active.delete(a); else active.add(a);
+    document.querySelectorAll('.controls .chip').forEach(c => c.setAttribute('aria-pressed', String(active.has(c.dataset.a))));
+    applyFilters();
+  });
+});
+
+const panel = document.getElementById('panel'), backdrop = document.getElementById('backdrop');
+function openPanel(e) {
+  panel.style.setProperty('--ac', 'var('+ADV[e.a].v+')');
+  panel.style.setProperty('--ac-bg', 'var('+ADV[e.a].v+'-bg)');
+  document.getElementById('pbody').innerHTML =
+    `<div class="ptag" style="color:var(${ADV[e.a].v})">${PHASES[e.ph].num} · ${PHASES[e.ph].label} — ${PHASES[e.ph].t}</div>` +
+    `<h2 class="pt">${e.n}</h2>` +
+    `<div class="padv"><span class="d"></span>${ADV[e.a].name}</div>` +
+    `<div class="meta"><div><span class="k">Phase</span>${PHASES[e.ph].label} (${PHASES[e.ph].t})</div><div><span class="k">Atlas domain</span>${e.domain}</div></div>` +
+    `<p class="profile">${e.detail}</p>` +
+    (e.data ? `<div class="data2">▸ ${e.data}</div>` : '');
+  panel.classList.add('open'); backdrop.hidden = false;
+}
+function closePanel(){ panel.classList.remove('open'); backdrop.hidden = true; }
+document.getElementById('closep').addEventListener('click', closePanel);
+backdrop.addEventListener('click', closePanel);
+document.addEventListener('keydown', ev => { if(ev.key==='Escape') closePanel(); });
+
+render();
+</script>
