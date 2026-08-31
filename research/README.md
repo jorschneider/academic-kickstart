@@ -21,6 +21,7 @@ A ChinaTalk research corpus mapping who actually builds for the PLA — the prim
 | [Space & Missile Power](https://claude.ai/code/artifact/5101023f-ba3f-44d4-9b35-9f90eac4a98f) | Launch, satellites, counterspace, missiles, hypersonics — vs the US | 41 systems |
 | [**Chokepoint Ledger**](https://claude.ai/code/artifact/9b07ec41-f9ff-4863-a0cf-c0fd43b9b11a) | **The economic synthesis** — dependencies vs. leverage on a severity × substitution matrix | 18 chokepoints |
 | [**Taiwan Contingency**](https://claude.ai/code/artifact/14f256bd-9d68-4687-866e-054f89579299) | **The operational synthesis** — what's decisive across four conflict phases | 19 capabilities |
+| [**Tripwires**](https://claude.ai/code/artifact/eeac96ad-0e4a-4582-9a02-a4e182e7ff37) | **The forecasting synthesis** — the observable events that would force a rating to change | 25 tripwires |
 
 ## Essays
 
@@ -40,6 +41,7 @@ A ChinaTalk research corpus mapping who actually builds for the PLA — the prim
 | [`critical-minerals-materials.md`](./critical-minerals-materials.md) | The substrate: rare-earth magnets and minerals as a weapon, superalloys and carbon fiber as a dependency being retired |
 | [`chokepoint-leverage-ledger.md`](./chokepoint-leverage-ledger.md) | **The economic synthesis** — China's dependencies vs. leverage, with substitution timelines and policy levers |
 | [`taiwan-contingency-lens.md`](./taiwan-contingency-lens.md) | **The operational synthesis** — what's decisive when the shooting starts, and which chokepoints bite when |
+| [`indicators-and-warnings.md`](./indicators-and-warnings.md) | **The forecasting synthesis** — 25 falsifiable tripwires, and why three in five point one way |
 | [`methodology-and-confidence.md`](./methodology-and-confidence.md) | **How to read the atlas** — the sourcing taxonomy, the confidence grade behind every rating, and what open source structurally can't see |
 
 ## The through-line

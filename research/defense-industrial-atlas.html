@@ -129,6 +129,7 @@
   .ledger-cta { display: flex; align-items: center; justify-content: space-between; gap: 24px; text-decoration: none; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 22px 26px 22px 30px; transition: transform .12s, box-shadow .12s; position: relative; overflow: hidden; }
   .ledger-cta::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: linear-gradient(180deg, var(--accent), var(--teal)); }
   .ledger-cta.taiwan::before { background: linear-gradient(180deg, var(--accent), var(--accent)); }
+  .ledger-cta.tripwire::before { background: linear-gradient(180deg, var(--teal), var(--teal)); }
   .lc-h { margin-top: 0; }
   .ledger-cta:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
   .lc-eyebrow { font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0 0 8px; }
@@ -197,7 +198,7 @@
   </section>
 
   <section id="ledger-feature">
-    <p class="lc-eyebrow" style="margin-bottom:14px">The two syntheses · the "so what"</p>
+    <p class="lc-eyebrow" style="margin-bottom:14px">The three syntheses · the "so what"</p>
     <a class="ledger-cta" href="https://claude.ai/code/artifact/9b07ec41-f9ff-4863-a0cf-c0fd43b9b11a" target="_blank" rel="noopener">
       <div class="lc-body">
         <h2 class="lc-h">The Chokepoint Ledger</h2>
@@ -211,6 +212,13 @@
         <p class="lc-p"><b>The operational read.</b> The same atlas re-cut by what's decisive when the shooting starts — across four conflict phases. The sharp insight: peacetime chokepoints (EUV, EDA) barely bite in a short war, while wartime ones (magazine depth, munitions tempo, shipbuilding, energetics) decide it — and those favor <b class="lc-in">China</b>. The <b class="lc-out">US/allied</b> edges (undersea, alliances, the blockade's double edge) grow with time.</p>
       </div>
       <span class="lc-go">Open the lens →</span>
+    </a>
+    <a class="ledger-cta tripwire" href="https://claude.ai/code/artifact/eeac96ad-0e4a-4582-9a02-a4e182e7ff37" target="_blank" rel="noopener">
+      <div class="lc-body">
+        <h2 class="lc-h">The Tripwires</h2>
+        <p class="lc-p"><b>The forecasting read.</b> An atlas that cannot be wrong is not analysis. This one commits itself in advance: 25 observable events that would force a rating to change, each naming the claim it tests, the threshold to watch, and the consequence. The finding is in the composition — three in five point toward China being <b class="lc-in">stronger</b> than rated, because in an opaque system capability surfaces late and the corrections <b class="lc-out">run one way</b>.</p>
+      </div>
+      <span class="lc-go">Open the tripwires →</span>
     </a>
   </section>
 
@@ -367,6 +375,7 @@ const ESSAYS = [
   { et: 'Critical Minerals & Advanced Materials', ed: 'The substrate: magnets and minerals as a weapon, superalloys as a dependency retired', ef: 'critical-minerals-materials.md' },
   { et: 'The Chokepoint & Leverage Ledger', ed: 'The economic synthesis — dependencies vs. leverage', ef: 'chokepoint-leverage-ledger.md' },
   { et: 'The Taiwan-Contingency Lens', ed: 'The operational synthesis — what\'s decisive when the shooting starts', ef: 'taiwan-contingency-lens.md' },
+  { et: 'Indicators & Warnings', ed: 'The forecasting synthesis — what would prove the atlas wrong', ef: 'indicators-and-warnings.md' },
   { et: 'Methodology & Confidence', ed: 'How the ratings were made, graded, and where they\'re soft', ef: 'methodology-and-confidence.md' },
 ]
 ESSAYS.forEach(e => {

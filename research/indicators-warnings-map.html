@@ -1,0 +1,505 @@
+<title>Tripwires</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500;600;700&family=Public+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    color-scheme: light;
+    --bg: #E9E7EE;
+    --surface: #F4F3F7;
+    --surface2: #DEDBE6;
+    --ink: #1E1A24;
+    --muted: #5E5870;
+    --line: #CBC7D6;
+    --hair: #D9D6E0;
+    --up: #9B2C6F;
+    --down: #1A6455;
+    --break: #8A5A0B;
+    --up-soft: rgba(155, 44, 111, .10);
+    --down-soft: rgba(26, 100, 85, .10);
+    --break-soft: rgba(138, 90, 11, .10);
+    --on-sig: #ffffff;      /* ink on a signal fill — signals are dark in light mode */
+    --shadow: 0 14px 38px rgba(30, 26, 36, .16);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --bg: #16141A; --surface: #1E1B24; --surface2: #282430;
+      --ink: #E8E5EE; --muted: #9E98AC; --line: #383244; --hair: #2A2632;
+      --up: #E58ABC; --down: #5FC4A8; --break: #D9A64A;
+      --up-soft: rgba(229, 138, 188, .14);
+      --down-soft: rgba(95, 196, 168, .14);
+      --break-soft: rgba(217, 166, 74, .14);
+      --on-sig: #16141A;
+      --shadow: 0 14px 38px rgba(0, 0, 0, .55);
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #16141A; --surface: #1E1B24; --surface2: #282430;
+    --ink: #E8E5EE; --muted: #9E98AC; --line: #383244; --hair: #2A2632;
+    --up: #E58ABC; --down: #5FC4A8; --break: #D9A64A;
+    --up-soft: rgba(229, 138, 188, .14);
+    --down-soft: rgba(95, 196, 168, .14);
+    --break-soft: rgba(217, 166, 74, .14);
+    --on-sig: #16141A;
+    --shadow: 0 14px 38px rgba(0, 0, 0, .55);
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink); margin: 0;
+    font-family: "Public Sans", system-ui, -apple-system, sans-serif;
+    font-size: 14.5px; line-height: 1.55;
+  }
+  .mono { font-family: "DM Mono", ui-monospace, monospace; }
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 0 26px; }
+  a { color: var(--up); }
+  /* masthead */
+  header.mast { padding: 50px 0 26px; border-bottom: 2px solid var(--ink); }
+  .kicker {
+    font-family: "DM Mono", monospace; font-size: 11px; letter-spacing: .2em;
+    text-transform: uppercase; color: var(--muted); margin: 0 0 16px;
+    display: flex; gap: 11px; align-items: center; flex-wrap: wrap;
+  }
+  .kicker::before { content: ""; width: 26px; height: 2px; background: var(--ink); display: inline-block; }
+  h1 {
+    font-family: "Zilla Slab", Georgia, serif; font-weight: 700;
+    font-size: clamp(40px, 7vw, 82px); line-height: .95; letter-spacing: -0.02em;
+    margin: 0 0 20px; text-wrap: balance; max-width: 14ch;
+  }
+  .lede {
+    font-family: "Zilla Slab", Georgia, serif; font-weight: 500;
+    font-size: clamp(16.5px, 2vw, 20px); line-height: 1.5; max-width: 64ch; margin: 0;
+  }
+  .lede b { font-weight: 700; }
+  .dateline { font-family: "DM Mono", monospace; font-size: 11px; color: var(--muted); margin-top: 24px; letter-spacing: .03em; }
+  /* section frame */
+  section { padding: 42px 0; border-bottom: 1px solid var(--hair); }
+  .sechead { display: flex; align-items: baseline; gap: 13px; margin: 0 0 8px; flex-wrap: wrap; }
+  .secnum { font-family: "DM Mono", monospace; font-size: 11.5px; color: var(--muted); letter-spacing: .1em; }
+  h2 { font-family: "Zilla Slab", Georgia, serif; font-weight: 700; font-size: clamp(23px, 3.2vw, 32px); letter-spacing: -0.01em; margin: 0; }
+  .sform { color: var(--muted); font-size: 13.5px; max-width: 76ch; margin: 6px 0 24px; }
+  /* composition bar — the asymmetry finding, as data */
+  .comp { display: flex; height: 40px; border-radius: 4px; overflow: hidden; border: 1px solid var(--line); }
+  .comp div { display: flex; align-items: center; justify-content: center; gap: 6px; font-family: "DM Mono", monospace; font-size: 12px; color: var(--on-sig); white-space: nowrap; overflow: hidden; }
+  .comp .cup { background: var(--up); }
+  .comp .cdown { background: var(--down); }
+  .comp .cbreak { background: var(--break); }
+  .compnote { font-family: "DM Mono", monospace; font-size: 11px; color: var(--muted); margin: 8px 0 0; }
+  /* controls */
+  .controls { position: sticky; top: 0; z-index: 20; background: var(--bg); padding: 12px 0 11px; border-bottom: 1px solid var(--line); margin-bottom: 4px; }
+  .cinner { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .chip {
+    background: var(--surface); border: 1px solid var(--line); color: var(--muted); cursor: pointer;
+    font-family: "DM Mono", monospace; font-size: 11px; letter-spacing: .05em; text-transform: uppercase;
+    padding: 6px 11px; border-radius: 3px; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .chip .g { font-size: 12.5px; font-weight: 700; }
+  .chip[aria-pressed="true"].s-up { background: var(--up); border-color: var(--up); color: var(--on-sig); }
+  .chip[aria-pressed="true"].s-down { background: var(--down); border-color: var(--down); color: var(--on-sig); }
+  .chip[aria-pressed="true"].s-break { background: var(--break); border-color: var(--break); color: var(--on-sig); }
+  .chip[aria-pressed="true"].s-dom { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+  .chip:focus-visible, .card:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+  .cspacer { flex: 1; }
+  .creset { background: none; border: 0; color: var(--up); cursor: pointer; font-family: "DM Mono", monospace; font-size: 11px; text-decoration: underline; padding: 0; }
+  /* horizon bands */
+  .band { padding: 26px 0 4px; }
+  .bandhead { display: flex; align-items: baseline; gap: 14px; border-bottom: 2px solid var(--ink); padding-bottom: 7px; margin-bottom: 4px; }
+  .bandhead h3 { font-family: "Zilla Slab", serif; font-weight: 600; font-size: 20px; margin: 0; letter-spacing: -0.005em; }
+  .bandhead .bh { font-family: "DM Mono", monospace; font-size: 11px; color: var(--muted); letter-spacing: .05em; }
+  .bandhead .bn { font-family: "DM Mono", monospace; font-size: 11px; color: var(--muted); margin-left: auto; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(288px, 1fr)); gap: 11px; padding: 14px 0 0; }
+  .card {
+    text-align: left; font: inherit; color: var(--ink); cursor: pointer;
+    background: var(--surface); border: 1px solid var(--line);
+    border-left: 3px solid var(--sc); border-radius: 4px; padding: 13px 14px 14px;
+    display: flex; flex-direction: column; gap: 7px; transition: transform .11s, box-shadow .11s;
+  }
+  .card:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+  .card.s-up { --sc: var(--up); } .card.s-down { --sc: var(--down); } .card.s-break { --sc: var(--break); }
+  .card[hidden] { display: none !important; }
+  .sigrow { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
+  .sig {
+    font-family: "DM Mono", monospace; font-size: 9.5px; letter-spacing: .1em; text-transform: uppercase;
+    font-weight: 500; color: var(--sc); background: var(--scs); border: 1px solid var(--sc);
+    padding: 1px 6px; border-radius: 2px; display: inline-flex; align-items: center; gap: 4px;
+  }
+  .card.s-up .sig { --scs: var(--up-soft); } .card.s-down .sig { --scs: var(--down-soft); } .card.s-break .sig { --scs: var(--break-soft); }
+  .sig .g { font-size: 11px; font-weight: 700; }
+  .cdom { font-family: "DM Mono", monospace; font-size: 9.5px; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); }
+  .cn { font-family: "Zilla Slab", serif; font-weight: 600; font-size: 16.5px; line-height: 1.16; }
+  .ctests { font-size: 12.5px; color: var(--muted); line-height: 1.46; }
+  .cfoot { display: flex; align-items: center; gap: 8px; margin-top: auto; padding-top: 4px; font-family: "DM Mono", monospace; font-size: 10px; color: var(--muted); }
+  .cconf { border: 1px solid var(--line); border-radius: 2px; padding: 0 5px; letter-spacing: .06em; }
+  .crank { color: var(--ink); font-weight: 500; border: 1px solid var(--ink); border-radius: 2px; padding: 0 5px; }
+  /* dossier panel */
+  #backdrop { position: fixed; inset: 0; background: rgba(20, 17, 26, .5); z-index: 40; }
+  #panel {
+    position: fixed; top: 0; right: 0; bottom: 0; width: min(452px, 100vw); z-index: 50;
+    background: var(--surface); border-left: 1px solid var(--line); box-shadow: var(--shadow);
+    transform: translateX(102%); transition: transform .2s ease; overflow-y: auto; padding: 26px 28px 40px;
+  }
+  #panel.open { transform: translateX(0); }
+  @media (prefers-reduced-motion: reduce) { #panel { transition: none; } .card:hover { transform: none; } }
+  #panel h2 { font-family: "Zilla Slab", serif; font-size: 26px; font-weight: 700; margin: 10px 0 0; line-height: 1.1; }
+  #panel .pdom { font-family: "DM Mono", monospace; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-top: 14px; }
+  .pfield { border-top: 1px solid var(--hair); padding: 13px 0 0; margin-top: 14px; }
+  .pfield .k { font-family: "DM Mono", monospace; font-size: 9.5px; letter-spacing: .13em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 5px; }
+  .pfield .v { font-size: 13.5px; line-height: 1.58; }
+  .pfield.imp .v { font-weight: 500; }
+  #closep {
+    position: absolute; top: 15px; right: 15px; background: none; border: 1px solid var(--line);
+    color: var(--muted); border-radius: 3px; width: 28px; height: 28px; cursor: pointer; font-size: 15px; line-height: 1;
+  }
+  #closep:hover { color: var(--ink); border-color: var(--muted); }
+  /* top five */
+  .five { display: flex; flex-direction: column; gap: 0; }
+  .frow { display: grid; grid-template-columns: 42px 1fr; gap: 16px; padding: 15px 0; border-top: 1px solid var(--hair); align-items: start; }
+  .frow:first-child { border-top: 0; }
+  .fnum { font-family: "Zilla Slab", serif; font-weight: 700; font-size: 27px; line-height: 1; color: var(--sc); }
+  .frow.s-up { --sc: var(--up); } .frow.s-down { --sc: var(--down); } .frow.s-break { --sc: var(--break); }
+  .fbody .fn { font-family: "Zilla Slab", serif; font-weight: 600; font-size: 17.5px; line-height: 1.2; margin-bottom: 4px; }
+  .fbody .fw { font-size: 13px; color: var(--muted); line-height: 1.5; }
+  .pull { font-family: "Zilla Slab", serif; font-style: italic; font-weight: 500; font-size: clamp(18px, 2.4vw, 24px); line-height: 1.42; max-width: 44ch; margin: 26px 0 0; }
+  .pull b { font-style: normal; font-weight: 700; }
+  footer { padding: 32px 0 58px; color: var(--muted); font-size: 12px; line-height: 1.6; }
+  footer p { max-width: 96ch; }
+  footer .fh { font-family: "DM Mono", monospace; font-size: 10px; letter-spacing: .13em; text-transform: uppercase; color: var(--ink); margin-bottom: 8px; }
+  @media (max-width: 700px) {
+    .cards { grid-template-columns: 1fr; }
+    .comp div { font-size: 10px; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="mast">
+    <p class="kicker">ChinaTalk Research · The forecasting synthesis</p>
+    <h1>Tripwires</h1>
+    <p class="lede">An atlas that cannot be wrong is not analysis — it is decoration. The scorecard says where China stands; the confidence grades say how much to trust it. These are the <b>specific, observable events that would force a rating to change</b> — each one naming a claim, the thing to watch, where it would surface, and what it would mean. Commitments made in advance, so the atlas can be checked against events rather than re-narrated after them.</p>
+    <p class="dateline">A ChinaTalk research atlas · 25 tripwires across 14 domains · Compiled from open sources · Updated 31 Aug 2026</p>
+  </header>
+
+  <section id="asym">
+    <div class="sechead"><span class="secnum">01</span><h2>The asymmetry is itself a finding</h2></div>
+    <p class="sform">Compile the tripwires honestly and a lopsidedness appears immediately: three in five point toward China being <em>stronger</em> than rated, not weaker. That is not a thumb on the scale — it reflects the evidence environment. Chinese capability tends to be revealed late and in one direction: the J-36 flew before its configuration was known, two operational XLUUV classes rolled down a parade route drawn from inventory rather than prototypes. Open-source analysis of an opaque system is biased toward <em>understatement</em>, and the corrections mostly correct upward.</p>
+    <div class="comp" id="comp" role="img" aria-label="Composition of tripwires by signal type"></div>
+    <p class="compnote">Width = share of tripwires. The constraining signals are real, but slower, more diffuse, and heavily covered from a Western vantage point — easy to over-read.</p>
+  </section>
+
+  <section id="board">
+    <div class="sechead"><span class="secnum">02</span><h2>The watch board</h2></div>
+    <p class="sform">Banded by time to resolution — the horizon is a real ordering, not a label. Filter by signal or domain; open any tripwire for the claim it tests, the observable, the source, and the consequence. The confidence letter on each card is the grade of the atlas claim being tested.</p>
+    <div class="controls">
+      <div class="cinner" id="cinner">
+        <button class="chip s-up" data-sig="up" aria-pressed="true"><span class="g">&#8593;</span> Strengthen</button>
+        <button class="chip s-down" data-sig="down" aria-pressed="true"><span class="g">&#8595;</span> Constrain</button>
+        <button class="chip s-break" data-sig="break" aria-pressed="true"><span class="g">&#9889;</span> Break</button>
+        <span class="cspacer"></span>
+        <select id="domsel" class="chip s-dom" aria-label="Filter by domain"></select>
+        <button class="creset" id="reset" hidden>reset filters</button>
+      </div>
+    </div>
+    <div id="bands"></div>
+  </section>
+
+  <section id="topfive">
+    <div class="sechead"><span class="secnum">03</span><h2>The five that matter most</h2></div>
+    <p class="sform">Ranked by how much of the atlas each one would move. Note the composition: two of the five are model-breaks rather than tier adjustments, and three concern things the atlas explicitly admits it cannot see.</p>
+    <div class="five" id="five"></div>
+    <p class="pull">The most valuable indicators are not the ones that would nudge a rating — they are the ones that would tell us the map was <b>drawn wrong</b>.</p>
+  </section>
+
+  <footer>
+    <p class="fh">On sourcing</p>
+    <p>Each tripwire names a claim, an observable, a source, and a consequence, so the atlas commits itself in advance. Confidence letters (A well-documented · B mixed evidence · C largely inferential) come from the companion <span class="mono">methodology-and-confidence.md</span>. Where an indicator rests on contested reporting — the December 2025 EUV prototype above all, where coverage ranged from credible specialist analysis to content-farm noise — the dossier says so rather than laundering it into fact. Thresholds are stated as physical quantities (watts, tonnes shipped, satellites per month) precisely so they cannot be satisfied by an announcement. This is a standing commitment, not a forecast.</p>
+  </footer>
+</div>
+
+<div id="backdrop" hidden></div>
+<aside id="panel" aria-label="Tripwire dossier">
+  <button id="closep" aria-label="Close dossier">&times;</button>
+  <div id="pbody"></div>
+</aside>
+
+<script>
+const SIG = {
+  up:    { g: '↑', label: 'Strengthen', tag: 'China stronger than rated' },
+  down:  { g: '↓', label: 'Constrain',  tag: 'a Chinese advantage eroding' },
+  break: { g: '⚡', label: 'Break',      tag: 'would invalidate the model' },
+};
+const HZ = {
+  near: { h: 'Near term', sub: 'next twelve months', note: 'Dated, checkable resolution points.' },
+  mid:  { h: 'Mid term',  sub: 'one to three years', note: 'Where most of the scorecard would actually move.' },
+  far:  { h: 'Long horizon', sub: 'three to five years and structural', note: 'Model-breaks and slow structural brakes.' },
+};
+const DATA = [
+// ————— NEAR —————
+{ id:'euv', sig:'break', hz:'near', dom:'Semiconductors', conf:'A', rank:1,
+  n:'EUV at commercial throughput',
+  tests:'SMIC runs 7nm on pre-sanction DUV with no domestic EUV — the deepest single dependency in the atlas.',
+  watch:'The Shenzhen laser-induced-discharge-plasma source reportedly certified in December 2025 moving from ~100–150W toward the ~250W needed for production throughput — and, the real test, wafers actually exposed at commercial rates. Reporting on that prototype ranged from credible specialist analysis to content-farm noise, so the threshold is the power figure and a verified wafer, not the announcement.',
+  where:'The Diplomat’s tracking of the program, TechInsights, SEMI, Huawei/SiCarrier patent filings.',
+  implies:'The single largest model-break available. It would collapse the deepest dependency in the atlas and invalidate the theory of the case behind the entire export-control regime.' },
+{ id:'ws15', sig:'up', hz:'near', dom:'Aero-Engines', conf:'B',
+  n:'WS-15 as standard fit',
+  tests:'The WS-15 is in low-rate production — the historic weak point, now closing.',
+  watch:'J-20 serial airframes appearing with the WS-15 as standard fit rather than the interim WS-10.',
+  where:'Airframe serials and spotting; AECC Aviation Power exchange disclosures on output and backlog — one of the few public windows into Chinese engine rates.',
+  implies:'The historic weak point is closed at the fighter tier; Aero-Engines moves toward Competitive.' },
+{ id:'mpheavy', sig:'down', hz:'near', dom:'Minerals & Magnets', conf:'A',
+  n:'First non-Chinese heavy-RE chain',
+  tests:'China processes ~90% of rare-earth magnets, and the leverage is durable.',
+  watch:'MP Materials commissioning its Mountain Pass heavy-separation circuit (200 t/yr Dy/Tb nameplate) and its Independence line actually shipping magnets in H2 2026. Count tonnes shipped, not capacity announced.',
+  where:'MP quarterly results, DoD offtake disclosures, Lynas quarterlies.',
+  implies:'The first real non-Chinese heavy-RE-plus-magnet chain exists. Scale it honestly: MP’s planned 10,000 t/yr of magnets is about a quarter of what JL MAG alone already runs. Erosion, not escape.' },
+{ id:'reflight', sig:'up', hz:'near', dom:'Space', conf:'B',
+  n:'Reusable booster reflight',
+  tests:'China is behind in reusable heavy-lift.',
+  watch:'LandSpace re-flying a recovered Zhuque-3 booster — the August 2026 landing succeeded and then toppled.',
+  where:'Launch reporting, SpaceNews.',
+  implies:'Reuse crosses from demonstration to operation, and the megaconstellation cadence becomes credible on cost grounds.' },
+{ id:'cuascombat', sig:'up', hz:'near', dom:'Counter-UAS', conf:'C',
+  n:'Counter-UAS combat verification',
+  tests:'The atlas’s only C-graded rating: lasers and high-power microwave openly fielded, reliability unproven.',
+  watch:'Independent third-party confirmation of a Chinese laser or HPM system achieving shoot-downs in a real engagement — most plausibly through an export customer.',
+  where:'Conflict reporting, export-customer statements, OSINT imagery.',
+  implies:'The highest-value evidentiary unlock in the atlas: it would move counter-UAS from inferential to documented in a single stroke.' },
+{ id:'warheads', sig:'up', hz:'near', dom:'Nuclear', conf:'B',
+  n:'The annual warhead number',
+  tests:'600+ warheads, heading toward ~1,000 by 2030.',
+  watch:'The stockpile estimate in DoD’s China Military Power Report, published each December, and whether the 2030 trajectory holds, accelerates, or is revised down.',
+  where:'DoD CMPR; FAS Nuclear Notebook.',
+  implies:'A figure materially above trend moves Nuclear toward Competitive earlier than modeled.' },
+{ id:'t096', sig:'up', hz:'near', dom:'Undersea', conf:'B',
+  n:'Type 096 hull in the water',
+  tests:'Bohai/Huludao as sole nuclear-submarine yard; undersea as the PLAN’s weak tier.',
+  watch:'Commercial imagery showing a launched ~20,000-ton Type 096 SSBN hull.',
+  where:'Planet and Maxar imagery as analyzed by FAS, CSIS, and H.I. Sutton.',
+  implies:'Sea-based deterrent modernization is on or ahead of schedule; both Nuclear and Undersea move.' },
+// ————— MID —————
+{ id:'smic5', sig:'up', hz:'mid', dom:'Semiconductors', conf:'A',
+  n:'A verified 5nm SMIC process',
+  tests:'SMIC is capped near 7nm by the tooling it already owns.',
+  watch:'A TechInsights teardown confirming a genuine 5nm-class SMIC node in a shipping product at commercial yield — physical evidence, not a corporate claim.',
+  where:'TechInsights teardowns, Huawei product launches.',
+  implies:'Multipatterning DUV has stretched further than the control regime assumed; Advanced Semiconductors moves off Dependent even without EUV.' },
+{ id:'cxmthbm', sig:'up', hz:'mid', dom:'AI Compute', conf:'B',
+  n:'CXMT memory at volume',
+  tests:'CXMT is the binding constraint on the Ascend ramp — the chokepoint inside the chokepoint.',
+  watch:'HBM3-class stacks shipping in volumes sufficient to feed more than a million Ascend dies.',
+  where:'TrendForce, SemiAnalysis, CXMT capex, Korean-supplier commentary.',
+  implies:'The one constraint on China’s AI-compute build-out is removed; Military AI Compute moves up.' },
+{ id:'cj1000', sig:'up', hz:'mid', dom:'Aero-Engines', conf:'B',
+  n:'CJ-1000A certification',
+  tests:'Whether the hot-section and superalloy gap is genuinely closed.',
+  watch:'CAAC certification of the CJ-1000A commercial turbofan. Verification flights on the C919 began March 2025; analysts project certification around 2027–28 with volume production near 2030, and the 14th Five-Year Plan names it a priority.',
+  where:'CAAC notices, AECC/ACAE disclosures, COMAC deliveries.',
+  implies:'Commercial certification is a harder and far more transparent bar than any military program — the clearest public proof available that the metallurgy problem is solved.' },
+{ id:'reducer', sig:'up', hz:'mid', dom:'Robots', conf:'B',
+  n:'Harmonic-reducer displacement',
+  tests:'Top-tier reducers (Japan) remain one of the last named robot dependencies.',
+  watch:'Leaderdrive and Green Harmonic displacing Harmonic Drive Systems in genuinely high-precision applications — visible in HDS’s own share commentary and in teardowns of Chinese humanoid units.',
+  where:'Interact Analysis, HDS earnings, Unitree/AgiBot BOM teardowns.',
+  implies:'The inversion deepens; one of the few remaining Western holds on the robot stack goes.' },
+{ id:'quieting', sig:'up', hz:'mid', dom:'Undersea', conf:'B', rank:3,
+  n:'A quieting assessment',
+  tests:'Quieting and detection are the PLAN’s acknowledged weak spot — and undersea is the principal US edge in the Taiwan lens.',
+  watch:'An ONI assessment or congressional testimony stating that Type 095 acoustic performance has materially closed the gap.',
+  where:'ONI assessments, USNI reporting, congressional testimony.',
+  implies:'The US operational advantage the contingency analysis leans on hardest begins to erode. The single most consequential naval variable in the atlas.' },
+{ id:'fpvdecouple', sig:'down', hz:'mid', dom:'Drones & Components', conf:'A',
+  n:'Drone-component decoupling',
+  tests:'80–90% of the world’s FPV motors are Chinese — the leverage, not the dependency.',
+  watch:'Ukrainian and Western FPV production sourcing motors and ESCs outside China at scale. Watch the component layer, not airframe reshoring, which is the easier and less meaningful half.',
+  where:'Procurement disclosures, teardowns, customs data.',
+  implies:'The most durable lever in the atlas starts to loosen.' },
+{ id:'energetics', sig:'up', hz:'mid', dom:'Ground & Munitions', conf:'C', rank:5,
+  n:'Energetics surge becomes visible',
+  tests:'Magazine depth — the decisive variable the Taiwan lens flags and open source cannot currently measure.',
+  watch:'Chinese propellant, energetics or nitrocellulose exports at scale, or new construction at 204-Institute-linked plants visible in imagery.',
+  where:'Customs data, sanctions actions, commercial imagery.',
+  implies:'It would put the first real number on wartime endurance — the variable that decides a long war and that nobody can currently measure.' },
+{ id:'constellation', sig:'up', hz:'mid', dom:'Space', conf:'B',
+  n:'Megaconstellation cadence',
+  tests:'Rising launch cadence and broadband megaconstellations at scale.',
+  watch:'Guowang and Qianfan sustaining a combined deployment rate above roughly 40 satellites a month against the ~14,000 planned.',
+  where:'Jonathan McDowell’s catalog, SpaceNews.',
+  implies:'A PLA communications and ISR layer resilient enough to survive counterspace attrition.' },
+{ id:'heavyre', sig:'down', hz:'mid', dom:'Minerals & Magnets', conf:'A', rank:4,
+  n:'Heavy-rare-earth independence',
+  tests:'The true crossover clock on China’s biggest lever.',
+  watch:'Dysprosium and terbium separation outside China at industrially meaningful tonnage. China holds roughly 91% of heavy-RE supply, and analysts see no Western independence before 2028; Lynas produced eight tons of Dy/Tb in a recent quarter — the right order of magnitude to track.',
+  where:'Lynas quarterlies, MP Materials, USGS.',
+  implies:'The hardest link in the chain breaks, and the chokepoint ledger needs repricing.' },
+{ id:'cv4', sig:'up', hz:'mid', dom:'Naval', conf:'B',
+  n:'A fourth carrier, nuclear-powered',
+  tests:'Whether shipbuilding dominance translates into blue-water power projection.',
+  watch:'Module assembly for the Type 004 and whether it carries nuclear propulsion with full integrated electric power.',
+  where:'Satellite imagery of Dalian and Jiangnan, CSIS ChinaPower.',
+  implies:'The 712 Institute’s electric-propulsion work has matured, and blue-water reach follows.' },
+{ id:'shipdown', sig:'down', hz:'mid', dom:'Naval', conf:'A',
+  n:'Commercial shipbuilding downturn',
+  tests:'The mechanism behind the ~230× capacity finding — that a vast commercial order book cross-subsidizes naval construction.',
+  watch:'A sustained collapse in Chinese commercial ship orders, or effective deterrence from USTR port-fee measures shrinking the dual-use yard base.',
+  where:'Clarksons order-book data, CSIS ChinaPower, USTR Section 301 implementation.',
+  implies:'The capacity advantage is revealed as partly a commercial-market artifact, and the naval surge gets materially more expensive.' },
+// ————— FAR —————
+{ id:'ssmb', sig:'break', hz:'far', dom:'Semiconductors', conf:'A',
+  n:'Steady-state microbunching EUV',
+  tests:'The permanence of the EUV dependency.',
+  watch:'The Xiong’an SSMB facility — construction began early 2025, with theoretical output above 1kW — producing usable EUV light.',
+  where:'Tsinghua publications, facility imagery.',
+  implies:'A fundamentally different, non-ASML path to EUV. Slower than the LDP route, but blocked by no export control anyone currently holds. The long-horizon model break.' },
+{ id:'combat', sig:'break', hz:'far', dom:'Cross-cutting', conf:'C', rank:2,
+  n:'Combat performance data',
+  tests:'Every rating in the atlas — none of which rests on combat evidence.',
+  watch:'Chinese-built systems used in a real shooting war by an export customer, generating third-party performance data.',
+  where:'Conflict reporting, allied assessments.',
+  implies:'It would resolve more B- and C-grade uncertainty than any other single event. This is the atlas’s largest structural blind spot, named as such in the methodology page.' },
+{ id:'loptest', sig:'break', hz:'far', dom:'Nuclear', conf:'B',
+  n:'Resumed nuclear testing',
+  tests:'The arms-control frame the atlas’s nuclear trajectory assumes.',
+  watch:'Seismic or imagery evidence of activity at Lop Nur consistent with a supercritical test.',
+  where:'CTBTO and academic seismic monitoring, commercial imagery, FAS analysis.',
+  implies:'Warhead-design ambitions beyond the modeled expansion, and the arms-control frame breaks.' },
+{ id:'eda', sig:'up', hz:'far', dom:'Electronics', conf:'B',
+  n:'Domestic EDA at the leading edge',
+  tests:'High-end EDA software as a named dependency across Electronics and Compute.',
+  watch:'Empyrean, Primarius or Semitronix supporting a complete sub-7nm digital design flow used in a shipping chip.',
+  where:'EDA vendor disclosures, SMIC and Huawei design-flow reporting.',
+  implies:'The May 2025 Synopsys/Cadence/Siemens cutoff demonstrated the leverage; domestic replacement at the leading edge retires it permanently.' },
+{ id:'adaptive', sig:'up', hz:'far', dom:'Aero-Engines', conf:'C',
+  n:'Adaptive-cycle propulsion',
+  tests:'Whether China closes the propulsion gap or leapfrogs it.',
+  watch:'Evidence of a variable- or adaptive-cycle engine in test, particularly tied to the J-36.',
+  where:'AECC disclosures, J-36 flight-test observation.',
+  implies:'A different and more serious claim than WS-15 maturity — China competing at the propulsion frontier rather than catching up to it.' },
+{ id:'fiscal', sig:'down', hz:'far', dom:'Cross-cutting', conf:'B',
+  n:'Fiscal deceleration',
+  tests:'The wartime-footing premise underneath most of the scorecard.',
+  watch:'Official defense-budget growth falling below nominal GDP growth for consecutive years amid local-government fiscal stress.',
+  where:'NPC budget releases each March, SIPRI.',
+  implies:'Procurement tempo is the engine behind nearly every trajectory arrow; sustained deceleration slows all of them at once.' },
+{ id:'sanctions', sig:'down', hz:'far', dom:'Cross-cutting', conf:'A',
+  n:'Sanctions-regime inflection',
+  tests:'Military-civil fusion makes “military supplier” an unbounded category.',
+  watch:'Whether US listings keep widening — 188 entities on the 1260H list as of June 2026 — or Washington shifts to a narrower, enforcement-led approach.',
+  where:'DoD 1260H updates, BIS actions.',
+  implies:'It would tell you whether the sanctions treadmill is a strategy or a taxonomy problem.' },
+];
+
+const state = { sigs: new Set(['up', 'down', 'break']), dom: 'all' };
+
+// composition bar
+const counts = { up: 0, down: 0, break: 0 };
+DATA.forEach(d => counts[d.sig]++);
+const comp = document.getElementById('comp');
+['up', 'down', 'break'].forEach(s => {
+  const el = document.createElement('div');
+  el.className = 'c' + s;
+  el.style.flex = counts[s];
+  el.innerHTML = '<span>' + SIG[s].g + '</span><span>' + SIG[s].label.toUpperCase() + ' ' + counts[s] + '</span>';
+  el.title = SIG[s].label + ' — ' + SIG[s].tag;
+  comp.appendChild(el);
+});
+
+// domain selector
+const doms = [...new Set(DATA.map(d => d.dom))].sort();
+const domsel = document.getElementById('domsel');
+domsel.innerHTML = '<option value="all">All domains</option>' +
+  doms.map(d => '<option value="' + d + '">' + d + '</option>').join('');
+
+// bands
+const bands = document.getElementById('bands');
+['near', 'mid', 'far'].forEach(hz => {
+  const items = DATA.filter(d => d.hz === hz);
+  const band = document.createElement('div');
+  band.className = 'band';
+  band.dataset.hz = hz;
+  band.innerHTML =
+    '<div class="bandhead"><h3>' + HZ[hz].h + '</h3><span class="bh">' + HZ[hz].sub + ' · ' + HZ[hz].note + '</span>' +
+    '<span class="bn" data-count>' + items.length + '</span></div><div class="cards"></div>';
+  const cards = band.querySelector('.cards');
+  items.forEach(d => {
+    const b = document.createElement('button');
+    b.className = 'card s-' + d.sig;
+    b.dataset.id = d.id;
+    b.innerHTML =
+      '<div class="sigrow"><span class="sig"><span class="g">' + SIG[d.sig].g + '</span>' + SIG[d.sig].label + '</span>' +
+      '<span class="cdom">' + d.dom + '</span></div>' +
+      '<div class="cn">' + d.n + '</div>' +
+      '<div class="ctests">' + d.tests + '</div>' +
+      '<div class="cfoot"><span class="cconf">CONF ' + d.conf + '</span>' +
+      (d.rank ? '<span class="crank">TOP ' + d.rank + '</span>' : '') + '</div>';
+    b.addEventListener('click', () => openPanel(d));
+    cards.appendChild(b);
+  });
+  bands.appendChild(band);
+});
+
+function applyFilters() {
+  const byId = Object.fromEntries(DATA.map(d => [d.id, d]));
+  document.querySelectorAll('.card').forEach(c => {
+    const d = byId[c.dataset.id];
+    c.hidden = !state.sigs.has(d.sig) || (state.dom !== 'all' && d.dom !== state.dom);
+  });
+  document.querySelectorAll('.band').forEach(band => {
+    const vis = band.querySelectorAll('.card:not([hidden])').length;
+    band.hidden = vis === 0;
+    band.querySelector('[data-count]').textContent = vis;
+  });
+  const active = state.sigs.size !== 3 || state.dom !== 'all';
+  document.getElementById('reset').hidden = !active;
+}
+
+document.querySelectorAll('.chip[data-sig]').forEach(ch => {
+  ch.addEventListener('click', () => {
+    const s = ch.dataset.sig;
+    const on = ch.getAttribute('aria-pressed') === 'true';
+    if (on && state.sigs.size === 1) return;
+    ch.setAttribute('aria-pressed', String(!on));
+    if (on) state.sigs.delete(s); else state.sigs.add(s);
+    applyFilters();
+  });
+});
+domsel.addEventListener('change', () => { state.dom = domsel.value; applyFilters(); });
+document.getElementById('reset').addEventListener('click', () => {
+  state.sigs = new Set(['up', 'down', 'break']);
+  state.dom = 'all';
+  domsel.value = 'all';
+  document.querySelectorAll('.chip[data-sig]').forEach(c => c.setAttribute('aria-pressed', 'true'));
+  applyFilters();
+});
+
+// dossier
+const panel = document.getElementById('panel');
+const backdrop = document.getElementById('backdrop');
+function openPanel(d) {
+  document.getElementById('pbody').innerHTML =
+    '<span class="sig" style="--sc:var(--' + d.sig + ');--scs:var(--' + d.sig + '-soft)"><span class="g">' + SIG[d.sig].g + '</span>' + SIG[d.sig].label + '</span>' +
+    '<h2>' + d.n + '</h2>' +
+    '<p class="pdom">' + d.dom + ' · ' + HZ[d.hz].h + ' · claim confidence ' + d.conf + (d.rank ? ' · ranked #' + d.rank : '') + '</p>' +
+    '<div class="pfield"><span class="k">The claim it tests</span><span class="v">' + d.tests + '</span></div>' +
+    '<div class="pfield"><span class="k">What to watch</span><span class="v">' + d.watch + '</span></div>' +
+    '<div class="pfield"><span class="k">Where it would surface</span><span class="v">' + d.where + '</span></div>' +
+    '<div class="pfield imp"><span class="k">If it trips</span><span class="v">' + d.implies + '</span></div>';
+  panel.classList.add('open');
+  backdrop.hidden = false;
+}
+function closePanel() { panel.classList.remove('open'); backdrop.hidden = true; }
+document.getElementById('closep').addEventListener('click', closePanel);
+backdrop.addEventListener('click', closePanel);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closePanel(); });
+
+// top five
+const five = document.getElementById('five');
+DATA.filter(d => d.rank).sort((a, b) => a.rank - b.rank).forEach(d => {
+  const row = document.createElement('div');
+  row.className = 'frow s-' + d.sig;
+  row.innerHTML =
+    '<div class="fnum">' + d.rank + '</div>' +
+    '<div class="fbody"><div class="fn">' + d.n + ' <span class="sig" style="--sc:var(--' + d.sig + ');--scs:var(--' + d.sig + '-soft)"><span class="g">' + SIG[d.sig].g + '</span>' + SIG[d.sig].label + '</span></div>' +
+    '<div class="fw">' + d.implies + '</div></div>';
+  five.appendChild(row);
+});
+
+applyFilters();
+</script>
