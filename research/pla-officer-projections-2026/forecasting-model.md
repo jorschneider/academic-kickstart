@@ -159,7 +159,9 @@ Committing to these makes the report checkable. Each has a resolution date and a
 | 6 | A permanent Rocket Force commander is gazetted | 0.50 | Dec 2027 | The post remains acting/vacant |
 | 7 | The PLA Ground Force gets a gazetted commander | 0.55 | Dec 2027 | Still no named commander |
 | 8 | At least one officer promoted to full general during 2024–2026 (Chen Hui, Yang Zhibin, Han Shengyan, Zhang Shuguang, Wang Gang) is purged or disappears | 0.45 | Dec 2028 | All five remain in good standing — note Chen Hui may already have resolved this |
-| 9 | A new corruption case is announced involving the **naval equipment / shipbuilding** chain | 0.45 | Dec 2028 | No naval-equipment case surfaces |
+| 9 | A new corruption case is announced involving the **naval equipment / shipbuilding** chain | **0.30** (revised down from 0.45 — see `defense-industrial-base.md` §5: no Navy tip-notice exists, CSSC leadership is stable, and shipbuilding revenue is rising) | Dec 2028 | No naval-equipment case surfaces |
+| 9b | A tip-solicitation notice targeting **Navy** procurement appears on the military procurement network | 0.35 | Dec 2027 | None appears — the cleanest disconfirmation of the naval-audit hypothesis |
+| 9c | Further **aviation-sector** falls are announced (AVIC group or subsidiary leadership, or PLAAF equipment officers) | 0.60 | Dec 2027 | None — aviation is currently the epicentre on both the personnel and financial evidence |
 | 10 | Further Rocket Force procurement cases are announced (following the Aug 2026 tip solicitation) | 0.65 | Dec 2027 | No new RF cases |
 
 ### Medium-term (the 21st Congress, ~autumn 2027)
