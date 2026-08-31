@@ -24,7 +24,7 @@ A machine-readable roster of every officer discussed is in [`officer-database.cs
 
 ## 1. Executive summary
 
-**The situation.** As of 31 August 2026 the People's Liberation Army is in the most severe leadership crisis of the post-Mao era. The clearest way to see it: **all ten theater-command principal billets — five commanders, five political commissars — changed hands between March and December 2025**, and of the ten replacements only two are substantive full generals, two seats are simply empty, and six are acting lieutenant generals doubling up from their existing jobs (§2.2). The Central Military Commission that seven men joined at the 2022 Party Congress is down to two: Xi Jinping and Vice Chairman Zhang Shengmin. Five of the six uniformed members have been destroyed, including — in January 2026 — Xi's own oldest military ally, first Vice Chairman Zhang Youxia, and the PLA's top operational officer, Joint Staff chief Liu Zhenli (both formally stripped on 28 August 2026, three days before this writing). Across the force, roughly half of the ~176 most senior billets have turned over. The Army has gone ~20 months with no commander; the Rocket Force has no full generals at all and is run by an acting caretaker; the **Western Theater Command, which faces India, has had a formally vacant commander's seat for about twelve months**, and the Taiwan-facing Eastern Theater ran nine months without one in 2025. Service headquarters and the entire strategic-forces, logistics and procurement complex are riddled with vacancies and acting officers. **The PLA is being run, at the strategic level, by a caretaker layer of lieutenant generals and vice admirals.**
+**The situation.** As of 31 August 2026 the People's Liberation Army is in the most severe leadership crisis of the post-Mao era. The clearest way to see it is a count. Across the PLA's **eighteen principal operational billets** — five theater commanders, five theater political commissars, and the commander and political commissar of each of the four services — exactly **three are substantively held by full generals; four are vacant; and eleven are held by lieutenant generals or vice admirals acting above their grade** (§2.3). All ten theater principal billets turned over between March and December 2025 (§2.2), and the Ground Force, the largest service on earth, has neither a commander nor a political commissar. The Central Military Commission that seven men joined at the 2022 Party Congress is down to two: Xi Jinping and Vice Chairman Zhang Shengmin. Five of the six uniformed members have been destroyed, including — in January 2026 — Xi's own oldest military ally, first Vice Chairman Zhang Youxia, and the PLA's top operational officer, Joint Staff chief Liu Zhenli (both formally stripped on 28 August 2026, three days before this writing). Across the force, roughly half of the ~176 most senior billets have turned over. The Army has gone ~20 months with no commander; the Rocket Force has no full generals at all and is run by an acting caretaker; the **Western Theater Command, which faces India, has had a formally vacant commander's seat for about twelve months**, and the Taiwan-facing Eastern Theater ran nine months without one in 2025. Service headquarters and the entire strategic-forces, logistics and procurement complex are riddled with vacancies and acting officers. **The PLA is being run, at the strategic level, by a caretaker layer of lieutenant generals and vice admirals.**
 
 **What that does to a projection.** Two things. First, the observed base rate — about half of theater-grade-and-above officers removed within three years — means *no* individual forecast in this system deserves high confidence; the honest unit of analysis is the *seat* and the *type of officer* who fills it, not the name. Second, the generational handover this exercise was meant to project into the 2030s **has already started, early, under purge conditions** — the men now acting in the top jobs are born 1969–1971, a decade younger than the officers they replaced.
 
@@ -121,7 +121,40 @@ Then read the services. Three of the five theaters have their political work run
 
 Add the two sitting theater commanders who fell earlier in 2025 — **Lin Xiangyang** (Eastern TC, vanished ~March, expelled October; the Taiwan-facing theater ran ~nine months headless [REPORTED: CSIS]) and **Wang Qiang** (Central TC, the first PLAAF officer ever to command a theater; stopped appearing mid-2025, silently replaced in December [REPORTED: RFA; protocol absences]) — and the totals become: **since September 2024, every one of the five theater commands has lost its commander, its political commissar, or both, mostly without announcement.**
 
-### 2.3 A caretaker military: lieutenant generals running a superpower's armed forces
+### 2.3 The count: three full generals hold the PLA's eighteen top jobs
+
+The theater sweep is half the picture. Applying the same roster check to the four service headquarters completes it, and permits an exact statement of how thin the PLA's senior leadership has become.
+
+The PLA's **eighteen principal operational billets** — five theater commanders, five theater political commissars, and the commander and political commissar of each of the four services — currently break down as follows:
+
+| Billet | Holder | Status |
+|---|---|---|
+| Eastern TC commander | Yang Zhibin | **substantive, full general** |
+| Central TC commander | Han Shengyan | **substantive, full general** |
+| Air Force commander | Wang Gang | **substantive, full general** (third star only in Jul 2026) |
+| Southern TC commander | Wang Xianfeng | acting, Navy LTG |
+| Northern TC commander | Peng Jingtang | acting, Army LTG |
+| **Western TC commander** | — | **vacant (空缺), ~12 months** |
+| Eastern TC political commissar | Zhang Jichun | acting, Rocket Force LTG |
+| Western TC political commissar | Zhang Shaoying | acting, Rocket Force LTG |
+| Northern TC political commissar | Li Dongyou | acting, Navy LTG |
+| Central TC political commissar | Liang Ping | acting, Army LTG |
+| **Southern TC political commissar** | — | **vacant (暂缺)** |
+| **Army commander** | — | **vacant (暂缺), ~20 months** |
+| **Army political commissar** | — | **vacant (暂缺)** |
+| Navy commander | Zhang Zheng | acting, VADM ("responsible for military work") |
+| Navy political commissar | Hu Yuhai | acting, VADM |
+| Air Force political commissar | Shi Honggan | acting, LTG |
+| Rocket Force commander | Lei Kai | acting, LTG (concurrently chief of staff) |
+| Rocket Force political commissar | Zhou Jingjiong | acting, LTG (Xu Xisheng never formally removed but sidelined since ~Oct 2025) |
+
+**Totals: 3 substantive full generals. 4 vacant seats. 11 acting lieutenant generals or vice admirals.**
+
+Put another way: **the People's Liberation Army — a force of roughly two million, with the world's largest navy and a rapidly expanding nuclear arsenal — currently has three officers of appropriate rank substantively occupying its eighteen most important command and political billets.** Two of those three were promoted in December 2025 and the third in July 2026. Every one of the other fifteen positions is either empty or held by someone acting above their grade.
+
+The PLA Ground Force deserves its own line: it is the largest service in the world's largest army, and **both** its principal billets — commander and political commissar — are formally vacant, with the service run day to day by its chief of staff (LTG Cai Zhijun, "responsible for military work" since July 2025) and a political work department director (LTG Zheng Yanpo, since June 2026).
+
+### 2.4 A caretaker military: lieutenant generals running a superpower's armed forces
 
 The deeper pattern in the table above: the PLA's strategic level is now substantially a **caretaker government of lieutenant generals and vice admirals** — Cai Zhijun (Army), Zhang Zheng and Hu Yuhai (Navy), Zhu Chuansheng (Joint Staff), Lei Kai and Zhou Jingjiong (Rocket Force), Wang Xianfeng (Southern TC), Peng Jingtang (Northern TC), Zhang Shaoying (Western TC political work), Liang Ping (Central TC political work), Zhang Jichun (Eastern TC political work), Chen Demin (PWD), Shi Honggan (PLAAF political work), Cao Junzhang (PAP), Bi Yi (ISF), Han Xiaodong (CSF political work) — men acting above their rank in billets that doctrine assigns to full generals. And note the birth years inside that caretaker set: Zhang Zheng (b. 1969) and Zhu Chuansheng (b. Apr 1970), with Dai Mingmeng (b. 1971) a vice admiral one rung below. **The generational handover this document was commissioned to project for the 2030s has already begun, in acting capacities, under purge conditions.** Chinese-language commentary has a phrase for it: **上将断层，中将治军** — "a full-general gap: lieutenant generals are running the military" [REPORTED, headline-level].
 
@@ -142,7 +175,7 @@ Xi has not stopped promoting because there are no vacancies — vacancies have n
 - **Zhang Shuguang** (张曙光, b. 1964, Army) — CMC Discipline Inspection Commission secretary, promoted 3 Jul 2026
 - **Wang Gang** (王刚, b. 1965, PLAAF) — Air Force commander, promoted 3 Jul 2026
 
-### 2.4 What the rebuild pattern reveals
+### 2.5 What the rebuild pattern reveals
 
 Five selection principles are visible in who has risen since late 2024 — they drive every projection in §5:
 
@@ -152,7 +185,7 @@ Five selection principles are visible in who has risen since late 2024 — they 
 4. **Cross-network orphans are preferred.** The risers share an absence: no 31st Group Army service, no EDD/armaments chain, no debt to Miao Hua's cadre pipeline. Officers from *watching* institutions (discipline, staff bureaus, test bases, training departments) are stepping over officers from *commanding* lineages.
 5. **Seats are being left empty rather than filled fast — so each eventual filling is the signal.** An acting Rocket Force commander, an acting PWD director, an acting PAP commander, a two-year-vacant Army commandership: Xi is tolerating extraordinary command-and-control risk rather than promote anyone he might have to destroy later. The corollary: **every permanent appointment between now and the 21st Congress (~autumn 2027) is a direct read on the next CMC.**
 
-### 2.5 The fallen Air Force commander
+### 2.6 The fallen Air Force commander
 
 One case deserves its own note because it will recur below. **Chang Dingqiu** (常丁求, b. Jan 1967) was, on every conventional metric, the most promising officer in the PLA: the youngest full general in PLA history at promotion (54), a decorated fighter pilot, deputy chief of the Joint Staff at 50, Air Force commander at 54 — the consensus candidate for CMC vice chairman by the 21st Congress and plausibly the top uniformed officer into the late 2030s. He stopped appearing in 2025 and was replaced by Wang Gang in the first half of 2026 with no announcement; émigré outlets carry unverified claims ranging from investigation to sudden death [RUMOR; replacement itself OFFICIAL via the 3 Jul 2026 ceremony]. Whatever the truth, the lesson for this document is methodological: **in this system, the "most promising officer" identified by résumé logic carries perhaps a 30–50% five-year attrition risk from politics alone.** Every projection below carries that overhang.
 
@@ -208,7 +241,7 @@ This section maps who is left standing in each community, and who among them has
 
 ### 4.1 Ground Force: an army without a commander
 
-**State of play.** The PLA Army has had no gazetted commander for ~20 months (Li Qiaoming dismissed Dec 2024, purged Feb 2026) and lost its political commissar to expulsion (Qin Shutong) and may have lost his successor Chen Hui as well (disputed — see §2.2). It is run day-to-day by its chief of staff, **LTG Cai Zhijun**, with political work under LTG Zheng Yanpo [WIKI]. The two dominant ground-force patronage networks of the Xi era — the Fujian/31st Group Army line (He Weidong, Lin Xiangyang, Qin Shutong) and the Northeast/armaments line (Li Qiaoming, You Haitao, and ultimately Zhang Youxia and Liu Zhenli) — have been annihilated. Jamestown notes seven of the nine generals expelled in October 2025 served in the former Nanjing Military Region and five in the 31st Group Army specifically.
+**State of play.** The Ground Force roster now lists **both** principal billets as vacant (暂缺): no commander since Li Qiaoming's dismissal in December 2024 (~20 months; he was purged in February 2026), and no political commissar since Chen Hui's tenure is recorded as ending in December 2025 — though his own biographical entry still shows him incumbent, the conflict flagged in §2.2. The service is run day to day by **LTG Cai Zhijun**, chief of staff, "responsible for military work" since July 2025, and **LTG Zheng Yanpo**, political work department director, "responsible for political work" since June 2026 [WIKI roster]. **The largest ground force in the world is being administered by two lieutenant generals in caretaker roles.** The two dominant ground-force patronage networks of the Xi era — the Fujian/31st Group Army line (He Weidong, Lin Xiangyang, Qin Shutong) and the Northeast/armaments line (Li Qiaoming, You Haitao, and ultimately Zhang Youxia and Liu Zhenli) — have been annihilated. Jamestown notes seven of the nine generals expelled in October 2025 served in the former Nanjing Military Region and five in the 31st Group Army specifically.
 
 **The bench:**
 
