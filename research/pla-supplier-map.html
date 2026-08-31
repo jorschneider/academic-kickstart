@@ -16,7 +16,7 @@
     --shadow: 0 12px 32px rgba(31, 36, 29, .14);
     --c-air: #3E7CA6; --c-eng: #A6612F; --c-spc: #71559B; --c-ele: #2F8578;
     --c-nav: #44557F; --c-grd: #8A7434; --c-nuc: #9C4E6E; --c-mat: #5F6E4B;
-    --c-sub: #1C6E7A;
+    --c-sub: #1C6E7A; --c-uni: #96414C;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
@@ -27,7 +27,7 @@
       --seal: #E0644E; --seal-bg: rgba(224, 100, 78, .12);
       --shadow: 0 12px 32px rgba(0, 0, 0, .5);
       --c-air: #6FA9CC; --c-eng: #CE8A54; --c-spc: #9C82C4; --c-ele: #58AC9E;
-      --c-nav: #7C8CB8; --c-grd: #B49B55; --c-nuc: #C07898; --c-mat: #8CA070; --c-sub: #5FA6B4;
+      --c-nav: #7C8CB8; --c-grd: #B49B55; --c-nuc: #C07898; --c-mat: #8CA070; --c-sub: #5FA6B4; --c-uni: #C77F89;
     }
   }
   :root[data-theme="dark"] {
@@ -38,7 +38,7 @@
     --seal: #E0644E; --seal-bg: rgba(224, 100, 78, .12);
     --shadow: 0 12px 32px rgba(0, 0, 0, .5);
     --c-air: #6FA9CC; --c-eng: #CE8A54; --c-spc: #9C82C4; --c-ele: #58AC9E;
-    --c-nav: #7C8CB8; --c-grd: #B49B55; --c-nuc: #C07898; --c-mat: #8CA070;
+    --c-nav: #7C8CB8; --c-grd: #B49B55; --c-nuc: #C07898; --c-mat: #8CA070; --c-sub: #5FA6B4; --c-uni: #C77F89;
   }
   * { box-sizing: border-box; }
   body {
@@ -171,10 +171,10 @@
 <header class="masthead">
   <p class="eyebrow">ChinaTalk Research · Reference Map · August 2026</p>
   <h1>PLA Supplier Atlas</h1>
-  <p class="dek">Who actually builds China's military — the state primes, the numbered institutes doing the real work, the military-civil fusion upstarts, and what still comes from abroad. Click any entity for its dossier.</p>
+  <p class="dek">Who actually builds China's military — the state primes, the numbered institutes doing the real work, the military-civil fusion upstarts, the universities that train them all, and what still comes from abroad. Click any entity for its dossier.</p>
   <div class="statrow">
     <div class="stat"><b>9</b><span>central defense primes after the 2025 ordnance merger</span></div>
-    <div class="stat"><b>77</b><span>entities across 9 domains and four tiers</span></div>
+    <div class="stat"><b>85</b><span>entities across 10 domains and four tiers</span></div>
     <div class="stat"><b>188</b><span>entities on DoD's 1260H list as of June 2026</span></div>
     <div class="stat"><b>230×</b><span>China's shipbuilding capacity vs. the US (CSIS)</span></div>
   </div>
@@ -223,7 +223,8 @@ const DOMAINS = {
   sub: { label: "Undersea", zh: "水下", c: "var(--c-sub)" },
   grd: { label: "Ground", zh: "兵器", c: "var(--c-grd)" },
   nuc: { label: "Nuclear", zh: "核", c: "var(--c-nuc)" },
-  mat: { label: "Materials", zh: "材料", c: "var(--c-mat)" }
+  mat: { label: "Materials", zh: "材料", c: "var(--c-mat)" },
+  uni: { label: "Universities & Talent", zh: "院校·人才", c: "var(--c-uni)" }
 };
 const TIERS = { 1: "Prime", 2: "Institutes & subsidiaries", 3: "Commercial · MCF" };
 const FLAGNOTES = {
@@ -517,6 +518,40 @@ const DATA = [
   role:"China's Los Alamos",
   prog:["Warhead design","Pit production","Laser fusion","Simulation"],
   p:"A direct central-government institute outside any conglomerate: warhead design, pit production, weapons simulation, and laser-fusion facilities in Mianyang. On the US Entity List since 1997 — the list's charter member — and still surfacing in investigations acquiring US-origin chips through intermediaries." },
+// ————— UNIVERSITIES & TALENT —————
+{ id:"beihang", d:"uni", t:2, n:"Beihang University", zh:"北京航空航天大学", hq:"Beijing", parent:"MIIT", flags:["EL"],
+  role:"The aeronautics talent base — ~60% of research spend on defense",
+  prog:["Aeronautics","Astronautics","UAV research"],
+  p:"One of the Seven Sons of National Defence and the feeder for AVIC and CASC. Roughly 60% of its research budget goes to defense work. Entity-Listed on 14 May 2001 — among the earliest Chinese designations of any kind — and tightened to a presumption-of-denial licence policy in March 2023 over contributions to military modernisation." },
+{ id:"bit", d:"uni", t:2, n:"Beijing Institute of Technology", zh:"北京理工大学", hq:"Beijing", parent:"MIIT", flags:["EL"],
+  role:"Ordnance, armor and guided munitions",
+  prog:["Ordnance","Armor","Guided munitions"],
+  p:"The academic counterpart to NORINCO's institute system: ordnance engineering, armor, and precision munitions. Entity-Listed 18 December 2020 in the tranche that swept in five Chinese universities at once." },
+{ id:"hit", d:"uni", t:2, n:"Harbin Institute of Technology", zh:"哈尔滨工业大学", hq:"Harbin", parent:"MIIT", flags:["EL"],
+  role:"The largest defense research budget of the seven",
+  prog:["Space","Robotics","Advanced materials"],
+  p:"Space systems, robotics and advanced materials. Spent ¥1.973bn — about 52% of its total research budget — on defense research in 2018, the largest of the Seven Sons. Entity-Listed in the May/June 2020 tranche." },
+{ id:"heu", d:"uni", t:2, n:"Harbin Engineering University", zh:"哈尔滨工程大学", hq:"Harbin", parent:"MIIT", flags:["EL"],
+  role:"The undersea and shipbuilding feeder",
+  prog:["Naval architecture","Undersea","Marine nuclear"],
+  p:"Naval architecture, undersea engineering and marine nuclear propulsion — the academic pipeline into CSSC's yards and the 719/726 institute world. Entity-Listed in 2020 for acquiring US-origin items in support of PLA programmes; ASPI links it to five espionage or export-control cases, including theft of missile technology from Russia." },
+{ id:"nuaa", d:"uni", t:2, n:"Nanjing Univ. of Aeronautics & Astronautics", zh:"南京航空航天大学", hq:"Nanjing", parent:"MIIT", flags:["EL"],
+  role:"Aeronautics, helicopters, UAVs — and a ministerial pipeline",
+  prog:["Aeronautics","Helicopters","UAVs"],
+  p:"Aeronautics, rotorcraft and unmanned systems. Its former president Shan Zhongde became a MIIT Vice Minister in February 2024 and, in January 2025, Director of SASTIND — defense university to industrial-policy ministry to defense science-and-industry administration, in one career. Entity-Listed 18 December 2020." },
+{ id:"nust", d:"uni", t:2, n:"Nanjing Univ. of Science & Technology", zh:"南京理工大学", hq:"Nanjing", parent:"MIIT", flags:["EL"],
+  role:"Ordnance and energetics — the magazine-depth discipline",
+  prog:["Ordnance","Energetics","Propellants"],
+  p:"Ordnance engineering and energetic materials — the academic discipline underneath the propellant and explosives base that decides magazine depth, and the feeder for the 204 Institute's world. Entity-Listed 18 December 2020." },
+{ id:"nwpu", d:"uni", t:2, n:"Northwestern Polytechnical University", zh:"西北工业大学", hq:"Xi'an", parent:"MIIT", flags:["EL"],
+  role:"Aeronautics, marine and UAV engineering",
+  prog:["Aeronautics","Marine engineering","UAVs"],
+  p:"Air, sea and unmanned systems engineering, deeply tied to the Xi'an aerospace cluster. Entity-Listed on 14 May 2001 alongside Beihang — the two earliest university designations, flagged two decades before the rest of the Seven Sons." },
+{ id:"nudt", d:"uni", t:2, n:"National University of Defense Technology", zh:"国防科技大学", hq:"Changsha", parent:"CMC / PLA", flags:["EL"],
+  role:"Not a MIIT university — the PLA's own",
+  prog:["Supercomputing (Tianhe)","C4ISR","Autonomy"],
+  p:"Institutionally distinct from the Seven Sons: NUDT reports through the PLA itself and exists to modernise the armed forces directly rather than to staff the defense industry. Best known publicly for the Tianhe supercomputers. Entity-Listed 18 February 2015." },
+
 // ————— MATERIALS —————
 { id:"wst", d:"mat", t:3, n:"Western Superconducting", zh:"西部超导", hq:"Xi'an", parent:null, flags:[],
   role:"The titanium in nearly everything that flies or dives",
@@ -562,7 +597,7 @@ const FOREIGN = [
 ];
 
 const board = document.getElementById("board");
-const colOrder = ["air", "eng", "spc", "ele", "nav", "sub", "grd", "nuc", "mat"];
+const colOrder = ["air", "eng", "spc", "ele", "nav", "sub", "grd", "nuc", "mat", "uni"];
 const state = { q: "", tiers: new Set([1, 2, 3]), sanc: false };
 
 function sealHtml(flags) {

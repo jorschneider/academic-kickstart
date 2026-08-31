@@ -13,7 +13,7 @@ A ChinaTalk research corpus mapping who actually builds for the PLA — the prim
 | Map | What it covers | Scope |
 |---|---|---|
 | [Defense-Industrial Atlas (hub)](https://claude.ai/code/artifact/ecc69e75-bcc3-46cf-a303-3b95f8ac9b4c) | The capstone: 13-domain scorecard + navigation | 13 domains |
-| [PLA Supplier Atlas](https://claude.ai/code/artifact/9ba26611-80ca-456b-b489-06bce1b350ed) | The whole base: primes → institutes → MCF → foreign inputs | 77 entities, 9 domains |
+| [PLA Supplier Atlas](https://claude.ai/code/artifact/9ba26611-80ca-456b-b489-06bce1b350ed) | The whole base: primes → institutes → universities → foreign inputs | 85 entities, 10 domains |
 | [Drone & Robot Atlas](https://claude.ai/code/artifact/e07d880f-fd1b-4449-829f-8d37bed927b7) | The unmanned/embodied stack: platform → component → material | 51 nodes |
 | [Counter-Drone Kill Chain](https://claude.ai/code/artifact/121166cb-aa8b-428d-9c95-437afc0613f2) | Counter-UAS: detect → decide → defeat, plus export | 25 systems |
 | [Semiconductor Chokepoint](https://claude.ai/code/artifact/2dfad809-6b14-4901-8357-47fc160a94a3) | The compute base, coded by self-sufficiency status | 22 nodes |
@@ -43,6 +43,7 @@ A ChinaTalk research corpus mapping who actually builds for the PLA — the prim
 | [`chokepoint-leverage-ledger.md`](./chokepoint-leverage-ledger.md) | **The economic synthesis** — China's dependencies vs. leverage, with substitution timelines and policy levers |
 | [`taiwan-contingency-lens.md`](./taiwan-contingency-lens.md) | **The operational synthesis** — what's decisive when the shooting starts, and which chokepoints bite when |
 | [`indicators-and-warnings.md`](./indicators-and-warnings.md) | **The forecasting synthesis** — 25 falsifiable tripwires, and why three in five point one way |
+| [`defense-universities-talent.md`](./defense-universities-talent.md) | **The talent layer** — the Seven Sons of National Defence, the ministry that administers them, and the input no export control can reach |
 | [`sourcing-and-tradecraft.md`](./sourcing-and-tradecraft.md) | **Where to actually look** — 26 primary channels, most Chinese-language, plus three findings only primary sources give you |
 | [`methodology-and-confidence.md`](./methodology-and-confidence.md) | **How to read the atlas** — the sourcing taxonomy, the confidence grade behind every rating, and what open source structurally can't see |
 
