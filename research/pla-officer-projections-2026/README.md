@@ -1,0 +1,471 @@
+# The Hollowed High Command
+
+## Mapping the PLA's next elite: who runs the Chinese military in 2031, 2036, and 2041 — and who falls before then
+
+**Prepared: 31 August 2026 · Open-source analysis**
+
+---
+
+## 0. How to read this document
+
+This is an open-source analytical assessment of the kind think tanks (Jamestown, CASI, CSIS, RAND) and specialist journalists produce routinely. Three ground rules govern everything below:
+
+1. **Facts are sourced.** Statements about who holds what post, who was promoted, and who was expelled rest on official announcements (Ministry of National Defense, Xinhua, NPC Standing Committee bulletins) or quality reporting (SCMP, Caixin, Reuters, Jamestown, CSIS, CMSI/Naval War College). Each load-bearing claim carries a confidence tag:
+   - **[OFFICIAL]** — announced by PRC state organs
+   - **[REPORTED]** — carried by named, quality outlets
+   - **[WIKI]** — sourced to Chinese/English Wikipedia career chronologies (generally reliable for PLA bios but unofficial)
+   - **[RUMOR]** — circulating in émigré/dissident media (Epoch Times, RFA columns, aboluowang); noted only where the underlying signal (e.g., an officer's disappearance from public view) is independently checkable
+2. **Projections are probabilistic guesses, clearly labeled.** Nobody — including, on the evidence of the last three years, the officers themselves — can know who will run the PLA in 2036. What analysis *can* do is identify the eligible cohort (age × grade × network), the seats that must be filled, and the selection logic Xi Jinping has revealed through ~four years of purges and promotions, then rank candidates. Confidence bands are given throughout.
+3. **The corruption section is speculative risk assessment, not accusation.** Section 6 estimates *exposure* — which serving officers sit on portfolios and patronage lines that the documented purge record shows to be dangerous. Unless an officer appears in the purge tracker with an official announcement, **nothing in this document should be read as a claim that any named individual has committed any offense.** In today's PLA, being purged is not proof of corruption, and survival is not proof of innocence — a point developed at length in §6.
+
+A machine-readable roster of every officer discussed is in [`officer-database.csv`](officer-database.csv); the complete documented purge record 2023–2026 is in [`purge-tracker.md`](purge-tracker.md).
+
+---
+
+## 1. Executive summary
+
+**The situation.** As of 31 August 2026 the People's Liberation Army is in the most severe leadership crisis of the post-Mao era. The Central Military Commission that seven men joined at the 2022 Party Congress is down to two: Xi Jinping and Vice Chairman Zhang Shengmin. Five of the six uniformed members have been destroyed, including — in January 2026 — Xi's own oldest military ally, first Vice Chairman Zhang Youxia, and the PLA's top operational officer, Joint Staff chief Liu Zhenli (both formally stripped on 28 August 2026, three days before this writing). Across the force, roughly half of the ~176 most senior billets have turned over, and the Army has gone ~20 months with no commander, the Rocket Force has no full generals at all, and the theater commands, service headquarters, and the entire strategic-forces/logistics/procurement complex are riddled with vacancies and acting officers. **The PLA is being run, at the strategic level, by a caretaker layer of lieutenant generals and vice admirals.**
+
+**What that does to a projection.** Two things. First, the observed base rate — about half of theater-grade-and-above officers removed within three years — means *no* individual forecast in this system deserves high confidence; the honest unit of analysis is the *seat* and the *type of officer* who fills it, not the name. Second, the generational handover this exercise was meant to project into the 2030s **has already started, early, under purge conditions** — the men now acting in the top jobs are born 1969–1971, a decade younger than the officers they replaced.
+
+**Who is most likely to be very senior in 2031 / 2036 / 2041.** The single strongest name-level call is **Vice Admiral Zhang Zheng** (b. 1969) — first captain of the carrier *Liaoning*, UK-educated, now de facto head of the Navy at 56 — who is positioned for a CMC seat by 2032 and a vice-chairmanship by the late 2030s. Around him, a distinct "risers" cohort recurs across all three horizons: **Zhu Chuansheng** (b. 1970, ex-Marine, now running the Joint Staff), **Dai Mingmeng** (b. 1971, carrier-aviation hero, probable South Sea Fleet commander), **Liu Zhe** (b. 1970, in the CMC war room), **Huang Xucong** (b. 1968, the best-credentialed young ground-force officer), and — for the 2041 horizon — **Chen Zhiguo** (b. 1976, captain of the new carrier *Fujian*), the only born-1976 officer China has publicly entrusted with a strategic asset before age 50. Above them, four principles govern who Xi promotes: **the discipline/enforcer class is ascendant** (the last CMC survivor and both 2026 elevations are discipline-lineage); **Air Force generals are the interim operational elite** (two theaters, the new service chief); **internal-security credentials now beat warfighting résumés** (a PAP counter-terror officer runs a conventional theater); and **seats are left empty rather than filled fast** — so every permanent appointment between now and the 21st Congress (~autumn 2027) is a direct read on the next high command. Full ranked slates with confidence bands are in §5.
+
+**The corruption question (§6, read the caveats).** The documented purge shows corruption is *structural*, concentrated in four rent systems: equipment/procurement (two consecutive Equipment Development Department directors destroyed, plus five defense-industry chiefs), the political-work promotion market (the PWD decapitated twice), Rocket Force/strategic construction, and logistics. The forward-looking, explicitly speculative reading: the highest-probability *future* exposure among officers still standing sits with **Navy Equipment Department director Wang Hongli** and the naval shipbuilding chain (the next boom to be audited), a further **Rocket Force procurement cluster** (a fresh tip-solicitation opened days ago), the **logistics/JLSF** next layer, and formal charges against the dozen senior officers who have already *vanished* from public view without announcement (Hu Zhongming, Wu Yanan, Wang Haijiang, Huang Ming, Chen Hui, Chang Dingqiu, and more) — on the 2023–26 pattern, disappearance precedes the announcement. But the deepest finding is an epistemic one: **the purge is no longer a corruption campaign with political side effects — it is a loyalty-reconstruction campaign that uses corruption as its legal instrument.** In this system, being purged is weak evidence of guilt and survival is weak evidence of innocence; some of the fallen are guilty only of the wrong patron, and some of this document's "most promising" officers are carrying liabilities that will surface the moment they stop being useful. Nothing here is an accusation against any serving officer — §6 estimates *exposure*, not conduct.
+
+**Confidence.** High on the current org chart and the documented purge record (both heavily sourced); moderate on the selection *logic* and the seat-level projections; deliberately low and probabilistic on individual names, especially past 2031. The further out the horizon, the more the answer becomes a claim about *institutions* (the carrier strike groups, the Eastern Theater joint staff, the missile bases, the discipline apparatus) rather than people — and past ~2036 it collides with the unresolved question of Xi's own succession, treated as three scenarios in §5.3.
+
+---
+
+## 2. The state of play, August 2026: a decapitated military
+
+Any projection has to start from an honest accounting of how abnormal this moment is. There is no precedent for it in post-Mao China — and it changes the projection method itself (§3).
+
+### 2.1 The Central Military Commission is down to Xi plus one
+
+The 20th Party Congress (October 2022) seated a seven-man CMC: Xi Jinping; vice chairmen **Zhang Youxia** and **He Weidong**; members **Li Shangfu** (defense minister), **Liu Zhenli** (chief of the Joint Staff Department), **Miao Hua** (director of the Political Work Department), and **Zhang Shengmin** (secretary of the Discipline Inspection Commission).
+
+As of 31 August 2026, the roll call reads:
+
+| 20th CMC member | Fate |
+|---|---|
+| Xi Jinping | Chairman |
+| **Zhang Youxia** (张又侠, b. 1950), VC | **Under investigation since 24 Jan 2026** ("suspected serious violations of discipline and law" — MND); stripped of CMC posts by the NPC Standing Committee **28 Aug 2026** [OFFICIAL] |
+| **He Weidong** (何卫东, b. 1957), VC | Vanished March 2025; **expelled from party and military 17 Oct 2025**; case sent to military prosecutors [OFFICIAL] |
+| **Li Shangfu** (李尚福, b. 1958) | Removed as defense minister Oct 2023; **expelled June 2024** [OFFICIAL] |
+| **Liu Zhenli** (刘振立, b. 1964) | **Under investigation since 24 Jan 2026**; stripped 28 Aug 2026 alongside Zhang Youxia [OFFICIAL] |
+| **Miao Hua** (苗华, b. 1955) | Suspended Nov 2024; removed from CMC June 2025; **expelled 17 Oct 2025** [OFFICIAL] |
+| **Zhang Shengmin** (张升民, b. 1958) | **Promoted to CMC Vice Chairman at the Fourth Plenum, 23 Oct 2025** — the last uniformed survivor [OFFICIAL] |
+
+Five of the six uniformed members of the 20th CMC have been destroyed. The two men purged this January were not peripheral: Zhang Youxia was Xi's oldest military ally — a princeling family friend whose father fought alongside Xi's father — retained past retirement age in 2022 precisely because he was trusted; Liu Zhenli was the PLA's top operational officer and the most plausible next senior vice chairman. A PLA Daily commentary accused the pair of having "betrayed the trust of the party and undermined the party's absolute control of the military" — language of political betrayal, not merely graft [REPORTED: SCMP, Caixin]. Days before his investigation was announced, Zhang Youxia was still publicly announcing promotion orders at the 22 December 2025 ceremony.
+
+Beyond the CMC proper, the same weeks consumed **Zhong Shaojun** (钟绍军) — the former director of the CMC General Office who had been Xi's closest personal military aide since Zhejiang days — and **Ju Qiansheng** (巨乾生), former Strategic Support Force commander, both stripped of NPC seats on 28 August 2026 [OFFICIAL].
+
+**The CMC today is effectively Xi Jinping and Vice Chairman Zhang Shengmin**, with Defense Minister **Dong Jun** outside the commission (he has never received the CMC seat or State Councilor rank his predecessors held), an acting Political Work Department director, a vacant Joint Staff chief's chair, and a newly minted discipline secretary (**Zhang Shuguang**, promoted 3 July 2026). CSIS's February 2026 assessment counted **100+ senior officers removed since 2022, touching roughly half of the PLA's ~176 most senior billets, including 38 theater-command-grade commanders and political commissars and ~56 deputy-theater-grade officers**; between a third and four-fifths of the PLA's 2022 Central Committee delegation is gone [REPORTED: CSIS].
+
+### 2.2 Two org charts: the official one and the observed one
+
+Anyone mapping the PLA in 2026 has to keep two ledgers. The **official ledger** — incumbents per state announcements — already shows unprecedented holes. The **observed ledger** — who actually appears at meetings, receptions, parades, and in the leadership tables that Chinese-language trackers maintain from protocol coverage — is far worse. On the observed ledger, a **synchronized sweep between the 3 September 2025 parade and the October 2025 Fourth Plenum emptied most of the theater-command top floor without a single announcement**: tenure records and protocol absences indicate Southern TC commander **Wu Yanan**, Western TC commander **Wang Haijiang**, Northern TC commander **Huang Ming**, and theater political commissars **Zheng Xuan** (NTC), **Xu Deqing** (CTC), and ETC's **He Ping** all stopped appearing around September–October 2025; Army political commissar **Chen Hui** — promoted to full general only in December 2024 — vanished in turn around December 2025; roughly **fourteen full generals were absent without explanation from the March 2026 Two Sessions** [WIKI tenure records; REPORTED: overseas monitoring; individually UNVERIFIED as investigations — no official action announced against any of them].
+
+The consolidated picture, evidence tier noted:
+
+| Post | Official status | Observed status (Aug 2026) |
+|---|---|---|
+| CMC Vice Chairman (1st seat) | Zhang Youxia removed 28 Aug 2026 [OFFICIAL] | Zhang Shengmin is the only VC |
+| CMC members (Joint Staff / PWD / DefMin seats) | Vacant [OFFICIAL] | Vacant |
+| Chief, Joint Staff Department | Vacant since Jan 2026 [OFFICIAL] | **Presided over by VADM Zhu Chuansheng** (b. 1970, ex-Marine Corps commander; deputy chief since Sep 2025) since Jan 2026 [WIKI]; nominal ranking deputy Xu Qiling's own status rumored shaky [RUMOR] |
+| Director, Political Work Department | — | **Acting**: LTG Chen Demin, since Dec 2025 [WIKI] |
+| Commander, PLA Ground Force | None named since Dec 2024 [OFFICIAL silence] | Run by chief of staff **LTG Cai Zhijun** ("responsible for military work") since Jul 2025 [WIKI] |
+| PC, PLA Ground Force | Chen Hui appointed Dec 2024 [OFFICIAL] | **Chen Hui vanished ~Dec 2025**; political work run by LTG Zheng Yanpo since Jun 2026 [WIKI, thinly sourced] |
+| Commander, Rocket Force | None named since Wang Houbin's expulsion (Oct 2025) [OFFICIAL] | **Acting**: chief of staff LTG **Lei Kai**, since Dec 2025 [WIKI/REPORTED]. The RF currently has **zero serving full generals** |
+| PC, Rocket Force | Xu Xisheng [OFFICIAL, never removed] | **Sidelined since ~Oct 2025**; political work run by LTG Zhou Jingjiong (acting) [WIKI/REPORTED] |
+| Commander, Southern TC | Wu Yanan (Jul 2024–) [OFFICIAL] | Gone since ~Oct 2025; **acting: Navy LTG Wang Xianfeng** [WIKI] |
+| PC, Southern TC | — | Vacant (Wang Wenquan no longer listed; predecessor-lineage PC Yin Hongxing stripped Jun 2026 [OFFICIAL]) |
+| Commander, Western TC | Wang Haijiang (2021–) [OFFICIAL] | Gone since ~Sep 2025; **seat vacant**; political work run by RF LTG Zhang Shaoying [WIKI/REPORTED] |
+| PC, Western TC | Li Fengbiao | Stripped Jun 2026 [OFFICIAL] |
+| Commander, Northern TC | Huang Ming (Jul 2024–) [OFFICIAL] | Gone since ~Sep 2025 (rumored detained May 2025); **acting since Apr 2026: LTG Peng Jingtang**, ex-PAP/Hong Kong Garrison [WIKI] |
+| PC, Northern TC | Zheng Xuan | Gone ~Sep 2025; acting: Navy LTG Li Dongyou [WIKI] |
+| PC, Central TC | Xu Deqing | Gone ~Oct 2025; acting: LTG Liang Ping [WIKI] |
+| PC, Eastern TC | Contested record | Acting: RF LTG Zhang Jichun since Sep 2025 per theater tables; a parallel roster lists ADM Liu Qingsong [WIKI conflict — unresolved] |
+| PC, PLA Air Force | Guo Puxiao stripped Jun 2026 [OFFICIAL] | Acting: Shi Honggan since Dec 2025 [WIKI] |
+| Commander, PLA Navy | Hu Zhongming [OFFICIAL, never removed] | **Vanished since May 2025** — missed the Fourth Plenum and the *Fujian* carrier commissioning [REPORTED: CMSI]; detention claimed by diaspora media Mar 2026 [RUMOR]. **De facto head: VADM Zhang Zheng** (b. 1969, first *Liaoning* captain), Navy COS "responsible for military work" since Dec 2025 [WIKI/REPORTED: CMSI Note 23] |
+| PC, PLA Navy | Yuan Huazhi expelled Oct 2025 [OFFICIAL] | Political work run by VADM **Hu Yuhai** (a CCDI member) since Dec 2025; Army transplant VADM Leng Shaojie acted as party secretary through 2025 [WIKI/REPORTED: CMSI]. The Navy PWD director, VADM Wang Zheng, died in post 3 Jan 2026 |
+| Commander, Cyberspace Force | Zhang Minghua stripped Jun 2026 [OFFICIAL] | Vacant; every commander in the SSF/CSF lineage has now fallen |
+| PC, Information Support Force | Li Wei stripped Feb 2026 [OFFICIAL] | Vacant; commander Bi Yi is the sole surviving principal of the Apr 2024 reorganization |
+| PC, Aerospace Force | — | Vacant Dec 2024 – Jul 2026 (~19 months); LTG **Zhang Zuosheng** appointed Jul 2026 [WIKI] — one of the very few vacancies actually filled |
+| Director, CMC General Office | Fang Yongxiang (2024, successor to Zhong Shaojun) | **Absent from Xi's military events since Oct 2025**; passed over for CC promotion at the Fourth Plenum; diaspora outlets list him as fallen [UNVERIFIED] |
+| President, Academy of Military Sciences | — | **Vacant since Nov 2025** (Yang Xuejun departed, reason unknown) [WIKI] |
+| PC, National Defense University | — | Xia Zhihe (Navy LTG, discipline-track) appointed Oct 2025, replacing **Zhong Shaojun** — who was quietly removed days after the Fourth Plenum and formally stripped 28 Aug 2026 [OFFICIAL/REPORTED: Caixin] |
+| Commander & PC, Joint Logistics Support Force | Wang Kangping stripped Jun 2026; Gao Daguang stripped Jul 2025 [OFFICIAL] | **Both vacant** |
+| Director, Equipment Development Department | Xu Xueqiang stripped Jun 2026 [OFFICIAL] | Vacant — the EDD has lost two consecutive directors (Li Shangfu, Xu Xueqiang) and two deputies since 2023 |
+| Director, Logistic Support Department | Zhang Lin stripped Jul 2025 [OFFICIAL] | LTG Chen Chi listed since Sep 2025 [WIKI, single-source] |
+| Commander, People's Armed Police | Wang Chunning stripped Jul 2025, expelled Oct 2025 [OFFICIAL] | **Acting**: Cao Junzhang since Jul 2025 [REPORTED: Caixin] — though the PAP's own roster now shows chief of staff Zhao Dongfang "responsible for military work," suggesting even the acting commander may have turned over [WIKI-CONFLICT] |
+| PC, People's Armed Police | **Zhang Hongbing** — NPC mandate revoked Dec 2025 [OFFICIAL] | Vacant; political work run by deputy PC Wang Hongbin (ex-Marine Corps PC) [WIKI]. The PAP — the regime's internal-security army — has been decapitated twice over in 14 months |
+
+Add the two sitting theater commanders who fell earlier in 2025 — **Lin Xiangyang** (Eastern TC, vanished ~March, expelled October; the Taiwan-facing theater ran ~nine months headless [REPORTED: CSIS]) and **Wang Qiang** (Central TC, the first PLAAF officer ever to command a theater; stopped appearing mid-2025, silently replaced in December [REPORTED: RFA; protocol absences]) — and the totals become: **since September 2024, every one of the five theater commands has lost its commander, its political commissar, or both, mostly without announcement.**
+
+### 2.3 A caretaker military: lieutenant generals running a superpower's armed forces
+
+The deeper pattern in the table above: the PLA's strategic level is now substantially a **caretaker government of lieutenant generals and vice admirals** — Cai Zhijun (Army), Zhang Zheng and Hu Yuhai (Navy), Zhu Chuansheng (Joint Staff), Lei Kai and Zhou Jingjiong (Rocket Force), Wang Xianfeng (Southern TC), Peng Jingtang (Northern TC), Zhang Shaoying (Western TC political work), Liang Ping (Central TC political work), Zhang Jichun (Eastern TC political work), Chen Demin (PWD), Shi Honggan (PLAAF political work), Cao Junzhang (PAP), Bi Yi (ISF), Han Xiaodong (CSF political work) — men acting above their rank in billets that doctrine assigns to full generals. And note the birth years inside that caretaker set: Zhang Zheng (1969), Zhu Chuansheng (1970), and — probably commanding the South Sea Fleet — Dai Mingmeng (1971). **The generational handover this document was commissioned to project for the 2030s has already begun, in acting capacities, under purge conditions.** Chinese-language commentary has a phrase for it: **上将断层，中将治军** — "a full-general gap: lieutenant generals are running the military" [REPORTED, headline-level].
+
+The arithmetic of the full-general corps makes the point brutally:
+
+- Promotions to 上将: **17 (2019) → 5 (2020) → 9 (2021) → 8 (2022) → 7 (2023) → 4 (2024, of whom one — Chen Hui — has since vanished) → 2 (2025) → 2 (2026 to date)** [OFFICIAL ceremonies; WIKI tally]
+- Full generals visibly functioning at the March 2026 Two Sessions: **roughly four** (Zhang Shengmin, Dong Jun, Yang Zhibin, Han Shengyan) — joined in July by Zhang Shuguang and Wang Gang, for **about six** today [REPORTED: session monitoring; consistent with ASPI's count]
+- PLA delegates to the NPC: **281 (2023) → 237 (June 2026)** — a net loss of 44 seats, overwhelmingly to disciplinary removals [REPORTED: roster tallies]
+- The 3 September 2025 V-J Day parade — the regime's showcase — was commanded by a **lieutenant general** (Han Shengyan) for the first time, because no trusted full general was available in the parade-owning billet [OFFICIAL coverage; REPORTED analysis]
+
+Xi has not stopped promoting because there are no vacancies — vacancies have never been more plentiful. He has stopped because **he does not yet trust enough people to fill them**, and because every ceremony is now a highly legible signal of who is in the inner circle. The officers elevated across the last three ceremonies are therefore the closest thing to a published answer key for this document's question:
+
+- **Chen Hui** (陈辉, b. Nov 1963, PLAAF political/discipline track) — Army PC, promoted 23 Dec 2024 — *and even he has since disappeared*
+- **Yang Zhibin** (杨志斌, b. Apr 1963, PLAAF) — Eastern Theater commander, promoted 22 Dec 2025
+- **Han Shengyan** (韩胜延, b. May 1963, PLAAF) — Central Theater commander (guardian of Beijing; parade commander Sept 2025), promoted 22 Dec 2025
+- **Zhang Shuguang** (张曙光, b. 1964, Army) — CMC Discipline Inspection Commission secretary, promoted 3 Jul 2026
+- **Wang Gang** (王刚, b. 1965, PLAAF) — Air Force commander, promoted 3 Jul 2026
+
+### 2.4 What the rebuild pattern reveals
+
+Five selection principles are visible in who has risen since late 2024 — they drive every projection in §5:
+
+1. **The enforcer class is ascendant — but not immune.** The last CMC survivor (Zhang Shengmin) is a career political-officer-turned-discipline-chief from the missile force. The one man he has been allowed to elevate into a CMC-department directorship is a pure discipline-system product: Zhang Shuguang's entire career ran through case-review and inspection bureaus (GPD discipline department → CMC DIC bureaus → Northern TC Air Force discipline secretary → Army discipline secretary → CMC DIC secretary). The pattern repeats one rung down: the Army political commissar named in December 2024, **Chen Hui**, was himself a former Air Force *discipline* secretary rather than a classic propaganda-track commissar (though even he then vanished ~Dec 2025 — see §2.2). The Rocket Force's own discipline secretary was purged (Wang Zhibin, July 2025) and the discipline commission's deputy secretary Tang Yong lost his CPPCC seat (March 2025) — the watchmen are watched too — but as a *class*, discipline officers are the only network being systematically promoted rather than destroyed.
+2. **Air Force generals are the interim operational elite.** Both new theater commanders (Yang Zhibin, Han Shengyan) and the new service chief (Wang Gang) are aviators, as were the fallen EDD director (Xu Xueqiang), JLSF commander (Wang Kangping) and the vanished Chang Dingqiu and Wang Qiang. This is less "the PLAAF won" than "the ground-force patronage networks lost": the He Weidong (Fujian/31st Group Army) and Zhang Youxia (armaments/Shaanxi) lineages are radioactive, and theater-air-force staff officers are the largest clean pool at the right grade. The purge does not spare aviators as a class — it spares *unaffiliated* officers, many of whom happen to wear blue.
+3. **Internal-security credentials now outrank joint-warfare résumés.** The clearest single appointment of 2026: **Peng Jingtang** — a career People's Armed Police counter-terrorism officer (Xinjiang PAP chief of staff, PAP deputy COS, then Hong Kong Garrison commander) — acting commander of the Northern Theater, a conventional-war command facing the Korean Peninsula and Russia. His profile (Xinjiang stability + Hong Kong political reliability) is the profile Xi is buying.
+4. **Cross-network orphans are preferred.** The risers share an absence: no 31st Group Army service, no EDD/armaments chain, no debt to Miao Hua's cadre pipeline. Officers from *watching* institutions (discipline, staff bureaus, test bases, training departments) are stepping over officers from *commanding* lineages.
+5. **Seats are being left empty rather than filled fast — so each eventual filling is the signal.** An acting Rocket Force commander, an acting PWD director, an acting PAP commander, a two-year-vacant Army commandership: Xi is tolerating extraordinary command-and-control risk rather than promote anyone he might have to destroy later. The corollary: **every permanent appointment between now and the 21st Congress (~autumn 2027) is a direct read on the next CMC.**
+
+### 2.5 The fallen Air Force commander
+
+One case deserves its own note because it will recur below. **Chang Dingqiu** (常丁求, b. Jan 1967) was, on every conventional metric, the most promising officer in the PLA: the youngest full general in PLA history at promotion (54), a decorated fighter pilot, deputy chief of the Joint Staff at 50, Air Force commander at 54 — the consensus candidate for CMC vice chairman by the 21st Congress and plausibly the top uniformed officer into the late 2030s. He stopped appearing in 2025 and was replaced by Wang Gang in the first half of 2026 with no announcement; émigré outlets carry unverified claims ranging from investigation to sudden death [RUMOR; replacement itself OFFICIAL via the 3 Jul 2026 ceremony]. Whatever the truth, the lesson for this document is methodological: **in this system, the "most promising officer" identified by résumé logic carries perhaps a 30–50% five-year attrition risk from politics alone.** Every projection below carries that overhang.
+
+---
+
+## 3. Framework: how PLA elites are made (and unmade)
+
+### 3.1 The mechanics that still hold
+
+- **Grade before rank.** The PLA's real hierarchy is its grade ladder (corps deputy → corps leader → theater deputy → theater leader → CMC member → CMC vice chairman), not the three general-officer ranks. Service commanders, theater commanders, and CMC department directors sit at theater-leader grade — the pool from which CMC members are drawn.
+- **Age gates.** Norms (bent, but never abolished, under Xi): corps-leader billets turn over by ~57–58; theater-deputy by ~63; theater-leader by ~65; CMC members have joined as late as 67; vice chairmen have served past 70 only as trusted exceptions (Zhang Youxia, retained at 72 in 2022 — a decision Xi may now regret in the extreme).
+- **The congress clock.** CMCs are remade at party congresses: the 21st (~autumn 2027), 22nd (~2032), 23rd (~2037). The three horizons in this document — 2031, 2036, 2041 — each sit inside the term of one of those CMCs, so the question "who is very senior in 2031?" translates to "who wins seats at the 21st Congress (or in the interim appointments now underway), and survives?"
+- **Pipelines.** Command track: group army commander → theater chief of staff/deputy → theater or service commander → CMC. Political track: group army PC → theater-service PC → theater PC or service PC → PWD director / CMC. Discipline track (newly dominant): service/theater discipline secretary → CMC DIC deputy → DIC secretary. Technical/strategic track: base or academy command in the Rocket Force / space / cyber systems → force leadership.
+- **Feeder posts with outsized hit rates**: Xinjiang and Tibet Military District commanders; the Joint Staff's operations bureau; theater chiefs of staff; the carrier program and nuclear-submarine flotillas; ETC/STC air-force and navy component commands; the CMC General Office.
+
+### 3.2 The Xi-era distortions (post-2023 rules of thumb)
+
+1. **Loyalty screens dominate.** Since mid-2023, every senior appointment has functioned first as a counter-intelligence judgment. The observable proxies for "trusted": discipline-system lineage; service overlap with Xi's build-out institutions (the parade commands, the JOCC); *absence* of ties to the purged networks; and — increasingly rare — personal history with Xi (which, after Zhong Shaojun and Zhang Youxia, is no longer protective either).
+2. **Cross-service and cross-track transplants are the norm for sensitive seats.** A navy admiral ran the Rocket Force (badly, it turned out); an air-force discipline secretary is political commissar of the Army; air-force generals run two theaters; the defense minister is a sailor-diplomat. Projections should therefore *not* assume service lanes: the question for any vacancy is "who is clean, at grade, and adjacent," not "whose turn is it."
+3. **Purges create promotion velocity.** Every wave vaporizes a cohort and drags the next one up early: Han Shengyan jumped from theater-air-force commander to theater commander and full general within months; Zhang Zheng went from staff work to Navy chief of staff as the incumbent fell. For the 2036/2041 horizons this cuts both ways — today's colonels will reach two-star billets years faster than doctrine anticipated, and will be destroyed just as summarily if their patrons stumble.
+4. **The office no longer protects the man, and the man no longer protects the office.** Between 2012 and 2022 an officer who reached the CMC could expect to retire with honor. That equilibrium is dead. Analytically, this means *seat-based* projection (who holds which chair in 2031) must be paired with *attrition modeling* — and it means the corruption question in §6 is not a separate topic but the same topic: the purge is now the principal mechanism of elite circulation in the PLA.
+
+### 3.3 Age math for the three horizons
+
+The eligibility windows (using CMC-entry ≤ ~65 at appointment, theater-leader ≤ ~63 at first appointment, with Xi-era elasticity of ±2 years):
+
+| Horizon | Governing congress | CMC-member cohort (born) | Theater/service-chief cohort (born) | Where that cohort is TODAY |
+|---|---|---|---|---|
+| **2031** | 21st (2027) + interim appointments | ~1962–1970 | ~1964–1972 | Current theater commanders/PCs, service chiefs, executive deputies — plus the untainted slice of theater deputies |
+| **2036** | 22nd (2032) | ~1967–1975 | ~1969–1977 | Current theater chiefs of staff, service COS/deputies, group-army and base commanders, fleet & air-force component leaders |
+| **2041** | 23rd (2037) | ~1972–1980 | ~1974–1982 | Current group-army commanders, brigade → corps risers, carrier captains, missile-base and satellite-launch-center commanders — mostly invisible to open sources |
+
+Two structural notes for the far horizons: (a) **the 2036 CMC will be the first with no member who held general-officer rank before the 2015–16 reforms** — an entirely "joint-native" leadership; (b) **the 2041 leadership will be selected during or after a Xi succession process** (Xi turns 88 in 2041), making it scenario-dependent in ways §5.3 treats explicitly.
+
+---
+
+## 4. The bench, service by service
+
+This section maps who is left standing in each community, and who among them has the age, grade trajectory, and network profile to hold very senior posts on the 2031/2036/2041 horizons. Officers are tagged with birth year where verifiable. A consolidated ranking follows in §5.
+
+### 4.1 Ground Force: an army without a commander
+
+**State of play.** The PLA Army has had no gazetted commander for ~20 months (Li Qiaoming dismissed Dec 2024, purged Feb 2026) and lost its political commissar twice (Qin Shutong expelled; successor Chen Hui vanished ~Dec 2025). It is run day-to-day by its chief of staff, **LTG Cai Zhijun**, with political work under LTG Zheng Yanpo [WIKI]. The two dominant ground-force patronage networks of the Xi era — the Fujian/31st Group Army line (He Weidong, Lin Xiangyang, Qin Shutong) and the Northeast/armaments line (Li Qiaoming, You Haitao, and ultimately Zhang Youxia and Liu Zhenli) — have been annihilated. Jamestown notes seven of the nine generals expelled in October 2025 served in the former Nanjing Military Region and five in the 31st Group Army specifically.
+
+**The bench:**
+
+- **Cai Zhijun** (蔡志军, LTG; birth year unknown) — Army chief of staff since Jul 2025, "responsible for military work." A joint-staff operations professional (former deputy director of the CMC Joint Staff Operations Bureau, and a familiar face as a parade/press briefer). If he is eventually gazetted commander, it will confirm the staff-technocrat template. **5-yr ceiling: Army commander / CMC member.** [WIKI]
+- **Hu Zhongqiang** (胡中强, LTG) — commander of Southern TC ground forces since May 2023; before that the **73rd Group Army** (Xiamen, the Taiwan-assault corps) 2017–2022. The clearest surviving corps-to-theater command track in the ground force. His successor at the 73rd (Ding Laifu, b. 1968) was purged — Hu was promoted out in time. **Ceiling: theater commander.** [WIKI]
+- **Huang Xucong** (黄旭聪, b. Aug 1968, Pujiang, **Zhejiang**; LTG Mar 2024) — Central TC chief of staff & deputy commander; ex-74th Group Army commander; alternate 20th CC member; leads international delegations (Tanzania 2024, Rwanda 2025). **The best-credentialed ground-force officer of the born-1968+ cohort still standing** — the right age (63 in 2031, 68 in 2036), a Zhejiang native profile Xi has favored, and a theater-COS seat that historically feeds theater command. **Ceiling: theater commander by ~2027–30; CMC member by 2032 if untouched.** [WIKI]
+- **Peng Jingtang** (彭京堂, LTG; birth unknown, likely ~mid-1960s) — **acting Northern TC commander since Apr 2026**; career PAP counter-terrorism officer (Xinjiang PAP chief of staff, PAP deputy COS), then Hong Kong Garrison commander 2022–25. The purest expression of the "internal security first" promotion logic. **Ceiling: theater commander / PAP commander; a CMC seat would signal full merger of the internal-security and warfighting elites.** [WIKI]
+- **Kong Jun** (孔军, b. Jul 1964, LTG) — Eastern TC ground commander since Dec 2021; the founding commander of the PLAN Marine Corps (2017). Amphibious/Taiwan portfolio. Age 67 by 2031 — one rung left, if any. [WIKI]
+- **Hong Jiangqiang** (洪江强, b. Feb 1965, LTG) — Eastern TC chief of staff since Aug 2021; ex-74th GA commander. Caveat: chief of staff of the **31st Group Army** in 2015 — the most radioactive line item in today's PLA. Either he is vetted-clean (in post through five purge waves) or he is next. **High variance.** [WIKI]
+- **Li Zhonglin** (李中林, LTG) — Western TC chief of staff since Aug 2021, ex-71st GA commander; **Yang Yi** (杨毅, LTG) — WTC ground commander; **Jia Jiancheng** (贾建成, LTG) — Southern TC chief of staff. The surviving theater-staff layer; each is a candidate to be regularized into the vacant/acting theater commanderships. [WIKI]
+- **Liu Lin** (柳林, b. 1964, Qingshui, Gansu; LTG) — Xinjiang MD commander since Sept 2021; as South Xinjiang MD commander he was the PLA's corps-level negotiator with India during the 2020 Ladakh crisis. The Tibet/Xinjiang chair was the classic fast track (Wang Haijiang rode it to theater command) — though Wang Haijiang's fall shows where the track now leads. Possible 2026 departure noted [WIKI-CONFLICT]. **Wang Kai** (王凯, LTG) — Tibet MD commander since 2021 — same logic. [WIKI]
+- **Fu Wenhua** (付文化, b. Jan 1965, LTG Mar 2025) — PAP deputy commander; ex-Beijing Garrison commander (2020–25), alternate 20th CC, German-trained. Beijing-garrison lineage cut both ways after Wang Chunning, but he was promoted *after* the purge began. [WIKI]
+- **Group-army level (the 2041 cohort):** essentially opaque. The PLA stopped publishing 中将/少将 promotion lists after ~2021; sitting corps commanders surface only via NPC lists and provincial protocol. The one clearly identified group-army commander of the born-1968+ generation — **Ding Laifu** (b. Apr 1968, 73rd GA) — was purged in Feb 2026. Identified but undated: **Fu Xianxue** (82nd GA commander since 2023), **Wang Xiaoyong** (82nd GA PC). This opacity is itself a finding: **the 2041 leadership is not currently projectable at the individual level from open sources, and Beijing appears to want it that way.** [WIKI/OSINT gap]
+
+### 4.2 Navy: the carrier mafia inherits early
+
+**State of play.** The Navy's four-star level has been effectively wiped out: commander Hu Zhongming vanished (May 2025; never officially removed), PC Yuan Huazhi expelled, chief of staff Li Hanjun stripped, two *retired* service chiefs (Shen Jinlong, Qin Shengxiang) purged for good measure, and three successive South Sea Fleet commanders fell (Ju Xinchun 2023, Li Pengcheng 2024, then vacancy). Yet the Navy is also where the generational handover is most advanced: the officers running it now are the founding cadre of the carrier program. [OFFICIAL removals; REPORTED: CMSI Notes 15–17, 20, 23]
+
+**The bench:**
+
+- **Zhang Zheng** (张峥, b. Sept 1969, Changxing, **Zhejiang**; VADM) — first captain of the carrier *Liaoning* (2012–16); UK Joint Services Command and Staff College; Shanghai Jiao Tong engineering degree; first commander of the *Shandong* unit; Southern TC deputy chief of staff; Navy chief of staff Sept 2025; **"responsible for the Navy's military work" — de facto Navy chief — since Dec 2025** [WIKI; REPORTED: CMSI Note 23]. English-fluent, foreign-educated, technically credentialed, carrier-native, 57 years old. **If he is confirmed commander and promoted admiral, he is on the shortlist for the top uniformed jobs of the 2030s: CMC member by 2032 and plausibly vice chairman by 2037.** The single most promising officer identified in this study.
+- **Zhu Chuansheng** (祝传生, b. Apr 1970, Sheqi, Henan; VADM) — Marine Corps commander 2021–25 → Eastern TC deputy commander (Mar 2025) → deputy chief of the Joint Staff (Sept 2025) → **presiding over the Joint Staff Department since Jan 2026** after Liu Zhenli's fall [WIKI]. An amphibious-warfare officer running the PLA's war-planning organ at 56. **Ceiling: Chief of the Joint Staff → CMC member; the strongest born-1970s candidate in the entire PLA.** Age 62 at the 22nd Congress, 67 at the 23rd — the math works for a fifteen-year run.
+- **Dai Mingmeng** (戴明盟, b. Aug 1971, Jiangjin, Chongqing; VADM Dec 2025) — the first pilot to land a J-15 on *Liaoning* (2012), "Carrier-based Fighter Combat Hero Test Pilot," commander of the *Shandong* task group (2021), STC Navy deputy commander → **probable South Sea Fleet commander** [WIKI + inference, flagged]. The face of carrier aviation, now commanding the three-carrier fleet's home theater at 55. **Ceiling: Navy commander by the early-to-mid 2030s.**
+- **Liu Zhe** (刘喆, b. Dec 1970; VADM) — second *Liaoning* captain, the "PhD captain" (AMS doctorate in military strategy); now **deputy director of the CMC Joint Operations Command Center** — the war room [WIKI]. Joint-command track rather than fleet track; a future theater commander or joint staff principal.
+- **Chen Zhiguo** (陈治国, b. **1976**, Qingdao; senior captain) — first captain of ***Fujian*** (CV-18), commissioned 5 Nov 2025 at Sanya; ex-destroyer *Shenyang* CO [OFFICIAL coverage; WIKI]. The youngest capital-ship commander in PLAN history. **The most visible born-1975+ officer in the PLA — the 2041 horizon's reference name.** Flag rank likely within 2–3 years.
+- **Wang Zhongcai** (王仲才, b. Nov 1963; VADM) — East Sea Fleet commander since Jun 2022; unusual portfolio: Gulf of Aden task force command + **China Coast Guard commander 2018–22** (the maritime gray-zone force). Age says one move left: Navy deputy commander or (in a stopgap scenario) commander. [WIKI]
+- **Mei Wen** (梅文, b. 1965; VADM) — first political commissar of *Liaoning*; SSF Network Systems PC; ETC Navy PC since 2022. The carrier community's political-officer counterpart; a plausible Navy PC once the vacancy is regularized. [WIKI]
+- **Hu Yuhai** (胡瑜海, VADM; birth unknown) — running Navy political work since Dec 2025; a sitting member of the party's Central Commission for Discipline Inspection — i.e., cast from the enforcer mold. [WIKI/REPORTED: CMSI]
+- **Cui Yuzhong** (崔玉忠, b. Nov 1964; VADM) — Navy deputy commander, naval aviator, prominent at the *Fujian* commissioning; CMSI flags him as a possible commander but notes his interactions with the Miao Hua/Yuan Huazhi era "may complicate his future." [REPORTED: CMSI Note 20]
+- **Zhang Like** (张立克, b. Jan 1967; VADM) — director, CMC National Defense Mobilization Department since Oct 2025 (a Navy officer in a traditionally Army seat); conspicuous inner-ring seating at the 2026 Two Sessions [WIKI; REPORTED]. Mobilization is where war preparation lives.
+- **Risk register:** **Wang Hongli** (王红理, b. 1967) — the submarine-force hero of the 2014 "underwater cliff" incident, now director of the Navy Equipment Department — sits in the single most purge-exposed portfolio class in the PLA (equipment/procurement). His survival or fall is a bellwether for whether the shipbuilding boom gets the Rocket Force treatment. The aging fleet cohort (Wang Dazhong b. 1962, Fu Yaoquan b. 1963, Yang Zhiliang b. 1962 — the last a wounded veteran of the 1988 Johnson South Reef battle) faces an age-driven turnover wave on top of the purge.
+
+### 4.3 Air Force & Aerospace Force: decapitated, yet ascendant
+
+**State of play.** In one winter the PLAAF lost its commander (Chang Dingqiu, vanished; death-in-detention rumors unconfirmed), its political commissar (Guo Puxiao, stripped Jun 2026), and a deputy commander (Yu Qingjiang, vanished [RUMOR]) — while simultaneously placing aviators in command of the Eastern and Central theaters, the day-to-day leadership of the CMC Political Work Department (Chen Demin), and reportedly caretaker roles in the Western and Northern theaters (Wen Junfei, Liu Wenqi) [WIKI/REPORTED]. The purge hit the PLAAF's headquarters clique and its equipment/test community (Xu Xueqiang, Wang Kangping, Ding Laihang — the last tied to an airport-construction case), not its theater operators.
+
+**The bench:**
+
+- **Wang Gang** (王刚, b. 1965; GEN Jul 2026) — PLAAF commander. Career staff-and-training aviator: 1st Aviation Division; PLAAF training department; chief of staff (2022); deputy commander (Jul 2025); ran the service from Dec 2025; formalized 3 Jul 2026 [OFFICIAL]. At 61, he can serve through the 21st Congress and to the 22nd. **Ceiling: CMC member; an outside chance at the Xu Qiliang precedent (aviator vice chairman) if the rebuild keeps its Air Force tilt.**
+- **Wu Junbao** (吴俊宝, b. May 1965, Qianjiang, Hubei; LTG) — Eastern TC deputy commander & ETC Air Force commander since Dec 2021; ex-Shanghai Base; ex-assistant to the chief of the Joint Staff; alternate 20th CC [WIKI]. CSIS names him among the trusted risers. **The conventional pick for next PLAAF commander — or for a theater command of his own.**
+- **Yin Wei** (尹伟, LTG; birth unknown) — PLAAF chief of staff since ~Apr 2026. The last two men in this chair (Wang Gang; before him Yu Qingjiang) became deputy commander/commander and a purge casualty respectively — the inside track, with the inside risk. [WIKI/REPORTED]
+- **Wen Junfei** (文俊飞, LTG) — reportedly "responsible for military work" of the **entire Western Theater** since Sept 2025 [REPORTED: diaspora-tier, flagged]; **Liu Wenqi** (刘文起, LTG) — NTC Air Force commander since 2021, reportedly acting theater commander in early 2026 before Peng Jingtang [REPORTED, conflicting]. Both are candidates to be regularized as theater commanders — which would put aviators atop four of five theaters.
+- **Sun Xiangdong** (孙向东, LTG) — Airborne Corps commander since 2018. The airborne corps is the PLA's strategic rapid-reaction force; his long tenure and survival (his commissar predecessors fell) make him a quiet candidate for deputy-theater elevation. [WIKI]
+- **Chen Demin** (陈德民, LTG; birth unknown, plausibly late 1960s) — presiding deputy director of the CMC Political Work Department since Dec 2025; ex-Airborne Corps political commissar. If made full PWD director, he takes a CMC-member-grade seat — an enormous jump for an officer who was a major general in 2024. [WIKI]
+- **Aerospace Force:** commander **Hao Weizhong** (郝卫中, b. 1961, Pingyao, Shanxi; LTG) — a pure space technocrat (Taiyuan Satellite Launch Center commander → SSF space systems → founding ASF commander Apr 2024). At 65 he is at the customary ceiling with **no publicly visible heir** — the ASF deputy layer has never been named. New PC **Zhang Zuosheng** (张作胜, LTG, Jul 2026; biography unknown). The ASF has never had a full-general commander; whether Hao's successor gets three stars will reveal how much bureaucratic weight the space force actually carries. [WIKI]
+- **Aging out:** Qiao Xiangji (STC AF, b. Feb 1963), Zhang Hongbin (WTC AF, tenure clouded), and the entire b. 1961–63 theater-AF layer.
+
+### 4.4 Rocket Force: a service in receivership
+
+**State of play.** Every commander the Rocket Force has ever had — Wei Fenghe, Zhou Yaning, Li Yuchao, Wang Houbin — has now fallen; Wei Fenghe and Li Shangfu received **suspended death sentences in May 2026** [REPORTED: RFA]. The force's own discipline secretary (Wang Zhibin) was stripped in July 2025; a sitting base commander (Yang Guang, Base 64) in Feb 2026; the political commissar (Xu Xisheng) has been sidelined without official action since Oct 2025. Since December 2025 the RF has been run by an unannounced caretaker team — chief of staff **Lei Kai** and political-work director **Zhou Jingjiong**, both lieutenant generals — and currently has **zero serving full generals**. And it is not over: on ~24 Aug 2026 the military procurement network publicly solicited tips on RF procurement violations across weapons, logistics, food, and medical categories — the probe is still widening [REPORTED: RFA/Epoch, days old]. [WIKI/OFFICIAL/REPORTED]
+
+**The bench:**
+
+- **Lei Kai** (雷凯, LTG; biography essentially unpublished — typical for serving RF operators) — acting commander since Dec 2025. **The single most informative pending appointment in the PLA**: if this missile-native officer is gazetted commander, Xi has decided the RF can again be trusted to one of its own; if another outsider (à la Navy's Wang Houbin) or no one is appointed, the receivership continues. [WIKI]
+- **Zhou Jingjiong** (周晶炯, LTG) — acting PC; equally unpublished. [WIKI]
+- **Survivors of the old structure:** deputy commander **Chen Guangjun** (陈光军, LTG, since Mar 2021 — one of very few pre-purge RF seniors never implicated), deputy PC **Yu Guang** (禹光, LTG, since 2018), deputy commander **Li Jun** (李军, the "PhD lieutenant general," ex-chief of staff). Any of the three being elevated would signal rehabilitation of the native officer corps; their continued stasis signals the opposite. [WIKI]
+- **The RF's real export is enforcers, not commanders:** Zhang Shengmin (CMC vice chairman) is an RF political officer; **Zhang Shaoying** (张韶颖, RF LTG) runs Western TC political work; **Zhang Yutang** (张玉堂, RF MG) became a PWD deputy director; **Zhang Jichun** (张继春, RF LTG) runs ETC political work [WIKI]. Missile-force political officers — presumably vetted hardest — are being seeded across the PLA as watchdogs, even as missile-force *commanders* remain untouchable for promotion.
+- **The base-commander cohort — the officers who will actually run China's expanded arsenal in the 2030s — is invisible in open sources**, and its one identified member (Yang Guang) was purged. Treat any confident individual-level RF projection with suspicion.
+
+### 4.5 The new strategic forces and the logistics/procurement complex
+
+- **Information Support Force:** commander **Bi Yi** (毕毅, b. 1965, Dandong, Liaoning; LTG) — a ground-force training-system generalist put atop the old SSF information backbone in Apr 2024; **the only one of the four principals Xi personally installed that April still standing** (ISF PC Li Wei stripped Feb 2026; CSF commander Zhang Minghua stripped Jun 2026). Xi has called the ISF a "strategic arm" and its C4ISR portfolio is the connective tissue of joint operations; yet Bi Yi remains a LTG 28 months in, with no deputies ever publicly named. **His promotion to full general — or continued stasis — is the cleanest indicator of whether the ISF becomes a CMC-track institution.** [WIKI/OFFICIAL]
+- **Cyberspace Force:** political commissar **Han Xiaodong** (韩晓东, LTG, cross-service transplant) survives; the commander's chair is empty and every commander in the SSF/CSF lineage (Gao Jin excepted, retired) has fallen. Whoever is quietly appointed will be worth a case study — the pool of untainted senior cyber officers must be vanishingly small. [WIKI]
+- **Joint Logistics Support Force:** both principals purged within 12 months (commander Wang Kangping, PC Gao Daguang); no successors visible. [OFFICIAL/WIKI]
+- **Equipment Development Department:** directorship vacant after two consecutive directors (Li Shangfu, Xu Xueqiang) were destroyed, along with deputies Zhang Yulin and Rao Wenmin and the manned-space program leadership Xu Xueqiang concurrently held. **Whoever accepts this chair is either the most trusted officer in the PLA or its next victim** — likely both in sequence. The Logistic Support Department's thinly-sourced new director (**Chen Chi** 陈炽, AF) inherits the same exposure. [OFFICIAL removals; WIKI]
+
+### 4.6 The political-commissar and discipline apparatus: the enforcer pipeline
+
+The political-work system is being rebuilt as an extension of the supervision apparatus. Every significant political-track elevation since Nov 2024 comes from the **discipline-inspection line**, not Miao Hua's cadre/organization line: Zhang Shuguang (career DIC → CMC DIC secretary); Chen Hui (AF discipline secretary → Army PC — though he has since vanished); Xia Zhihe (Navy discipline track → NDU PC); Hu Yuhai (CCDI member → Navy political caretaker); plus the RF-political exports above. Meanwhile the PWD itself is run by a presiding deputy (Chen Demin) with a rebuilt deputy bench (Zhang Yutang, Xiong Zhaoyuan, Wang Chengnan) and no director ten months after Miao Hua's expulsion — unprecedented since the founding of the political-work system. [WIKI/OFFICIAL/REPORTED: Caixin]
+
+Two observations for the projection:
+
+1. **The next PWD director is one of the highest-information pending appointments** — it comes with CMC-member grade and custody of every future promotion. Candidates visible today: Chen Demin (incumbent-by-function), Xia Zhihe, Hu Yuhai, or a dark-horse discipline officer following the Zhang Shuguang template.
+2. **The young political-officer generation was decapitated at its head:** Zhong Shaojun (b. Oct 1968, Zhejiang, Xi's own gatekeeper and the model "1968-born riser") fell in Aug 2026, reportedly over his role in general-officer selection [OFFICIAL removal; motive UNVERIFIED]. Among *verified* birth dates, **no political officer born after 1965 currently holds any full service/theater PC post** — the youngest is NTC PC Zheng Xuan (b. Nov 1964, himself unseen since ~Sept 2025). The political track's 10–15-year horizon is therefore even more opaque than the command track's.
+
+### 4.7 The People's Armed Police and internal security
+
+The PAP — the regime's coup-proofing force — has been decapitated twice over in 14 months: commander Wang Chunning purged (Jul–Oct 2025), PC Zhang Hongbing stripped (Dec 2025), acting commander Cao Junzhang (曹均章, b. 1965, Chongqing; ex-13th GA, ex-JLSF deputy) possibly already superseded by chief of staff Zhao Dongfang [WIKI-CONFLICT]. Political work runs through deputy PC Wang Hongbin (ex-Marine Corps PC). The China Coast Guard got a new director (Zhang Jianming, Jan 2026) and PC (Liu Houjie). The analytically important flow runs the other way: **PAP officers are being exported into the PLA proper** (Peng Jingtang to Northern TC; the HK-Garrison/Beijing-Garrison alumni network into deputy posts) — under a chairman who now selects first for internal-control competence. [WIKI/REPORTED: Caixin]
+
+---
+
+## 5. Projections: 2031, 2036, 2041
+
+**How to read the confidence bands.** *High* = better-than-even; *Moderate* = 25–50%; *Low* = 10–25%; *Speculative* = <10% but named because the seat logic points there. These are joint probabilities of (a) the projection logic being right AND (b) the officer surviving politically. On the observed 2023–26 base rate — roughly half of all theater-grade-and-above officers removed within three years — **no individual five-year forecast in today's PLA deserves better than ~60% survival-adjusted confidence, and no ten-year forecast better than ~40%.** The seat-based projections (what kinds of officers hold which chairs) are far more robust than any name attached to them.
+
+### 5.0 The bridge: the next 18 months decide everything
+
+The 21st Party Congress (~autumn 2027) will seat the CMC that governs the 2031 horizon, and it will be assembled largely by **regularizing today's caretakers**. The pending appointments, in rough order of information value:
+
+| Vacancy | Leading candidate(s) | What the choice reveals |
+|---|---|---|
+| CMC members (any added at the Fifth Plenum, ~autumn 2026) | Dong Jun; Zhang Shuguang; a regularized CJS | Whether the CMC is rebuilt before the congress or Xi rules through a two-man commission for another year |
+| Chief, Joint Staff | Zhu Chuansheng (presiding); Cao Qingfeng; Xu Qiling (transitional) | Whether the born-1970 cohort jumps a full generation early |
+| Navy commander | Zhang Zheng (de facto) | Carrier community's formal arrival; a 1969-born service chief |
+| Army commander | Cai Zhijun (de facto); a theater ground commander (Hu Zhongqiang, Li Zhonglin) | Whether the ground force gets a commander at all, or stays in staff receivership |
+| Rocket Force commander | Lei Kai (acting); another cross-service transplant | Whether the RF is re-trusted to missile natives |
+| PWD director | Chen Demin (presiding); Xia Zhihe; Hu Yuhai | Whether the political system stays a discipline-apparatus subsidiary |
+| Defense minister's CMC seat / State Councilor rank | Dong Jun | His two survived investigations either end in full rehabilitation — or presage a third |
+| EDD director | unknown | The bravest man in the PLA |
+| Theater regularizations (STC, NTC, WTC commanders; four PC seats) | Wang Xianfeng; Peng Jingtang; Wen Junfei; Liu Wenqi; the caretaker commissars | The composition of the 21st Congress's Central Committee military delegation |
+
+### 5.1 Five years out — 2031 (the 21st Congress CMC, plus wear)
+
+**The projected shape:** a CMC of 5–7 uniformed members rebuilt around the enforcer-operator duo model: a discipline-lineage vice chairman guarding the party's control of the gun, an operator vice chairman (aviator or sailor) running war preparation, a young chief of joint staff, a discipline-lineage PWD director, a Navy defense minister with restored CMC status, and possibly — a Xi-era first — an ISF or Aerospace principal as a member, reflecting the C4ISR-ization of the force.
+
+**Named slate (post → candidates, confidence):**
+
+| Post in 2031 | Most likely | Confidence | Alternatives / notes |
+|---|---|---|---|
+| CMC Chairman | Xi Jinping (78) | High | The 21st Congress succession question (§5.3) more likely produces an heir-in-waiting than a transfer of the chairmanship |
+| Senior Vice Chairman | **Zhang Shuguang** (67) | Moderate | The Zhang Shengmin template repeated: discipline chief elevated. Zhang Shengmin (73) retires mid-term or stays as the Zhang Youxia-style elder — his January 2026 survival while both peers fell marks him as the system's one trusted elder |
+| Vice Chairman (operator) | **Wang Gang** (66) | Moderate | The Xu Qiliang precedent (aviator VC). Alternatives: Han Shengyan (68), Yang Zhibin (68) — both older, likelier to cap at CMC member; **Zhang Zheng** (62) if Xi reaches down a generation |
+| CMC member / Defense Minister | **Dong Jun** (70, retiring ~2029) → successor: a diplomatic-facing admiral/general — **Zhang Zheng** or a rehabilitated MND-system officer | Moderate (Dong to 2029) / Low (successor ID) | Jamestown rates Dong the leading contender for a CMC seat as early as the Fifth Plenum (late 2026) |
+| CMC member / Chief of Joint Staff | **Zhu Chuansheng** (61) | Moderate | Formalization of his current presiding role; alternatives Cao Qingfeng (65), a regularized theater commander |
+| CMC member / PWD director | **Chen Demin** or **Xia Zhihe** | Low-Moderate (either) | Whoever holds it will be discipline-lineage |
+| CMC member / DIC secretary | a Zhang Shuguang protégé from the case-review bureaus; **Hu Yuhai** type | Low | The one seat guaranteed to exist and guaranteed opaque |
+| Navy commander | **Zhang Zheng** (62) — or already up to CMC | High (Navy chief or higher by 2031) | The single strongest name-level call in this document |
+| Air Force commander | **Wu Junbao** (66) or **Yin Wei** | Moderate | |
+| Army commander | **Huang Xucong** (63) — after a theater tour; or Cai Zhijun (transitional) | Low-Moderate | |
+| Rocket Force commander | **Lei Kai** if the Dec 2025 caretaking was a trust signal; otherwise unknown | Low | The RF may see two more leadership turnovers before 2031 on current form |
+| Eastern TC commander | **Wu Junbao**, **Hu Zhongqiang**, or a regularized Hong Jiangqiang | Low each | Yang Zhibin (68) hands off mid-window |
+| PAP commander | **Peng Jingtang** or Cao Junzhang formalized | Low-Moderate | |
+| ISF commander | **Bi Yi** (66) with full-general rank, or his (unknown) successor | Moderate on the seat mattering; Low on the name | |
+
+**The 2031 "most promising ten," ranked** (probability of holding a CMC seat or service/theater-principal post in 2031, survival-adjusted):
+
+1. **Zhang Zheng** (Navy, b. 1969) — de facto service chief at 56 with every modern credential; High
+2. **Zhang Shuguang** (discipline, b. 1964) — owns the only growth industry; High
+3. **Wang Gang** (PLAAF, b. 1965) — service chief with age room; High
+4. **Zhu Chuansheng** (Marines/joint, b. 1970) — presiding over the Joint Staff at 56; Moderate-High
+5. **Han Shengyan** (PLAAF, b. 1963) — Beijing's guardian, parade commander, theater chief; Moderate (age caps him at member)
+6. **Yang Zhibin** (PLAAF, b. 1963) — the Taiwan-theater chair; Moderate (same cap)
+7. **Dong Jun** (Navy, b. 1961) — twice investigated, twice survived; the system's indispensable diplomat; Moderate
+8. **Huang Xucong** (Army, b. 1968) — the ground force's best young credential set; Moderate
+9. **Dai Mingmeng** (Navy, b. 1971) — fleet command at 54, carrier-aviation founding hero; Moderate
+10. **Peng Jingtang** (PAP/Army, b. ~1965) — the internal-security template made flesh; Moderate
+    *Bubble:* Chen Demin, Xia Zhihe, Hu Yuhai (enforcer track); Cai Zhijun, Lei Kai (caretakers pending confirmation); Wu Junbao, Liu Zhe, Cao Qingfeng, Wang Zhongcai, Bi Yi, Zhang Like, Kong Jun, Hu Zhongqiang, Wen Junfei.
+
+### 5.2 Ten years out — 2036 (the 22nd Congress CMC)
+
+By the 22nd Congress (2032) the entire born-1958–63 layer — Zhang Shengmin, Yang Zhibin, Han Shengyan, Dong Jun, the surviving theater PCs — ages out. The CMC of 2032–37 will be drawn from officers born ~1965–1975, i.e., **exactly the caretaker-and-riser cohort identified in §4**, plus the still-invisible group-army/base-commander generation. Structural predictions first (more robust than names):
+
+- **First "joint-native" CMC**: every member's senior career will postdate the 2015–16 reforms; expect Navy/Air/strategic-forces officers to hold a majority of uniformed seats for the first time (the ground force's feeder cohort was disproportionately destroyed in 2023–26, and the service has been headless for years — its institutional power may never recover to pre-purge levels).
+- **The discipline lineage keeps one of the two vice-chairmanships** (whether or not Zhang Shuguang personally holds it), because chairman-responsibility-system enforcement is now a permanent constitutional feature of the CMC, not a campaign.
+- **The ISF/ASF/CSF cluster gets its first CMC-adjacent representation** (a member seat or institutionalized JOCC principal) as C4ISR becomes the PLA's center of gravity.
+- **Attrition warning:** applying the observed purge base rate to a 10-year window implies most of today's visible risers will NOT arrive intact. The names below are the *field*, not a slate.
+
+**The 2036 field (probability of a CMC seat or equivalent in 2036):**
+
+| Officer | Born | 2036 age | Path | Confidence |
+|---|---|---|---|---|
+| **Zhang Zheng** | 1969 | 67 | Navy commander → CMC member (2032) → VC candidate | Moderate |
+| **Zhu Chuansheng** | 1970 | 66 | CJS → CMC member → VC candidate | Moderate |
+| **Dai Mingmeng** | 1971 | 65 | SSF commander → Navy commander (~2030–32) → CMC | Moderate |
+| **Huang Xucong** | 1968 | 68 | Theater commander (~2027–30) → CMC member (2032) | Low-Moderate |
+| **Liu Zhe** | 1970 | 66 | JOCC → theater commander or CJS | Low-Moderate |
+| **Wang Gang** | 1965 | 71 | If VC at 2027 or 2032, serves as the elder operator into 2036 | Low-Moderate |
+| **Zhang Shuguang** | 1964 | 72 | The Zhang Youxia-shaped question: does the enforcer elder overstay? | Low-Moderate |
+| **Chen Demin / Xia Zhihe / Hu Yuhai** | ~late 1960s | ~68 | PWD/discipline seats | Low each |
+| **Lei Kai / Zhou Jingjiong** | unknown | — | If confirmed in RF command, natural 2032 CMC-member material (the RF seat must eventually be refilled) | Low |
+| **Bi Yi's successor at ISF**; the unknown CSF commander | — | — | The information-forces seat | Seat: High; names: unknowable |
+| **Chen Zhiguo** | 1976 | 60 | Carrier captain → flag rank (~2027–28) → fleet command (~2032) → Navy deputy/commander track | Low (but the clearest 1976-born trajectory in the PLA) |
+| **Wen Junfei, Yin Wei, Liu Wenqi, Sun Xiangdong** | ~1960s | — | PLAAF/theater seats | Low each |
+| **Hu Zhongqiang, Li Zhonglin, Jia Jiancheng, Kong Jun successors** | — | — | The ground-force remnant | Low |
+
+**Most promising five for 2036, ranked:** Zhang Zheng, Zhu Chuansheng, Dai Mingmeng, Huang Xucong, Liu Zhe — with the explicit caveat that on base rates, one to three of these five will have been purged, retired early, or otherwise destroyed by then, and at least one 2036 CMC member is today an unidentifiable senior colonel or junior major general.
+
+### 5.3 Fifteen years out — 2041 (the 23rd Congress, and the succession overhang)
+
+Individual-level projection to 2041 from open sources is **not honestly possible** — today's visible cohort will mostly be retired (the 2041 CMC-entry window is roughly born 1972–1980, a generation the PLA deliberately keeps faceless), and the governing variable is political, not biographical: **Xi Jinping turns 88 in 2041.** Three scenarios bound the space:
+
+- **Scenario A — Continuity gerontocracy (Xi still chairman or paramount).** The enforcer template compounds: the 2041 CMC is chaired or dominated by whoever ran the discipline apparatus in the 2030s; operators are technically superb but politically sterile; the RF/procurement complex remains under permanent受托管 (receivership) norms. In this world the safest named bets are the *youngest* of today's anointed: **Chen Zhiguo** (65 in 2041 — Navy commander/CMC window), **Dai Mingmeng** (70, the elder), whoever emerged from Lei Kai's RF rebuild, and the first ISF-native commander. Probability weight: ~35%.
+- **Scenario B — Managed succession (a successor named 2027–2032 consolidates by 2035–37).** The PLA leadership of 2041 is selected for loyalty *to the succession settlement*: expect over-representation of officers who ran the PAP, the JOCC, the Beijing/Central Theater, and the discipline organs during the transition — the Peng Jingtang / Liu Zhe / Zhang Shaoying profiles, one generation down. Any officer too personally identified with Xi's inner court (the Zhong Shaojun lesson) is a liability to the new order and gets retired with honors. Probability weight: ~40%.
+- **Scenario C — Rupture (succession crisis, elite conflict, or a Taiwan war in the window).** Wartime or crisis performance re-sorts everything; the 2041 high command is whoever commanded competently (or survived visibly) in the crucible — historically the one mechanism that has produced genuinely authoritative PLA leaders. No names are projectable; the *institutions* that would produce them are the Eastern TC joint staff, the carrier strike groups, the RF launch bases, and the ISF's targeting complex. Probability weight: ~25%.
+
+**Cohort-level claims for 2041 that hold across scenarios (higher confidence than any name):**
+
+1. The 2041 CMC will contain **no officer with any pre-reform (pre-2016) general-officer experience**, and probably no one who was even a colonel before 2010.
+2. **Naval and aerospace/information officers will hold the plurality**; the ground force will supply at most the PAP/internal-security seat and one theater bloc.
+3. At least one 2041 CMC member is today a **carrier captain, missile-brigade commander, or satellite-launch-center director whose name has never appeared in Western analysis** — the cohort born ~1975–1982 currently at senior-colonel grade.
+4. The discipline apparatus will have produced either the chairman's closest uniformed ally (Scenarios A/B) — or the most hated institution in the building (Scenario C).
+5. If the *Fujian*-generation officers (Chen Zhiguo et al.) are visible at all in 2041, the likeliest very-senior naval figure is Chen Zhiguo himself — the only born-1976 officer in China publicly entrusted with a strategic national asset before age 50.
+
+---
+
+## 6. The corruption question
+
+> **Read §0 again before reading this section.** What follows moves from documented fact (6.1), to structural analysis (6.2), to **clearly-labeled speculation** (6.3–6.4). For officers not named in official announcements, the ratings below are estimates of *structural exposure* and *political risk* — **not claims that any named individual has done anything wrong.** In the PLA of 2026, being purged is weak evidence of corruption and survival is weak evidence of innocence; that asymmetry is analyzed, not assumed away.
+
+### 6.1 What the record shows
+
+The complete documented ledger is in [`purge-tracker.md`](purge-tracker.md). The shape of it:
+
+- **Where the money was, the purge went first.** The 2023–24 waves concentrated almost entirely on two systems: the **Rocket Force** (every commander it has ever had; deputies; the equipment chief; base commanders; its own discipline secretary) and the **armaments/procurement chain** (two consecutive EDD directors — Li Shangfu, Xu Xueqiang — plus deputies Zhang Yulin and Rao Wenmin, and the chairmen of CASC and Norinco and a CASIC deputy GM). These are precisely the systems that absorbed the largest concentrated capital expenditure in PLA history: the silo-field build-out and the equipment-modernization surge. In May 2026, Wei Fenghe and Li Shangfu received **suspended death sentences** [REPORTED: RFA] — the heaviest sanctions against Chinese military leaders since the Cultural Revolution era, with official charging language citing bribery in "extraordinarily large" amounts, and (for Li) both taking and paying bribes — the paying half being the promotion-market tell.
+- **Then the promotion market.** The 2024–25 wave decapitated the **Political Work Department twice** (Miao Hua; his executive deputy He Hongjun) and swept the service political commissars promoted on Miao's watch (Qin Shutong, Yuan Huazhi, Guo Puxiao, Li Wei, plus retired PCs Yu Zhongfu and Qin Shengxiang). The PWD ran cadre selection: if senior rank was being sold — as it demonstrably was under Guo Boxiong and Xu Caihou a decade earlier — the PWD was the marketplace. Zhong Shaojun's fall reportedly centers on general-officer selection [UNVERIFIED motive; OFFICIAL removal], which would put the market's other counter inside Xi's own office.
+- **Then logistics and construction.** JLSF commander and PC; the Logistic Support Department director (Zhang Lin) and a deputy (He Song); Ding Laihang's case reportedly tied to an airport-construction project; and — days ago — the 24 Aug 2026 public solicitation for tips on **Rocket Force procurement across weapons, logistics, food, and medical categories** [REPORTED], which reads as the opening of another round.
+- **Then everyone.** The 2025–26 waves (Fujian/31st GA network in October; Zhang Youxia's staff/armaments network in June; the two CMC principals themselves in January) carry charge language that has drifted from money to politics: "betrayed the trust of the party," "severely trampled on the CMC Chairman responsibility system" [OFFICIAL/REPORTED]. Whatever Zhang Youxia and Liu Zhenli did, the announced offense is *disloyalty*, with corruption as the procedural wrapper.
+
+Scale, for calibration: 100+ senior officers removed since 2022; ~52% of the PLA's ~176 top billets touched; PLA NPC delegates down 44 seats in three years; five of six uniformed CMC members destroyed [REPORTED: CSIS; roster tallies].
+
+### 6.2 Why it is structural
+
+Four features make graft endemic rather than incidental, and they tell you where exposure concentrates:
+
+1. **Monopsony procurement under secrecy.** One buyer (the EDD/service equipment departments), classified budgets, no external audit, prices set in negotiation with a handful of state primes — the textbook rent machine. The 2016 reform *centralized* this (creating the EDD) and thereby centralized the rents: hence two EDD directors destroyed in three years.
+2. **The promotion market.** Rank purchases were institutionalized under Guo/Xu (documented in their prosecutions); the 2024–25 PWD purge indicates the market reopened, or never closed. Where promotion is purchasable, **every officer who rose through the paying years carries paper** — the base-rate problem that makes "who is corrupt" partly a category error: the honest systemic answer is "a large fraction of any cohort promoted 2012–2023, to some degree, because the system priced advancement."
+3. **Construction and land.** Silo fields, base hardening, the JLSF's hospitals-depots-property empire, garrison real estate in tier-1 cities — the PLA is one of China's largest construction clients and (still) landholders.
+4. **Consumables.** Food, fuel, and medical procurement — low-glamour, high-volume, weakly supervised (and named explicitly in the August 2026 RF solicitation).
+
+### 6.3 The exposure register (speculative, clearly labeled)
+
+Method: each *serving or status-unresolved* senior officer is rated on two independent axes.
+**Exposure** = how much of their career ran through the four rent systems above (a fact-based reading of their résumé).
+**Political risk** = probability of being purged in the next ~3 years for *any* reason — graft, network, or loyalty (a judgment call anchored to the observed pattern).
+The axes deliberately diverge: an officer can be high-risk because of who promoted them, without any portfolio exposure; and high-exposure officers survive when they are protected or needed.
+
+**Tier 1 — the system has already answered (officially uncharged but observably un-personed).** These officers vanished from public duty without any announced investigation; on the 2023–26 pattern (He Weidong, Lin Xiangyang, Wang Houbin, Chang Dingqiu… all vanished first, were charged later), disappearance is the single strongest predictor of a coming announcement. *This is pattern inference, not evidence of guilt:*
+
+| Officer | Last post | Vanished | Pattern read |
+|---|---|---|---|
+| **Hu Zhongming** (b. 1964) | Navy commander | ~May 2025 | Promoted under Miao Hua-era political sponsorship; Navy HQ was the October 2025 wave's epicenter. Diaspora detention claims Mar 2026 [RUMOR] |
+| **Wu Yanan** (b. 1962) | Southern TC commander | ~Oct 2025 | Fell in the theater sweep window; no announcement |
+| **Wang Haijiang** (b. 1963) | Western TC commander | ~Sep 2025 | Ditto; his Xinjiang/Tibet career had little rent exposure — network/loyalty read likelier |
+| **Huang Ming** (b. 1963) | Northern TC commander | ~May–Sep 2025 | Ditto |
+| **Chen Hui** (b. 1963) | Army PC (promoted GEN Dec 2024) | ~Dec 2025 | Promoted *during* the purge, gone within a year — the strongest signal that even freshly-vetted officers aren't settled |
+| **Chang Dingqiu** (b. 1967) | PLAAF commander | ~Nov 2025 | Death-in-detention rumor unconfirmed [RUMOR] |
+| **Wang Qiang** (b. 1963) | Central TC commander | ~Jul 2025 | Silently replaced |
+| **Yu Qingjiang** (b. 1963) | PLAAF deputy commander | ~Oct 2025 | [RUMOR-tier] |
+| **Xu Xisheng** (b. 1964) | Rocket Force PC | ~Oct 2025 (sidelined) | Never removed; RF political work now run by an acting officer |
+| **Fang Yongxiang** | Director, CMC General Office | ~Oct 2025 | Xi's own paperwork office — following Zhong Shaojun |
+| **Zheng Xuan, Xu Deqing, Wang Wenquan, He Ping** (theater PCs) | NTC/CTC/STC/ETC political posts | ~Sep–Oct 2025 | The Miao-era PC layer, swept |
+| **Jing Jianfeng** (b. 1966) | Deputy chief, Joint Staff | dropped from rosters ~2025–26 | The PLA's international briefing face; unresolved |
+
+**Tier 2 — serving officers with high structural exposure** (career ran through the rent systems; *no adverse information publicly known*):
+
+- **Wang Hongli** (Navy Equipment Department director since 2022; b. 1967). The equipment chair during history's largest naval shipbuilding program, in the exact portfolio class (equipment) that has destroyed every recent holder RF-side and EDD-side. *Highest structural exposure of any serving officer identified. Political risk: high. His fall or survival is this framework's cleanest out-of-sample test.*
+- **Chen Chi** (Logistic Support Department director since Sep 2025 [thinly sourced]) and **whoever accepts the EDD directorship**. The chairs themselves are the exposure.
+- **Lei Kai & Zhou Jingjiong** (RF caretakers). Unpublished biographies cut both ways: they were presumably chosen as the cleanest available, but anyone at RF chief-of-staff/political-department level overlapped the procurement era now under active solicitation-for-tips. *Exposure: moderate-high by portfolio; risk: moderate.*
+- **Chen Guangjun, Li Jun, Yu Guang** (surviving pre-purge RF deputies). Either the vetted-clean remnant — or not yet reached. *Exposure: high (tenure-based); risk: moderate-high.*
+- **Cao Junzhang** (acting PAP commander; ex-JLSF deputy commander 2020–23). A logistics tour in the exact window under excavation. *Exposure: moderate-high; risk: moderate — note the PAP roster already hints at his possible supersession.*
+- **Fu Wenhua** (PAP deputy; Beijing Garrison commander 2020–25 — garrison real estate) and **Peng Jingtang** (PAP construction-adjacent commands). *Exposure: moderate; risk: low-moderate — currently protected by the internal-security premium.*
+- **Dong Jun**. Investigated (per FT) in 2024 and cleared in 2025 — the only senior officer known to have survived a probe intact. His Navy command years (2021–23) span the shipbuilding surge, and his rise passed through Miao-era political vetting like every naval contemporary's. *Exposure: moderate; risk: moderate — but his diplomatic indispensability and demonstrated survival are real protection. A third investigation would follow the Chen Hui precedent: nobody is ever finally cleared.*
+- **Cui Yuzhong** (Navy deputy commander). CMSI itself flags his Miao/Yuan-era interactions. *Exposure: low-moderate; risk: moderate.*
+- **Hong Jiangqiang** (ETC chief of staff; 31st GA staff lineage). Pure network exposure. *Risk: moderate-high; money exposure: low.*
+- **Xu Qiling** (senior Joint Staff deputy; tagged by compilers as Fujian-clique-adjacent; dismissal rumors). *Risk: moderate-high.*
+
+**Tier 3 — the watchmen's paradox (low conventional exposure, non-trivial risk, high consequence):**
+
+- **Zhang Shengmin** (CMC vice chairman, b. 1958). A Rocket Force political officer by origin — the most graft-saturated service — and PC of the Logistic Support Department in 2016; he then ran the CMC's discipline commission for eight years *during which* Miao Hua, He Weidong, Li Shangfu, and both his fellow vice chairmen allegedly operated freely. Either the cleanest senior officer of his generation (the working assumption, given Xi's total reliance on him) or the best-protected. His January 2026 survival while both peers fell makes him, functionally, the most trusted man in uniform. *Exposure: low-moderate on portfolio, unavoidable by proximity; risk: low while Xi needs him — and absolute if that changes (see: everyone else).*
+- **Zhang Shuguang** (DIC secretary). Career case-review — the cleanest résumé type in the PLA. But the RF's own discipline secretary (Wang Zhibin) and the DIC deputy secretary (Tang Yong) both fell in 2025, so the discipline chair itself confers no immunity. *Risk: low near-term.*
+- **Hu Yuhai, Xia Zhihe, Chen Demin, Zhang Shaoying, Zhang Jichun, Liang Ping, Li Dongyou** (the caretaker commissar cohort). Selected precisely for cleanliness; their exposure is prospective — they now countersign everything.
+
+**Tier 4 — the operational risers (low exposure, ordinary risk).** Zhang Zheng, Zhu Chuansheng, Dai Mingmeng, Liu Zhe, Chen Zhiguo, Huang Xucong, Wu Junbao, Wang Gang, Yang Zhibin, Han Shengyan, Bi Yi, Kong Jun, Hu Zhongqiang, Cai Zhijun. Command/technical tracks with limited procurement authority to date. Three caveats: (1) every one of them was promoted through a political-work system now adjudged corrupt — base-rate paper exists on everyone; (2) several (Zhang Zheng, Wang Gang) are about to inherit *service-command* signing authority, which is where exposure begins; (3) the Chen Hui case proves December's anointed can be next December's disappeared.
+
+### 6.4 So: who might actually be corrupt? (the direct answer, with epistemics attached)
+
+- **In the aggregate:** the officers most likely to have engaged in material corruption, on the structure of the system, are those who held **procurement, construction, logistics, or cadre-selection authority between roughly 2012 and 2023** — which is to say, a substantial share of two entire cohorts, including many already purged and some of the honored dead. The purge record is best read not as a list of the guilty but as the intersection of (probably guilty) ∩ (politically expendable) ∩ (network-affiliated with a fallen patron).
+- **Named, forward-looking, speculative:** the highest-probability *future* corruption announcements among currently-standing officers, on this framework, are (1) **Wang Hongli** or another Navy equipment-chain figure, as the shipbuilding boom gets its audit; (2) a further **Rocket Force procurement cluster** below Lei Kai (the Aug 2026 solicitation all but promises it); (3) the **JLSF/LSD chain's next layer** (deputies, regional joint logistics centers); (4) one or more of the **Tier 1 vanished** being formally charged at upcoming NPCSC sessions (the next batches are due roughly bimonthly; watch late Oct and Dec 2026); and (5) a **defense-industry executive round** touching naval and aviation primes (following the 2023 CASC/Norinco/CASIC removals), given where capex has moved.
+- **And the inversion, stated plainly:** some fraction of the men listed in the purge tracker are guilty of nothing but the wrong patron, and some fraction of the men this document ranks as "most promising" are carrying liabilities that will surface the moment they stop being useful. The PLA's own institutions cannot currently distinguish these cases; outside analysis certainly cannot. What analysis *can* say is that **the purge is no longer a corruption campaign with political side effects — it is a loyalty-reconstruction campaign that uses corruption as its legal instrument**, and it will keep "finding" corruption wherever trust fails, because in this system it is always findable.
+
+---
+
+## 7. What would change this assessment (indicators to watch)
+
+Because the projection rests on a still-unfolding purge, it is unusually falsifiable. Watch for:
+
+- **The next NPCSC session (~Oct/Dec 2026, roughly bimonthly).** Each session since 2023 has stripped PLA delegates. Formal charges against any of the §6.3 Tier-1 vanished (especially Hu Zhongming, Chang Dingqiu) would confirm the "disappearance precedes announcement" model. Watch also whether *new* names appear from the operational-riser cohort — that would break the "operators are safe" assumption this document leans on.
+- **The Fifth Plenum (~autumn 2026) and any CMC additions.** If Dong Jun and/or Zhang Shuguang are seated on the CMC, the rebuild is underway on schedule; if the commission stays at two, Xi is choosing to rule through a skeleton CMC into the 21st Congress — a more unstable equilibrium.
+- **Permanent fills of the acting jobs.** A gazetted Rocket Force commander (Lei Kai or an outsider), a named Army commander, a full PWD director, a promoted-to-admiral Zhang Zheng — each resolves a specific projection in §5.
+- **Wang Hongli's status.** The Navy Equipment Department director is this framework's cleanest out-of-sample corruption test: if the shipbuilding boom gets the Rocket Force treatment, he is exposed; his survival would suggest the naval equipment chain is being treated differently.
+- **Whether any born-1970s officer is promoted to full general.** As of August 2026 the youngest full generals are born 1963–65. The first born-1970 三星 (Zhang Zheng, Zhu Chuansheng, Dai Mingmeng are the candidates) marks the formal start of the generational transition.
+- **Signs of a succession signal at the 21st Congress (2027).** An heir-apparent's identity would reweight the entire 2036/2041 analysis toward §5.3 Scenario B.
+- **A Taiwan or other crisis in the window.** Wartime performance is the one historical mechanism that produces genuinely authoritative PLA leaders and would override every résumé-based projection here (Scenario C).
+
+---
+
+## 8. Methodology, confidence, and sources
+
+**Method.** This assessment was built from public sources only, in two layers: a set of directly-verified anchor facts (current CMC composition, the 2024–26 promotion ceremonies, theater-command rosters, the purge chronology), and a fanned-out open-source sweep across the ground force, navy, air/aerospace forces, rocket/strategic forces, the political-CMC-PAP apparatus, and a dedicated purge tracker. Every load-bearing fact carries a confidence tag ([OFFICIAL] / [REPORTED] / [WIKI] / [INFERRED] / [RUMOR]); conflicts between sources are flagged in place rather than resolved silently.
+
+**Principal sources.** Official: Ministry of National Defense (mod.gov.cn), Xinhua, PLA Daily / 81.cn, NPC Standing Committee gazettes, CCDI and Supreme People's Court / military-court releases, gov.cn. Professional press: Caixin, South China Morning Post, Reuters, Financial Times, AP, NPR. Specialist analysis: the Jamestown Foundation China Brief, CSIS, the China Maritime Studies Institute (CMSI/Naval War College, the Erickson "CMSI Notes" series), RAND, Brookings, ASPI, The Diplomat, and the *China Leadership Monitor* (Wuthnow). Biographical chronologies: Chinese and English Wikipedia and Baidu Baike, used for career/birth data and always tagged [WIKI]. Émigré outlets (Epoch Times, NTDTV, RFA Mandarin columns, Secret China, Aboluowang, Kanzhongguo, Wenxuecity) were used only for leads on officer disappearances and always tagged [RUMOR]; their claims are never treated as established. A consolidated source list with URLs lives in the underlying research files ([`purge-tracker.md`](purge-tracker.md) and the working notes behind each service section).
+
+**Known limitations.**
+1. **The record is moving under our feet.** Facts current on 31 August 2026 will decay; the whole point of §7 is that this is a snapshot of an active purge.
+2. **Deliberate opacity below theater grade.** The PLA stopped publishing lieutenant-general/major-general promotion lists around 2021. The group-army, missile-base, and carrier-captain cohort that will supply the 2041 leadership is largely invisible to open sources — a genuine collection gap, not an omission, and the reason the 2041 projection is scenario-based rather than name-based.
+3. **"Acting" arrangements are under-announced.** Much of §2's observed org chart rests on Chinese-language leadership trackers reading protocol coverage, not official appointment notices; several posts carry conflicting roster states, flagged as [WIKI-CONFLICT].
+4. **Survivorship and disappearance are ambiguous.** An officer's absence from public view is strong pattern-evidence in this environment but not proof of investigation; several officers treated here as "vanished" could be ill, sidelined, or reassigned.
+5. **Corruption exposure is estimated, not established.** §6 rates structural and political risk for officers *not* named in official announcements; those ratings are analytical judgments about position and network, explicitly not findings of misconduct.
+6. **Chinese-language name and date reconciliation.** A handful of birth years, characters, and single-sourced appointments (Lei Kai, Zhou Jingjiong, Chen Chi, Zheng Yanpo, Wang Xianfeng, and others) could not be independently corroborated and are tagged accordingly.
+
+**A note on why this is legitimate analysis.** Everything here concerns the publicly-reported activities of senior public officials of a major military power, of exactly the kind that government, academic, and think-tank China-watchers produce continuously. It relies only on open sources, distinguishes fact from inference from rumor throughout, and makes no claim of misconduct against any serving individual beyond what state organs have themselves announced.
+
+*Prepared 31 August 2026. Files in this directory: this report (`README.md`), the purge tracker (`purge-tracker.md`), and the officer database (`officer-database.csv`).*
