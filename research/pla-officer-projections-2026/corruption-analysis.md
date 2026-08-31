@@ -55,6 +55,84 @@ The ordering itself carries information. Systems 1–3 and 5 are where the money
 
 ---
 
+## 2A. The mechanism: how PLA corruption actually works
+
+The rent map above says *where*. This section says *how* — and its central finding is that the two largest rent systems are not separate.
+
+### 2A.1 The circuit: procurement and office-selling are one market
+
+The single most analytically important charge in the entire corpus is the one laid against **Li Shangfu** at his expulsion in June 2024. He was charged with **both** 受贿 (taking bribes) **and** 行贿 (*giving* them) — and separately with having "sought personnel benefits **for himself and for others** in violation of the rules" (违规为本人和他人谋取人事利益).
+
+Read those together. As director of the Equipment Development Department, Li was the monopsonist *buyer* of Chinese weapons: taking money from suppliers is the expected direction of flow. The only plausible market in which such a man is himself a *payer* is **his own career**. The two counts in combination describe an officer who **bought his own advancement with money extracted from the procurement system**.
+
+That makes procurement graft and office-selling **not two mechanisms but one vertically integrated circuit: rents enter at the contract and exit at the appointment.** And it is not an anomaly — the same both-directions pattern was charged against **Fang Fenghui**, **Zhang Yang**, and **Gu Junshan** (whose indictment was amended *during trial* to add the offering-bribes count).
+
+The Party said as much in Li's verdict language: he "severely polluted the political ecology of the military equipment domain **and the ethos of the industry sector**" — an explicit statement that the contamination crossed from the uniformed acquisition organ into the defence industry.
+
+**This is why purging one system never works.** Cut the procurement end and the promotion market still prices appointments; cut the promotion market and the procurement rents still need somewhere to go. It also explains the otherwise puzzling sequencing in [`purge-tracker.md`](purge-tracker.md): the campaign moved from the Rocket Force and the Equipment Development Department (2023–24) to the Political Work Department and the service political commissars (2024–25). It was following the money upstream.
+
+### 2A.2 Why the Political Work Department sits at the centre
+
+The structural fact: in the PLA, officer appointment, evaluation and promotion are **political work**, not personnel administration. They run through the political-officer chain. The CMC Political Work Department's **Cadre Bureau (干部局)** manages appointments, transfers and promotions, and every unit at regiment level and above is headed by a paired commander and political commissar, with the commissar responsible for personnel decisions.
+
+And until the 2016 reform, **the military's disciplinary organ sat inside the same department it was meant to police**. Xu Caihou ran both in sequence: secretary of the CMC Discipline Inspection Commission (2000–02), then head of the General Political Department (2002–04), then CMC vice chairman. *The man who priced promotions had previously run the body meant to police the pricing of promotions.*
+
+The regime's current language names the problem. The five-part rectification agenda set out in PLA Daily in October 2025 lists **整顿用人 — "rectify the employment of personnel"** — second of five, immediately after ideology. That is the Party's own term for office-selling.
+
+### 2A.3 What a promotion cost
+
+**There was no published tariff, and analysts should be sceptical of the ones in circulation.** What the record actually supports:
+
+- **No CCDI notice, procuratorate finding or court verdict has ever published a per-rank price schedule.** None.
+- The procuratorate's finding on Xu Caihou uses the standard office-selling formula: he "used the convenience of his office to **provide assistance for others' promotion in post**, and accepted bribes **directly and through family members**, in a particularly enormous amount." The same construction recurs in Guo Boxiong's verdict.
+- Pricing appears to have been **competitive rather than fixed**. Reporting sourced to named PLA figures describes one officer offering RMB 10 million for a higher rank and a second outbidding him at RMB 20 million, with the first arrangement annulled. Major General Yang Chunchang, who had worked for Xu, described the decision criteria in order: "first, see how much money is involved, second, his personal affinity to them, and third … emotions and feelings."
+- **The only judicially established figure in the public record is not for a star but for protection:** in January 2012, with his own case closing in, Lieutenant General **Gu Junshan paid Xu Caihou RMB 40 million** to save himself. Xu took it knowing he could not.
+- Tariff tables for 少将 / 中将 circulating in Hong Kong and diaspora media have **no traceable documentary basis** and are mutually inconsistent across outlets — which is itself diagnostic. **[RUMOR]**
+
+The defensible formulation: *promotions were sold; the price was set case by case by competitive bidding rather than by a published schedule; and the only court-established figure is the RMB 40 million Gu Junshan paid for protection.*
+
+### 2A.4 How the money moved
+
+Four documented channels:
+
+1. **Through family members** — this is in the charge language itself (直接和通过家人收受贿赂). The family is not an accessory; it is the payment rail.
+2. **Physical cash, warehoused and labelled.** Investigators reportedly removed **over a tonne of currency** from Xu Caihou's Beijing residence, along with jade, antiquities and precious hardwoods — twelve military trucks' worth. The detail that matters analytically: much of the cash was still in boxes **marked with individual officers' names**. Boxes labelled by payer are a **ledger**. They imply payments were tracked and sequenced, not received as one-off gifts. **[REPORTED]**
+3. **Fee-for-intervention from the civilian economy** — the military selling administrative protection to businessmen. **[REPORTED]**
+4. **Family businesses monetising the office indirectly.**
+
+### 2A.5 Why weapons procurement is the ideal target
+
+Elliot Ji's account identifies a "corruption sweet spot" with three components, and the second is the one non-specialists miss:
+
+1. **Abundant funding under monopoly.** State-owned primes, rapidly growing budgets, no competitive discipline.
+2. **Strategic systems are almost never used, so defects are never discovered.** US Minuteman IIIs are test-launched regularly; the DF-41 has been tested roughly 7–10 times since 2012, the DF-5 only a handful of times since 2000. **Deterrent weapons work by *perceived* readiness — which makes them the perfect thing to sell defectively, because nobody ever checks.**
+3. **The quality gate is a single buyable official.** The PLA embeds **军代表 (military representatives)** inside manufacturers to certify quality. China's own *Legal Daily* warned as early as 2012 that some military representatives were taking money from the firms they were certifying.
+
+Internal PLA audit research — by researchers at the CMC Audit Office and the Naval University of Engineering — documents two concrete fraud typologies: **围标/串标** (contractors consulting beforehand to rig bid prices) and **collusion between suppliers and PLA personnel or tendering agencies to exclude competing bids**. One audit found a unit's communications-equipment purchase priced **RMB 2 million above actual cost**. Post-award, contractors "neglect to deliver goods on time or fail to meet the agreed quantitative and qualitative standards" — so the PLA pays more for worse equipment while honest firms lose share.
+
+A rare published enforcement action shows the reach: in **August 2024 the PLA's procurement network barred three universities** — Xi'an Technological, Xi'an Jiaotong and Southwest Jiaotong — **from Rocket Force procurement until 2027** for collusive bidding. The fraud extends into the university R&D layer, not just the SOE primes.
+
+### 2A.6 The tell in the July 2023 tip-line
+
+In July 2023 the Equipment Development Department solicited public tips on procurement irregularities — **covering violations back to October 2017**.
+
+That date is not arbitrary. October 2017 is when **Li Shangfu** took over the department. The scoping implicated him while **conveniently excluding his predecessor**, who ran the armaments system from 2012 to 2017: **Zhang Youxia**, Xi's oldest military ally.
+
+**The scoping was itself a political act — and it did not hold.** Zhang Youxia was placed under investigation on 24 January 2026 and stripped of his CMC posts on 28 August 2026. Whatever protection the 2017 cut-off was meant to provide expired in about thirty months. For a report about *who survives*, that is the most instructive single fact in the corruption record: a boundary drawn around the paramount leader's closest military associate lasted less than three years.
+
+### 2A.7 What showed up in the hardware
+
+Handle this tier carefully — the most-quoted claims are journalism sourced to unnamed intelligence assessments, not adjudicated findings.
+
+- **[REPORTED]** US intelligence assessments relayed in January 2024 described "mishandling of missile fuel and silo lid malfunctions that could prevent the launch of intercontinental ballistic missiles" — popularly rendered as missiles filled with water and silo doors that would not open. The water formulation is a press rendering, not an official finding.
+- **[OFFICIAL]** The failure mode is nonetheless real and self-documented: in 2005 *PLA Daily* praised a missile brigade commander for **refusing delivery of silo lids** because one would not open, the product being too heavy.
+- **[OFFICIAL]** DoD's 2024 report links the Rocket Force dismissals to "fraud cases involving the construction of underground silos" — and assesses that the investigation "likely resulted in the PLARF repairing the silos, which would have increased the overall operational readiness of its silo-based force."
+- **[OFFICIAL]** DoD's 2025 report goes further, attributing to procurement corruption "**malfunctioning lids installed on missile silos**" and "possibly the **pier-side sinking of the PLAN's first Zhou-class submarine** as it prepared for sea trials."
+- **[OFFICIAL]** In March 2024 CMC Vice Chairman **He Weidong** told an NPC delegation the CMC would crack down on **"fake combat capabilities" (假战斗力)**. He was expelled nineteen months later.
+- **[REPORTED]** SIPRI's Nan Tian records that corruption allegations led to major arms contracts being postponed or cancelled in 2024, with revenue drops at Chinese defence firms — the clearest market-observable trace of the campaign.
+
+---
+
 ## 3. A charge-language decoder
 
 Chinese Communist Party disciplinary announcements are formulaic, and the formula varies in ways that are informative. Party discipline is enumerated in a conventional order — **political discipline (政治纪律), organizational discipline (组织纪律), integrity discipline (廉洁纪律), and so on** — and practitioners have long noted that *what is listed first, and whether money is quantified*, signals what the case is really about.
